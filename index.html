@@ -198,42 +198,28 @@
   <!-- ===================== CONTACT ===================== -->
   <section class="section contact" id="contact">
     <div class="container">
-      <span class="section__label">Contact</span>
-      <h2 class="section__title">Let's Create Something.</h2>
+      <span class="section__label">Book / Contact</span>
+      <h2 class="section__title">Let’s Create Something.</h2>
       <p class="section__sub">
-        Booking inquiries, production requests, podcast collaborations, or just want to connect — reach out below.
+        Booking inquiries, production requests, podcast collaborations, or just want to connect — schedule a time or reach out directly.
       </p>
 
       <div class="contact__grid">
-        <form class="contact__form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <div class="form__row">
-            <div class="form__group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Your name" required />
-            </div>
-            <div class="form__group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="your@email.com" required />
-            </div>
+        <div class="contact__booking">
+          <h3 class="contact__booking-title">Schedule a Session</h3>
+          <p class="contact__booking-desc">
+            Use the link below to book a time that works for you. Whether it’s a live performance, production project, or a simple conversation — I’d love to connect.
+          </p>
+          <a href="https://calendar.app.google/XPtUxyEjW1mVSwoW7" target="_blank" rel="noopener" class="btn btn--primary btn--large">
+            Book a Time &rarr;
+          </a>
+          <div class="contact__or">
+            <span>or reach out directly</span>
           </div>
-          <div class="form__group">
-            <label for="subject">What are you reaching out about?</label>
-            <select id="subject" name="subject">
-              <option value="">Select a topic...</option>
-              <option value="booking">Live Performance Booking</option>
-              <option value="production">Music Production</option>
-              <option value="podcast">Podcast Engineering</option>
-              <option value="consulting">Consulting</option>
-              <option value="other">Other / General Inquiry</option>
-            </select>
-          </div>
-          <div class="form__group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project or event..." required></textarea>
-          </div>
-          <button type="submit" class="btn btn--primary btn--full">Send Message</button>
-          <p class="form__note" id="formStatus"></p>
-        </form>
+          <a href="mailto:randybryanmoore@gmail.com" class="contact__email">
+            randybryanmoore@gmail.com
+          </a>
+        </div>
 
         <div class="contact__info">
           <div class="contact__info-item">
