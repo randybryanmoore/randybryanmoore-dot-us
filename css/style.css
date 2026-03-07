@@ -11,15 +11,15 @@
 }
 
 :root {
-     --clr-bg:        #f2ede3;
-     --clr-surface:   #e8e2d6;
-     --clr-surface2:  #ddd7cb;
-     --clr-border:    #c8c2b6;
-     --clr-text:      #1a1a1a;
-     --clr-muted:     #555550;
-     --clr-gold:      #a07828;
-     --clr-gold-lt:   #c49a3a;
-     --clr-white:     #111111;
+     --clr-bg:        #0d0d0d;
+     --clr-surface:   #161616;
+     --clr-surface2:  #1f1f1f;
+     --clr-border:    #2a2a2a;
+     --clr-text:      #e8e4dc;
+     --clr-muted:     #888880;
+     --clr-gold:      #c9a84c;
+     --clr-gold-lt:   #e2c47a;
+     --clr-white:     #fffff;
      --ff-serif: 'Playfair Display', Georgia, serif;
      --ff-sans:  'Inter', system-ui, sans-serif;
      --nav-h: 72px;
