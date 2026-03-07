@@ -513,3 +513,60 @@ ul { list-style: none; }
      .form__row { grid-template-columns: 1fr; }
      .hero__actions { flex-direction: column; align-items: center; }
 }
+
+
+/* ===================== CONTACT BOOKING ===================== */
+.contact__booking {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact__booking-title {
+  font-family: var(--ff-serif);
+  font-size: 1.5rem;
+  color: var(--clr-text);
+  margin: 0;
+}
+
+.contact__booking-desc {
+  color: var(--clr-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.btn--large {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+}
+
+.contact__or {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--clr-muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.contact__or::before,
+.contact__or::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--clr-border);
+}
+
+.contact__email {
+  color: var(--clr-gold);
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.contact__email:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
