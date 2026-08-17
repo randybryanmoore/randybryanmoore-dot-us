@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confidential Executive Handout | Randy Bryan Moore, MSW - Richmond Symphony</title>
+  <!-- Strict Privacy: Prevent Search Engine Indexing & Archiving -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background-color: #E9E0D2;
+      color: #171914;
+      padding: 24px 12px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .sheet-page {
+      background: #F2EADF;
+      max-width: 860px;
+      margin: 0 auto 28px;
+      padding: 38px 46px;
+      border-radius: 8px;
+      box-shadow: 0 12px 32px rgba(23, 25, 20, 0.08);
+      border-top: 6px solid #183B2B;
+      border-left: 1px solid rgba(128, 131, 112, 0.35);
+      border-right: 1px solid rgba(128, 131, 112, 0.35);
+      border-bottom: 1px solid rgba(128, 131, 112, 0.35);
+      position: relative;
+    }
+
+    .page-tag {
+      position: absolute;
+      top: 14px;
+      right: 20px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #5B2432;
+      background: rgba(91, 36, 50, 0.08);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .sheet-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid rgba(128, 131, 112, 0.35);
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+    }
+
+    .candidate-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      color: #183B2B;
+      margin-bottom: 2px;
+      line-height: 1.1;
+    }
+
+    .target-role {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #5B2432;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .target-sub {
+      font-size: 0.82rem;
+      color: #183B2B;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .contact-line {
+      font-size: 0.78rem;
+      color: #57624B;
+      margin-top: 6px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .qr-card-print {
+      background: #ffffff;
+      border: 1.5px solid #183B2B;
+      border-radius: 8px;
+      padding: 8px 10px;
+      text-align: center;
+      width: 155px;
+      box-shadow: 0 4px 12px rgba(24, 59, 43, 0.08);
+      flex-shrink: 0;
+    }
+
+    .qr-card-print p {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #183B2B;
+      margin-top: 4px;
+      line-height: 1.2;
+    }
+
+    .exec-summary {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #171914;
+      margin-bottom: 14px;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 10px 14px;
+      border-radius: 6px;
+      border-left: 3.5px solid #183B2B;
+    }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #183B2B;
+      border-bottom: 1.5px solid rgba(128, 131, 112, 0.35);
+      padding-bottom: 3px;
+      margin: 14px 0 8px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .pillar-box {
+      background: #ffffff;
+      border: 1px solid rgba(128, 131, 112, 0.35);
+      border-radius: 6px;
+      padding: 10px 12px;
+    }
+
+    .pillar-box h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      color: #5B2432;
+      margin-bottom: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .pillar-box p {
+      font-size: 0.78rem;
+      color: #3b4238;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .experience-item {
+      margin-bottom: 9px;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #183B2B;
+    }
+
+    .exp-sub {
+      font-size: 0.76rem;
+      color: #5B2432;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 14px;
+      font-size: 0.78rem;
+      color: #171914;
+      margin-bottom: 3px;
+      line-height: 1.38;
+    }
+
+    .bullet-list li::before {
+      content: "▪";
+      position: absolute;
+      left: 0;
+      color: #5B2432;
+      font-size: 0.95rem;
+      line-height: 1;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 4px;
+    }
+
+    .skill-pill {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #183B2B;
+      background: rgba(129, 145, 111, 0.22);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(87, 98, 75, 0.2);
+    }
+
+    .deep-dive-card {
+      background: #ffffff;
+      border: 1px solid rgba(128, 131, 112, 0.35);
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+    }
+
+    .deep-dive-card h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      color: #183B2B;
+      margin-bottom: 3px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .deep-dive-card p {
+      font-size: 0.77rem;
+      color: #3b4238;
+      line-height: 1.4;
+      margin: 0 0 4px;
+    }
+
+    .print-bar {
+      max-width: 860px;
+      margin: 0 auto 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .page-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(128, 131, 112, 0.35);
+      padding-top: 8px;
+      margin-top: 14px;
+      font-size: 0.72rem;
+      color: #57624B;
+      font-weight: 600;
+    }
+
+    @media print {
+      @page {
+        size: letter;
+        margin: 0.35in 0.4in;
+      }
+      body {
+        background: #ffffff !important;
+        padding: 0 !important;
+      }
+      .sheet-page {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        background: transparent !important;
+        page-break-after: always;
+        break-after: page;
+        height: 100vh;
+      }
+      .sheet-page:last-child {
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Confidential Passcode Gate (Code: 0000) -->
+  <div id="passcode-gate" class="passcode-gate-overlay">
+    <div class="passcode-card">
+      <div class="gate-monogram">RM</div>
+      <h2 class="gate-title">Executive Handout</h2>
+      <div class="gate-sub">Richmond Symphony • Selection Committee</div>
+      <p class="gate-desc">
+        Confidential 2-Page Executive Briefing prepared for the <strong>Assistant Director, Advancement Systems & Operations</strong> position.
+      </p>
+      
+      <div class="passcode-input-box">
+        <input type="password" maxlength="1" class="passcode-digit" id="digit-1" autofocus inputmode="numeric">
+        <input type="password" maxlength="1" class="passcode-digit" id="digit-2" inputmode="numeric">
+        <input type="password" maxlength="1" class="passcode-digit" id="digit-3" inputmode="numeric">
+        <input type="password" maxlength="1" class="passcode-digit" id="digit-4" inputmode="numeric">
+      </div>
+
+      <div class="gate-hint">
+        Selection Committee Access Code: <strong>0000</strong>
+      </div>
+
+      <button id="gate-unlock-btn" class="btn-primary gate-unlock-btn">
+        🔓 Unlock Confidential Handout
+      </button>
+    </div>
+  </div>
+
+  <!-- Controls (Hidden on Print) -->
+  <div class="print-bar no-print">
+    <a href="index.html" class="btn-outline" style="background: #F2EADF; color: #183B2B;">← Back to Digital Portfolio</a>
+    <div style="display: flex; gap: 10px;">
+      <a href="dashboard.html" target="_blank" class="btn-outline" style="background: #F2EADF; color: #183B2B;">📊 View Dashboard</a>
+      <button onclick="window.print()" class="btn-primary" style="box-shadow: none;">Print 2-Page Executive Handout (PDF)</button>
+    </div>
+  </div>
+
+  <!-- PAGE 1 (FRONT): Candidate Profile & Core Operations -->
+  <div class="sheet-page one-pager-container">
+    <span class="page-tag no-print">PAGE 1 OF 2 • FRONT</span>
+
+    <div class="sheet-header">
+      <div>
+        <h1 class="candidate-name">Randy Bryan Moore, MSW</h1>
+        <div class="target-role">Candidate: Assistant Director, Advancement Systems & Operations</div>
+        <div class="target-sub">Richmond Symphony • Selection Committee</div>
+        <div class="contact-line">
+          <span>📍 Richmond, VA</span>
+          <span>📞 (803) 486-4007</span>
+          <span>✉️ randybryanmoore@gmail.com</span>
+          <span>🔗 linkedin.com/in/randybryanmoore</span>
+        </div>
+      </div>
+      <div class="qr-card-print">
+        <div class="qr-code-target" data-size="110"></div>
+        <p>Scan for Digital Portfolio, Audio & Live Dashboard</p>
+      </div>
+    </div>
+
+    <!-- Executive Summary tailored to Advancement Operations -->
+    <div class="exec-summary">
+      <strong>Executive Profile:</strong> Systems, operations, and public-service leader with 10+ years across advocacy, statewide coalitions, and nonprofit administration. Proven expertise in <strong>contextualizing complex stakeholder data</strong>, designing human-centered workflows, translating information into strategic action, and coordinating cross-functional teams. A <strong>Richmond-based pianist</strong> (4 years resident musician at <em>The Jefferson Hotel</em>), uniting operational depth with a genuine commitment to the Richmond Symphony's patrons and community.
+    </div>
+
+    <!-- Two Pillars: Advancement Systems & Performing Arts Alignment -->
+    <div class="two-column">
+      <div class="pillar-box">
+        <h4>📊 Contextualizing Data & Systems Leadership</h4>
+        <p>Expertise turning high-volume constituent information into actionable donor narratives, clean workflow design, cross-functional dashboard reporting, and collaborative partnership between Advancement and Finance teams.</p>
+      </div>
+      <div class="pillar-box">
+        <h4>🎹 Symphony & Arts Community Immersion</h4>
+        <p>Active Richmond musician performing at The Jefferson Hotel, music educator, and civic organizer with enthusiasm for donor galas, evening/weekend concert attendance, and patron relationship cultivation.</p>
+      </div>
+    </div>
+
+    <!-- Selected Leadership & Experience Highlights -->
+    <h3 class="section-title">Operations & Systems Experience</h3>
+    
+    <div class="experience-item">
+      <div class="exp-header">
+        <span>Save the Children Action Network</span>
+        <span>12/2024 – 11/2025</span>
+      </div>
+      <div class="exp-sub">Virginia State Manager</div>
+      <ul class="bullet-list">
+        <li>Managed statewide advocacy operations, coordinating 55 General Assembly meetings with lawmakers, donors, and coalition partners.</li>
+        <li>Architected EveryAction CRM tagging and constituent segmentation; built outreach lists, follow-up workflows, and turnout reporting.</li>
+      </ul>
+    </div>
+
+    <div class="experience-item">
+      <div class="exp-header">
+        <span>Office of U.S. Senator Mark R. Warner</span>
+        <span>08/2020 – 04/2022</span>
+      </div>
+      <div class="exp-sub">Outreach Representative — Richmond, VA</div>
+      <ul class="bullet-list">
+        <li>Managed regional communications and stakeholder relations across 40+ Central Virginia counties with civic leaders and partners.</li>
+        <li>Prepared senior-level briefing materials, maintained meticulous records, and organized 40+ high-profile public engagements.</li>
+      </ul>
+    </div>
+
+    <div class="experience-item">
+      <div class="exp-header">
+        <span>Virginia Housing Alliance & Active Minds</span>
+        <span>2017 – 2024</span>
+      </div>
+      <div class="exp-sub">Director of Policy / Policy Manager</div>
+      <ul class="bullet-list">
+        <li>Built multi-organization tracking and reporting systems; developed budget strategy, managed sensitive records, and trained staff.</li>
+        <li>Led 10-organization coalition and coordinated federal advocacy across 50+ congressional and legislative offices.</li>
+      </ul>
+    </div>
+
+    <!-- Education & Core Competencies -->
+    <div class="two-column" style="margin-top: 6px;">
+      <div>
+        <h3 class="section-title" style="margin-top: 2px;">Education & Credentials</h3>
+        <p style="font-size: 0.76rem; color: #171914; line-height: 1.35; margin: 0;">
+          <strong>University of Virginia</strong> — Sorensen Political Leaders Institute (2022)<br>
+          <strong>University of South Carolina</strong> — Master of Social Work (MSW), Macro / Orgs (2015)<br>
+          <strong>University of South Carolina</strong> — BSW, Civic Distinction (2014)
+        </p>
+      </div>
+      <div>
+        <h3 class="section-title" style="margin-top: 2px;">Core Systems Competencies</h3>
+        <div class="skills-grid">
+          <span class="skill-pill">Bloomerang & EveryAction</span>
+          <span class="skill-pill">Muster Advocacy CRM</span>
+          <span class="skill-pill">Finance Reconciliation</span>
+          <span class="skill-pill">Data Governance</span>
+          <span class="skill-pill">Gift Acknowledging (&lt;48h)</span>
+          <span class="skill-pill">VIP Gala Logistics</span>
+          <span class="skill-pill">Donor Segmentation</span>
+          <span class="skill-pill">HTML/Web Dashboards</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Randy Bryan Moore, MSW • Candidate for Assistant Director, Advancement Systems & Operations</span>
+      <span>Page 1 of 2 • Front</span>
+    </div>
+  </div>
+
+  <!-- PAGE 2 (BACK): Deep-Dive Artifacts, Muster & Richmond Symphony Blueprint -->
+  <div class="sheet-page one-pager-container">
+    <span class="page-tag no-print">PAGE 2 OF 2 • BACK</span>
+
+    <div class="sheet-header" style="border-bottom: 2px solid #5B2432;">
+      <div>
+        <div style="font-family: 'Cinzel', serif; font-size: 0.76rem; font-weight: 800; color: #5B2432; letter-spacing: 0.1em; text-transform: uppercase;">
+          Operational Blueprint & Deep-Dive Portfolio
+        </div>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #183B2B; margin: 2px 0 0;">
+          Richmond Symphony Advancement Systems Architecture
+        </h2>
+      </div>
+      <div style="text-align: right; font-size: 0.74rem; color: #57624B; font-weight: 600;">
+        Interactive Suite: <strong style="color: #183B2B;">randybryanmoore.com</strong>
+      </div>
+    </div>
+
+    <!-- Section 1: Live Prototype & Dashboard Architecture -->
+    <h3 class="section-title">1. Advancement Intelligence Dashboard & CRM Architecture</h3>
+    <div class="deep-dive-card">
+      <h4>
+        <span>📊 Live Advancement Dashboard Demo ($3.50M Target • Passcode: 0000)</span>
+        <span style="color: #5B2432; font-size: 0.72rem;">Interactive Demo Available</span>
+      </h4>
+      <p>
+        Architected a conceptual decision-support system for the Richmond Symphony tracking fiscal giving progress ($2.46M achieved / 70.3%), revenue mix diversification (Individual 47%, Corporate 22%, Foundation 20%, Government 11%), 83% donor retention velocity, and a 94% CRM data hygiene score.
+      </p>
+      <ul class="bullet-list">
+        <li><strong>Bloomerang Governance & Taxonomies:</strong> Systematic constituent tagging, pledge tracking, and automated 48-hour acknowledgment workflows.</li>
+        <li><strong>Advancement-Finance Reconciliation:</strong> Weekly reconciliation protocol eliminating unallocated variance between CRM pledges and GL cash receipts.</li>
+      </ul>
+    </div>
+
+    <!-- Section 2: Muster & Evokate Systems Experience -->
+    <h3 class="section-title">2. Grassroots Systems & Multimedia Direction</h3>
+    <div class="two-column">
+      <div class="deep-dive-card">
+        <h4>📢 Muster Advocacy CRM</h4>
+        <p>Managed statewide legislative alerts, constituent contact heatmaps, and grassroots turnout tracking across all 55 Virginia General Assembly districts with a 98.4% deliverability rate.</p>
+      </div>
+      <div class="deep-dive-card">
+        <h4>✨ Evokate Strategy & Media</h4>
+        <p>Directs high-impact multimedia storytelling and digital patron campaigns, converting complex artistic programming into compelling donor engagement narratives.</p>
+      </div>
+    </div>
+
+    <!-- Section 3: Performing Arts Leadership, 1,000 Songs & Richmond Roots -->
+    <h3 class="section-title">3. Performing Arts Immersion & "1,000 Songs" Listening Practice</h3>
+    <div class="deep-dive-card">
+      <h4>
+        <span>🎹 The Jefferson Hotel (2022–Present) • 1,000 Songs Project</span>
+        <span style="color: #183B2B; font-size: 0.72rem;">@randybryanmoore</span>
+      </h4>
+      <p>
+        4 years of weekly performances at Richmond's historic Jefferson Hotel cultivating patron relationships. Creator of <strong>1,000 Songs</strong>: a public listening practice across piano, voice, and guitar. <em>“The purpose is to hear what music has to teach me—as an artist, as a beast, and as a ghost... and to be changed by music at the end.”</em>
+      </p>
+    </div>
+
+    <!-- Section 4: 30-60-90 Day Advancement Onboarding Roadmap -->
+    <h3 class="section-title">4. 30-60-90 Day Advancement Onboarding Framework</h3>
+    <div class="two-column">
+      <div class="pillar-box" style="padding: 8px 10px;">
+        <strong style="color: #183B2B; font-size: 0.75rem;">Days 1–30: Systems Audit & Finance Cadence</strong>
+        <p style="font-size: 0.73rem; margin-top: 2px;">Map Bloomerang gift flows, verify acknowledgment triggers, and establish weekly reconciliation cadence with the Finance team.</p>
+      </div>
+      <div class="pillar-box" style="padding: 8px 10px;">
+        <strong style="color: #5B2432; font-size: 0.75rem;">Days 31–60: Segmentation & Concert Ops</strong>
+        <p style="font-size: 0.73rem; margin-top: 2px;">Refine donor tiers, deploy lapsed donor reactivation filters, and support VIP concert hall check-in rosters.</p>
+      </div>
+    </div>
+    <div class="pillar-box" style="padding: 8px 10px; margin-top: 8px;">
+      <strong style="color: #183B2B; font-size: 0.75rem;">Days 61–90+: Predictive Reporting & Campaign Optimization</strong>
+      <p style="font-size: 0.73rem; margin-top: 2px;">Deliver real-time board dashboards, automate major gift pipeline alerts, and implement proactive stewardship touchpoints.</p>
+    </div>
+
+    <div class="page-footer">
+      <span>Randy Bryan Moore, MSW • Candidate for Assistant Director, Advancement Systems & Operations</span>
+      <span>Page 2 of 2 • Back</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
