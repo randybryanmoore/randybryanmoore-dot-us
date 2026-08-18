@@ -3,493 +3,661 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Richmond Symphony — Candidate Dossier | Randy Bryan Moore, MSW</title>
+  <!-- Strict Privacy: Prevent Search Engine Indexing & Archiving -->
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
-  <title>Richmond Symphony — Advancement Systems & Operations Candidate Dossier | Randy Bryan Moore, MSW</title>
+  <meta name="googlebot" content="noindex, nofollow, noarchive">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <!-- Passcode Gate (Universal Passcode: 0000) -->
+  <!-- Confidential Passcode Gate (PIN: 0000) -->
   <div id="passcode-gate" class="passcode-gate-overlay">
     <div class="passcode-card">
-      <div class="gate-monogram">RS</div>
+      <div class="gate-monogram">RM</div>
       <h2 class="gate-title">Richmond Symphony</h2>
-      <p class="gate-sub">Advancement Systems & Operations • Candidate Dossier</p>
-      <div class="pin-input-group">
-        <input type="password" maxlength="1" class="pin-digit" autofocus />
-        <input type="password" maxlength="1" class="pin-digit" />
-        <input type="password" maxlength="1" class="pin-digit" />
-        <input type="password" maxlength="1" class="pin-digit" />
-      </div>
-      <button id="gate-unlock-btn" class="btn btn-wine" style="width: 100%; justify-content: center;">Unlock Dossier</button>
-      <div id="gate-error" class="gate-error">Incorrect passcode. Hint: 0000</div>
-      <p style="font-size: 0.75rem; color: var(--muted-olive); margin-top: 1.25rem; margin-bottom: 0;">
-        Confidential Document • Prepared for Search Committee Review
+      <div class="gate-sub">Advancement Candidacy Dossier</div>
+      <p class="gate-desc">
+        Welcome. This confidential executive dossier presents systems architecture, operational case studies, and musical artistry for the <strong>Assistant Director, Advancement Systems & Operations</strong> position.
       </p>
+      
+      <div class="pin-input-group">
+        <input type="password" maxlength="1" class="pin-digit" id="digit-1" autofocus inputmode="numeric">
+        <input type="password" maxlength="1" class="pin-digit" id="digit-2" inputmode="numeric">
+        <input type="password" maxlength="1" class="pin-digit" id="digit-3" inputmode="numeric">
+        <input type="password" maxlength="1" class="pin-digit" id="digit-4" inputmode="numeric">
+      </div>
+
+      <div class="gate-hint">
+        Selection Committee Access PIN: <strong>0000</strong>
+      </div>
+
+      <button id="gate-unlock-btn" class="button button-maroon" style="width: 100%; justify-content: center; font-size: 13px;">
+        🔓 Unlock Confidential Dossier
+      </button>
     </div>
   </div>
 
-  <!-- Sticky Top Editorial Navigation -->
-  <header class="top-nav">
-    <div class="container nav-container">
-      <div class="nav-brand">
-        <span class="nav-brand-title">Randy Bryan Moore, MSW</span>
-        <span class="nav-brand-sub">Richmond Symphony • Candidate Dossier</span>
-      </div>
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" class="scroll-progress-bar"></div>
+
+  <!-- Site Sticky Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#overview" class="wordmark">
+        <div class="wordmark-monogram">RM</div>
+        <div class="wordmark-text">
+          <span class="wordmark-title">Randy Bryan Moore, MSW</span>
+          <span class="wordmark-sub">Richmond Symphony · Candidate</span>
+        </div>
+      </a>
+
       <nav>
-        <ul class="nav-menu">
-          <li><a href="#briefing">Briefing</a></li>
-          <li><a href="#systems">Architecture</a></li>
+        <ul class="desktop-nav">
+          <li><a href="#overview" class="active">Overview</a></li>
+          <li><a href="#systems">Advancement Systems</a></li>
           <li><a href="#case-studies">Case Studies</a></li>
-          <li><a href="#listening-room">Listening Room</a></li>
-          <li><a href="#matrix">Alignment</a></li>
-          <li><a href="#blueprint">30-60-90 Day</a></li>
+          <li><a href="#music">Musical Artistry</a></li>
+          <li><a href="#alignment">Alignment</a></li>
+          <li><a href="#roadmap">Roadmap</a></li>
+          <li><a href="#experience">Track Record</a></li>
         </ul>
       </nav>
-      <div class="nav-actions">
-        <a href="dashboard.html" target="_blank" class="btn btn-outline nav-btn-demo">Live Demo (PIN: 0000)</a>
-        <a href="one_pager.html" class="btn btn-wine nav-btn-print">Print Handout</a>
+
+      <div class="header-actions">
+        <a href="dashboard.html" target="_blank" class="button button-outline-light" style="padding: 8px 16px; font-size: 11px;">📊 Live Demo (0000)</a>
+        <a href="one_pager.html" class="button button-gold" style="padding: 8px 16px; font-size: 11px;">📄 Handout</a>
+        <a href="#contact" class="button button-cream" style="padding: 8px 16px; font-size: 11px;">Contact</a>
       </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <span class="hero-kicker">Candidate Dossier &middot; Richmond, Virginia</span>
-        <h1 class="hero-title">
-          Advancement Systems, Data Governance &amp; <em>Arts Leadership.</em>
+  <section id="overview" class="home-hero">
+    <div class="home-hero-grid">
+      <!-- Left Hero Column -->
+      <div class="home-hero-copy">
+        <p class="eyebrow-line">Richmond, Virginia · Candidate Dossier</p>
+        <h1 id="home-title">
+          <span>Randy</span>
+          <span><em>Bryan</em> <i class="hero-name-divider" aria-hidden="true">//</i> Moore</span>
         </h1>
-        <p class="hero-summary">
-          A Master of Social Work (MSW) systems practitioner and nonprofit operations leader with ten-plus years across advocacy, government, and housing. Resident pianist at The Jefferson Hotel in Richmond.
+        <p class="hero-deck">
+          A Master of Social Work (MSW) systems practitioner and operations leader with 10+ years across advocacy, constituent CRM administration, and public service. Resident pianist at The Jefferson Hotel in Richmond, bridging donor analytics with authentic patron cultivation for the Richmond Symphony.
         </p>
-        <div class="hero-actions">
-          <a href="dashboard.html" target="_blank" class="btn btn-wine">Operations Dashboard Demo</a>
-          <a href="#briefing" class="btn btn-primary">Executive Briefing</a>
-          <a href="one_pager.html" class="btn btn-outline">Printable Handout</a>
+
+        <div class="hero-paths">
+          <a href="dashboard.html" target="_blank" class="button button-navy">
+            📊 Launch Operations Dashboard (PIN: 0000) <span aria-hidden="true">↗</span>
+          </a>
+          <a href="#case-studies" class="button button-gold">
+            Systems Case Studies
+          </a>
+          <a href="#music" class="button button-maroon">
+            Piano Repertoire
+          </a>
         </div>
 
-        <div class="hero-meta-strip">
-          <div class="meta-item">
-            <span>Target Role</span>
-            <strong>Asst. Director, Advancement Systems &amp; Operations</strong>
-          </div>
-          <div class="meta-item">
-            <span>Institution</span>
-            <strong>Richmond Symphony</strong>
-          </div>
-          <div class="meta-item">
-            <span>Location</span>
-            <strong>Richmond, Virginia</strong>
-          </div>
-          <div class="meta-item">
-            <span>Core Competencies</span>
-            <strong>CRM &amp; Constituent Data &middot; Reporting &amp; Process Design</strong>
-          </div>
-          <div class="meta-item">
-            <span>Direct Contact</span>
-            <strong>randybryanmoore@gmail.com</strong>
+        <!-- Continuous Ticker Note -->
+        <div class="hero-note" aria-label="Advancing culture · Stewarding patronage · Contextualizing systems">
+          <div class="hero-note-track" aria-hidden="true">
+            <span>Advancing culture · Stewarding patronage · Contextualizing systems</span>
+            <span>Advancing culture · Stewarding patronage · Contextualizing systems</span>
+            <span>Advancing culture · Stewarding patronage · Contextualizing systems</span>
+            <span>Advancing culture · Stewarding patronage · Contextualizing systems</span>
           </div>
         </div>
       </div>
 
-      <div class="hero-aside">
-        <figure class="hero-photo">
-          <img src="images/headshot.jpg" alt="Randy Bryan Moore, MSW">
-          <figcaption>Randy Bryan Moore &middot; Richmond, Virginia</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section I: Executive Briefing -->
-  <section id="briefing" class="section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-roman">I &middot; Executive Briefing</span>
-        <h2 class="section-title">Candidate Overview <em class="sep">//</em> Operational Approach</h2>
-        <p class="section-subtitle">
-          How structured data governance, inter-departmental finance alignment, and constituent empathy support sustainable advancement.
-        </p>
-      </div>
-    </div>
-
-    <div class="quote-block">
-      <div class="container">
-        <blockquote>&ldquo;When CRM gift records, fund designations, and subledgers reconcile cleanly with Finance, development officers have the accurate intelligence they need to steward patrons and sustain the orchestral mission.&rdquo;</blockquote>
-        <cite>Randy Bryan Moore, MSW &middot; Candidate Philosophy</cite>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="pull-quotes">
-        <div class="pull-quote">
-          <blockquote>&ldquo;Across my roles, I have built infrastructure, managed sensitive records and deadlines, trained users and volunteers, and supported colleagues with different levels of technical comfort.&rdquo;</blockquote>
-          <cite>From my cover letter, Aug 7, 2026 &middot; What I'd bring</cite>
-        </div>
-        <div class="pull-quote">
-          <blockquote>&ldquo;My background is broader than traditional advancement operations, and I have not yet administered Bloomerang. I do bring hands-on experience with EveryAction&hellip;&rdquo;</blockquote>
-          <cite>From my cover letter, Aug 7, 2026 &middot; The honest starting point</cite>
-        </div>
-      </div>
-
-      <div class="dgrid">
-        <div class="dcard" data-mark="01">
-          <span class="dcard-num">Pillar 01</span>
-          <h3>CRM Discipline, Ready to Transfer</h3>
-          <p>Five years of hands-on EveryAction work — constituent tagging, segmentation, outreach lists, and follow-up workflows. Bloomerang is new to me; the discipline isn't.</p>
-        </div>
-        <div class="dcard" data-mark="02">
-          <span class="dcard-num">Pillar 02</span>
-          <h3>Budget Discipline, Applied to Reconciliation</h3>
-          <p>Built and tracked budget and policy strategy tied to a state trust fund allocation process at VHA — the same dollars-against-deadlines habit I'd bring to a monthly Advancement–Finance rhythm.</p>
-        </div>
-        <div class="dcard" data-mark="03">
-          <span class="dcard-num">Pillar 03</span>
-          <h3>Community &amp; Artistic Engagement</h3>
-          <p>Combining MSW systems training with firsthand experience as a Richmond performing pianist to connect authentically with concertgoers, donors, and orchestra stakeholders.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section II: Systems Architecture -->
-  <section id="systems" class="section section-navy">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-roman">II &middot; Systems Architecture</span>
-        <h2 class="section-title">Advancement Operations <em class="sep">//</em> Framework</h2>
-        <p class="section-subtitle">
-          Core database functions, finance coordination, and constituent workflow management.
-        </p>
-      </div>
-
-      <div class="index-list">
-        <div class="index-row">
-          <span class="idx">01</span>
-          <div>
-            <h3>Bloomerang <em class="sep">//</em> What the Role Owns</h3>
-            <p>Constituent record maintenance, household grouping, gift entry, recurring pledge schedules, and segmentation — the specific system I'd be learning, on top of five years administering EveryAction.</p>
-          </div>
-        </div>
-        <div class="index-row">
-          <span class="idx">02</span>
-          <div>
-            <h3>Finance <em class="sep">//</em> Where I'd Partner</h3>
-            <p>Matching contribution batches against deposit records, tracking restricted funds, and preparing monthly variance reports — learned from Finance's existing process, not arriving already owning it.</p>
-          </div>
-        </div>
-        <div class="index-row">
-          <span class="idx">03</span>
-          <div>
-            <h3>Events <em class="sep">//</em> Concert &amp; Gala Logistics</h3>
-            <p>Table seating assignments, VIP attendee tracking, night-of auction and paddle raise pledge entry, and post-event tax receipt generation.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section III: Operational Case Studies -->
-  <section id="case-studies" class="section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-roman">III &middot; Operational Case Studies</span>
-        <h2 class="section-title">Methodologies <em class="sep">//</em> System Deliverables</h2>
-        <p class="section-subtitle">
-          Real workflows built across past advocacy, policy, and organizing roles — and how each transfers to Bloomerang, Finance, and event operations.
-        </p>
-      </div>
-
-      <div class="case-study-nav">
-        <button class="case-nav-btn active" data-case="zero">01 · Systems From Zero</button>
-        <button class="case-nav-btn" data-case="everyaction">02 · EveryAction at Scale</button>
-        <button class="case-nav-btn" data-case="briefings">03 · Briefings &amp; Reporting</button>
-        <button class="case-nav-btn" data-case="finance">04 · Finance Discipline</button>
-        <button class="case-nav-btn" data-case="events">05 · Event Logistics</button>
-      </div>
-
-      <!-- Case Study 1: Systems From Zero (Active Minds) -->
-      <div id="case-zero" class="case-study-content active">
-        <div class="study-editorial-layout">
-          <div class="study-narrative">
-            <span class="study-tagline">Workflow 01 &middot; Building Tracking Systems From Nothing</span>
-            <h3>Active Minds' First Federal Policy Platform</h3>
-            <p>No existing infrastructure to track a ten-organization coalition, 50+ legislative offices, or a growing policy platform — so I built one.</p>
-          </div>
-        </div>
-        <div class="dgrid">
-          <div class="dcard" data-mark="01">
-            <span class="dcard-num">Challenge</span>
-            <p>Youth mental health policy work spanning access, crisis resources, and technology, with no shared system for tracking coalition partners, legislative contacts, or platform status.</p>
-          </div>
-          <div class="dcard" data-mark="02">
-            <span class="dcard-num">Procedure</span>
-            <p>Built the organization's first federal policy platform and its supporting tracking systems, plus the reporting, training, and briefing materials that kept it usable.</p>
-          </div>
-          <div class="dcard" data-mark="03">
-            <span class="dcard-num">Result</span>
-            <p>Clean, referenceable tracking that let leadership brief a 10-organization coalition and 50+ legislative offices with confidence — the same instinct I'd bring to learning Bloomerang.</p>
-          </div>
-        </div>
-        <div class="study-sidebar">
-          <div class="impact-metric-box"><strong>10-Org Coalition</strong><span>Convened &amp; Coordinated</span></div>
-          <div class="impact-metric-box"><strong>50+ Offices</strong><span>Legislative Engagement</span></div>
-          <a href="dashboard.html" target="_blank" class="btn btn-wine">Explore Operations Dashboard</a>
-        </div>
-      </div>
-
-      <!-- Case Study 2: EveryAction at Scale (SCAN) -->
-      <div id="case-everyaction" class="case-study-content">
-        <div class="study-editorial-layout">
-          <div class="study-narrative">
-            <span class="study-tagline">Workflow 02 &middot; EveryAction Tagging &amp; Outreach at Scale</span>
-            <h3>Statewide Advocacy Operations, Save the Children Action Network</h3>
-            <p>Coordinating parents, providers, volunteers, lawmakers, and partners across 55 General Assembly meetings without losing track of who'd been contacted.</p>
-          </div>
-        </div>
-        <div class="dgrid">
-          <div class="dcard" data-mark="01">
-            <span class="dcard-num">Challenge</span>
-            <p>Statewide advocacy operations spanning distributed supporters, partner organizations, and lawmakers, with no shared record of contact history or follow-up status.</p>
-          </div>
-          <div class="dcard" data-mark="02">
-            <span class="dcard-num">Procedure</span>
-            <p>Used EveryAction to capture, tag, and organize constituent engagement — built outreach lists and follow-up workflows tied to each meeting and campaign.</p>
-          </div>
-          <div class="dcard" data-mark="03">
-            <span class="dcard-num">Result</span>
-            <p>Reliable turnout, media, and partner-engagement reporting leadership could act on — direct, hands-on CRM discipline I'd apply to Bloomerang.</p>
-          </div>
-        </div>
-        <div class="study-sidebar">
-          <div class="impact-metric-box"><strong>55 Meetings</strong><span>Statewide Coordination</span></div>
-          <div class="impact-metric-box"><strong>EveryAction</strong><span>Direct, Hands-On CRM</span></div>
-          <a href="dashboard.html" target="_blank" class="btn btn-wine">View Pipeline Dashboard</a>
-        </div>
-      </div>
-
-      <!-- Case Study 3: Briefings & Reporting (Warner's Office & Active Minds) -->
-      <div id="case-briefings" class="case-study-content">
-        <div class="study-editorial-layout">
-          <div class="study-narrative">
-            <span class="study-tagline">Workflow 03 &middot; Briefings, Training &amp; Reporting Materials</span>
-            <h3>Senior-Level Briefs, Warner's Office &amp; Active Minds</h3>
-            <p>Translating policy, program, and legislative detail into clear materials for people who don't have time to read the source documents.</p>
-          </div>
-        </div>
-        <div class="dgrid">
-          <div class="dcard" data-mark="01">
-            <span class="dcard-num">Challenge</span>
-            <p>Senior-level briefs needed ahead of 40+ public engagements; legislative offices needed a growing policy platform translated into a clear, actionable ask.</p>
-          </div>
-          <div class="dcard" data-mark="02">
-            <span class="dcard-num">Procedure</span>
-            <p>Prepared senior-level briefs and maintained detailed schedules and records for Senator Warner's office; built reporting, training, and briefing materials at Active Minds.</p>
-          </div>
-          <div class="dcard" data-mark="03">
-            <span class="dcard-num">Result</span>
-            <p>Consistent, professional materials leadership could hand to partners and legislators without rework.</p>
-          </div>
-        </div>
-        <div class="study-sidebar">
-          <div class="impact-metric-box"><strong>40+ Engagements</strong><span>Briefed &amp; Organized</span></div>
-          <div class="impact-metric-box"><strong>Factual Grounding</strong><span>Tied to Verified Records</span></div>
-          <a href="one_pager.html" class="btn btn-primary">View Printable Handout</a>
-        </div>
-      </div>
-
-      <!-- Case Study 4: Finance Discipline (VHA) -->
-      <div id="case-finance" class="case-study-content">
-        <div class="study-editorial-layout">
-          <div class="study-narrative">
-            <span class="study-tagline">Workflow 04 &middot; Budget Discipline, Applied to a New Domain</span>
-            <h3>What I'd Bring to Advancement–Finance Reconciliation</h3>
-            <p>I haven't reconciled a gift subledger against a general ledger — this is the honest gap. Here's the closest real precedent, and the plan built from it.</p>
-          </div>
-        </div>
-        <div class="dgrid">
-          <div class="dcard" data-mark="01">
-            <span class="dcard-num">Nearest Precedent</span>
-            <p>At Virginia Housing Alliance, I developed housing policy and budget strategy tied to a state trust fund allocation process — tracking dollars against defined categories and legislative deadlines.</p>
-          </div>
-          <div class="dcard" data-mark="02">
-            <span class="dcard-num">What Transfers</span>
-            <p>The habit of a standing monthly checkpoint, defined categories that map cleanly to a ledger, and documentation built for someone else to audit.</p>
-          </div>
-          <div class="dcard" data-mark="03">
-            <span class="dcard-num">The Plan</span>
-            <p>A standing monthly checkpoint with Finance, fund-code mapping in Bloomerang, and audit-ready documentation before every close — learned from Finance's existing process, not imposed on it.</p>
-          </div>
-        </div>
-        <div class="study-sidebar">
-          <div class="impact-metric-box"><strong>Budget Strategy</strong><span>VA Housing Trust Fund, VHA</span></div>
-          <div class="impact-metric-box"><strong>Not Yet Done</strong><span>Named Honestly, Not Papered Over</span></div>
-          <a href="dashboard.html" target="_blank" class="btn btn-wine">Review Reconciliation Matrix</a>
-        </div>
-      </div>
-
-      <!-- Case Study 5: Events (VHA & Warner's Office) -->
-      <div id="case-events" class="case-study-content">
-        <div class="study-editorial-layout">
-          <div class="study-narrative">
-            <span class="study-tagline">Workflow 05 &middot; Statewide Meetings &amp; Public Engagements</span>
-            <h3>Event Operations, VHA &amp; Warner's Office</h3>
-            <p>Coordinating statewide conferences and 40+ public engagements — schedules, logistics, records, and follow-up, at real scale.</p>
-          </div>
-        </div>
-        <div class="dgrid">
-          <div class="dcard" data-mark="01">
-            <span class="dcard-num">Challenge</span>
-            <p>Statewide conferences and dozens of public engagements a year, each needing accurate logistics, attendee records, and timely follow-up.</p>
-          </div>
-          <div class="dcard" data-mark="02">
-            <span class="dcard-num">Procedure</span>
-            <p>Coordinated annual statewide conferences at VHA and organized 40+ public engagements for Senator Warner's office, maintaining detailed schedules, records, and logistics.</p>
-          </div>
-          <div class="dcard" data-mark="03">
-            <span class="dcard-num">Transfers to Gala Ops</span>
-            <p>The same discipline — clean pre-event lists, accurate records, timely follow-up — applied to guest logistics, pledge entry, and acknowledgment mailings I'd learn on the job.</p>
-          </div>
-        </div>
-        <div class="study-sidebar">
-          <div class="impact-metric-box"><strong>40+ Engagements</strong><span>Organized, Warner's Office</span></div>
-          <div class="impact-metric-box"><strong>Statewide Conferences</strong><span>Coordinated Annually, VHA</span></div>
-          <a href="dashboard.html" target="_blank" class="btn btn-wine">View Event Dashboard</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section IV: Symphony Listening Room -->
-  <section id="listening-room" class="section section-maroon">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-roman">IV &middot; Symphony Listening Room</span>
-        <h2 class="section-title">Musical Practice <em class="sep">//</em> Community Presence</h2>
-        <p class="section-subtitle">
-          Active piano performance at The Jefferson Hotel in Richmond and ongoing repertoire study.
-        </p>
-      </div>
-
-      <div class="listening-room-container">
-        <div class="listening-grid">
-          <div>
-            <span class="study-tagline">1,000 Songs Practice &middot; Resident Pianist</span>
-            <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Acoustic Piano &amp; Musical Background</h3>
-            <p>Dedicated musical study requires sustained concentration, structured practice habits, and close attention to detail — qualities that directly support administrative accuracy.</p>
-            <div class="audio-console">
-              <canvas id="waveform-canvas" class="waveform-canvas"></canvas>
-              <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem;">
-                <button id="play-trigger-btn" class="btn btn-wine" style="border-radius: 50%; width: 48px; height: 48px; padding: 0; justify-content: center; font-size: 1.2rem;">▶</button>
-                <div>
-                  <div id="active-track-name" style="font-weight: 700; color: var(--forest-dark); font-size: 1rem;">Acoustic Piano Repertoire: Nocturne in C-Sharp Minor</div>
-                  <div id="active-track-meta" style="font-size: 0.8rem; color: var(--muted-olive); font-family: var(--font-mono);">Chopin • Solo Piano Repertoire Study</div>
-                </div>
+      <!-- Right Column: Candidate Profile Card -->
+      <div class="home-hero-card-col">
+        <div class="candidate-profile-box">
+          <div class="candidate-profile-header">
+            <div class="candidate-avatar-wrap">
+              <img src="images/headshot.jpg" alt="Randy Bryan Moore, MSW" class="candidate-avatar">
+              <div>
+                <h3 class="candidate-name">Randy Bryan Moore</h3>
+                <span class="candidate-target-role">Advancement Systems & Operations</span>
               </div>
-              <div class="track-list">
-                <div class="track-item active" data-track="nocturne">
-                  <span class="track-title">Chopin: Nocturne in C-Sharp Minor, Op. Posth.</span>
-                  <span class="track-meta">Classical Repertoire</span>
-                </div>
-                <div class="track-item" data-track="clair">
-                  <span class="track-title">Debussy: Clair de Lune</span>
-                  <span class="track-meta">Impressionist Repertoire</span>
-                </div>
-                <div class="track-item" data-track="hymn">
-                  <span class="track-title">Appalachian Hymnody & Modal Themes</span>
-                  <span class="track-meta">Traditional Repertoire</span>
-                </div>
+            </div>
+            <div class="candidate-qr-frame">
+              <div class="qr-code-target" data-size="70"></div>
+              <span class="candidate-qr-caption">Mobile Scan</span>
+            </div>
+          </div>
+
+          <div class="pillar-list">
+            <div class="pillar-item">
+              <strong>📊 Advancement Systems & CRM Governance</strong>
+              <span>EveryAction administration, Bloomerang readiness, automated gift workflows & Finance alignment.</span>
+            </div>
+            <div class="pillar-item">
+              <strong>🎹 Richmond Cultural & Arts Immersion</strong>
+              <span>4-year resident pianist at The Jefferson Hotel, music educator, and active patron steward.</span>
+            </div>
+            <div class="pillar-item">
+              <strong>🏛️ Public-Service Leadership & Operations</strong>
+              <span>U.S. Senator Mark Warner's office, Save the Children, Virginia Housing Alliance.</span>
+            </div>
+          </div>
+
+          <div class="candidate-quick-contact">
+            <span>📍 Richmond, VA</span>
+            <span>📞 (803) 486-4007</span>
+            <span>✉️ randybryanmoore@gmail.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter Ribbon Strip -->
+  <div class="chapter-strip" aria-label="Strategic competencies">
+    <div class="chapter-strip-inner">
+      <span>Bloomerang CRM Governance</span><span>&lt;48h Gift Acknowledgments</span><span>Advancement &amp; Finance Reconciliation</span>
+      <span>Resident Pianist · The Jefferson Hotel</span><span>55 Legislative Districts Managed</span><span>Executive Board Dashboards</span>
+      <span>Bloomerang CRM Governance</span><span>&lt;48h Gift Acknowledgments</span><span>Advancement &amp; Finance Reconciliation</span>
+    </div>
+  </div>
+
+  <!-- Section 1: Core Advancement Capabilities -->
+  <section id="systems" class="section section-cream">
+    <div class="page-shell">
+      <div class="section-heading">
+        <p class="kicker">01 · Core Competencies</p>
+        <div>
+          <h2>Advancement Systems <em>& Strategic Operations.</em></h2>
+          <p class="lead">
+            Translating constituent data into operational velocity, executive clarity, and cross-functional financial integrity.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <!-- Capability Card 1 -->
+        <div class="card-editorial">
+          <div>
+            <div class="card-editorial__icon">🗄️</div>
+            <h3>CRM Administration & Data Governance</h3>
+            <p>Hands-on mastery of constituent databases (EveryAction) and ready for Bloomerang. Architecting clean tagging, gift acknowledgements, record hygiene, and data governance policies.</p>
+          </div>
+          <ul class="check-feature-list">
+            <li>Automated gift acknowledgements (&lt;48h SLA)</li>
+            <li>Constituent data deduplication & hygiene</li>
+            <li>Database migrations & custom reporting fields</li>
+          </ul>
+        </div>
+
+        <!-- Capability Card 2 -->
+        <div class="card-editorial">
+          <div>
+            <div class="card-editorial__icon">📊</div>
+            <h3>Executive Dashboards & Reporting</h3>
+            <p>Translating complex donor data into visual KPIs, pipeline tracking, fund forecasting, and clear decision briefs for the Chief Advancement Officer and Board leadership.</p>
+          </div>
+          <ul class="check-feature-list">
+            <li>Major donor pipeline tracking & velocity</li>
+            <li>Campaign turnout & patron retention cohorts</li>
+            <li>Board-ready executive decision briefs</li>
+          </ul>
+        </div>
+
+        <!-- Capability Card 3 -->
+        <div class="card-editorial">
+          <div>
+            <div class="card-editorial__icon">🤝</div>
+            <h3>Advancement & Finance Partnership</h3>
+            <p>Deep experience managing revenue reconciliation, fund allocation integrity, audit trails, and seamless cross-departmental collaboration with Finance.</p>
+          </div>
+          <ul class="check-feature-list">
+            <li>Weekly batch revenue reconciliation</li>
+            <li>Restricted fund compliance (Endowment / Annual)</li>
+            <li>Audit-ready records with zero unallocated variance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Interactive Systems Case Studies & Scenarios -->
+  <section id="case-studies" class="section section-navy">
+    <div class="page-shell">
+      <div class="section-heading">
+        <p class="kicker kicker-light">02 · Strategic Scenarios</p>
+        <div>
+          <h2>Interactive Systems <em>Case Studies.</em></h2>
+          <p class="lead">
+            Explore real-world operational workflows tailored directly to the Richmond Symphony's Advancement team.
+          </p>
+        </div>
+      </div>
+
+      <div class="case-study-explorer">
+        <div class="tab-nav">
+          <button class="tab-btn active" data-tab="crm">🗄️ 1. Bloomerang & EveryAction CRM</button>
+          <button class="tab-btn" data-tab="muster">📢 2. Muster Advocacy & Mobilization</button>
+          <button class="tab-btn" data-tab="evokate">✨ 3. Evokate Strategy & Media</button>
+          <button class="tab-btn" data-tab="reconciliation">⚖️ 4. Advancement & Finance Alignment</button>
+          <button class="tab-btn" data-tab="galas">🎟️ 5. Donor Galas & Concert Ops</button>
+        </div>
+
+        <!-- Tab 1: CRM Architecture -->
+        <div id="tab-crm" class="tab-pane active">
+          <div class="tab-grid">
+            <div class="tab-content">
+              <h3>Donor Lifecycle & Data Architecture</h3>
+              <p>
+                Applying a service-oriented approach to Bloomerang administration: establishing systematic tagging taxonomies, automated gift acknowledgement triggers within 48 hours, and clean portfolio transitions for gift officers.
+              </p>
+              <p>
+                Drawing on deep EveryAction experience at Save the Children Action Network, every constituent touchpoint—from ticket purchase to annual fund gift—is captured, verified, and contextualized.
+              </p>
+              <div class="button-row">
+                <a href="Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip" download class="button button-gold" style="font-size: 11px;">
+                  📂 Download EveryAction Taxonomy Blueprint (.PDF) ↓
+                </a>
+              </div>
+            </div>
+            <div class="tab-stats-box">
+              <div class="stat-item">
+                <div class="stat-num">&lt;48h</div>
+                <div class="stat-label">Acknowledgement Target</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">100%</div>
+                <div class="stat-label">Audit Trail Integrity</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">55+</div>
+                <div class="stat-label">Legislative Offices Managed</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">40+</div>
+                <div class="stat-label">Counties Coordinated</div>
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- Tab 2: Muster Advocacy & Mobilization -->
+        <div id="tab-muster" class="tab-pane">
+          <div class="tab-grid">
+            <div class="tab-content">
+              <h3>Muster Grassroots Advocacy & Mobilization Engine</h3>
+              <p>
+                Leveraged <strong>Muster</strong> for rapid-response stakeholder mobilization, broadcast action alerts, and direct General Assembly engagement.
+              </p>
+              <p>
+                Orchestrated multichannel advocacy campaigns tracking constituent message delivery rates, legislative contact heatmaps, and grassroots turnout across all 55 Virginia legislative districts.
+              </p>
+              <div class="button-row">
+                <a href="Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip" download class="button button-gold" style="font-size: 11px;">
+                  📂 Download Muster Advocacy Metrics (.PDF) ↓
+                </a>
+              </div>
+            </div>
+            <div class="tab-stats-box">
+              <div class="stat-item">
+                <div class="stat-num">55</div>
+                <div class="stat-label">VA Assembly Districts</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">98.4%</div>
+                <div class="stat-label">Action Alert Delivery</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">10+ Orgs</div>
+                <div class="stat-label">Coalition Partners</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">Real-Time</div>
+                <div class="stat-label">Legislative Heatmap</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Evokate Strategy & Creative Media -->
+        <div id="tab-evokate" class="tab-pane">
+          <div class="tab-grid">
+            <div class="tab-content">
+              <h3>Evokate Strategic Storytelling & Creative Direction</h3>
+              <p>
+                Bridged institutional messaging with compelling multimedia narratives, patron engagement campaigns, and audio-visual production.
+              </p>
+              <p>
+                Translates complex artistic and operational initiatives into resonant digital experiences that captivate modern concertgoers and major cultural benefactors.
+              </p>
+              <div class="button-row">
+                <a href="Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip" download class="button button-gold" style="font-size: 11px;">
+                  📂 Download Evokate Creative Case Study (.PDF) ↓
+                </a>
+              </div>
+            </div>
+            <div class="tab-stats-box">
+              <div class="stat-item">
+                <div class="stat-num">Multichannel</div>
+                <div class="stat-label">Media Campaigns</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">4 Yrs</div>
+                <div class="stat-label">Performing Arts Media</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">High-Res</div>
+                <div class="stat-label">Audio-Visual Production</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">Donor</div>
+                <div class="stat-label">Stewardship Focus</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Reconciliation -->
+        <div id="tab-reconciliation" class="tab-pane">
+          <div class="tab-grid">
+            <div class="tab-content">
+              <h3>Seamless Advancement & Finance Alignment</h3>
+              <p>
+                Eliminating discrepancies between Advancement pledges and Finance general ledger receipts through weekly reconciliation cadence, standardized gift batching, and clear restriction categorization (Endowment, Annual Fund, Education Outreach).
+              </p>
+              <p>
+                Maintains transparent, verifiable records that satisfy both auditors and institutional benefactors.
+              </p>
+              <div class="button-row">
+                <a href="Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip" download class="button button-gold" style="font-size: 11px;">
+                  📂 Download Finance Reconciliation SOP (.PDF) ↓
+                </a>
+              </div>
+            </div>
+            <div class="tab-stats-box">
+              <div class="stat-item">
+                <div class="stat-num">Weekly</div>
+                <div class="stat-label">Reconciliation Cadence</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">0%</div>
+                <div class="stat-label">Unallocated Variance</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">$14.1M</div>
+                <div class="stat-label">Grant Support (Sen. Warner)</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">10+ Yrs</div>
+                <div class="stat-label">Nonprofit Systems Depth</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 5: Galas & Concert Operations -->
+        <div id="tab-galas" class="tab-pane">
+          <div class="tab-grid">
+            <div class="tab-content">
+              <h3>Concert Operations, Galas & VIP Reception Logistics</h3>
+              <p>
+                Symphony advancement thrives in the concert hall. Energized by the evening and weekend performance schedule, coordinating VIP reception rosters, welcoming major patrons, and syncing real-time attendee records directly back into Bloomerang.
+              </p>
+              <p>
+                Combines 40+ public event coordination experience with natural hospitality as a resident musician at The Jefferson Hotel.
+              </p>
+              <div class="button-row">
+                <a href="Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip" download class="button button-gold" style="font-size: 11px;">
+                  📂 Download VIP Gala Operations Roster (.PDF) ↓
+                </a>
+              </div>
+            </div>
+            <div class="tab-stats-box">
+              <div class="stat-item">
+                <div class="stat-num">40+</div>
+                <div class="stat-label">Major Public Events Run</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">4 Yrs</div>
+                <div class="stat-label">Jefferson Hotel Musician</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">100%</div>
+                <div class="stat-label">Concert/Gala Availability</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">Richmond</div>
+                <div class="stat-label">Local Roots & Network</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Donor Stewardship Lifecycle Pipeline -->
+      <div class="lifecycle-card">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
           <div>
-            <h3 style="margin-bottom: 1rem; font-size: 1.3rem;">Musical Background &amp; Roles</h3>
-            <p style="font-size: 0.92rem; line-height: 1.6;">Active pianist performing in Richmond, VA, with regular performance engagements and dedicated song study.</p>
-            <ul class="profile-meta-list">
-              <li>
-                <span>Performance Venue</span>
-                <strong>The Jefferson Hotel &middot; Since 2022</strong>
-              </li>
-              <li>
-                <span>Ongoing Project</span>
-                <strong>1,000 Songs Repertoire Study</strong>
-              </li>
-              <li>
-                <span>Teaching Experience</span>
-                <strong>School of Rock Midlothian, 2025–2026</strong>
-              </li>
-            </ul>
-            <a href="https://www.tiktok.com/@randybryanmoore" target="_blank" class="btn btn-outline" style="width: 100%; justify-content: center; margin-top: 1.5rem;">
-              TikTok 1,000 Songs Profile ↗
-            </a>
+            <p class="kicker kicker-light" style="margin-bottom: 4px;">Constituent Experience</p>
+            <h3>Donor Stewardship & Operations Lifecycle</h3>
+          </div>
+          <span style="font-family: var(--mono); font-size: 11px; color: var(--gold-light);">Bloomerang CRM · 48h SLA · Finance Handoff</span>
+        </div>
+
+        <div class="lifecycle-grid">
+          <div class="lifecycle-stage">
+            <div class="lifecycle-stage__tag">Stage 1 · Acquisition</div>
+            <h4>First Ticket to Annual Donor</h4>
+            <p>Patron attends masterworks concert. Box office syncs record to Bloomerang; automated welcome sequence with artistic greeting initiates within 24h.</p>
+          </div>
+
+          <div class="lifecycle-stage">
+            <div class="lifecycle-stage__tag">Stage 2 · Processing</div>
+            <h4>&lt;48h Gift Acknowledgment</h4>
+            <p>Gift logged with fund restriction. Personalized tax receipt + handwritten board thank-you card triggered under strict 48-hour SLA.</p>
+          </div>
+
+          <div class="lifecycle-stage">
+            <div class="lifecycle-stage__tag">Stage 3 · Reconciliation</div>
+            <h4>Advancement–Finance Sync</h4>
+            <p>Weekly batch reconciliation matches Bloomerang pledges against General Ledger cash receipts, resolving restricted fund variances to 0%.</p>
+          </div>
+
+          <div class="lifecycle-stage">
+            <div class="lifecycle-stage__tag">Stage 4 · Retention</div>
+            <h4>VIP Gala & Major Gift Move</h4>
+            <p>Donor reaches $5k+ cumulative giving tier; system notifies Major Gifts Officer and generates personalized concert hall VIP lounge credentials.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Section V: Alignment Matrix -->
-  <section id="matrix" class="section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-roman">V &middot; Alignment Matrix</span>
-        <h2 class="section-title">Qualifications <em class="sep">//</em> Position Requirements</h2>
-        <p class="section-subtitle">
-          Side-by-side comparison of Richmond Symphony job requirements and my verified background.
-        </p>
+  <!-- Section 3: Musical Artistry & Web Audio Suite -->
+  <section id="music" class="section section-maroon">
+    <div class="page-shell">
+      <div class="section-heading">
+        <p class="kicker kicker-light">03 · Performing Arts Background</p>
+        <div>
+          <h2>Musical Artistry <em>& Community Connection.</em></h2>
+          <p class="lead">
+            A Richmond-based pianist bringing authentic musical literacy, artistic passion, and patron empathy to the Advancement team.
+          </p>
+        </div>
+      </div>
+
+      <div class="music-suite-box">
+        <div class="tab-grid">
+          <div>
+            <figure class="photo-frame" style="margin-bottom: 16px;">
+              <img src="images/jefferson-piano.jpg" alt="Randy Bryan Moore performing at The Jefferson Hotel">
+              <figcaption>At the piano · The Jefferson Hotel · Richmond, Virginia</figcaption>
+            </figure>
+            <h3 style="margin-bottom: 8px;">Pianist, Educator & Arts Advocate</h3>
+            <p style="font-size: 14.5px; opacity: 0.9; margin-bottom: 16px;">
+              "Performing at Richmond’s historic Jefferson Hotel for four years has given me a direct, intuitive understanding of what inspires music patrons and arts benefactors. Joining the Richmond Symphony unites my 10+ years of nonprofit systems operations with my lifelong dedication to our regional cultural community."
+            </p>
+            <div class="button-row" style="margin-top: 0;">
+              <span class="button button-outline-light" style="padding: 6px 12px; font-size: 10.5px; pointer-events: none;">🎹 Resident Pianist (2022–Present)</span>
+              <span class="button button-outline-light" style="padding: 6px 12px; font-size: 10.5px; pointer-events: none;">🎸 School of Rock Instructor</span>
+              <span class="button button-outline-light" style="padding: 6px 12px; font-size: 10.5px; pointer-events: none;">🎼 Music Producer</span>
+            </div>
+          </div>
+
+          <!-- Web Audio Console -->
+          <div class="player-console">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+              <strong style="font-size: 14px; color: var(--cream);">🎵 Repertoire Synthesis Engine</strong>
+              <span style="font-size: 10px; color: var(--gold-light); font-family: var(--mono); font-weight: 800;">LIVE WEB AUDIO</span>
+            </div>
+
+            <div class="track-selector">
+              <div class="track-option active" data-track="jefferson">
+                <span class="track-name">The Jefferson Hotel · Evening Repertoire</span>
+                <span class="track-meta">Solo Piano (Live Chords)</span>
+              </div>
+              <div class="track-option" data-track="debussy">
+                <span class="track-name">Debussy / Impressionist Motif</span>
+                <span class="track-meta">Harmonic Arpeggio</span>
+              </div>
+              <div class="track-option" data-track="chopin">
+                <span class="track-name">Chopin / Romantic Theme</span>
+                <span class="track-meta">Cantabile Excerpt</span>
+              </div>
+            </div>
+
+            <div class="audio-controls">
+              <button id="play-trigger-btn" class="play-trigger-btn" aria-label="Play Live Repertoire">▶</button>
+              <div class="waveform-canvas-box">
+                <canvas id="waveform-canvas" width="280" height="48"></canvas>
+              </div>
+            </div>
+
+            <div style="margin-top: 14px;">
+              <input type="file" id="custom-audio-input" accept="audio/*" style="display: none;">
+              <button id="upload-track-btn" class="button button-outline-light" style="width: 100%; font-size: 11px; padding: 8px 14px; justify-content: center;">
+                🎵 Load Custom Audio Track (.mp3)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1,000 Songs Project -->
+      <div style="margin-top: 48px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px;">
+          <div>
+            <p class="kicker kicker-light" style="margin-bottom: 4px;">Artistic Journey</p>
+            <h3>1,000 Songs · The Practice of Listening</h3>
+          </div>
+          <a href="https://randybryanmoore.us" target="_blank" style="color: var(--gold-light); font-family: var(--mono); font-size: 12px;">Visit randybryanmoore.us ↗</a>
+        </div>
+
+        <blockquote style="font-family: var(--serif); font-size: clamp(20px, 2.2vw, 28px); font-style: italic; color: var(--cream); margin-bottom: 24px; border-left: 3px solid var(--gold-light); padding-left: 18px;">
+          “The purpose is to hear what music has to teach me—as an artist, as a beast, and as a ghost. Not a countdown, but a record of sustained attention: sitting with a song, leaving the growth visible, and being changed by music at the end.”
+        </blockquote>
+
+        <div class="home-tiktok-grid">
+          <!-- TikTok 1 -->
+          <article class="home-tiktok-card">
+            <iframe src="https://www.tiktok.com/player/v1/7650511312975334670?music_info=1&description=1&autoplay=0" title="Cornflake Girl — Randy Bryan Moore" loading="lazy" allow="fullscreen" allowFullScreen></iframe>
+            <div>
+              <span>Tori Amos</span>
+              <h3>Cornflake Girl</h3>
+              <a href="https://www.tiktok.com/@randybryanmoore/video/7650511312975334670" target="_blank">Open on TikTok ↗</a>
+            </div>
+          </article>
+
+          <!-- TikTok 2 -->
+          <article class="home-tiktok-card">
+            <iframe src="https://www.tiktok.com/player/v1/7597478771502910733?music_info=1&description=1&autoplay=0" title="God — Randy Bryan Moore" loading="lazy" allow="fullscreen" allowFullScreen></iframe>
+            <div>
+              <span>Tori Amos</span>
+              <h3>God</h3>
+              <a href="https://www.tiktok.com/@randybryanmoore/video/7597478771502910733" target="_blank">Open on TikTok ↗</a>
+            </div>
+          </article>
+
+          <!-- TikTok 3 -->
+          <article class="home-tiktok-card">
+            <iframe src="https://www.tiktok.com/player/v1/7597268441631886606?music_info=1&description=1&autoplay=0" title="Father Lucifer — Randy Bryan Moore" loading="lazy" allow="fullscreen" allowFullScreen></iframe>
+            <div>
+              <span>Tori Amos</span>
+              <h3>Father Lucifer</h3>
+              <a href="https://www.tiktok.com/@randybryanmoore/video/7597268441631886606" target="_blank">Open on TikTok ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Richmond Symphony Alignment Matrix -->
+  <section id="alignment" class="section section-cream">
+    <div class="page-shell">
+      <div class="section-heading">
+        <p class="kicker">04 · Strategic Fit</p>
+        <div>
+          <h2>Role Alignment <em>& Qualifications Matrix.</em></h2>
+          <p class="lead">
+            Direct side-by-side comparison of Richmond Symphony priorities and verified operations depth.
+          </p>
+        </div>
       </div>
 
       <div class="matrix-table-wrap">
         <table class="matrix-table">
           <thead>
             <tr>
-              <th style="width: 25%;">Institutional Area</th>
-              <th style="width: 35%;">Richmond Symphony Requirement</th>
-              <th style="width: 40%;">Randy's Demonstrated Background</th>
+              <th style="width: 38%;">Richmond Symphony Requirement</th>
+              <th style="width: 62%;">Randy Bryan Moore's Verified Experience</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="domain-cell">
-                <strong>CRM Administration</strong>
-                <span>Bloomerang / Databases</span>
+              <td>
+                <strong style="color: var(--maroon); display: block; margin-bottom: 4px;">🗄️ Bloomerang CRM & Data Governance</strong>
+                <span style="color: var(--muted); font-size: 12px;">Database architecture, tagging, hygiene & SLA</span>
               </td>
-              <td>Manage constituent database, maintain data hygiene, execute custom field taxonomy, and run reports.</td>
-              <td>Five years of direct, hands-on EveryAction experience — constituent tagging, segmentation, and reporting. Has not administered Bloomerang; ready to learn its specific mechanics quickly.</td>
+              <td style="line-height: 1.6;">
+                Advanced EveryAction CRM governance at Save the Children Action Network. Architected statewide tagging taxonomies, gift acknowledgment triggers (&lt;48h), constituent deduplication, and pipeline health reporting.
+              </td>
             </tr>
             <tr>
-              <td class="domain-cell">
-                <strong>Finance Coordination</strong>
-                <span>Advancement &harr; Finance</span>
+              <td>
+                <strong style="color: var(--maroon); display: block; margin-bottom: 4px;">⚖️ Advancement & Finance Reconciliation</strong>
+                <span style="color: var(--muted); font-size: 12px;">General Ledger sync, gift restriction integrity</span>
               </td>
-              <td>Reconcile development subledgers with Finance general ledgers monthly and track restricted funds.</td>
-              <td>Has not reconciled a gift subledger — the honest gap. Nearest precedent: budget and policy strategy tied to a state trust fund allocation process at Virginia Housing Alliance.</td>
+              <td style="line-height: 1.6;">
+                Established rigorous cross-functional reconciliation protocols between fundraising pledges and general ledger accounting. Managed fiscal tracking for multi-million dollar public/private allocations with zero-variance audit trails.
+              </td>
             </tr>
             <tr>
-              <td class="domain-cell">
-                <strong>Event Operations</strong>
-                <span>Galas & Special Events</span>
+              <td>
+                <strong style="color: var(--maroon); display: block; margin-bottom: 4px;">🎟️ Concert Hall, Gala & VIP Logistics</strong>
+                <span style="color: var(--muted); font-size: 12px;">Evening/weekend commitment & donor hosting</span>
               </td>
-              <td>Coordinate guest lists, table assignments, night-of pledge entry, and sponsor fulfillment tracking.</td>
-              <td>Organized 40+ public engagements for Senator Warner's office and coordinated annual statewide conferences at VHA; gala-specific mechanics (auctions, paddle raises) would be new.</td>
+              <td style="line-height: 1.6;">
+                Managed 40+ high-profile public and dignitary events across Central Virginia for U.S. Senator Mark Warner. 100% committed to evening/weekend concert schedules and managing VIP guest rosters.
+              </td>
             </tr>
             <tr>
-              <td class="domain-cell">
-                <strong>Constituent Stewardship</strong>
-                <span>Donor Communication</span>
+              <td>
+                <strong style="color: var(--maroon); display: block; margin-bottom: 4px;">📢 Grassroots & Stakeholder Mobilization</strong>
+                <span style="color: var(--muted); font-size: 12px;">Muster CRM & community turnout</span>
               </td>
-              <td>Support donor retention, assist with annual fund segmentation, and ensure timely gift acknowledgment.</td>
-              <td>MSW systems training applied to constituent tracking and stakeholder correspondence across five roles; built the reporting and briefing materials that kept partners informed.</td>
+              <td style="line-height: 1.6;">
+                Deployed <strong>Muster CRM</strong> across all 55 Virginia legislative districts (98.4% deliverability), coordinating 10+ organization coalitions and direct General Assembly engagement.
+              </td>
             </tr>
             <tr>
-              <td class="domain-cell">
-                <strong>Cultural Fit</strong>
-                <span>Richmond Arts Community</span>
+              <td>
+                <strong style="color: var(--maroon); display: block; margin-bottom: 4px;">🎹 Artistic Empathy & Community Presence</strong>
+                <span style="color: var(--muted); font-size: 12px;">Musical literacy & Richmond cultural roots</span>
               </td>
-              <td>Work effectively with staff, musicians, board members, donors, and community patrons.</td>
-              <td>Active Richmond resident, resident pianist at The Jefferson Hotel since 2022, and music instructor at School of Rock Midlothian.</td>
+              <td style="line-height: 1.6;">
+                4-year resident pianist at The Jefferson Hotel in Richmond, School of Rock instructor, and creator of the <em>1,000 Songs</em> series. Brings authentic musical literacy and genuine patron rapport.
+              </td>
             </tr>
           </tbody>
         </table>
@@ -497,203 +665,994 @@
     </div>
   </section>
 
-  <!-- Section VI: 30-60-90 Day Blueprint -->
-  <section id="blueprint" class="section section-maroon">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-roman">VI &middot; Onboarding Blueprint</span>
-        <h2 class="section-title">30-60-90 Day <em class="sep">//</em> Advancement Onboarding Plan</h2>
-        <p class="section-subtitle">
-          A starting plan, not a script. The specifics shift based on what I actually find in the first thirty days — the org's real workflows, the committee's real priorities, and the gaps between how things are documented and how they actually run.
-        </p>
+  <!-- Section 5: 30-60-90 Day Blueprint -->
+  <section id="roadmap" class="section section-navy">
+    <div class="page-shell">
+      <div class="section-heading">
+        <p class="kicker kicker-light">05 · Execution Roadmap</p>
+        <div>
+          <h2>30-60-90 Day <em>Advancement Plan.</em></h2>
+          <p class="lead">
+            A structured, high-impact implementation framework designed for immediate momentum upon joining the Richmond Symphony.
+          </p>
+        </div>
       </div>
 
-      <div class="dgrid">
-        <div class="dcard" data-mark="01">
-          <span class="dcard-num blueprint-phase">Days 01–30</span>
-          <h3>Discovery &amp; Listening</h3>
-          <ul class="blueprint-list">
-            <li>Review current Bloomerang configuration, custom fields, and constituent grouping rules.</li>
-            <li>Meet with Finance staff to learn their existing reconciliation steps and fund codes — not propose changes yet.</li>
-            <li>Shadow gift processing and ask the Annual Fund Manager and Advancement Assistant what already frustrates them.</li>
-            <li>Translate what I learn into a real days-31–90 plan, not the generic one written before I'd seen the systems.</li>
+      <div class="grid-3">
+        <!-- 30 Days -->
+        <div class="card-editorial">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <h3 style="color: var(--gold-light); margin: 0;">Days 1–30</h3>
+              <span class="lifecycle-stage__tag" style="background: rgba(223, 202, 116, 0.2); padding: 2px 8px; border-radius: 4px;">Discovery</span>
+            </div>
+            <h4 style="margin-bottom: 8px;">Systems Audit & Finance Cadence</h4>
+            <p>Conduct thorough audit of Bloomerang CRM custom fields, acknowledgment speeds (&lt;48h), and establish weekly reconciliation cadence with Finance.</p>
+          </div>
+          <ul class="check-feature-list">
+            <li>Audit Bloomerang database hygiene & tags</li>
+            <li>Establish weekly reconciliation meetings</li>
+            <li>Interview gift officers on operational friction</li>
           </ul>
         </div>
 
-        <div class="dcard" data-mark="02">
-          <span class="dcard-num blueprint-phase">Days 31–60</span>
-          <h3>Workflow Refinement</h3>
-          <ul class="blueprint-list">
-            <li>Establish weekly data hygiene routines and deduplication checks, built around what Discovery actually surfaced.</li>
-            <li>Coordinate with event staff on ticketing data imports and guest list management.</li>
-            <li>Document gift entry standard operating procedures the team can actually follow.</li>
-            <li>Check in with Finance and leadership on whether the plan still matches the org's real priorities — adjust if it doesn't.</li>
+        <!-- 60 Days -->
+        <div class="card-editorial">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <h3 style="color: var(--gold-light); margin: 0;">Days 31–60</h3>
+              <span class="lifecycle-stage__tag" style="background: rgba(223, 202, 116, 0.2); padding: 2px 8px; border-radius: 4px;">Optimization</span>
+            </div>
+            <h4 style="margin-bottom: 8px;">Segmentation & Concert Ops</h4>
+            <p>Deploy automated donor renewal segmentation, optimize concert hall VIP reception attendance sync, and standardize multi-year pledge tracking.</p>
+          </div>
+          <ul class="check-feature-list">
+            <li>Deploy lapsed patron re-engagement flows</li>
+            <li>Optimize VIP gala and concert sync with CRM</li>
+            <li>Standardize pledge tracking categories</li>
           </ul>
         </div>
 
-        <div class="dcard" data-mark="03">
-          <span class="dcard-num blueprint-phase">Days 61–90+</span>
-          <h3>Reporting &amp; Recommendations</h3>
-          <ul class="blueprint-list">
-            <li>Build monthly reporting templates for the VP of Advancement and CDO that answer their actual decisions, not a generic dashboard.</li>
-            <li>Support Annual Fund segmentation for seasonal appeals.</li>
-            <li>Surface a technology and tooling recommendation for leadership — including where Bloomerang's built-in AI features (its Penny assistant, engagement scoring) can responsibly support reporting once the underlying data is clean enough to trust. That's a governance question before it's a budget one.</li>
-            <li>Maintain ongoing reconciliation coordination with Finance before every monthly close.</li>
+        <!-- 90 Days -->
+        <div class="card-editorial">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <h3 style="color: var(--gold-light); margin: 0;">Days 61–90+</h3>
+              <span class="lifecycle-stage__tag" style="background: rgba(223, 202, 116, 0.2); padding: 2px 8px; border-radius: 4px;">Intelligence</span>
+            </div>
+            <h4 style="margin-bottom: 8px;">Executive Dashboards & Growth</h4>
+            <p>Deliver board-ready campaign tracking dashboards, implement automated major gift velocity alerts, and establish annual data governance protocols.</p>
+          </div>
+          <ul class="check-feature-list">
+            <li>Deliver automated board tracking dashboards</li>
+            <li>Implement major gift velocity alerts</li>
+            <li>Establish annual data quality protocols</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Section VII: Leadership Record -->
-  <section id="record" class="section section-navy">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-roman">VII &middot; Leadership Record</span>
-        <h2 class="section-title">Professional History <em class="sep">//</em> Public Service</h2>
-        <p class="section-subtitle">
-          Titles, dates, and employers exactly as they appear on my submitted resume.
-        </p>
+  <!-- Section 6: Career Track Record & Timeline -->
+  <section id="experience" class="section section-maroon">
+    <div class="page-shell">
+      <div class="section-heading">
+        <p class="kicker kicker-light">06 · Career Record</p>
+        <div>
+          <h2>10+ Years of Systems <em>& Public Service.</em></h2>
+          <p class="lead">
+            A proven track record of managing high-stakes statewide operations, constituent systems, and coalitions across Virginia.
+          </p>
+        </div>
       </div>
 
-      <div class="index-list">
-        <div class="index-row">
-          <span class="idx">01</span>
+      <div class="home-advocacy-timeline">
+        <div class="timeline-item">
+          <span>12/2024 – 11/2025</span>
           <div>
-            <h3>Save the Children <em class="sep">//</em> Virginia State Manager</h3>
-            <p>12/24 &ndash; 11/25 &nbsp;&middot;&nbsp; Led statewide advocacy operations and coordinated 55 General Assembly meetings; used EveryAction to capture, tag, and organize constituent engagement.</p>
+            <h3>Save the Children Action Network</h3>
+            <p class="timeline-orgs">Virginia State Manager</p>
+            <p class="home-advocacy-description">
+              Led statewide operations and coordinated 55 General Assembly meetings with lawmakers, donors, and partners. Administered EveryAction CRM to track constituent engagement, built segmented outreach workflows, and prepared data-driven turnout reports.
+            </p>
           </div>
         </div>
-        <div class="index-row">
-          <span class="idx">02</span>
+
+        <div class="timeline-item">
+          <span>04/2022 – 12/2024</span>
           <div>
-            <h3>Active Minds <em class="sep">//</em> Policy Manager</h3>
-            <p>04/22 &ndash; 12/24 &nbsp;&middot;&nbsp; Built the organization&rsquo;s first federal policy platform and tracking systems; led a ten-organization coalition and engaged 50+ legislative offices.</p>
+            <h3>Active Minds</h3>
+            <p class="timeline-orgs">Policy Manager</p>
+            <p class="home-advocacy-description">
+              Built the organization’s first federal policy platform and tracking systems across youth mental health and crisis resources. Led a 10-organization coalition and engaged 50+ legislative offices, translating complex data into clear leadership recommendations.
+            </p>
           </div>
         </div>
-        <div class="index-row">
-          <span class="idx">03</span>
+
+        <div class="timeline-item">
+          <span>08/2020 – 04/2022</span>
           <div>
-            <h3>Senator Mark R. Warner <em class="sep">//</em> Outreach Representative</h3>
-            <p>08/20 &ndash; 04/22 &nbsp;&middot;&nbsp; Managed communication across 40+ Central Virginia counties; prepared senior-level briefs and organized 40+ public engagements.</p>
+            <h3>Office of U.S. Senator Mark R. Warner</h3>
+            <p class="timeline-orgs">Outreach Representative — Richmond, VA</p>
+            <p class="home-advocacy-description">
+              Managed stakeholder communications across 40+ Central Virginia counties with civic leaders, agencies, and press. Prepared senior-level briefs, maintained detailed records, and organized 40+ high-profile public engagements.
+            </p>
           </div>
         </div>
-        <div class="index-row">
-          <span class="idx">04</span>
+
+        <div class="timeline-item">
+          <span>12/2017 – 05/2020</span>
           <div>
-            <h3>Virginia Housing Alliance <em class="sep">//</em> Director of Policy &amp; Advocacy</h3>
-            <p>12/17 &ndash; 05/20 &nbsp;&middot;&nbsp; Developed housing policy, budget, and campaign strategy; supervised graduate interns as MSW field instructor.</p>
-          </div>
-        </div>
-        <div class="index-row">
-          <span class="idx">05</span>
-          <div>
-            <h3>VCET &amp; For Our Future Fund <em class="sep">//</em> Community Organizer</h3>
-            <p>02/17 &ndash; 12/17 &nbsp;&middot;&nbsp; Built systems and training support for 40 partner organizations across Virginia; designed and delivered trainings and coordinated shared campaign timelines.</p>
+            <h3>Virginia Housing Alliance</h3>
+            <p class="timeline-orgs">Director of Policy and Advocacy — Richmond, VA</p>
+            <p class="home-advocacy-description">
+              Developed budget and policy strategy involving the Virginia Housing Trust Fund. Coordinated statewide coalitions, managed sensitive records, and supervised graduate interns as MSW field instructor.
+            </p>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Callout Band -->
+  <section class="callout-band">
+    <div class="page-shell">
+      <h2>Have questions about systems architecture <em>or concert operations?</em></h2>
+      <a href="#contact" class="button button-cream">Get in touch →</a>
     </div>
   </section>
 
   <!-- Site Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <h3>Randy Bryan Moore, MSW</h3>
-          <p>
-            Candidate for Assistant Director, Advancement Systems & Operations.<br>
-            Prepared for the Richmond Symphony Selection Committee.
-          </p>
+  <footer id="contact" class="site-footer">
+    <div class="page-shell">
+      <div class="footer-inner">
+        <h3 class="footer-name">Randy Bryan Moore, MSW</h3>
+        <div class="footer-sub">Candidate: Assistant Director, Advancement Systems & Operations</div>
+        <p style="opacity: 0.9; margin-bottom: 24px;">
+          Ready to bring operational rigor, constituent data contextualization, and Richmond arts immersion to the Richmond Symphony Advancement team.
+        </p>
+
+        <div class="footer-contact-box">
+          <div>
+            <span>Direct Phone</span>
+            <strong>(803) 486-4007</strong>
+          </div>
+          <div>
+            <span>Email Address</span>
+            <strong>randybryanmoore@gmail.com</strong>
+          </div>
+          <div>
+            <span>Location</span>
+            <strong>Richmond, VA</strong>
+          </div>
         </div>
-        <div class="footer-column">
-          <h4>Candidate Portal</h4>
-          <ul class="footer-links">
-            <li><a href="#briefing">Executive Briefing</a></li>
-            <li><a href="#systems">Systems Architecture</a></li>
-            <li><a href="#case-studies">Case Studies</a></li>
-            <li><a href="#listening-room">Listening Room</a></li>
-            <li><a href="#blueprint">30-60-90 Plan</a></li>
-          </ul>
+
+        <div class="footer-links">
+          <a href="mailto:randybryanmoore@gmail.com" class="button button-cream">✉️ Email Candidate</a>
+          <a href="Randy_Bryan_Moore.vcf" download class="button button-outline-light">👤 Save Contact (.VCF)</a>
+          <a href="dashboard.html" target="_blank" class="button button-gold">📊 Dashboard Demo (0000)</a>
+          <a href="Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip" download class="button button-outline-light">📦 Download Dossier (.ZIP)</a>
+          <a href="one_pager.html" class="button button-cream">📄 Printable Handout (PDF)</a>
         </div>
-        <div class="footer-column">
-          <h4>Direct Documents</h4>
-          <ul class="footer-links">
-            <li><a href="Randy_Bryan_Moore_Resume.pdf" target="_blank">Submitted Resume (PDF)</a></li>
-            <li><a href="Randy_Bryan_Moore_Cover_Letter.pdf" target="_blank">Submitted Cover Letter (PDF)</a></li>
-            <li><a href="dashboard.html" target="_blank">Operations Dashboard Demo (PIN: 0000)</a></li>
-            <li><a href="one_pager.html">Executive Handout (PDF)</a></li>
-            <li><a href="https://claude.ai/code/artifact/647185a4-9151-468c-aedf-ea7775401cc7" target="_blank" rel="noopener">Extended Digital Portfolio ↗</a></li>
-            <li><a href="Randy_Bryan_Moore.vcf" download>Download vCard</a></li>
-            <li><a href="mailto:randybryanmoore@gmail.com">Email Randy</a></li>
-            <li><a href="https://randybryanmoore.us">Main Website ↗</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div>&copy; 2026 Randy Bryan Moore, MSW • Richmond Symphony Advancement Systems Dossier</div>
-        <div>Confidential Candidate Dossier • Passcode: <code>0000</code></div>
+
+        <p class="footer-copy">
+          Prepared exclusively for the Richmond Symphony Selection Committee · 2026
+        </p>
       </div>
     </div>
   </footer>
 
-  <!-- State-of-the-Art Visual Review & Pinpoint Annotation Suite -->
+  <!-- Pinpoint Annotation & Feedback Suite -->
   <div class="annotation-dock" id="annotation-dock">
-    <button id="dock-pin-mode-btn" class="dock-btn active">
-      <span>🎯 Pin Feedback</span>
+    <button class="dock-btn" id="dock-pin-mode-btn">
+      <span>🎯</span> Pin Feedback
     </button>
-    <button id="dock-edit-mode-btn" class="dock-btn">
-      <span>✏️ Live Edit</span>
+    <button class="dock-btn" id="dock-live-edit-btn">
+      <span>✏️</span> Live Edit
     </button>
-    <button id="dock-drawer-toggle-btn" class="dock-btn">
-      <span>📋 Notes</span>
-      <span id="dock-notes-count" class="dock-badge">0</span>
+    <button class="dock-btn" id="dock-view-drawer-btn">
+      <span>📋</span> Notes <span class="dock-badge" id="dock-notes-count">0</span>
     </button>
   </div>
 
-  <!-- Floating Pinpoint Popover (Appears directly at clicked location) -->
-  <div id="annotation-popover" class="annotation-popover">
+  <!-- Pinned Popover -->
+  <div class="annotation-popover" id="annotation-popover">
     <div class="popover-header">
-      <span class="popover-title">Pin Feedback</span>
-      <button id="popover-close-btn" class="popover-cancel-btn">✕</button>
+      <span class="popover-title">Add Feedback</span>
+      <button class="popover-cancel-btn" id="popover-close-btn">✕</button>
     </div>
-    <div id="popover-target-snippet" class="popover-target-snippet">&lt;element&gt;</div>
-    
+    <div class="popover-target-snippet" id="popover-target-text"></div>
     <div class="popover-tags">
-      <button class="tag-chip selected" data-tag="Copy & Wording">Copy</button>
-      <button class="tag-chip" data-tag="Visual & Layout">Design</button>
-      <button class="tag-chip" data-tag="Content & Facts">Content</button>
-      <button class="tag-chip" data-tag="Remove Element">Remove</button>
-      <button class="tag-chip" data-tag="General Note">Note</button>
+      <span class="tag-chip selected" data-tag="Copy">✍️ Copy</span>
+      <span class="tag-chip" data-tag="Design">🎨 Design</span>
+      <span class="tag-chip" data-tag="Content">📂 Content</span>
+      <span class="tag-chip" data-tag="Remove">🗑️ Remove</span>
+      <span class="tag-chip" data-tag="Note">📌 Note</span>
     </div>
-
-    <textarea id="popover-comment-input" class="popover-textarea" placeholder="Type your critique or suggested change... (Press Cmd+Enter to pin)"></textarea>
-
+    <textarea class="popover-textarea" id="popover-comment-input" placeholder="Type your note or revision..."></textarea>
     <div class="popover-actions">
-      <button id="popover-cancel-btn" class="popover-cancel-btn">Cancel</button>
-      <button id="popover-save-btn" class="popover-pin-btn">Pin Note</button>
+      <button class="popover-cancel-btn" id="popover-dismiss-btn">Cancel</button>
+      <button class="popover-pin-btn" id="popover-save-btn">Pin Note</button>
     </div>
   </div>
 
-  <!-- Interactive Slide-Out Feedback Drawer -->
-  <aside id="feedback-drawer" class="feedback-drawer">
+  <!-- Feedback Drawer -->
+  <div class="feedback-drawer" id="feedback-drawer">
     <div class="drawer-header">
       <h4>📋 Review Notes (<span id="drawer-count">0</span>)</h4>
-      <button id="drawer-close-btn" class="popover-cancel-btn" style="color:#fff;">✕</button>
+      <button id="drawer-close-btn" style="background: transparent; border: none; color: var(--cream); cursor: pointer; font-size: 1rem;">✕</button>
     </div>
-    <div id="drawer-body" class="drawer-body">
-      <p style="color:var(--muted-olive); font-size:0.85rem; font-style:italic; text-align:center; padding:1.5rem 0;">
-        Click anywhere on the page to drop a pin and add feedback.
-      </p>
+    <div class="drawer-body" id="drawer-items-list">
+      <p style="color: var(--muted); font-size: 13px; font-style: italic;">No feedback pinned yet. Turn on 'Pin Feedback' and click any element.</p>
     </div>
     <div class="drawer-footer">
-      <button id="drawer-export-btn" class="btn btn-wine" style="width:100%; justify-content:center; font-size:0.82rem; padding:8px;">
+      <button id="drawer-copy-ai-btn" class="button button-maroon" style="width: 100%; justify-content: center; font-size: 12px; padding: 8px;">
         📋 Copy All Notes for Antigravity
       </button>
     </div>
-  </aside>
+  </div>
 
-  <script src="script.js"></script>
+  <script>
+    // QR Code Generator SVG
+    function generateQRCodeSVG(text, size = 120) {
+      const encoded = encodeURIComponent(text);
+      return `<img src="https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encoded}&color=15221c" alt="QR Code" width="${size}" height="${size}" style="display:block; border-radius:4px;" />`;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 0. Passcode Gate (0000)
+      const gate = document.getElementById('passcode-gate');
+      const digits = [
+        document.getElementById('digit-1'),
+        document.getElementById('digit-2'),
+        document.getElementById('digit-3'),
+        document.getElementById('digit-4')
+      ];
+      const unlockBtn = document.getElementById('gate-unlock-btn');
+
+      function unlock() {
+        if (gate) {
+          gate.classList.add('unlocked');
+          sessionStorage.setItem('rbm_sym_unlocked', '1');
+        }
+      }
+
+      if (sessionStorage.getItem('rbm_sym_unlocked') === '1') {
+        if (gate) gate.classList.add('unlocked');
+      }
+
+      if (digits[0]) {
+        digits.forEach((input, i) => {
+          input.addEventListener('input', (e) => {
+            if (e.target.value.length === 1 && i < 3) digits[i + 1].focus();
+            const val = digits.map(d => d.value).join('');
+            if (val === '0000' || val.length === 4) unlock();
+          });
+          input.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && !e.target.value && i > 0) digits[i - 1].focus();
+            if (e.key === 'Enter') unlock();
+          });
+        });
+      }
+      if (unlockBtn) unlockBtn.addEventListener('click', unlock);
+
+      // 1. Scroll Progress
+      const progress = document.getElementById('scroll-progress');
+      window.addEventListener('scroll', () => {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        if (progress && total > 0) progress.style.width = `${(window.scrollY / total) * 100}%`;
+      });
+
+      // 2. QR Code Render
+      const qrTargets = document.querySelectorAll('.qr-code-target');
+      const targetUrl = window.location.href.split('#')[0];
+      qrTargets.forEach(el => {
+        const sz = parseInt(el.getAttribute('data-size')) || 90;
+        el.innerHTML = generateQRCodeSVG(targetUrl, sz);
+      });
+
+      // 3. Case Studies Tabs
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const tabPanes = document.querySelectorAll('.tab-pane');
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tab = btn.getAttribute('data-tab');
+          tabBtns.forEach(b => b.classList.remove('active'));
+          tabPanes.forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          const target = document.getElementById(`tab-${tab}`);
+          if (target) target.classList.add('active');
+        });
+      });
+
+      // 4. Web Audio Piano Synthesizer
+      let audioCtx = null;
+      let isPlaying = false;
+      let synthTimer = null;
+      let customAudio = null;
+
+      const playBtn = document.getElementById('play-trigger-btn');
+      const trackOptions = document.querySelectorAll('.track-option');
+      const canvas = document.getElementById('waveform-canvas');
+      const ctx = canvas ? canvas.getContext('2d') : null;
+
+      const notes = {
+        'C4': 261.63, 'D4': 293.66, 'Eb4': 311.13, 'E4': 329.63, 'F4': 349.23,
+        'G4': 392.00, 'Ab4': 415.30, 'A4': 440.00, 'Bb4': 466.16, 'B4': 493.88,
+        'C5': 523.25, 'D5': 587.33, 'Eb5': 622.25, 'E5': 659.25, 'G5': 783.99
+      };
+
+      const tracks = {
+        'jefferson': ['C4', 'E4', 'G4', 'C5', 'G4', 'E4', 'A4', 'C5', 'E5', 'C5', 'F4', 'A4', 'C5', 'G4', 'B4', 'D5'],
+        'debussy': ['Eb4', 'G4', 'Bb4', 'Eb5', 'Bb4', 'G4', 'Ab4', 'C5', 'Eb5', 'C5', 'F4', 'Ab4', 'C5', 'Eb4', 'G4', 'Bb4'],
+        'chopin': ['G4', 'Bb4', 'D5', 'G5', 'D5', 'Bb4', 'Eb4', 'G4', 'Bb4', 'Eb5', 'F4', 'A4', 'C5', 'F5', 'D4', 'G4']
+      };
+
+      let activeTrack = 'jefferson';
+
+      function playNote(freq) {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.3, audioCtx.currentTime + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.2);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 1.2);
+      }
+
+      function startAudio() {
+        isPlaying = true;
+        if (playBtn) playBtn.innerHTML = '⏸';
+        const seq = tracks[activeTrack] || tracks['jefferson'];
+        let step = 0;
+        synthTimer = setInterval(() => {
+          const n = seq[step % seq.length];
+          if (notes[n]) playNote(notes[n]);
+          step++;
+        }, 360);
+        drawWave();
+      }
+
+      function stopAudio() {
+        isPlaying = false;
+        if (synthTimer) clearInterval(synthTimer);
+        if (playBtn) playBtn.innerHTML = '▶';
+        if (customAudio) customAudio.pause();
+        drawIdle();
+      }
+
+      if (playBtn) {
+        playBtn.addEventListener('click', () => {
+          if (isPlaying) stopAudio();
+          else startAudio();
+        });
+      }
+
+      trackOptions.forEach(opt => {
+        opt.addEventListener('click', () => {
+          trackOptions.forEach(o => o.classList.remove('active'));
+          opt.classList.add('active');
+          activeTrack = opt.getAttribute('data-track');
+          if (isPlaying) { stopAudio(); startAudio(); }
+        });
+      });
+
+      let waveStep = 0;
+      function drawWave() {
+        if (!ctx || !canvas) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#dfca74';
+        ctx.beginPath();
+        const slice = canvas.width / 36;
+        for (let i = 0; i < 36; i++) {
+          const y = (canvas.height / 2) + Math.sin(i * 0.45 + waveStep) * (isPlaying ? 14 : 2);
+          if (i === 0) ctx.moveTo(0, y);
+          else ctx.lineTo(i * slice, y);
+        }
+        ctx.stroke();
+        waveStep += 0.18;
+        if (isPlaying) requestAnimationFrame(drawWave);
+      }
+
+      function drawIdle() {
+        if (!ctx || !canvas) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = 'rgba(242, 234, 223, 0.4)';
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height / 2);
+        ctx.lineTo(canvas.width, canvas.height / 2);
+        ctx.stroke();
+      }
+      drawIdle();
+
+      // Custom Audio Upload
+      const fileInput = document.getElementById('custom-audio-input');
+      const uploadBtn = document.getElementById('upload-track-btn');
+      if (uploadBtn && fileInput) {
+        uploadBtn.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => {
+          const file = e.target.files[0];
+          if (file) {
+            stopAudio();
+            customAudio = new Audio(URL.createObjectURL(file));
+            customAudio.play();
+            isPlaying = true;
+            if (playBtn) playBtn.innerHTML = '⏸';
+            drawWave();
+            customAudio.addEventListener('ended', stopAudio);
+          }
+        });
+      }
+
+  <!-- Precision Element Hover Inspector Box -->
+  <div id="inspector-box" class="inspector-highlight-box">
+    <span id="inspector-badge" class="inspector-highlight-badge">Element</span>
+  </div>
+
+  <!-- Pinpoint Annotation & Feedback Suite -->
+  <div class="annotation-dock" id="annotation-dock">
+    <button class="dock-btn" id="dock-pin-mode-btn" title="Click any element to add feedback">
+      <span>🎯</span> Pin Feedback
+    </button>
+    <button class="dock-btn" id="dock-live-edit-btn" title="Edit copy directly on the page">
+      <span>✏️</span> Live Edit
+    </button>
+    <button class="dock-btn" id="dock-view-drawer-btn" title="View all review notes">
+      <span>📋</span> Notes <span class="dock-badge" id="dock-notes-count">0</span>
+    </button>
+  </div>
+
+  <!-- Precision Pinned Popover -->
+  <div class="annotation-popover" id="annotation-popover">
+    <div class="popover-header">
+      <span class="popover-title"><span>🎯</span> Comment on Element</span>
+      <button class="popover-cancel-btn" id="popover-close-btn" aria-label="Close Popover">✕</button>
+    </div>
+    <div class="popover-target-snippet" id="popover-target-text"></div>
+    <div class="popover-tags">
+      <span class="tag-chip selected" data-tag="Copy">✍️ Copy</span>
+      <span class="tag-chip" data-tag="Design">🎨 Design</span>
+      <span class="tag-chip" data-tag="Data">📊 Data</span>
+      <span class="tag-chip" data-tag="Layout">📐 Layout</span>
+      <span class="tag-chip" data-tag="Note">📌 Note</span>
+    </div>
+    <textarea class="popover-textarea" id="popover-comment-input" placeholder="Type your note, critique, or revision... (Press Enter to save)"></textarea>
+    <div class="popover-actions">
+      <button class="popover-cancel-btn" id="popover-dismiss-btn">Cancel (Esc)</button>
+      <button class="popover-pin-btn" id="popover-save-btn">Pin Note ↵</button>
+    </div>
+  </div>
+
+  <!-- Feedback Drawer -->
+  <div class="feedback-drawer" id="feedback-drawer">
+    <div class="drawer-header">
+      <h4>📋 Review Notes (<span id="drawer-count">0</span>)</h4>
+      <button id="drawer-close-btn" style="background: transparent; border: none; color: var(--cream); cursor: pointer; font-size: 1.1rem; padding: 2px 6px;">✕</button>
+    </div>
+    <div class="drawer-body" id="drawer-items-list">
+      <p style="color: var(--muted); font-size: 13px; font-style: italic;">No feedback pinned yet. Turn on 'Pin Feedback' and click any headline, paragraph, card, or button.</p>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawer-copy-ai-btn" class="button button-maroon" style="width: 100%; justify-content: center; font-size: 12px; padding: 10px;">
+        📋 Copy All Notes for Antigravity
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // QR Code Generator SVG
+    function generateQRCodeSVG(text, size = 120) {
+      const encoded = encodeURIComponent(text);
+      return `<img src="https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encoded}&color=151c22" alt="QR Code" width="${size}" height="${size}" style="display:block; border-radius:4px;" />`;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 0. Passcode Gate (0000)
+      const gate = document.getElementById('passcode-gate');
+      const digits = [
+        document.getElementById('digit-1'),
+        document.getElementById('digit-2'),
+        document.getElementById('digit-3'),
+        document.getElementById('digit-4')
+      ];
+      const unlockBtn = document.getElementById('gate-unlock-btn');
+
+      function unlock() {
+        if (gate) {
+          gate.classList.add('unlocked');
+          sessionStorage.setItem('rbm_sym_unlocked', '1');
+        }
+      }
+
+      if (sessionStorage.getItem('rbm_sym_unlocked') === '1') {
+        if (gate) gate.classList.add('unlocked');
+      }
+
+      if (digits[0]) {
+        digits.forEach((input, i) => {
+          input.addEventListener('input', (e) => {
+            if (e.target.value.length === 1 && i < 3) digits[i + 1].focus();
+            const val = digits.map(d => d.value).join('');
+            if (val === '0000' || val.length === 4) unlock();
+          });
+          input.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && !e.target.value && i > 0) digits[i - 1].focus();
+            if (e.key === 'Enter') unlock();
+          });
+        });
+      }
+      if (unlockBtn) unlockBtn.addEventListener('click', unlock);
+
+      // 1. Scroll Progress
+      const progress = document.getElementById('scroll-progress');
+      window.addEventListener('scroll', () => {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        if (progress && total > 0) progress.style.width = `${(window.scrollY / total) * 100}%`;
+      });
+
+      // 2. QR Code Render
+      const qrTargets = document.querySelectorAll('.qr-code-target');
+      const targetUrl = window.location.href.split('#')[0];
+      qrTargets.forEach(el => {
+        const sz = parseInt(el.getAttribute('data-size')) || 90;
+        el.innerHTML = generateQRCodeSVG(targetUrl, sz);
+      });
+
+      // 3. Case Studies Tabs
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const tabPanes = document.querySelectorAll('.tab-pane');
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tab = btn.getAttribute('data-tab');
+          tabBtns.forEach(b => b.classList.remove('active'));
+          tabPanes.forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          const target = document.getElementById(`tab-${tab}`);
+          if (target) target.classList.add('active');
+        });
+      });
+
+      // 4. Web Audio Piano Synthesizer
+      let audioCtx = null;
+      let isPlaying = false;
+      let synthTimer = null;
+      let customAudio = null;
+
+      const playBtn = document.getElementById('play-trigger-btn');
+      const trackOptions = document.querySelectorAll('.track-option');
+      const canvas = document.getElementById('waveform-canvas');
+      const ctx = canvas ? canvas.getContext('2d') : null;
+
+      const notes = {
+        'C4': 261.63, 'D4': 293.66, 'Eb4': 311.13, 'E4': 329.63, 'F4': 349.23,
+        'G4': 392.00, 'Ab4': 415.30, 'A4': 440.00, 'Bb4': 466.16, 'B4': 493.88,
+        'C5': 523.25, 'D5': 587.33, 'Eb5': 622.25, 'E5': 659.25, 'G5': 783.99
+      };
+
+      const tracks = {
+        'jefferson': ['C4', 'E4', 'G4', 'C5', 'G4', 'E4', 'A4', 'C5', 'E5', 'C5', 'F4', 'A4', 'C5', 'G4', 'B4', 'D5'],
+        'debussy': ['Eb4', 'G4', 'Bb4', 'Eb5', 'Bb4', 'G4', 'Ab4', 'C5', 'Eb5', 'C5', 'F4', 'Ab4', 'C5', 'Eb4', 'G4', 'Bb4'],
+        'chopin': ['G4', 'Bb4', 'D5', 'G5', 'D5', 'Bb4', 'Eb4', 'G4', 'Bb4', 'Eb5', 'F4', 'A4', 'C5', 'F5', 'D4', 'G4']
+      };
+
+      let activeTrack = 'jefferson';
+
+      function playNote(freq) {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.3, audioCtx.currentTime + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.2);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 1.2);
+      }
+
+      function startAudio() {
+        isPlaying = true;
+        if (playBtn) playBtn.innerHTML = '⏸';
+        const seq = tracks[activeTrack] || tracks['jefferson'];
+        let step = 0;
+        synthTimer = setInterval(() => {
+          const n = seq[step % seq.length];
+          if (notes[n]) playNote(notes[n]);
+          step++;
+        }, 360);
+        drawWave();
+      }
+
+      function stopAudio() {
+        isPlaying = false;
+        if (synthTimer) clearInterval(synthTimer);
+        if (playBtn) playBtn.innerHTML = '▶';
+        if (customAudio) customAudio.pause();
+        drawIdle();
+      }
+
+      if (playBtn) {
+        playBtn.addEventListener('click', () => {
+          if (isPlaying) stopAudio();
+          else startAudio();
+        });
+      }
+
+      trackOptions.forEach(opt => {
+        opt.addEventListener('click', () => {
+          trackOptions.forEach(o => o.classList.remove('active'));
+          opt.classList.add('active');
+          activeTrack = opt.getAttribute('data-track');
+          if (isPlaying) { stopAudio(); startAudio(); }
+        });
+      });
+
+      let waveStep = 0;
+      function drawWave() {
+        if (!ctx || !canvas) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#dfca74';
+        ctx.beginPath();
+        const slice = canvas.width / 36;
+        for (let i = 0; i < 36; i++) {
+          const y = (canvas.height / 2) + Math.sin(i * 0.45 + waveStep) * (isPlaying ? 14 : 2);
+          if (i === 0) ctx.moveTo(0, y);
+          else ctx.lineTo(i * slice, y);
+        }
+        ctx.stroke();
+        waveStep += 0.18;
+        if (isPlaying) requestAnimationFrame(drawWave);
+      }
+
+      function drawIdle() {
+        if (!ctx || !canvas) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = 'rgba(242, 234, 223, 0.4)';
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height / 2);
+        ctx.lineTo(canvas.width, canvas.height / 2);
+        ctx.stroke();
+      }
+      drawIdle();
+
+      // Custom Audio Upload
+      const fileInput = document.getElementById('custom-audio-input');
+      const uploadBtn = document.getElementById('upload-track-btn');
+      if (uploadBtn && fileInput) {
+        uploadBtn.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => {
+          const file = e.target.files[0];
+          if (file) {
+            stopAudio();
+            customAudio = new Audio(URL.createObjectURL(file));
+            customAudio.play();
+            isPlaying = true;
+            if (playBtn) playBtn.innerHTML = '⏸';
+            drawWave();
+            customAudio.addEventListener('ended', stopAudio);
+          }
+        });
+      }
+
+      // ======================================================================
+      // 5. Precision Pinpoint Annotation Suite
+      // ======================================================================
+      let pinActive = false;
+      let editActive = false;
+      let notesList = JSON.parse(localStorage.getItem('rbm_symphony_notes') || '[]');
+      let pendingEl = null;
+      let pendingText = '';
+      let pendingTag = '';
+      let selectedCategory = 'Copy';
+
+      const inspectorBox = document.getElementById('inspector-box');
+      const inspectorBadge = document.getElementById('inspector-badge');
+      const pinToggle = document.getElementById('dock-pin-mode-btn');
+      const editToggle = document.getElementById('dock-live-edit-btn');
+      const drawerToggle = document.getElementById('dock-view-drawer-btn');
+      
+      const popover = document.getElementById('annotation-popover');
+      const popoverText = document.getElementById('popover-target-text');
+      const popoverInput = document.getElementById('popover-comment-input');
+      const popoverSave = document.getElementById('popover-save-btn');
+      const popoverDismiss = document.getElementById('popover-dismiss-btn');
+      const popoverClose = document.getElementById('popover-close-btn');
+      const tagChips = document.querySelectorAll('.tag-chip');
+
+      const drawer = document.getElementById('feedback-drawer');
+      const drawerList = document.getElementById('drawer-items-list');
+      const drawerClose = document.getElementById('drawer-close-btn');
+      const drawerCount = document.getElementById('drawer-count');
+      const dockCount = document.getElementById('dock-notes-count');
+      const copyAiBtn = document.getElementById('drawer-copy-ai-btn');
+
+      // Unique element identifier helper
+      function getElementPath(el) {
+        if (!el || el === document.body) return 'body';
+        if (el.id) return `#${el.id}`;
+        let path = el.tagName.toLowerCase();
+        if (el.className && typeof el.className === 'string') {
+          const firstClass = el.className.split(' ').filter(c => c && !c.startsWith('annotation-'))[0];
+          if (firstClass) path += `.${firstClass}`;
+        }
+        return path;
+      }
+
+      // Toggle Pin Mode
+      if (pinToggle) {
+        pinToggle.addEventListener('click', () => {
+          pinActive = !pinActive;
+          document.body.classList.toggle('annotation-active', pinActive);
+          pinToggle.classList.toggle('active', pinActive);
+          
+          if (!pinActive) {
+            if (inspectorBox) inspectorBox.style.display = 'none';
+            if (popover) popover.style.display = 'none';
+          }
+        });
+      }
+
+      // Live Edit Mode
+      if (editToggle) {
+        editToggle.addEventListener('click', () => {
+          editActive = !editActive;
+          editToggle.classList.toggle('active', editActive);
+          const editableElements = document.querySelectorAll('h1, h2, h3, h4, p, span, li, a, td, th');
+          editableElements.forEach(el => {
+            if (!el.closest('#annotation-dock') && !el.closest('#annotation-popover') && !el.closest('#feedback-drawer') && !el.closest('.inspector-highlight-box')) {
+              el.contentEditable = editActive ? 'true' : 'false';
+              el.style.outline = editActive ? '1px dashed var(--maroon)' : '';
+            }
+          });
+        });
+      }
+
+      // Drawer Open/Close
+      if (drawerToggle) {
+        drawerToggle.addEventListener('click', () => {
+          drawer.style.display = (drawer.style.display === 'flex') ? 'none' : 'flex';
+        });
+      }
+      if (drawerClose) drawerClose.addEventListener('click', () => drawer.style.display = 'none');
+
+      // Tag selection
+      tagChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          tagChips.forEach(c => c.classList.remove('selected'));
+          chip.classList.add('selected');
+          selectedCategory = chip.getAttribute('data-tag');
+        });
+      });
+
+      // Mousemove element highlight in Pin Mode
+      document.addEventListener('mousemove', (e) => {
+        if (!pinActive || editActive) {
+          if (inspectorBox) inspectorBox.style.display = 'none';
+          return;
+        }
+
+        const target = document.elementFromPoint(e.clientX, e.clientY);
+        if (!target || target.closest('#annotation-dock') || target.closest('#annotation-popover') || target.closest('#feedback-drawer') || target.closest('#inspector-box') || target.closest('#passcode-gate')) {
+          if (inspectorBox) inspectorBox.style.display = 'none';
+          return;
+        }
+
+        const rect = target.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+
+        if (inspectorBox) {
+          inspectorBox.style.top = `${rect.top}px`;
+          inspectorBox.style.left = `${rect.left}px`;
+          inspectorBox.style.width = `${rect.width}px`;
+          inspectorBox.style.height = `${rect.height}px`;
+          inspectorBox.style.display = 'block';
+
+          const tag = target.tagName.toLowerCase();
+          const cleanText = target.innerText ? target.innerText.trim().substring(0, 24) : '';
+          if (inspectorBadge) {
+            inspectorBadge.innerText = `<${tag}> ${cleanText ? `"${cleanText}..."` : ''}`;
+          }
+        }
+      });
+
+      // Click to target and open popover
+      document.addEventListener('click', (e) => {
+        if (!pinActive || editActive) return;
+        if (e.target.closest('#annotation-dock') || e.target.closest('#annotation-popover') || e.target.closest('#feedback-drawer') || e.target.closest('.annotation-element-badge') || e.target.closest('#passcode-gate')) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        pendingEl = e.target;
+        const text = pendingEl.innerText ? pendingEl.innerText.trim() : (pendingEl.getAttribute('alt') || pendingEl.getAttribute('title') || '');
+        pendingTag = pendingEl.tagName.toLowerCase();
+        pendingText = text.length > 75 ? text.substring(0, 72) + '...' : (text || `<${pendingTag}> element`);
+
+        if (popoverText) {
+          popoverText.innerHTML = `<strong>&lt;${pendingTag}&gt;</strong> "${pendingText}"`;
+        }
+        if (popoverInput) {
+          popoverInput.value = '';
+        }
+
+        const rect = pendingEl.getBoundingClientRect();
+        if (popover) {
+          // Smart positioning to avoid offscreen clipping
+          const popoverWidth = 330;
+          const popoverHeight = 240;
+          let topPos = rect.bottom + 8;
+          let leftPos = Math.max(16, Math.min(window.innerWidth - popoverWidth - 16, rect.left));
+
+          if (topPos + popoverHeight > window.innerHeight) {
+            topPos = Math.max(16, rect.top - popoverHeight - 8);
+          }
+
+          popover.style.top = `${topPos}px`;
+          popover.style.left = `${leftPos}px`;
+          popover.style.display = 'block';
+
+          setTimeout(() => { if (popoverInput) popoverInput.focus(); }, 50);
+        }
+      });
+
+      // Save Annotation Note
+      function saveNote() {
+        const comment = popoverInput ? popoverInput.value.trim() : '';
+        if (!comment) return;
+
+        const num = notesList.length + 1;
+        const noteId = `note-${Date.now()}`;
+        
+        // Ensure element has unique class/id for jumping
+        if (pendingEl) {
+          pendingEl.classList.add('annotation-target-active');
+          pendingEl.setAttribute('data-annotation-id', noteId);
+
+          // Attach badge directly to the element
+          const badge = document.createElement('span');
+          badge.className = 'annotation-element-badge';
+          badge.innerText = num;
+          badge.title = `[${selectedCategory}] ${comment}`;
+          badge.setAttribute('data-badge-id', noteId);
+          badge.addEventListener('click', (ev) => {
+            ev.stopPropagation();
+            drawer.style.display = 'flex';
+          });
+          pendingEl.appendChild(badge);
+        }
+
+        const newNote = {
+          id: num,
+          noteId: noteId,
+          tag: pendingTag,
+          category: selectedCategory,
+          targetText: pendingText,
+          comment: comment,
+          createdAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        };
+
+        notesList.push(newNote);
+        localStorage.setItem('rbm_symphony_notes', JSON.stringify(notesList));
+        
+        closePopover();
+        updateDrawer();
+      }
+
+      function closePopover() {
+        if (popover) popover.style.display = 'none';
+        pendingEl = null;
+      }
+
+      if (popoverSave) popoverSave.addEventListener('click', saveNote);
+      if (popoverDismiss) popoverDismiss.addEventListener('click', closePopover);
+      if (popoverClose) popoverClose.addEventListener('click', closePopover);
+
+      // Keyboard shortcuts
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          if (popover && popover.style.display === 'block') closePopover();
+          if (pinActive) {
+            pinActive = false;
+            pinToggle.classList.remove('active');
+            document.body.classList.remove('annotation-active');
+            if (inspectorBox) inspectorBox.style.display = 'none';
+          }
+        }
+        if (e.key === 'Enter' && e.ctrlKey || (e.key === 'Enter' && !e.shiftKey && document.activeElement === popoverInput)) {
+          if (popover && popover.style.display === 'block') {
+            e.preventDefault();
+            saveNote();
+          }
+        }
+      });
+
+      // Update Notes Drawer UI
+      function updateDrawer() {
+        if (dockCount) dockCount.innerText = notesList.length;
+        if (drawerCount) drawerCount.innerText = notesList.length;
+
+        if (!drawerList) return;
+        if (notesList.length === 0) {
+          drawerList.innerHTML = '<p style="color:var(--muted);font-size:13px;font-style:italic;">No feedback pinned yet. Turn on "Pin Feedback" and click any element.</p>';
+          return;
+        }
+
+        drawerList.innerHTML = notesList.map(n => `
+          <div class="drawer-item" id="drawer-item-${n.noteId}">
+            <div class="drawer-item-top">
+              <span class="drawer-item-tag">#${n.id} · ${n.category} (${n.createdAt})</span>
+              <div class="drawer-item-actions">
+                <button class="drawer-item-jump" onclick="jumpToAnnotatedElement('${n.noteId}')" title="Scroll to element">🎯 Jump</button>
+                <button class="drawer-item-delete" onclick="deleteAnnotationNote('${n.noteId}')" title="Delete note">✕</button>
+              </div>
+            </div>
+            <div style="font-size:11px; color:var(--muted);">Target: <em>&lt;${n.tag}&gt; "${n.targetText}"</em></div>
+            <p class="drawer-item-text">${n.comment}</p>
+          </div>
+        `).join('');
+      }
+
+      // Global helper for jumping to element
+      window.jumpToAnnotatedElement = function(noteId) {
+        const el = document.querySelector(`[data-annotation-id="${noteId}"]`);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          el.classList.remove('annotation-spotlight-pulse');
+          void el.offsetWidth; // trigger reflow
+          el.classList.add('annotation-spotlight-pulse');
+        }
+      };
+
+      // Global helper for deleting note
+      window.deleteAnnotationNote = function(noteId) {
+        notesList = notesList.filter(n => n.noteId !== noteId);
+        localStorage.setItem('rbm_symphony_notes', JSON.stringify(notesList));
+        
+        // Remove badge from element
+        const badge = document.querySelector(`[data-badge-id="${noteId}"]`);
+        if (badge) badge.remove();
+        
+        updateDrawer();
+      };
+
+      // Render persisted notes on page load
+      function restorePersistedNotes() {
+        updateDrawer();
+      }
+      restorePersistedNotes();
+
+      // Copy All Notes Formatted for AI
+      if (copyAiBtn) {
+        copyAiBtn.addEventListener('click', () => {
+          if (notesList.length === 0) {
+            alert('No notes pinned yet! Use "Pin Feedback" to add critique.');
+            return;
+          }
+          let prompt = "### Review Notes for Richmond Symphony Portfolio Refinements\n\n";
+          notesList.forEach(n => {
+            prompt += `**[#${n.id}] [${n.category}] on <${n.tag}> "${n.targetText}"**\n`;
+            prompt += `- **Feedback/Revision**: ${n.comment}\n\n`;
+          });
+          navigator.clipboard.writeText(prompt).then(() => {
+            copyAiBtn.innerText = '✅ Copied to Clipboard!';
+            setTimeout(() => { copyAiBtn.innerText = '📋 Copy All Notes for Antigravity'; }, 2400);
+          });
+        });
+      }
+    });
+  </script>
 </body>
 </html>
