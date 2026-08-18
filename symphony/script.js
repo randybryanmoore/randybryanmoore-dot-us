@@ -1,402 +1,544 @@
-// SVG QR Code generator with crisp rendering
-function generateQRCodeSVG(text, size = 140) {
-  const encodedText = encodeURIComponent(text);
-  return `<img src="https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodedText}&color=183b2b" alt="Scan to view candidate portfolio" width="${size}" height="${size}" style="display:block; border-radius:6px;" />`;
-}
+// Richmond Symphony Advancement Systems & Operations Candidate Suite
+// Candidate: Randy Bryan Moore, MSW
+// State-of-the-Art Visual Review & Pinpoint Annotation Suite (v2.0)
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 0. Confidential Passcode Gate (Code: 0000)
-  const passcodeGate = document.getElementById('passcode-gate');
-  const digits = [
-    document.getElementById('digit-1'),
-    document.getElementById('digit-2'),
-    document.getElementById('digit-3'),
-    document.getElementById('digit-4')
-  ];
+  // =========================================================================
+  // 1. Passcode Gate Logic (Universal Passcode: 0000)
+  // =========================================================================
+  const PASSCODE = '0000';
+  const gateOverlay = document.getElementById('passcode-gate');
+  const pinInputs = document.querySelectorAll('.pin-digit');
   const gateUnlockBtn = document.getElementById('gate-unlock-btn');
+  const gateError = document.getElementById('gate-error');
 
-  function checkPasscode() {
-    const entered = digits.map(d => (d ? d.value : '')).join('');
-    if (entered === '0000' || entered.length === 4) {
-      unlockGate();
+  function getEnteredPin() {
+    return Array.from(pinInputs).map(i => i.value).join('');
+  }
+
+  function unlockDossier() {
+    if (gateOverlay) {
+      gateOverlay.classList.add('unlocked');
+      sessionStorage.setItem('symphony_dossier_auth', 'true');
     }
   }
 
-  function unlockGate() {
-    if (passcodeGate) {
-      passcodeGate.classList.add('unlocked');
-      sessionStorage.setItem('rbm_symphony_unlocked', 'true');
+  function validatePin() {
+    const entered = getEnteredPin();
+    if (entered === PASSCODE) {
+      unlockDossier();
+    } else {
+      if (gateError) gateError.style.display = 'block';
+      pinInputs.forEach(i => {
+        i.value = '';
+        i.style.borderColor = 'var(--wine)';
+      });
+      if (pinInputs[0]) pinInputs[0].focus();
     }
   }
 
-  // Auto-unlock if previously unlocked in this session
-  if (sessionStorage.getItem('rbm_symphony_unlocked') === 'true') {
-    if (passcodeGate) passcodeGate.classList.add('unlocked');
+  if (sessionStorage.getItem('symphony_dossier_auth') === 'true') {
+    unlockDossier();
   }
 
-  if (digits[0]) {
-    digits.forEach((input, idx) => {
-      input.addEventListener('input', (e) => {
-        if (e.target.value.length === 1 && idx < 3) {
-          digits[idx + 1].focus();
-        }
-        checkPasscode();
-      });
-
-      input.addEventListener('keydown', (e) => {
-        if (e.key === 'Backspace' && !e.target.value && idx > 0) {
-          digits[idx - 1].focus();
-        }
-        if (e.key === 'Enter') {
-          unlockGate();
-        }
-      });
+  pinInputs.forEach((input, idx) => {
+    input.addEventListener('input', (e) => {
+      if (e.target.value.length === 1 && idx < pinInputs.length - 1) {
+        pinInputs[idx + 1].focus();
+      }
+      if (getEnteredPin().length === 4) {
+        validatePin();
+      }
     });
-  }
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Backspace' && !e.target.value && idx > 0) {
+        pinInputs[idx - 1].focus();
+      } else if (e.key === 'Enter') {
+        validatePin();
+      }
+    });
+  });
 
   if (gateUnlockBtn) {
-    gateUnlockBtn.addEventListener('click', unlockGate);
+    gateUnlockBtn.addEventListener('click', validatePin);
   }
 
-  // 1. Reading / Scroll Progress Bar
-  const scrollProgressBar = document.getElementById('scroll-progress');
-  const header = document.querySelector('header');
+  // =========================================================================
+  // 2. Case Study Tabs
+  // =========================================================================
+  const caseNavBtns = document.querySelectorAll('.case-nav-btn');
+  const caseContents = document.querySelectorAll('.case-study-content');
 
-  window.addEventListener('scroll', () => {
-    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = (window.scrollY / totalHeight) * 100;
-    if (scrollProgressBar) scrollProgressBar.style.width = `${progress}%`;
-    if (header) header.classList.toggle('scrolled', window.scrollY > 40);
-  });
-
-  // 2. Render QR Codes
-  const qrContainers = document.querySelectorAll('.qr-code-target');
-  const targetUrl = window.location.href.split('#')[0].replace('one_pager.html', 'index.html');
-  qrContainers.forEach(container => {
-    const size = parseInt(container.getAttribute('data-size')) || 120;
-    container.innerHTML = generateQRCodeSVG(targetUrl, size);
-  });
-
-  // 3. Interactive Case Study Tabs
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  const tabPanes = document.querySelectorAll('.tab-pane');
-
-  tabBtns.forEach(btn => {
+  caseNavBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      const targetTab = btn.getAttribute('data-tab');
-      tabBtns.forEach(b => b.classList.remove('active'));
-      tabPanes.forEach(p => p.classList.remove('active'));
+      caseNavBtns.forEach(b => b.classList.remove('active'));
+      caseContents.forEach(c => c.classList.remove('active'));
 
       btn.classList.add('active');
-      const activePane = document.getElementById(`tab-${targetTab}`);
-      if (activePane) activePane.classList.add('active');
+      const caseId = btn.getAttribute('data-case');
+      const targetContent = document.getElementById('case-' + caseId);
+      if (targetContent) {
+        targetContent.classList.add('active');
+      }
     });
   });
 
-  // 4. Web Audio API Piano Synthesizer & Canvas Waveform Engine
-  let audioCtx = null;
-  let isSynthesizing = false;
-  let synthInterval = null;
-  let customAudio = null;
-
-  const playTriggerBtn = document.getElementById('play-trigger-btn');
-  const trackOptions = document.querySelectorAll('.track-option');
+  // =========================================================================
+  // 3. Audio Player & Canvas Waveform Visualizer
+  // =========================================================================
   const canvas = document.getElementById('waveform-canvas');
-  const ctx = canvas ? canvas.getContext('2d') : null;
+  const playBtn = document.getElementById('play-trigger-btn');
+  const trackItems = document.querySelectorAll('.track-item');
+  const activeTrackName = document.getElementById('active-track-name');
+  const activeTrackMeta = document.getElementById('active-track-meta');
 
-  // Piano Note Frequency Map (Hz)
-  const notes = {
-    'C4': 261.63, 'D4': 293.66, 'Eb4': 311.13, 'E4': 329.63, 'F4': 349.23,
-    'G4': 392.00, 'Ab4': 415.30, 'A4': 440.00, 'Bb4': 466.16, 'B4': 493.88,
-    'C5': 523.25, 'D5': 587.33, 'Eb5': 622.25, 'E5': 659.25, 'G5': 783.99,
-  };
+  let audioCtx = null;
+  let isPlaying = false;
+  let animationId = null;
+  let wavePhase = 0;
 
-  // Classical Progressions (Jefferson Hotel Repertoire Simulation)
-  const progressions = {
-    'jefferson': ['C4', 'E4', 'G4', 'C5', 'G4', 'E4', 'A4', 'C5', 'E5', 'C5', 'F4', 'A4', 'C5', 'G4', 'B4', 'D5'],
-    'debussy': ['Eb4', 'G4', 'Bb4', 'Eb5', 'Bb4', 'G4', 'Ab4', 'C5', 'Eb5', 'C5', 'F4', 'Ab4', 'C5', 'Eb4', 'G4', 'Bb4'],
-    'chopin': ['G4', 'Bb4', 'D5', 'G5', 'D5', 'Bb4', 'Eb4', 'G4', 'Bb4', 'Eb5', 'F4', 'A4', 'C5', 'F5', 'D4', 'G4'],
-  };
-
-  let currentTrackKey = 'jefferson';
-
-  function playPianoNote(freq, duration = 1.2) {
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-
-    osc.type = 'triangle';
-    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-    // Warm piano envelope
-    gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.35, audioCtx.currentTime + 0.04);
-    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
-
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-
-    osc.start();
-    osc.stop(audioCtx.currentTime + duration);
+  function initAudio() {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
   }
 
-  function startPianoSequence() {
-    isSynthesizing = true;
-    if (playTriggerBtn) playTriggerBtn.innerHTML = '⏸';
-    const sequence = progressions[currentTrackKey] || progressions['jefferson'];
-    let step = 0;
+  const trackData = {
+    nocturne: {
+      name: 'Acoustic Piano Repertoire: Nocturne in C-Sharp Minor, Op. Posth.',
+      meta: 'Chopin • Solo Piano Repertoire Study',
+      freqs: [277.18, 329.63, 415.30, 554.37, 659.25]
+    },
+    clair: {
+      name: 'Debussy: Clair de Lune',
+      meta: 'Impressionist Repertoire • Dynamic Phrasing',
+      freqs: [261.63, 329.63, 392.00, 523.25, 659.25]
+    },
+    hymn: {
+      name: 'Appalachian Hymnody & Modal Themes',
+      meta: 'Traditional Repertoire • Harmonic Voicings',
+      freqs: [220.00, 277.18, 329.63, 440.00, 554.37]
+    }
+  };
 
-    synthInterval = setInterval(() => {
-      const noteName = sequence[step % sequence.length];
-      if (notes[noteName]) {
-        playPianoNote(notes[noteName], 1.4);
-      }
-      step++;
-    }, 380);
+  let currentTrack = 'nocturne';
+  let activeOscillators = [];
 
+  function playPianoChord() {
+    initAudio();
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+
+    const info = trackData[currentTrack] || trackData.nocturne;
+    stopAudio();
+
+    const masterGain = audioCtx.createGain();
+    masterGain.gain.setValueAtTime(0.01, audioCtx.currentTime);
+    masterGain.gain.linearRampToValueAtTime(0.18, audioCtx.currentTime + 0.1);
+    masterGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 3.5);
+    masterGain.connect(audioCtx.destination);
+
+    info.freqs.forEach((freq, idx) => {
+      const osc = audioCtx.createOscillator();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime + idx * 0.12);
+      osc.connect(masterGain);
+      osc.start(audioCtx.currentTime + idx * 0.12);
+      osc.stop(audioCtx.currentTime + 4.0);
+      activeOscillators.push(osc);
+    });
+
+    isPlaying = true;
+    if (playBtn) playBtn.innerHTML = '⏸';
     drawWaveform();
-  }
 
-  function stopPianoSequence() {
-    isSynthesizing = false;
-    if (synthInterval) clearInterval(synthInterval);
-    if (playTriggerBtn) playTriggerBtn.innerHTML = '▶';
-    if (customAudio) customAudio.pause();
-    drawIdleWaveform();
-  }
-
-  if (playTriggerBtn) {
-    playTriggerBtn.addEventListener('click', () => {
-      if (isSynthesizing) {
-        stopPianoSequence();
-      } else {
-        startPianoSequence();
+    setTimeout(() => {
+      if (isPlaying) {
+        playPianoChord();
       }
-    });
+    }, 3800);
   }
 
-  trackOptions.forEach(opt => {
-    opt.addEventListener('click', () => {
-      trackOptions.forEach(o => o.classList.remove('active'));
-      opt.classList.add('active');
-      currentTrackKey = opt.getAttribute('data-track');
-      if (isSynthesizing) {
-        stopPianoSequence();
-        startPianoSequence();
-      }
+  function stopAudio() {
+    activeOscillators.forEach(osc => {
+      try { osc.stop(); } catch (e) {}
     });
-  });
+    activeOscillators = [];
+  }
 
-  // Real-time Canvas Visualizer
-  let waveOffset = 0;
   function drawWaveform() {
-    if (!ctx || !canvas) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    canvas.width = canvas.parentElement.clientWidth || 400;
+    canvas.height = 64;
 
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.lineWidth = 2;
-    ctx.strokeStyle = '#5B2432';
+    ctx.strokeStyle = isPlaying ? '#4C0E1C' : '#808370';
     ctx.beginPath();
 
-    const sliceWidth = canvas.width / 40;
+    const sliceWidth = canvas.width / 50;
     let x = 0;
 
-    for (let i = 0; i < 40; i++) {
-      const y = (canvas.height / 2) + Math.sin(i * 0.4 + waveOffset) * (isSynthesizing ? 14 : 2);
+    for (let i = 0; i < 50; i++) {
+      const amplitude = isPlaying ? 16 : 2;
+      const y = (canvas.height / 2) + Math.sin(i * 0.35 + wavePhase) * amplitude;
       if (i === 0) ctx.moveTo(x, y);
       else ctx.lineTo(x, y);
       x += sliceWidth;
     }
-    ctx.stroke();
 
-    waveOffset += 0.15;
-    if (isSynthesizing) requestAnimationFrame(drawWaveform);
+    ctx.stroke();
+    wavePhase += 0.12;
+
+    if (isPlaying) {
+      animationId = requestAnimationFrame(drawWaveform);
+    }
   }
 
-  function drawIdleWaveform() {
-    if (!ctx || !canvas) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.lineWidth = 1.5;
-    ctx.strokeStyle = 'rgba(128, 131, 112, 0.4)';
-    ctx.beginPath();
-    ctx.moveTo(0, canvas.height / 2);
-    ctx.lineTo(canvas.width, canvas.height / 2);
-    ctx.stroke();
+  if (canvas) {
+    drawWaveform();
   }
 
-  drawIdleWaveform();
-
-  // 5. Custom Audio Upload Support
-  const customAudioInput = document.getElementById('custom-audio-input');
-  const uploadTrackBtn = document.getElementById('upload-track-btn');
-
-  if (uploadTrackBtn && customAudioInput) {
-    uploadTrackBtn.addEventListener('click', () => customAudioInput.click());
-    customAudioInput.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        stopPianoSequence();
-        const url = URL.createObjectURL(file);
-        customAudio = new Audio(url);
-        customAudio.play();
-        isSynthesizing = true;
-        if (playTriggerBtn) playTriggerBtn.innerHTML = '⏸';
+  if (playBtn) {
+    playBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        isPlaying = false;
+        stopAudio();
+        playBtn.innerHTML = '▶';
+        if (animationId) cancelAnimationFrame(animationId);
         drawWaveform();
-        customAudio.addEventListener('ended', () => stopPianoSequence());
+      } else {
+        playPianoChord();
       }
     });
   }
 
-  // 6. Nuanced Annotation & Fine-Grained Critique Suite
-  let annotationMode = false;
-  let directEditMode = false;
-  const annotations = [];
+  trackItems.forEach(item => {
+    item.addEventListener('click', () => {
+      trackItems.forEach(t => t.classList.remove('active'));
+      item.classList.add('active');
+      currentTrack = item.getAttribute('data-track');
 
-  const annotateToggleBtn = document.getElementById('annotate-toggle-btn');
-  const liveEditToggleBtn = document.getElementById('live-edit-toggle-btn');
-  const annotationPanel = document.getElementById('annotation-panel');
-  const annotationList = document.getElementById('annotation-list');
-  const copyAnnotationsBtn = document.getElementById('copy-annotations-btn');
-  const modalBackdrop = document.getElementById('annotation-modal-backdrop');
-  const modalTargetLabel = document.getElementById('modal-target-label');
-  const modalContextSnippet = document.getElementById('modal-context-snippet');
-  const modalCategory = document.getElementById('modal-category');
-  const modalCommentInput = document.getElementById('modal-comment-input');
-  const modalSubmitBtn = document.getElementById('modal-submit-btn');
-  const modalCancelBtn = document.getElementById('modal-cancel-btn');
+      const info = trackData[currentTrack];
+      if (info) {
+        if (activeTrackName) activeTrackName.innerText = info.name;
+        if (activeTrackMeta) activeTrackMeta.innerText = info.meta;
+      }
 
-  let pendingTarget = null;
-  let pendingSnippet = '';
+      if (isPlaying) {
+        stopAudio();
+        playPianoChord();
+      }
+    });
+  });
 
-  if (annotateToggleBtn) {
-    annotateToggleBtn.addEventListener('click', () => {
-      annotationMode = !annotationMode;
-      document.body.classList.toggle('annotation-mode-active', annotationMode);
-      annotationPanel.style.display = annotationMode ? 'flex' : 'none';
-      annotateToggleBtn.classList.toggle('active', annotationMode);
+  // =========================================================================
+  // 4. State-of-the-Art Visual Review & Pinpoint Annotation Suite (v2.0)
+  // =========================================================================
+  let pinModeActive = true;
+  let editModeActive = false;
+  let drawerOpen = false;
+  const pins = [];
+
+  const dockPinBtn = document.getElementById('dock-pin-mode-btn');
+  const dockEditBtn = document.getElementById('dock-edit-mode-btn');
+  const dockDrawerBtn = document.getElementById('dock-drawer-toggle-btn');
+  const dockNotesCount = document.getElementById('dock-notes-count');
+  
+  const popover = document.getElementById('annotation-popover');
+  const popoverTargetSnippet = document.getElementById('popover-target-snippet');
+  const popoverCommentInput = document.getElementById('popover-comment-input');
+  const popoverSaveBtn = document.getElementById('popover-save-btn');
+  const popoverCancelBtn = document.getElementById('popover-cancel-btn');
+  const popoverCloseBtn = document.getElementById('popover-close-btn');
+  const tagChips = document.querySelectorAll('.tag-chip');
+  
+  const drawer = document.getElementById('feedback-drawer');
+  const drawerBody = document.getElementById('drawer-body');
+  const drawerCount = document.getElementById('drawer-count');
+  const drawerCloseBtn = document.getElementById('drawer-close-btn');
+  const drawerExportBtn = document.getElementById('drawer-export-btn');
+
+  let selectedTag = 'Copy & Wording';
+  let pendingElement = null;
+  let pendingCoords = { x: 0, y: 0, pageX: 0, pageY: 0 };
+  let pendingText = '';
+
+  document.body.classList.add('annotation-active');
+
+  // Tag chip selection
+  tagChips.forEach(chip => {
+    chip.addEventListener('click', (e) => {
+      e.stopPropagation();
+      tagChips.forEach(c => c.classList.remove('selected'));
+      chip.classList.add('selected');
+      selectedTag = chip.getAttribute('data-tag');
+    });
+  });
+
+  // Toggle Pin Mode
+  if (dockPinBtn) {
+    dockPinBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      pinModeActive = !pinModeActive;
+      dockPinBtn.classList.toggle('active', pinModeActive);
+      document.body.classList.toggle('annotation-active', pinModeActive);
+      if (pinModeActive && editModeActive) {
+        dockEditBtn.click(); // turn off edit mode
+      }
+      closePopover();
     });
   }
 
-  if (liveEditToggleBtn) {
-    liveEditToggleBtn.addEventListener('click', () => {
-      directEditMode = !directEditMode;
-      document.body.classList.toggle('direct-edit-active', directEditMode);
-      liveEditToggleBtn.classList.toggle('active', directEditMode);
-      liveEditToggleBtn.innerHTML = directEditMode ? '✍️ Live Edit: ON' : '✏️ Toggle Live Text Edit';
+  // Toggle Live WYSIWYG Edit Mode
+  if (dockEditBtn) {
+    dockEditBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      editModeActive = !editModeActive;
+      dockEditBtn.classList.toggle('active', editModeActive);
+      
+      if (editModeActive && pinModeActive) {
+        dockPinBtn.click(); // turn off pin mode
+      }
 
-      const editableSelectors = 'h1, h2, h3, h4, p, span, li, a, .role-pill, .badge-tag, .stat-num, .stat-label';
+      const editableSelectors = 'h1, h2, h3, h4, p, span, li, a, blockquote, td';
       document.querySelectorAll(editableSelectors).forEach(el => {
-        if (!el.closest('#annotation-panel') && !el.closest('#annotation-modal-backdrop') && !el.closest('.annotation-toolbar-container')) {
-          el.contentEditable = directEditMode ? 'true' : 'false';
-          el.classList.toggle('wysiwyg-editable', directEditMode);
+        if (!el.closest('#annotation-dock') && !el.closest('#annotation-popover') && !el.closest('#feedback-drawer')) {
+          el.contentEditable = editModeActive ? 'true' : 'false';
+          el.style.outline = editModeActive ? '1.5px dashed var(--forest)' : '';
+          el.style.backgroundColor = editModeActive ? 'rgba(24, 59, 43, 0.04)' : '';
         }
       });
     });
   }
 
+  // Toggle Drawer
+  if (dockDrawerBtn) {
+    dockDrawerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      drawerOpen = !drawerOpen;
+      if (drawer) drawer.style.display = drawerOpen ? 'flex' : 'none';
+      renderDrawer();
+    });
+  }
+
+  if (drawerCloseBtn) {
+    drawerCloseBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      drawerOpen = false;
+      if (drawer) drawer.style.display = 'none';
+    });
+  }
+
+  // Hover highlighting
+  let lastHovered = null;
+  document.addEventListener('mouseover', (e) => {
+    if (!pinModeActive || editModeActive) return;
+    if (e.target.closest('#annotation-dock') || e.target.closest('#annotation-popover') || e.target.closest('#feedback-drawer') || e.target.closest('.annotation-canvas-pin')) return;
+
+    if (lastHovered && lastHovered !== e.target) {
+      lastHovered.classList.remove('annotation-highlight-hover');
+    }
+    lastHovered = e.target;
+    lastHovered.classList.add('annotation-highlight-hover');
+  });
+
+  document.addEventListener('mouseout', (e) => {
+    if (lastHovered && e.target === lastHovered) {
+      lastHovered.classList.remove('annotation-highlight-hover');
+      lastHovered = null;
+    }
+  });
+
+  // Drop pinpoint on click
   document.addEventListener('click', (e) => {
-    if (!annotationMode || directEditMode) return;
-    if (e.target.closest('#annotation-panel') || e.target.closest('#annotation-modal-backdrop') || e.target.closest('.annotation-toolbar-container')) return;
+    if (!pinModeActive || editModeActive) return;
+    if (e.target.closest('#annotation-dock') || e.target.closest('#annotation-popover') || e.target.closest('#feedback-drawer') || e.target.closest('.annotation-canvas-pin')) return;
 
     e.preventDefault();
     e.stopPropagation();
 
-    pendingTarget = e.target;
-    const tagName = pendingTarget.tagName.toLowerCase();
-    const textContent = pendingTarget.innerText.trim();
-    pendingSnippet = textContent.length > 80 ? textContent.substring(0, 77) + '...' : textContent;
+    pendingElement = e.target;
+    const tagName = pendingElement.tagName.toLowerCase();
+    const textContent = pendingElement.innerText.trim();
+    pendingText = textContent.length > 70 ? textContent.substring(0, 67) + '...' : textContent;
 
     const selectedText = window.getSelection().toString().trim();
     if (selectedText) {
-      pendingSnippet = `"${selectedText}"`;
+      pendingText = '"' + selectedText + '"';
     }
 
-    if (modalTargetLabel) modalTargetLabel.innerText = `<${tagName}> element: "${pendingSnippet || 'Visual block'}"`;
-    if (modalContextSnippet) modalContextSnippet.innerText = textContent ? `Context: "${textContent.substring(0, 140)}"` : '';
-    if (modalCommentInput) {
-      modalCommentInput.value = '';
-      modalCommentInput.focus();
-    }
-    if (modalBackdrop) modalBackdrop.style.display = 'flex';
+    pendingCoords = {
+      x: e.clientX,
+      y: e.clientY,
+      pageX: e.pageX,
+      pageY: e.pageY
+    };
+
+    openPopover(tagName, pendingText, pendingCoords);
   });
 
-  if (modalSubmitBtn) {
-    modalSubmitBtn.addEventListener('click', () => {
-      const comment = modalCommentInput.value.trim();
-      const category = modalCategory.value;
-      if (!comment) return;
+  function openPopover(tagName, snippet, coords) {
+    if (!popover) return;
+    popoverTargetSnippet.innerText = '<' + tagName + '> ' + (snippet || 'Visual Element');
+    popoverCommentInput.value = '';
 
-      const noteId = annotations.length + 1;
-      annotations.push({
-        id: noteId,
-        category: category,
-        snippet: pendingSnippet,
-        comment: comment,
-        tag: pendingTarget.tagName.toLowerCase(),
-      });
+    // Calculate position
+    const popoverWidth = 320;
+    let left = coords.pageX + 15;
+    let top = coords.pageY - 20;
 
-      if (pendingTarget) {
-        const pin = document.createElement('span');
-        pin.className = 'annotation-pin';
-        pin.innerText = noteId;
-        pin.title = `[${category}] ${comment}`;
-        pendingTarget.style.position = 'relative';
-        pendingTarget.appendChild(pin);
+    if (left + popoverWidth > window.innerWidth + window.scrollX) {
+      left = coords.pageX - popoverWidth - 15;
+    }
+
+    popover.style.left = left + 'px';
+    popover.style.top = top + 'px';
+    popover.style.display = 'block';
+
+    setTimeout(() => popoverCommentInput.focus(), 50);
+  }
+
+  function closePopover() {
+    if (popover) popover.style.display = 'none';
+    pendingElement = null;
+  }
+
+  if (popoverCancelBtn) popoverCancelBtn.addEventListener('click', closePopover);
+  if (popoverCloseBtn) popoverCloseBtn.addEventListener('click', closePopover);
+
+  // Save Pin
+  function saveCurrentPin() {
+    const comment = popoverCommentInput.value.trim();
+    if (!comment) return;
+
+    const pinId = pins.length + 1;
+    const newPin = {
+      id: pinId,
+      tag: selectedTag,
+      comment: comment,
+      snippet: pendingText,
+      elementTag: pendingElement ? pendingElement.tagName.toLowerCase() : 'element',
+      pageX: pendingCoords.pageX,
+      pageY: pendingCoords.pageY,
+      element: pendingElement
+    };
+
+    pins.push(newPin);
+
+    // Create Pin Badge on Screen
+    const pinMarker = document.createElement('div');
+    pinMarker.className = 'annotation-canvas-pin';
+    pinMarker.id = 'canvas-pin-' + pinId;
+    pinMarker.innerText = pinId;
+    pinMarker.title = '[' + selectedTag + '] ' + comment;
+    pinMarker.style.left = pendingCoords.pageX + 'px';
+    pinMarker.style.top = pendingCoords.pageY + 'px';
+
+    pinMarker.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openPopover(newPin.elementTag, newPin.snippet, { pageX: newPin.pageX, pageY: newPin.pageY });
+      popoverCommentInput.value = newPin.comment;
+    });
+
+    document.body.appendChild(pinMarker);
+
+    closePopover();
+    updateCounts();
+    renderDrawer();
+  }
+
+  if (popoverSaveBtn) popoverSaveBtn.addEventListener('click', saveCurrentPin);
+
+  if (popoverCommentInput) {
+    popoverCommentInput.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+        saveCurrentPin();
+      } else if (e.key === 'Escape') {
+        closePopover();
       }
-
-      modalBackdrop.style.display = 'none';
-      renderAnnotations();
     });
   }
 
-  if (modalCancelBtn) {
-    modalCancelBtn.addEventListener('click', () => {
-      if (modalBackdrop) modalBackdrop.style.display = 'none';
-    });
+  function updateCounts() {
+    const count = pins.length;
+    if (dockNotesCount) dockNotesCount.innerText = count;
+    if (drawerCount) drawerCount.innerText = count;
   }
 
-  function renderAnnotations() {
-    if (annotations.length === 0) {
-      annotationList.innerHTML = '<p style="color:#808370; font-size:0.85rem; font-style:italic;">Click on any specific headline, sentence, button, or card to attach categorized feedback.</p>';
+  function renderDrawer() {
+    if (!drawerBody) return;
+    if (pins.length === 0) {
+      drawerBody.innerHTML = '<p style="color:var(--muted-olive); font-size:0.85rem; font-style:italic; text-align:center; padding:1.5rem 0;">Click anywhere on the page to drop a pin and add feedback.</p>';
       return;
     }
 
-    const categoryIcons = {
-      'Copy & Wording': '✍️',
-      'Visual & Layout': '🎨',
-      'Content & Assets': '📂',
-      'Feature Idea': '💡',
-      'Other': '📌',
-    };
+    drawerBody.innerHTML = pins.map(p => 
+      '<div class="drawer-item" data-pin-id="' + p.id + '" style="cursor:pointer;">' +
+        '<button class="drawer-item-delete" title="Delete pin" data-delete-id="' + p.id + '">✕</button>' +
+        '<div class="drawer-item-tag">#' + p.id + ' • ' + p.tag + '</div>' +
+        '<div style="font-size:0.75rem; color:var(--muted-olive); font-style:italic; margin:2px 0;">Target: ' + (p.snippet || p.elementTag) + '</div>' +
+        '<p class="drawer-item-text"><strong>' + p.comment + '</strong></p>' +
+      '</div>'
+    ).join('');
 
-    annotationList.innerHTML = annotations.map(a => `
-      <div class="annotation-item">
-        <div class="annotation-header">
-          <span class="category-pill">${categoryIcons[a.category] || '📌'} ${a.category}</span>
-          <span class="note-num">#${a.id}</span>
-        </div>
-        <div class="annotation-target-text">Target: <em>${a.snippet || a.tag}</em></div>
-        <p class="annotation-body">${a.comment}</p>
-      </div>
-    `).join('');
+    // Attach click listeners to drawer items for smooth scroll to pin
+    drawerBody.querySelectorAll('.drawer-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        if (e.target.classList.contains('drawer-item-delete')) return;
+        const pinId = item.getAttribute('data-pin-id');
+        const pinMarker = document.getElementById('canvas-pin-' + pinId);
+        if (pinMarker) {
+          pinMarker.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          pinMarker.style.transform = 'translate(-50%, -50%) scale(1.6)';
+          pinMarker.style.boxShadow = '0 0 20px rgba(76, 14, 28, 0.9)';
+          setTimeout(() => {
+            pinMarker.style.transform = 'translate(-50%, -50%) scale(1)';
+            pinMarker.style.boxShadow = '0 3px 8px rgba(0, 0, 0, 0.35)';
+          }, 800);
+        }
+      });
+    });
+
+    // Attach delete listeners
+    drawerBody.querySelectorAll('.drawer-item-delete').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const deleteId = parseInt(btn.getAttribute('data-delete-id'), 10);
+        const idx = pins.findIndex(p => p.id === deleteId);
+        if (idx !== -1) {
+          pins.splice(idx, 1);
+          const pinMarker = document.getElementById('canvas-pin-' + deleteId);
+          if (pinMarker) pinMarker.remove();
+          updateCounts();
+          renderDrawer();
+        }
+      });
+    });
   }
 
-  if (copyAnnotationsBtn) {
-    copyAnnotationsBtn.addEventListener('click', () => {
-      if (annotations.length === 0) {
-        alert('No annotations added yet! Click any element to add fine-grained feedback.');
+  // Export to AI Prompt
+  if (drawerExportBtn) {
+    drawerExportBtn.addEventListener('click', () => {
+      if (pins.length === 0) {
+        alert('No notes pinned yet! Click anywhere on the page to drop feedback pins.');
         return;
       }
 
-      let formattedReport = "Here is my fine-grained feedback for the Richmond Symphony Portfolio:\n\n";
-      annotations.forEach(a => {
-        formattedReport += `### [#${a.id}] [${a.category}] on "${a.snippet || a.tag}"\n- **Feedback**: ${a.comment}\n\n`;
+      let report = "Here is my fine-grained feedback for the Richmond Symphony Portfolio:\n\n";
+      pins.forEach(p => {
+        report += '### [#' + p.id + '] [' + p.tag + '] on <' + p.elementTag + '> "' + (p.snippet || 'Visual Element') + '"\n';
+        report += '- **Feedback**: ' + p.comment + '\n\n';
       });
 
-      navigator.clipboard.writeText(formattedReport);
-      copyAnnotationsBtn.innerText = '✅ Copied Structured Prompt!';
-      setTimeout(() => { copyAnnotationsBtn.innerText = '📋 Copy Feedback for Antigravity'; }, 2500);
+      navigator.clipboard.writeText(report);
+      drawerExportBtn.innerText = '✅ Copied Structured Report!';
+      setTimeout(() => {
+        drawerExportBtn.innerText = '📋 Copy All Notes for Antigravity';
+      }, 2500);
     });
   }
 });
