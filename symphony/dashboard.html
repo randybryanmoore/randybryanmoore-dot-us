@@ -1,0 +1,2342 @@
+<!doctype html>
+<html lang="en"><head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="description" content="Conceptual Richmond Symphony Advancement Intelligence Dashboard using fictional demonstration data.">
+ <!-- Strict Privacy: Prevent Search Engine Indexing & Archiving -->
+ <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+ <meta name="googlebot" content="noindex, nofollow, noarchive">
+ <title>Confidential Richmond Symphony Advancement Intelligence — Selection Committee Prototype</title>
+ <style>
+ :root {
+ --navy-950: #21252a;
+ --navy-900: #273543;
+ --navy-800: #33383d;
+ --wine-700: #a77799;
+ --wine-100: #f2edf1;
+ --gold-500: #c59f55;
+ --gold-100: #f4ecd9;
+ --cream: #f3f3f3;
+ --paper: #ffffff;
+ --white: #ffffff;
+ --ink: #33383d;
+ --muted: #6a7c91;
+ --line: #dedede;
+ --green: #4fb49f;
+ --green-100: #e6f5f1;
+ --amber: #a66616;
+ --amber-100: #fbefd8;
+ --red: #a33c46;
+ --red-100: #f9e5e8;
+ --blue: #6a7c91;
+ --blue-100: #edf1f5;
+ --shadow: 0 10px 32px rgba(13, 31, 48, .08);
+ --radius: 18px;
+ }
+
+ * { box-sizing: border-box; }
+ html { scroll-behavior: smooth; }
+ body {
+ margin: 0;
+ background: var(--cream);
+ color: var(--ink);
+ font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+ line-height: 1.5;
+ }
+ button, select, input { font: inherit; }
+ button, a, select { -webkit-tap-highlight-color: transparent; }
+ a { color: inherit; }
+ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible {
+ outline: 3px solid rgba(200, 154, 73, .5);
+ outline-offset: 2px;
+ }
+
+ .demo-banner {
+ min-height: 36px;
+ padding: 8px 24px;
+ background: var(--gold-100);
+ border-bottom: 1px solid #e6d3af;
+ color: #654711;
+ text-align: center;
+ font-size: 12px;
+ font-weight: 650;
+ letter-spacing: .01em;
+ }
+ .demo-banner strong {
+ margin-right: 6px;
+ text-transform: uppercase;
+ letter-spacing: .09em;
+ }
+
+ .app-shell {
+ display: grid;
+ grid-template-columns: 250px minmax(0, 1fr);
+ min-height: calc(100vh - 36px);
+ }
+ .sidebar {
+ position: sticky;
+ top: 0;
+ align-self: start;
+ height: 100vh;
+ padding: 28px 20px 24px;
+ overflow-y: auto;
+ background: var(--navy-950);
+ color: rgba(255,255,255,.78);
+ }
+ .brand {
+ display: block;
+ margin-bottom: 30px;
+ color: var(--white);
+ text-align: center;
+ }
+ .brand::after {
+ display: block;
+ width: 74px;
+ height: 2px;
+ margin: 15px auto 0;
+ background: linear-gradient(90deg, transparent, var(--gold-500) 18% 82%, transparent);
+ content: "";
+ }
+ .brand-name {
+ margin: 0;
+ color: var(--white);
+ font-family: Georgia, "Times New Roman", serif;
+ font-size: 22px;
+ font-weight: 500;
+ letter-spacing: .02em;
+ line-height: 1.15;
+ }
+ .brand-sub {
+ margin-top: 3px;
+ color: rgba(255,255,255,.48);
+ font-size: 11px;
+ font-weight: 700;
+ letter-spacing: .14em;
+ text-transform: uppercase;
+ }
+ .nav-label {
+ margin: 0 10px 9px;
+ color: rgba(255,255,255,.36);
+ font-size: 10px;
+ font-weight: 800;
+ letter-spacing: .15em;
+ text-transform: uppercase;
+ }
+ .nav-list {
+ display: grid;
+ gap: 4px;
+ margin: 0;
+ padding: 0;
+ list-style: none;
+ }
+ .nav-link {
+ display: flex;
+ gap: 10px;
+ align-items: center;
+ padding: 9px 10px;
+ border-radius: 9px;
+ color: rgba(255,255,255,.68);
+ font-size: 12px;
+ font-weight: 650;
+ text-decoration: none;
+ transition: background .18s, color .18s;
+ }
+ .nav-link:hover, .nav-link.active {
+ background: rgba(255,255,255,.09);
+ color: var(--white);
+ }
+ .nav-number {
+ min-width: 19px;
+ color: var(--gold-500);
+ font-size: 10px;
+ font-variant-numeric: tabular-nums;
+ }
+ .sidebar-note {
+ margin-top: 28px;
+ padding: 14px;
+ border: 1px solid rgba(255,255,255,.11);
+ border-radius: 12px;
+ background: rgba(255,255,255,.04);
+ color: rgba(255,255,255,.56);
+ font-size: 10px;
+ line-height: 1.6;
+ }
+ .sidebar-note strong {
+ display: block;
+ margin-bottom: 4px;
+ color: #f2d8a6;
+ font-size: 9px;
+ letter-spacing: .12em;
+ text-transform: uppercase;
+ }
+ .sidebar-toggle {
+ display: flex;
+ width: 100%;
+ min-height: 42px;
+ gap: 9px;
+ align-items: center;
+ justify-content: center;
+ margin: -14px 0 24px;
+ border: 1px solid rgba(255,255,255,.14);
+ border-radius: 10px;
+ background: rgba(255,255,255,.045);
+ color: rgba(255,255,255,.78);
+ cursor: pointer;
+ font-size: 11px;
+ font-weight: 800;
+ }
+ .sidebar-toggle:hover { border-color: rgba(197,159,85,.55); background: rgba(197,159,85,.09); color: white; }
+ .toggle-glyph { color: var(--gold-500); font-size: 20px; line-height: 1; transition: transform .2s; }
+
+ main {
+ min-width: 0;
+ padding: 38px clamp(22px, 4vw, 58px) 60px;
+ }
+ .page-header {
+ display: flex;
+ gap: 24px;
+ align-items: flex-end;
+ justify-content: space-between;
+ margin-bottom: 24px;
+ }
+ .eyebrow {
+ margin: 0 0 7px;
+ color: var(--wine-700);
+ font-size: 11px;
+ font-weight: 800;
+ letter-spacing: .13em;
+ text-transform: uppercase;
+ }
+ h1, h2, h3, p { margin-top: 0; }
+ h1 {
+ max-width: 760px;
+ margin-bottom: 8px;
+ font-family: Georgia, "Times New Roman", serif;
+ font-size: clamp(30px, 4vw, 48px);
+ font-weight: 500;
+ letter-spacing: -.035em;
+ line-height: 1.03;
+ }
+ .lede {
+ max-width: 690px;
+ margin-bottom: 0;
+ color: var(--muted);
+ font-size: 13px;
+ }
+ .header-actions {
+ display: flex;
+ flex-shrink: 0;
+ gap: 9px;
+ align-items: center;
+ }
+ .select-wrap, .button {
+ min-height: 39px;
+ border: 1px solid var(--line);
+ border-radius: 10px;
+ background: var(--paper);
+ color: var(--ink);
+ font-size: 11px;
+ font-weight: 700;
+ }
+ .select-wrap { padding: 0 12px; }
+ .button {
+ display: inline-flex;
+ padding: 0 14px;
+ align-items: center;
+ justify-content: center;
+ cursor: pointer;
+ text-decoration: none;
+ transition: transform .16s, border-color .16s, background .16s;
+ }
+ .button:hover { transform: translateY(-1px); border-color: #c7bdad; }
+ .button.primary { border-color: var(--navy-900); background: var(--navy-900); color: white; }
+ .button.ghost { background: transparent; }
+
+ .notice {
+ display: flex;
+ gap: 12px;
+ align-items: flex-start;
+ margin-bottom: 22px;
+ padding: 12px 15px;
+ border: 1px solid #e3cfaa;
+ border-radius: 12px;
+ background: #fff9ed;
+ color: #674c1c;
+ font-size: 11px;
+ }
+ .notice-icon {
+ display: grid;
+ flex: 0 0 auto;
+ width: 21px;
+ height: 21px;
+ place-items: center;
+ border-radius: 50%;
+ background: var(--gold-500);
+ color: var(--white);
+ font-size: 12px;
+ font-weight: 800;
+ }
+ .notice strong { color: #4f370e; }
+
+ .hero-card {
+ position: relative;
+ overflow: hidden;
+ margin-bottom: 28px;
+ padding: clamp(24px, 3vw, 38px);
+ border-radius: 24px;
+ background: var(--navy-900);
+ box-shadow: 0 14px 38px rgba(7, 22, 35, .18);
+ color: white;
+ }
+ .hero-card::after {
+ position: absolute;
+ right: -120px;
+ bottom: -220px;
+ width: 430px;
+ height: 430px;
+ border: 1px solid rgba(200, 154, 73, .28);
+ border-radius: 50%;
+ box-shadow: 0 0 0 60px rgba(200,154,73,.035), 0 0 0 120px rgba(200,154,73,.025);
+ content: "";
+ pointer-events: none;
+ }
+ .hero-top {
+ position: relative;
+ z-index: 1;
+ display: grid;
+ grid-template-columns: minmax(0, 1.4fr) minmax(240px, .6fr);
+ gap: 36px;
+ }
+ .hero-kicker {
+ margin-bottom: 10px;
+ color: #e7c788;
+ font-size: 10px;
+ font-weight: 800;
+ letter-spacing: .14em;
+ text-transform: uppercase;
+ }
+ .hero-value {
+ margin: 0;
+ font-family: Georgia, "Times New Roman", serif;
+ font-size: clamp(42px, 6vw, 68px);
+ font-weight: 500;
+ letter-spacing: -.045em;
+ line-height: 1;
+ }
+ .hero-value span {
+ margin-left: 8px;
+ color: rgba(255,255,255,.5);
+ font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+ font-size: 13px;
+ font-weight: 600;
+ letter-spacing: 0;
+ }
+ .progress-track {
+ height: 8px;
+ margin: 24px 0 10px;
+ overflow: hidden;
+ border-radius: 8px;
+ background: rgba(255,255,255,.13);
+ }
+ .progress-fill {
+ width: 70.3%;
+ height: 100%;
+ border-radius: inherit;
+ background: linear-gradient(90deg, #b88635, #e4c987);
+ }
+ .progress-labels {
+ display: flex;
+ justify-content: space-between;
+ color: rgba(255,255,255,.58);
+ font-size: 10px;
+ font-weight: 650;
+ }
+ .pace-card {
+ align-self: stretch;
+ padding: 20px;
+ border: 1px solid rgba(255,255,255,.12);
+ border-radius: 16px;
+ background: rgba(255,255,255,.055);
+ backdrop-filter: blur(8px);
+ }
+ .status-row {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ margin-bottom: 22px;
+ }
+ .status-pill, .pill {
+ display: inline-flex;
+ gap: 6px;
+ align-items: center;
+ padding: 5px 8px;
+ border-radius: 999px;
+ font-size: 9px;
+ font-weight: 800;
+ letter-spacing: .04em;
+ text-transform: uppercase;
+ }
+ .status-pill { background: rgba(75,177,137,.16); color: #a9e2cc; }
+ .status-pill.watch { background: rgba(224,171,73,.16); color: #f0cc86; }
+ .status-pill.watch .status-dot { background: #e0ab49; }
+ .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #64bd9a; }
+ .pace-label { color: rgba(255,255,255,.5); font-size: 10px; }
+ .pace-stat { margin-bottom: 5px; font-size: 26px; font-weight: 750; letter-spacing: -.03em; }
+ .pace-caption { margin-bottom: 0; color: rgba(255,255,255,.56); font-size: 10px; }
+ .hero-stats {
+ position: relative;
+ z-index: 1;
+ display: grid;
+ grid-template-columns: repeat(4, 1fr);
+ gap: 1px;
+ margin-top: 29px;
+ border-top: 1px solid rgba(255,255,255,.12);
+ }
+ .hero-stat { padding: 18px 16px 0 0; }
+ .hero-stat-value { display: block; margin-bottom: 3px; font-size: 20px; font-weight: 750; letter-spacing: -.02em; }
+ .hero-stat-label { color: rgba(255,255,255,.5); font-size: 9px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+ .hero-insight {
+ position: relative;
+ z-index: 1;
+ margin: 17px 0 0;
+ padding: 11px 13px;
+ border: 1px solid rgba(197,159,85,.28);
+ border-radius: 10px;
+ background: rgba(197,159,85,.09);
+ color: rgba(255,255,255,.68);
+ font-size: 9px;
+ line-height: 1.6;
+ }
+ .hero-insight strong { color: #efd29a; }
+
+ .section { scroll-margin-top: 24px; margin-top: 36px; }
+ .section-heading {
+ display: flex;
+ gap: 18px;
+ align-items: flex-end;
+ justify-content: space-between;
+ margin-bottom: 14px;
+ }
+ .section-heading h2 {
+ margin-bottom: 4px;
+ font-family: Georgia, "Times New Roman", serif;
+ font-size: clamp(23px, 3vw, 31px);
+ font-weight: 500;
+ letter-spacing: -.025em;
+ }
+ .section-heading p { max-width: 640px; margin-bottom: 0; color: var(--muted); font-size: 11px; }
+ .section-index { color: var(--wine-700); font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+
+ .grid-2 { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, .7fr); gap: 14px; }
+ .grid-equal { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+ .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+ .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+ .panel, .metric-card {
+ border: 1px solid var(--line);
+ border-radius: var(--radius);
+ background: var(--paper);
+ box-shadow: var(--shadow);
+ }
+ .panel { padding: 20px; }
+ .panel-header {
+ display: flex;
+ gap: 14px;
+ align-items: flex-start;
+ justify-content: space-between;
+ margin-bottom: 18px;
+ }
+ .panel-title { margin-bottom: 3px; font-size: 13px; font-weight: 800; }
+ .panel-subtitle { margin-bottom: 0; color: var(--muted); font-size: 10px; }
+ .pill.green { background: var(--green-100); color: var(--green); }
+ .pill.amber { background: var(--amber-100); color: var(--amber); }
+ .pill.red { background: var(--red-100); color: var(--red); }
+ .pill.blue { background: var(--blue-100); color: var(--blue); }
+ .metric-card { padding: 17px; }
+ .metric-label { display: block; margin-bottom: 7px; color: var(--muted); font-size: 9px; font-weight: 750; letter-spacing: .07em; text-transform: uppercase; }
+ .metric-value { display: block; margin-bottom: 4px; font-size: 24px; font-weight: 760; letter-spacing: -.035em; }
+ .metric-change { color: var(--green); font-size: 9px; font-weight: 750; }
+ .metric-change.warn { color: var(--amber); }
+ .metric-change.down { color: var(--red); }
+
+ .chart-wrap { position: relative; height: 245px; }
+ #fundraisingChart { width: 100%; height: 100%; }
+ .chart-legend { display: flex; gap: 15px; align-items: center; color: var(--muted); font-size: 9px; }
+ .legend-item { display: flex; gap: 6px; align-items: center; }
+ .legend-swatch { width: 14px; height: 3px; border-radius: 3px; background: var(--wine-700); }
+ .legend-swatch.gold { background: var(--gold-500); }
+ .mix-wrap { display: grid; gap: 18px; }
+ .mix-total { display: flex; gap: 14px; align-items: baseline; }
+ .mix-total strong { font-size: 36px; line-height: 1; letter-spacing: -.045em; }
+ .mix-total span { color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+ .mix-stack { display: flex; min-height: 60px; overflow: hidden; border-radius: 14px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
+ .mix-stack span { display: grid; min-width: 52px; place-items: center; color: white; font-size: 13px; font-weight: 900; text-shadow: 0 1px 2px rgba(0,0,0,.25); }
+ .mix-stack .individual { width: 47%; background: var(--navy-800); }
+ .mix-stack .foundation { width: 20%; background: var(--wine-700); }
+ .mix-stack .corporate { width: 22%; background: var(--gold-500); color: #2f2a22; text-shadow: none; }
+ .mix-stack .government { width: 11%; background: #6a7c91; }
+ .mix-source-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+ .mix-source-card { position: relative; min-height: 138px; padding: 15px; border: 1px solid #e4e0d9; border-radius: 13px; background: #fbfaf7; }
+ .mix-source-card::before { display: block; width: 32px; height: 5px; margin-bottom: 12px; border-radius: 4px; background: var(--source-color); content: ""; }
+ .mix-source-card span { display: block; color: var(--muted); font-size: 11px; font-weight: 850; letter-spacing: .05em; text-transform: uppercase; }
+ .mix-source-card strong { display: block; margin: 3px 0 6px; font-size: 25px; letter-spacing: -.03em; }
+ .mix-source-card b { color: var(--ink); font-size: 15px; }
+ .mix-source-card p { margin: 7px 0 0; color: var(--muted); font-size: 10px; line-height: 1.45; }
+ .insight {
+ margin-top: 14px;
+ padding: 13px 14px;
+ border-left: 3px solid var(--gold-500);
+ border-radius: 0 9px 9px 0;
+ background: var(--gold-100);
+ color: #5f491f;
+ font-size: 10px;
+ line-height: 1.6;
+ }
+ .insight strong { color: #47320c; }
+
+ .role-connection { margin-top: 8px !important; color: #684b17 !important; font-size: 10px !important; font-weight: 650; }
+ .role-connection strong { font-weight: 900; }
+ .role-map { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 9px; margin-top: 12px; }
+ .role-map a { padding: 13px; border: 1px solid #e5e1da; border-radius: 11px; background: #fbfaf7; color: inherit; text-decoration: none; }
+ .role-map a:hover { border-color: var(--gold-500); background: #fffaf0; }
+ .role-map strong { display: block; margin-bottom: 4px; color: var(--navy-900); font-size: 11px; }
+ .role-map span { display: block; color: var(--muted); font-size: 9px; line-height: 1.45; }
+
+ .donor-review { margin-top: 12px; padding: 18px; border: 1px solid #d8c39d; border-radius: 14px; background: linear-gradient(120deg, #fffaf0, #f6ead4); }
+ .donor-review h3 { margin-bottom: 8px; font-size: 15px; }
+ .donor-review-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+ .donor-review-item { padding: 12px; border-radius: 10px; background: rgba(255,255,255,.68); color: #68532d; font-size: 10px; line-height: 1.5; }
+ .donor-review-item strong { display: block; margin-bottom: 4px; color: var(--ink); font-size: 11px; }
+
+ .portfolio-board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+ .portfolio-lane { position: relative; padding: 18px; border: 1px solid #e3ded5; border-radius: 15px; background: linear-gradient(180deg, #fff, #fbfaf7); }
+ .portfolio-lane h3 { margin-bottom: 3px; font-size: 15px; }
+ .portfolio-lane > p { margin-bottom: 14px; color: var(--muted); font-size: 10px; }
+ .lane-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+ .lane-kpi { padding: 10px; border-radius: 10px; background: var(--blue-100); }
+ .lane-kpi span { display: block; color: var(--muted); font-size: 8px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+ .lane-kpi strong { display: block; margin-top: 2px; font-size: 18px; }
+ .stage-list { display: grid; gap: 8px; }
+ .stage-row { display: grid; grid-template-columns: 56px 1fr 22px; gap: 8px; align-items: center; font-size: 9px; }
+ .stage-row span:first-child { color: var(--muted); }
+ .stage-row strong { text-align: right; }
+ .lane-alert { margin-top: 14px; padding: 11px; border-left: 3px solid var(--alert-color, var(--gold-500)); border-radius: 0 9px 9px 0; background: var(--amber-100); color: #634b20; font-size: 10px; line-height: 1.5; }
+
+ .assignment-composer { display: grid; grid-template-columns: minmax(0, 1fr) minmax(170px, auto) auto; gap: 10px; align-items: end; margin-top: 14px; padding: 14px; border: 1px solid #d6dee7; border-radius: 12px; background: var(--blue-100); }
+ .assignment-copy span { display: block; margin-bottom: 3px; color: var(--muted); font-size: 9px; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; }
+ .assignment-copy strong { display: block; font-size: 11px; }
+ .assignment-owner { display: grid; gap: 4px; color: var(--muted); font-size: 8px; font-weight: 850; letter-spacing: .05em; text-transform: uppercase; }
+ .assignment-owner select { min-height: 38px; padding: 0 10px; border: 1px solid #cbd5df; border-radius: 9px; background: white; color: var(--ink); font-size: 10px; font-weight: 750; text-transform: none; }
+ .assign-task { min-height: 38px; padding: 0 13px; border: 0; border-radius: 9px; background: var(--navy-900); color: white; cursor: pointer; font-size: 10px; font-weight: 850; }
+ .assign-task:hover { background: var(--navy-950); }
+ .team-queue { margin-top: 16px; padding: 18px; border: 1px solid #d8d5cf; border-radius: 14px; background: white; }
+ .team-queue-header { display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+ .team-queue-header h3 { margin-bottom: 3px; font-size: 15px; }
+ .team-queue-header p { margin: 0; color: var(--muted); font-size: 10px; }
+ .team-task-list { display: grid; gap: 8px; }
+ .team-task-empty { padding: 18px; border: 1px dashed #d8d5cf; border-radius: 10px; color: var(--muted); font-size: 10px; text-align: center; }
+ .team-task { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; padding: 12px; border: 1px solid #e4e0d9; border-radius: 10px; background: #fbfaf7; }
+ .team-task.done { opacity: .62; background: var(--green-100); }
+ .team-task strong { display: block; margin-bottom: 3px; font-size: 11px; }
+ .team-task span { display: block; color: var(--muted); font-size: 9px; }
+ .team-task-actions { display: flex; gap: 6px; align-items: center; }
+ .team-task-actions button { padding: 7px 9px; border: 1px solid #d5d1ca; border-radius: 8px; background: white; color: var(--ink); cursor: pointer; font-size: 9px; font-weight: 800; }
+
+ .about-page { overflow: hidden; padding: 0; border: 0; background: var(--navy-950); color: white; box-shadow: 0 18px 45px rgba(9,25,38,.2); }
+ .about-hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(240px, .8fr); gap: 26px; padding: 34px; background: radial-gradient(circle at 90% 15%, rgba(197,159,85,.16), transparent 34%), linear-gradient(135deg, var(--navy-950), var(--navy-900)); }
+ .about-kicker { margin-bottom: 8px; color: #e8c985; font-size: 10px; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
+ .about-hero h2 { max-width: 720px; margin-bottom: 11px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(34px, 4vw, 52px); font-weight: 500; letter-spacing: -.035em; line-height: 1.04; }
+ .about-hero p { max-width: 700px; margin-bottom: 0; color: rgba(255,255,255,.66); font-size: 12px; line-height: 1.7; }
+ .about-links { display: grid; gap: 9px; align-content: center; }
+ .about-link { display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 13px 15px; border: 1px solid rgba(255,255,255,.13); border-radius: 11px; background: rgba(255,255,255,.055); color: white; font-size: 11px; font-weight: 800; text-decoration: none; }
+ .about-link::after { color: #e8c985; content: "↗"; }
+ .about-link:hover { border-color: rgba(232,201,133,.56); background: rgba(232,201,133,.09); }
+ .about-body { padding: 28px 34px 34px; background: #fbfaf7; color: var(--ink); }
+ .about-section-title { margin-bottom: 14px; font-family: Georgia, "Times New Roman", serif; font-size: 25px; font-weight: 500; }
+ .about-skill-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 11px; }
+ .about-skill { padding: 17px; border: 1px solid #e3ded5; border-radius: 13px; background: white; }
+ .about-skill span { display: grid; width: 28px; height: 28px; margin-bottom: 11px; place-items: center; border-radius: 9px; background: var(--gold-100); color: #684b17; font-size: 10px; font-weight: 900; }
+ .about-skill h3 { margin-bottom: 6px; font-size: 13px; }
+ .about-skill p { margin-bottom: 0; color: var(--muted); font-size: 10px; line-height: 1.55; }
+ .about-proof { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 9px; margin-top: 20px; }
+ .proof-card { padding: 15px; border-radius: 12px; background: var(--blue-100); }
+ .proof-card strong { display: block; margin-bottom: 4px; color: var(--navy-900); font-size: 20px; }
+ .proof-card span { color: var(--muted); font-size: 9px; line-height: 1.45; }
+ .about-fit { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(240px, .8fr); gap: 14px; margin-top: 20px; }
+ .about-fit-card { padding: 18px; border-radius: 13px; background: white; border: 1px solid #e3ded5; }
+ .about-fit-card h3 { margin-bottom: 8px; font-size: 13px; }
+ .about-fit-card p, .about-fit-card li { color: var(--muted); font-size: 10px; line-height: 1.6; }
+ .about-fit-card p { margin-bottom: 0; }
+ .about-fit-card ul { margin: 0; padding-left: 17px; }
+ .about-fit-card li + li { margin-top: 5px; }
+ .about-disclosure { border-left: 3px solid var(--gold-500); background: var(--gold-100); }
+ .build-story { margin-top: 22px; padding-top: 22px; border-top: 1px solid #e3ded5; }
+ .build-story > p { max-width: 860px; margin: -5px 0 15px; color: var(--muted); font-size: 11px; line-height: 1.65; }
+ .build-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+ .build-step { padding: 16px; border: 1px solid #e3ded5; border-radius: 12px; background: white; }
+ .build-step span { color: #79581d; font-size: 9px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+ .build-step h4 { margin: 6px 0 5px; font-size: 12px; }
+ .build-step p { margin: 0; color: var(--muted); font-size: 9px; line-height: 1.55; }
+ .ai-concepts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 9px; margin-top: 14px; }
+ .ai-concept { padding: 14px; border-radius: 11px; background: var(--navy-900); color: rgba(255,255,255,.68); font-size: 9px; line-height: 1.55; }
+ .ai-concept strong { display: block; margin-bottom: 4px; color: #efd29a; font-size: 10px; }
+ .build-governance { margin-top: 14px; padding: 15px; border-left: 3px solid var(--green); border-radius: 0 10px 10px 0; background: var(--green-100); color: #285f53; font-size: 10px; line-height: 1.6; }
+ .about-return { display: inline-flex; margin-top: 18px; padding: 10px 13px; border-radius: 9px; background: var(--navy-900); color: white; font-size: 10px; font-weight: 800; text-decoration: none; }
+
+ .scenario-lab {
+ overflow: hidden;
+ margin-bottom: 30px;
+ padding: 0;
+ border-color: #d8c39d;
+ background: #fffbf2;
+ }
+ .scenario-header {
+ display: grid;
+ grid-template-columns: minmax(0, 1fr) auto;
+ gap: 22px;
+ align-items: end;
+ padding: 22px 24px;
+ border-bottom: 1px solid #e5d8bf;
+ background: linear-gradient(120deg, #fffaf0, #f4e7cd);
+ }
+ .scenario-header h2 {
+ margin-bottom: 5px;
+ font-family: Georgia, "Times New Roman", serif;
+ font-size: 25px;
+ font-weight: 500;
+ letter-spacing: -.025em;
+ }
+ .scenario-header p { max-width: 700px; margin-bottom: 0; color: #735a2c; font-size: 10px; }
+ .scenario-select {
+ min-width: 250px;
+ height: 41px;
+ padding: 0 34px 0 12px;
+ border: 1px solid #cdb889;
+ border-radius: 10px;
+ background: rgba(255,255,255,.8);
+ color: var(--ink);
+ font-size: 10px;
+ font-weight: 750;
+ }
+ .scenario-body { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(280px, .7fr); gap: 18px; padding: 20px 24px 24px; }
+ .scenario-impact-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 9px; }
+ .scenario-impact { padding: 13px; border: 1px solid #e8dcc6; border-radius: 12px; background: rgba(255,255,255,.72); }
+ .scenario-impact span { display: block; margin-bottom: 7px; color: #806b48; font-size: 8px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+ .scenario-impact strong { display: block; margin-bottom: 3px; color: var(--wine-700); font-size: 20px; letter-spacing: -.03em; }
+ .scenario-impact small { color: var(--muted); font-size: 8px; line-height: 1.4; }
+ .scenario-context { margin: 14px 0 0; color: #695735; font-size: 10px; line-height: 1.65; }
+ .scenario-source {
+ margin: 13px 0 0;
+ padding-top: 12px;
+ border-top: 1px solid #e5d8bf;
+ color: #806b48;
+ font-size: 8px;
+ line-height: 1.6;
+ }
+ .scenario-source a { color: #5d4768; font-weight: 750; }
+ .response-plan { padding: 16px; border-radius: 13px; background: var(--navy-900); color: white; }
+ .response-plan h3 { margin-bottom: 10px; color: #efd29a; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+ .response-plan ol { margin: 0; padding-left: 18px; color: rgba(255,255,255,.72); font-size: 9px; line-height: 1.6; }
+ .response-plan li + li { margin-top: 7px; }
+ .response-plan-note { margin: 13px 0 0; padding-top: 10px; border-top: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.42); font-size: 8px; }
+
+ .health-layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 22px; align-items: center; }
+ .retention-ring {
+ display: grid;
+ width: 170px;
+ height: 170px;
+ margin: auto;
+ place-items: center;
+ border-radius: 50%;
+ background: conic-gradient(var(--green) 0 83%, #e8e3d9 83% 100%);
+ }
+ .retention-ring::before { position: absolute; width: 128px; height: 128px; border-radius: 50%; background: var(--paper); content: ""; }
+ .retention-inner { position: relative; z-index: 1; text-align: center; }
+ .retention-inner strong { display: block; font-size: 34px; letter-spacing: -.05em; }
+ .retention-inner span { color: var(--muted); font-size: 9px; font-weight: 700; text-transform: uppercase; }
+ .segment-list { display: grid; gap: 13px; }
+ .segment-row { display: grid; grid-template-columns: 92px 1fr 50px; gap: 10px; align-items: center; font-size: 10px; }
+ .segment-row > span:first-child { color: var(--muted); }
+ .bar-track { height: 7px; overflow: hidden; border-radius: 6px; background: #ebe6de; }
+ .bar-fill { height: 100%; border-radius: inherit; background: var(--navy-800); }
+ .bar-fill.wine { background: var(--wine-700); }
+ .bar-fill.gold { background: var(--gold-500); }
+ .bar-fill.blue { background: var(--blue); }
+ .segment-row strong { text-align: right; }
+
+ .table-wrap { overflow-x: auto; }
+ table { width: 100%; border-collapse: collapse; font-size: 10px; }
+ th {
+ padding: 0 12px 10px;
+ color: var(--muted);
+ font-size: 8px;
+ font-weight: 800;
+ letter-spacing: .09em;
+ text-align: left;
+ text-transform: uppercase;
+ white-space: nowrap;
+ }
+ td { padding: 13px 12px; border-top: 1px solid #ece8e0; vertical-align: middle; white-space: nowrap; }
+ td strong { font-size: 10px; }
+ .owner { display: flex; gap: 9px; align-items: center; }
+ .avatar { display: grid; flex: 0 0 auto; width: 27px; height: 27px; place-items: center; border-radius: 50%; background: var(--navy-900); color: white; font-size: 8px; font-weight: 800; }
+ .muted { color: var(--muted); }
+ .mini-progress { width: 80px; height: 5px; margin-top: 4px; border-radius: 6px; background: #eae5dc; }
+ .mini-progress span { display: block; height: 100%; border-radius: inherit; background: var(--green); }
+
+ .task-list { display: grid; gap: 9px; }
+ .task-item {
+ display: grid;
+ grid-template-columns: 35px minmax(0, 1fr) auto;
+ gap: 12px;
+ align-items: center;
+ padding: 12px;
+ border: 1px solid #ebe6de;
+ border-radius: 12px;
+ background: #fffefa;
+ transition: opacity .2s, background .2s;
+ }
+ .task-item.done { opacity: .58; background: var(--green-100); }
+ .task-icon { display: grid; width: 35px; height: 35px; place-items: center; border-radius: 10px; background: var(--wine-100); color: var(--wine-700); font-size: 11px; font-weight: 850; }
+ .task-title { display: block; margin-bottom: 2px; font-size: 10px; font-weight: 800; }
+ .task-meta { color: var(--muted); font-size: 9px; }
+ .task-action { padding: 6px 9px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); cursor: pointer; font-size: 8px; font-weight: 800; }
+ .task-action:hover { border-color: var(--green); color: var(--green); }
+
+ .quality-score { display: flex; gap: 16px; align-items: center; margin-bottom: 17px; }
+ .score-badge { display: grid; flex: 0 0 auto; width: 75px; height: 75px; place-items: center; border: 7px solid var(--green-100); border-top-color: var(--green); border-radius: 50%; font-size: 20px; font-weight: 800; }
+ .quality-score h3 { margin-bottom: 3px; font-size: 13px; }
+ .quality-score p { margin-bottom: 0; color: var(--muted); font-size: 9px; }
+ .issue-list { display: grid; gap: 9px; }
+ .issue-item { display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 10px 0; border-top: 1px solid #ece8e0; font-size: 10px; }
+ .issue-item span { color: var(--muted); }
+ .issue-count { color: var(--ink) !important; font-weight: 800; }
+
+ .workflow-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 9px; }
+ .flow-step { position: relative; min-height: 120px; padding: 15px; border: 1px solid #e8e3da; border-radius: 13px; background: #fffefa; }
+ .flow-step:not(:last-child)::after { position: absolute; z-index: 2; top: 28px; right: -9px; width: 17px; height: 1px; background: var(--gold-500); content: ""; }
+ .flow-number { display: grid; width: 23px; height: 23px; margin-bottom: 13px; place-items: center; border-radius: 50%; background: var(--navy-900); color: white; font-size: 8px; font-weight: 800; }
+ .flow-step h3 { margin-bottom: 4px; font-size: 10px; }
+ .flow-step p { margin-bottom: 0; color: var(--muted); font-size: 8px; }
+ .flow-time { display: block; margin-top: 10px; color: var(--green); font-size: 9px; font-weight: 800; }
+
+ .ai-panel {
+ overflow: hidden;
+ padding: 0;
+ border: 0;
+ background: var(--navy-950);
+ color: white;
+ box-shadow: 0 16px 40px rgba(7,22,35,.16);
+ }
+ .ai-grid { display: grid; grid-template-columns: minmax(250px, .75fr) minmax(0, 1.25fr); }
+ .ai-sidebar { padding: 25px; border-right: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.025); }
+ .ai-kicker { margin-bottom: 9px; color: #e1bd78; font-size: 9px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+ .ai-sidebar h3 { margin-bottom: 8px; font-family: Georgia, "Times New Roman", serif; font-size: 24px; font-weight: 500; }
+ .ai-sidebar p { color: rgba(255,255,255,.56); font-size: 10px; }
+ .prompt-list { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 17px; }
+ .prompt-chip { min-height: 82px; padding: 12px; border: 1px solid rgba(255,255,255,.12); border-radius: 11px; background: rgba(255,255,255,.045); color: rgba(255,255,255,.76); cursor: pointer; font-size: 9px; line-height: 1.45; text-align: left; }
+ .prompt-category { display: block; margin-bottom: 6px; color: #e6c47f; font-size: 9px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+ .prompt-chip:hover { border-color: rgba(225,189,120,.5); background: rgba(225,189,120,.08); color: white; }
+ .chat-area { display: flex; min-height: 390px; padding: 25px; flex-direction: column; }
+ .chat-label { display: flex; align-items: center; justify-content: space-between; color: rgba(255,255,255,.42); font-size: 8px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+ .simulation-pill { padding: 4px 7px; border-radius: 999px; background: rgba(200,154,73,.12); color: #e9c989; }
+ .chat-output { display: grid; flex: 1; padding: 26px 0; place-items: center; }
+ .empty-state { max-width: 340px; color: rgba(255,255,255,.35); font-size: 10px; line-height: 1.7; text-align: center; }
+ .answer { width: 100%; align-self: start; }
+ .answer-question { margin: 0 0 13px auto; padding: 10px 13px; width: fit-content; max-width: 85%; border-radius: 12px 12px 2px 12px; background: var(--wine-700); font-size: 10px; }
+ .answer-card { padding: 16px; border: 1px solid rgba(255,255,255,.1); border-radius: 12px 12px 12px 2px; background: rgba(255,255,255,.055); color: rgba(255,255,255,.78); font-size: 10px; line-height: 1.65; }
+ .answer-card strong { color: #f0cf91; }
+ .answer-card ul { margin: 8px 0 0; padding-left: 17px; }
+ .answer-card li + li { margin-top: 5px; }
+ .chat-input-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+ .chat-input { min-width: 0; height: 41px; padding: 0 13px; border: 1px solid rgba(255,255,255,.14); border-radius: 10px; background: rgba(255,255,255,.055); color: white; font-size: 10px; }
+ .chat-input::placeholder { color: rgba(255,255,255,.32); }
+ .chat-button { padding: 0 16px; border: 0; border-radius: 10px; background: var(--gold-500); color: var(--navy-950); cursor: pointer; font-size: 9px; font-weight: 850; }
+
+ .footer {
+ display: flex;
+ gap: 18px;
+ align-items: center;
+ justify-content: space-between;
+ margin-top: 34px;
+ padding-top: 20px;
+ border-top: 1px solid var(--line);
+ color: var(--muted);
+ font-size: 9px;
+ }
+ .footer strong { color: var(--ink); }
+ .toast {
+ position: fixed;
+ z-index: 10;
+ right: 20px;
+ bottom: 20px;
+ max-width: 320px;
+ padding: 12px 15px;
+ border-radius: 10px;
+ background: var(--navy-950);
+ box-shadow: 0 8px 28px rgba(0,0,0,.24);
+ color: white;
+ font-size: 10px;
+ opacity: 0;
+ pointer-events: none;
+ transform: translateY(8px);
+ transition: opacity .2s, transform .2s;
+ }
+ .toast.show { opacity: 1; transform: translateY(0); }
+
+ /* Presentation-scale treatment for an internal working dashboard. */
+ .demo-banner { min-height: 48px; padding: 12px 26px; font-size: 13px; font-weight: 700; line-height: 1.45; }
+ .demo-banner strong { font-size: 13px; font-weight: 900; }
+ .app-shell { grid-template-columns: 286px minmax(0, 1fr); min-height: calc(100vh - 48px); transition: grid-template-columns .22s ease; }
+ .sidebar { padding: 34px 24px 28px; transition: padding .22s ease; }
+ .brand { margin-bottom: 36px; padding: 2px 4px 0; }
+ .brand-name { font-size: 28px; line-height: 1.08; }
+ .brand-sub { margin-top: 8px; font-size: 13px; line-height: 1.35; }
+ .nav-label { margin-bottom: 12px; font-size: 11px; }
+ .nav-list { gap: 6px; }
+ .nav-link { gap: 12px; padding: 12px 11px; border-radius: 11px; font-size: 14px; font-weight: 720; }
+ .nav-number { min-width: 22px; font-size: 12px; font-weight: 850; }
+ .sidebar-note { margin-top: 32px; padding: 18px; border-color: rgba(197,159,85,.4); background: rgba(197,159,85,.09); color: rgba(255,255,255,.72); font-size: 12px; line-height: 1.65; }
+ .sidebar-note strong { margin-bottom: 7px; font-size: 11px; }
+ .app-shell.sidebar-collapsed { grid-template-columns: 82px minmax(0, 1fr); }
+ .app-shell.sidebar-collapsed .sidebar { padding-inline: 13px; }
+ .app-shell.sidebar-collapsed .brand { min-height: 2px; margin-bottom: 19px; padding: 0; }
+ .app-shell.sidebar-collapsed .brand > div { display: none; }
+ .app-shell.sidebar-collapsed .brand::after { width: 36px; margin-top: 0; }
+ .app-shell.sidebar-collapsed .sidebar-toggle { width: 44px; margin: 0 auto 22px; }
+ .app-shell.sidebar-collapsed .toggle-glyph { transform: rotate(180deg); }
+ .app-shell.sidebar-collapsed .toggle-text,
+ .app-shell.sidebar-collapsed .nav-label,
+ .app-shell.sidebar-collapsed .nav-text,
+ .app-shell.sidebar-collapsed .sidebar-note { display: none; }
+ .app-shell.sidebar-collapsed .nav-link { justify-content: center; padding-inline: 0; }
+ .app-shell.sidebar-collapsed .nav-number { min-width: 0; font-size: 13px; }
+ main { padding: 44px clamp(24px, 4vw, 62px) 66px; }
+ .page-header {
+ display: grid;
+ grid-template-columns: minmax(0, 1fr) minmax(320px, .88fr);
+ gap: 24px;
+ align-items: stretch;
+ margin-bottom: 26px;
+ }
+ .header-copy { display: flex; padding: 12px 0; flex-direction: column; justify-content: center; }
+ .header-art {
+ position: relative;
+ min-height: 232px;
+ overflow: hidden;
+ border-radius: 20px;
+ background: linear-gradient(90deg, rgba(33,37,42,.15), transparent 45%), url("header-art.jpg") center / cover no-repeat;
+ box-shadow: var(--shadow);
+ }
+ .header-art::after { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(21,27,33,.82)); content: ""; }
+ .header-art span { position: absolute; z-index: 1; right: 18px; bottom: 15px; color: #f3d69f; font-size: 11px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+ .eyebrow { color: #78571d; font-size: 13px; letter-spacing: .12em; }
+ .eyebrow::before { display: inline-block; width: 25px; height: 2px; margin: 0 9px 3px 0; background: var(--gold-500); content: ""; }
+ h1 { font-size: clamp(38px, 4vw, 56px); }
+ .lede { font-size: 15px; line-height: 1.65; }
+ .header-actions { grid-column: 1 / -1; gap: 11px; flex-wrap: wrap; }
+ .select-wrap, .button { min-height: 49px; border-radius: 12px; font-size: 13px; }
+ .select-wrap { padding: 0 38px 0 15px; }
+ .button { padding: 0 18px; }
+ .notice { padding: 15px 17px; font-size: 13px; line-height: 1.55; }
+ .hero-kicker { font-size: 12px; }
+ .hero-value span { font-size: 16px; }
+ .progress-track { height: 11px; }
+ .progress-labels { font-size: 13px; font-weight: 760; }
+ .pace-label { font-size: 13px; }
+ .pace-stat { font-size: 34px; }
+ .pace-caption { font-size: 12px; line-height: 1.55; }
+ .hero-stats { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+ .hero-stat-value { font-size: 27px; }
+ .hero-stat-label { font-size: 11px; }
+ .hero-stat-note { display: block; margin-top: 4px; color: #e4c987; font-size: 10px; font-weight: 750; }
+ .hero-insight { font-size: 12px; }
+ .section-heading h2 { font-size: clamp(28px, 3vw, 37px); }
+ .section-heading p, .panel-subtitle { font-size: 12px; }
+ .section-index { color: #6c4e18; font-size: 11px; }
+ .panel { padding: 24px; }
+ .panel-title { font-size: 15px; }
+ .metric-card { padding: 20px; }
+ .metric-label { font-size: 11px; }
+ .metric-value { font-size: 30px; }
+ .metric-change { font-size: 11px; }
+ .metric-ai { margin-top: 12px; padding-top: 11px; border-top: 1px solid #e7e2da; color: var(--muted); font-size: 11px; line-height: 1.55; }
+ .metric-ai strong { color: var(--navy-900); }
+ .chart-legend, .segment-row, table, .task-meta, .issue-item { font-size: 12px; }
+ .retention-inner span { font-size: 10px; }
+ .insight { padding: 15px 16px; font-size: 12px; }
+ .scenario-header p, .scenario-context { font-size: 12px; }
+ .scenario-select { min-width: 290px; height: 48px; font-size: 12px; }
+ .scenario-impact span, .scenario-impact small { font-size: 10px; }
+ .scenario-impact strong { color: var(--navy-900); font-size: 27px; }
+ .scenario-source { font-size: 10px; }
+ .response-plan h3 { font-size: 11px; }
+ .response-plan ol { font-size: 11px; }
+ .response-plan-note { font-size: 9px; }
+ th { font-size: 10px; }
+ td, td strong { font-size: 12px; }
+ .task-title { font-size: 12px; }
+ .task-meta { line-height: 1.5; }
+ .task-action { padding: 8px 11px; font-size: 10px; }
+ .ai-sidebar h3 { font-size: 30px; }
+ .ai-sidebar p, .prompt-chip, .empty-state, .answer-question, .answer-card { font-size: 12px; }
+ .ai-kicker, .chat-label { font-size: 10px; }
+ .chat-input { height: 52px; padding: 0 16px; border-width: 2px; border-color: rgba(197,159,85,.5); background: rgba(255,255,255,.09); font-size: 13px; }
+ .chat-input::placeholder { color: rgba(255,255,255,.65); }
+ .chat-button { min-height: 52px; padding: 0 20px; font-size: 12px; }
+
+ .workload-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+ .workload-card { padding: 13px; border: 1px solid #e7e2da; border-radius: 11px; background: #fbfaf7; }
+ .workload-card strong { display: block; margin-bottom: 1px; font-size: 24px; }
+ .workload-card span { color: var(--muted); font-size: 10px; font-weight: 750; text-transform: uppercase; }
+ .workload-track { height: 7px; margin-top: 9px; overflow: hidden; border-radius: 7px; background: #e9e4dc; }
+ .workload-fill { height: 100%; border-radius: inherit; background: var(--green); transition: width .2s; }
+
+ .review-panel { display: grid; grid-template-columns: minmax(260px, .72fr) minmax(0, 1.28fr); gap: 24px; }
+ .review-form { display: grid; gap: 10px; align-content: start; }
+ .review-form label { color: var(--navy-900); font-size: 11px; font-weight: 850; text-transform: uppercase; letter-spacing: .05em; }
+ .review-select, .review-textarea { width: 100%; border: 1px solid #d8d5cf; border-radius: 11px; background: #fffefa; color: var(--ink); font-size: 13px; }
+ .review-select { height: 46px; padding: 0 12px; }
+ .review-textarea { min-height: 130px; padding: 12px; resize: vertical; line-height: 1.5; }
+ .review-contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+ .review-input { width: 100%; height: 46px; padding: 0 12px; border: 1px solid #d8d5cf; border-radius: 11px; background: #fffefa; color: var(--ink); font-size: 13px; }
+ .review-actions { display: flex; gap: 9px; flex-wrap: wrap; }
+ .review-help { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.55; }
+ .feedback-list { display: grid; gap: 9px; }
+ .feedback-empty { padding: 26px; border: 1px dashed #d8d5cf; border-radius: 12px; color: var(--muted); font-size: 12px; text-align: center; }
+ .feedback-item { padding: 14px; border: 1px solid #e5e1da; border-radius: 12px; background: #fffefa; }
+ .feedback-item.integrated { border-color: #a8d8ca; background: var(--green-100); }
+ .feedback-meta { display: flex; gap: 8px; align-items: center; justify-content: space-between; margin-bottom: 7px; }
+ .feedback-meta strong { font-size: 11px; }
+ .feedback-status { padding: 4px 7px; border-radius: 999px; background: var(--amber-100); color: var(--amber); font-size: 9px; font-weight: 850; text-transform: uppercase; }
+ .feedback-item.integrated .feedback-status { background: white; color: #267563; }
+ .feedback-text { margin: 0 0 10px; font-size: 12px; line-height: 1.55; white-space: pre-wrap; }
+ .feedback-contact { margin: -3px 0 10px; color: var(--muted); font-size: 10px; }
+ .feedback-receipt { margin: -2px 0 10px; color: #267563; font-size: 10px; font-weight: 750; }
+ .feedback-buttons { display: flex; gap: 7px; }
+ .feedback-buttons button { padding: 7px 9px; border: 1px solid #d8d5cf; border-radius: 8px; background: white; color: var(--ink); cursor: pointer; font-size: 10px; font-weight: 800; }
+ .working-summary { margin-top: 16px; padding: 15px; border-left: 3px solid var(--green); border-radius: 0 10px 10px 0; background: var(--green-100); }
+ .working-summary h3 { margin-bottom: 7px; font-size: 12px; }
+ .working-summary ul { margin: 0; padding-left: 18px; color: #285f53; font-size: 11px; line-height: 1.55; }
+
+ .prototype-guide { margin-bottom: 24px; padding: 24px; border: 1px solid #d8d5cf; border-radius: var(--radius); background: var(--paper); box-shadow: var(--shadow); }
+ .guide-header { display: flex; gap: 18px; align-items: flex-end; justify-content: space-between; margin-bottom: 18px; }
+ .guide-header h2 { margin-bottom: 4px; font-family: Georgia, "Times New Roman", serif; font-size: 28px; font-weight: 500; }
+ .guide-header p { max-width: 720px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+ .guide-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+ .guide-step { padding: 16px; border: 1px solid #e5e1da; border-radius: 12px; background: #fbfaf7; }
+ .guide-number { display: grid; width: 28px; height: 28px; margin-bottom: 12px; place-items: center; border-radius: 50%; background: var(--navy-900); color: white; font-size: 11px; font-weight: 850; }
+ .guide-step h3 { margin-bottom: 5px; font-size: 13px; }
+ .guide-step p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+ .innovation-note { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; margin-top: 12px; padding: 15px 17px; border-radius: 12px; background: var(--navy-900); color: rgba(255,255,255,.72); font-size: 11px; line-height: 1.6; }
+ .innovation-note strong { color: #efd29a; font-size: 12px; white-space: nowrap; }
+ .click-hint { display: inline-flex; gap: 7px; align-items: center; padding: 6px 9px; border-radius: 999px; background: var(--gold-100); color: #684b17; font-size: 10px; font-weight: 850; }
+ .askable { position: relative; cursor: help; transition: box-shadow .16s, transform .16s, border-color .16s; }
+ .askable:hover, .askable:focus-visible { border-color: var(--gold-500) !important; box-shadow: 0 0 0 3px rgba(197,159,85,.2), var(--shadow); transform: translateY(-1px); outline: none; }
+ .askable::after { position: absolute; z-index: 3; top: 8px; right: 8px; padding: 3px 6px; border-radius: 999px; background: var(--gold-100); color: #684b17; content: "Ask AI"; font-size: 8px; font-weight: 850; opacity: 0; pointer-events: none; transition: opacity .16s; }
+ .askable:hover::after, .askable:focus-visible::after { opacity: 1; }
+ tr.askable { position: static; }
+ tr.askable::after { display: none; }
+
+ @media (max-width: 1200px) {
+ .page-header { grid-template-columns: 1fr; }
+ .header-art { min-height: 205px; background-position: 63% center; }
+ }
+
+ @media (max-width: 1050px) {
+ .app-shell { grid-template-columns: 250px minmax(0, 1fr); }
+ .sidebar { padding-inline: 18px; }
+ .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+ .workflow-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+ .scenario-header, .scenario-body { grid-template-columns: 1fr; }
+ .scenario-select { width: 100%; min-width: 0; }
+ .scenario-impact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+ .role-map { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+ .portfolio-board { grid-template-columns: 1fr; }
+ .about-skill-grid { grid-template-columns: 1fr 1fr; }
+ .about-proof { grid-template-columns: 1fr 1fr; }
+ .build-steps { grid-template-columns: 1fr 1fr; }
+ .ai-concepts { grid-template-columns: 1fr 1fr; }
+ .flow-step:nth-child(2)::after { display: none; }
+ }
+ @media (max-width: 800px) {
+ .app-shell { display: block; }
+ .sidebar { position: relative; z-index: 4; width: 100%; height: auto; padding: 16px 18px 12px; }
+ .app-shell.sidebar-collapsed .sidebar { padding: 16px 18px 12px; }
+ .brand { margin-bottom: 14px; padding-bottom: 3px; }
+ .brand::after { margin-top: 10px; }
+ .brand-name { font-size: 30px; }
+ .brand-sub { font-size: 13px; }
+ .sidebar-toggle { display: none; }
+ .app-shell.sidebar-collapsed .brand { min-height: auto; margin-bottom: 14px; padding-bottom: 3px; }
+ .app-shell.sidebar-collapsed .brand > div { display: block; }
+ .app-shell.sidebar-collapsed .brand::after { width: 74px; margin-top: 10px; }
+ .app-shell.sidebar-collapsed .nav-text { display: inline; }
+ .app-shell.sidebar-collapsed .nav-link { justify-content: flex-start; padding: 12px 11px; }
+ .app-shell.sidebar-collapsed .nav-number { min-width: 22px; font-size: 12px; }
+ .nav-label, .sidebar-note { display: none; }
+ .nav-list { display: flex; gap: 6px; padding-bottom: 3px; overflow-x: auto; }
+ .nav-link { white-space: nowrap; }
+ main { padding-top: 28px; }
+ .page-header { align-items: flex-start; flex-direction: column; }
+ .hero-top, .grid-2, .grid-equal, .ai-grid { grid-template-columns: 1fr; }
+ .review-panel { grid-template-columns: 1fr; }
+ .guide-grid { grid-template-columns: 1fr; }
+ .scenario-header, .scenario-body { grid-template-columns: 1fr; }
+ .scenario-select { width: 100%; }
+ .hero-stats { grid-template-columns: repeat(2, 1fr); }
+ .ai-sidebar { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.1); }
+ .health-layout { grid-template-columns: 1fr; }
+ .assignment-composer { grid-template-columns: 1fr; }
+ .about-hero, .about-fit { grid-template-columns: 1fr; }
+ }
+ @media (max-width: 540px) {
+ .demo-banner { padding-inline: 12px; }
+ main { padding-inline: 14px; }
+ .header-actions { width: 100%; flex-wrap: wrap; }
+ .select-wrap, .header-actions .button { flex: 1; }
+ .grid-3, .grid-4, .workflow-flow { grid-template-columns: 1fr; }
+ .scenario-impact-grid { grid-template-columns: 1fr 1fr; }
+ .flow-step::after { display: none; }
+ .hero-stats { grid-template-columns: 1fr 1fr; }
+ .hero-stat-value { font-size: 23px; }
+ .section-heading { align-items: flex-start; flex-direction: column; }
+ .guide-header, .innovation-note { align-items: flex-start; grid-template-columns: 1fr; flex-direction: column; }
+ .task-item { grid-template-columns: 35px minmax(0, 1fr); }
+ .task-action { grid-column: 2; justify-self: start; }
+ .chat-input-row { grid-template-columns: 1fr; }
+ .prompt-list { grid-template-columns: 1fr; }
+ .review-contact-grid { grid-template-columns: 1fr; }
+ .mix-source-grid, .donor-review-grid, .role-map { grid-template-columns: 1fr; }
+ .mix-stack { min-height: 54px; }
+ .mix-stack span { min-width: 42px; font-size: 11px; }
+ .team-task { grid-template-columns: 1fr; }
+ .about-skill-grid, .about-proof { grid-template-columns: 1fr; }
+ .build-steps, .ai-concepts { grid-template-columns: 1fr; }
+ .about-hero, .about-body { padding: 24px 18px; }
+ .chat-button { height: 39px; }
+ .footer { align-items: flex-start; flex-direction: column; }
+ }
+ @media (prefers-reduced-motion: reduce) {
+ html { scroll-behavior: auto; }
+ *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+ }
+ @media print {
+ .demo-banner { color: #513907; background: #fff7e6 !important; }
+ .app-shell { display: block; }
+ .sidebar, .header-actions, .task-action, .chat-input-row { display: none !important; }
+ main { padding: 20px; }
+ .panel, .metric-card, .hero-card, .ai-panel { break-inside: avoid; box-shadow: none; }
+ .section { break-before: auto; }
+ }
+ 
+/* Passcode Gate (0000) */
+.passcode-gate-overlay {
+ position: fixed;
+ inset: 0;
+ background: rgba(23, 25, 20, 0.94);
+ backdrop-filter: blur(14px);
+ -webkit-backdrop-filter: blur(14px);
+ z-index: 99999;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ padding: 20px;
+ opacity: 1;
+ transition: opacity 0.35s ease, visibility 0.35s ease;
+ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+.passcode-gate-overlay.unlocked {
+ opacity: 0;
+ visibility: hidden;
+ pointer-events: none;
+}
+.passcode-card {
+ background: #F2EADF;
+ border: 2px solid #183B2B;
+ border-radius: 12px;
+ padding: 36px 32px;
+ max-width: 420px;
+ width: 100%;
+ text-align: center;
+ box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+.gate-monogram {
+ width: 52px;
+ height: 52px;
+ border-radius: 50%;
+ background: #183B2B;
+ color: #F2EADF;
+ font-size: 1.4rem;
+ font-weight: 700;
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ margin-bottom: 14px;
+ border: 2px solid #5B2432;
+}
+.gate-title {
+ font-size: 1.4rem;
+ color: #183B2B;
+ margin: 0 0 4px;
+ font-weight: 700;
+}
+.gate-sub {
+ font-size: 0.76rem;
+ font-weight: 700;
+ text-transform: uppercase;
+ letter-spacing: 0.08em;
+ color: #5B2432;
+ margin-bottom: 16px;
+}
+.gate-desc {
+ font-size: 0.84rem;
+ color: #57624B;
+ line-height: 1.45;
+ margin-bottom: 20px;
+}
+.passcode-input-box {
+ display: flex;
+ justify-content: center;
+ gap: 10px;
+ margin-bottom: 16px;
+}
+.passcode-digit {
+ width: 48px;
+ height: 56px;
+ border: 2px solid #D8CFC2;
+ border-radius: 6px;
+ background: #FFFFFF;
+ font-size: 1.6rem;
+ font-weight: 700;
+ text-align: center;
+ color: #183B2B;
+}
+.passcode-digit:focus {
+ border-color: #5B2432;
+ outline: none;
+}
+.gate-hint {
+ font-size: 0.78rem;
+ color: #57624B;
+ font-weight: 600;
+ margin-bottom: 18px;
+}
+.gate-hint strong {
+ color: #183B2B;
+ background: rgba(24, 59, 43, 0.1);
+ padding: 2px 6px;
+ border-radius: 4px;
+}
+.gate-unlock-btn {
+ width: 100%;
+ padding: 12px;
+ font-size: 0.92rem;
+ font-weight: 700;
+ background: #183B2B;
+ color: #F2EADF;
+ border: none;
+ border-radius: 6px;
+ cursor: pointer;
+}
+.gate-unlock-btn:hover {
+ background: #255841;
+}
+
+</style>
+</head>
+<body>
+
+ <!-- Confidential Passcode Gate (Code: 0000) -->
+ <div id="passcode-gate" class="passcode-gate-overlay">
+ <div class="passcode-card">
+ <div class="gate-monogram">RM</div>
+ <h2 class="gate-title">Advancement Intelligence</h2>
+ <div class="gate-sub">Richmond Symphony • Confidential Prototype</div>
+ <p class="gate-desc">
+ Internal candidate decision-support demo prepared for the <strong>Assistant Director, Advancement Systems & Operations</strong> search committee.
+ </p>
+ 
+ <div class="passcode-input-box">
+ <input type="password" maxlength="1" class="passcode-digit" id="digit-1" autofocus inputmode="numeric">
+ <input type="password" maxlength="1" class="passcode-digit" id="digit-2" inputmode="numeric">
+ <input type="password" maxlength="1" class="passcode-digit" id="digit-3" inputmode="numeric">
+ <input type="password" maxlength="1" class="passcode-digit" id="digit-4" inputmode="numeric">
+ </div>
+
+ <div class="gate-hint">
+ Selection Committee Access Code: <strong>0000</strong>
+ </div>
+
+ <button id="gate-unlock-btn" class="gate-unlock-btn">
+ Unlock Confidential Dashboard
+ </button>
+ </div>
+ </div>
+
+ <div class="demo-banner" role="status"><strong>Internal concept prototype</strong> All names, figures, records, insights, and AI responses are fictional demonstration data—not real Richmond Symphony or Bloomerang data.</div>
+
+ <div class="app-shell">
+ <aside class="sidebar" aria-label="Dashboard navigation">
+ <div class="brand">
+ <div>
+ <p class="brand-name">Richmond Symphony</p>
+ <div class="brand-sub">Advancement Intelligence</div>
+ </div>
+ </div>
+
+ <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-expanded="true" aria-controls="dashboardNav" title="Fold side menu"><span class="toggle-glyph" aria-hidden="true">‹</span><span class="toggle-text">Fold menu</span></button>
+
+ <p class="nav-label">Dashboard</p>
+ <nav id="dashboardNav">
+ <ul class="nav-list">
+ <li><a class="nav-link active" href="#overview" title="Fundraising Overview"><span class="nav-number">01</span><span class="nav-text">Fundraising Overview</span></a></li>
+ <li><a class="nav-link" href="#ai-assistant" title="AI Assistant"><span class="nav-number">02</span><span class="nav-text">AI Assistant</span></a></li>
+ <li><a class="nav-link" href="#review-notes" title="Private Review Notes"><span class="nav-number">03</span><span class="nav-text">Private Review Notes</span></a></li>
+ <li><a class="nav-link" href="#donor-health" title="Donor Health"><span class="nav-number">04</span><span class="nav-text">Donor Health</span></a></li>
+ <li><a class="nav-link" href="#portfolio" title="Portfolio Management"><span class="nav-number">05</span><span class="nav-text">Portfolio Management</span></a></li>
+ <li><a class="nav-link" href="#stewardship" title="Stewardship"><span class="nav-number">06</span><span class="nav-text">Stewardship</span></a></li>
+ <li><a class="nav-link" href="#data-quality" title="CRM / Data Quality"><span class="nav-number">07</span><span class="nav-text">CRM / Data Quality</span></a></li>
+ <li><a class="nav-link" href="#workflow" title="Workflow Efficiency"><span class="nav-number">08</span><span class="nav-text">Workflow Efficiency</span></a></li>
+ <li><a class="nav-link" href="#about-randy" title="About Randy"><span class="nav-number">09</span><span class="nav-text">About Randy</span></a></li>
+ </ul>
+ </nav>
+
+ <div class="sidebar-note">
+ <strong>Prototype model</strong>
+ Imagined inputs: Bloomerang CRM, approved integrations, Finance data, and campaign plans. No live systems are connected.
+ </div>
+ </aside>
+
+ <main>
+ <header class="page-header">
+ <div class="header-copy">
+ <p class="eyebrow">Advancement Systems &amp; Operations</p>
+ <h1>Fundraising intelligence, tuned for action.</h1>
+ <p class="lede">A conceptual decision-support view for fundraising health, donor engagement, portfolio movement, and operational priorities.</p>
+ </div>
+ <div class="header-art" role="img" aria-label="Cello and violin with orchestral music in a warmly lit historic concert hall"><span>Baroque · Classical · Romantic</span></div>
+ <div class="header-actions" aria-label="Dashboard controls">
+ <a class="button ghost" href="/signout">Lock site</a>
+ <select class="select-wrap" id="periodSelect" aria-label="Reporting period">
+ <option>FY26 Year to Date</option>
+ <option>Current Quarter</option>
+ <option>Last 30 Days</option>
+ </select>
+ <button class="button" id="printButton" type="button">Print / Save PDF</button>
+ <button class="button primary" id="downloadButton" type="button">Download HTML</button>
+ </div>
+ </header>
+
+ <div class="notice">
+ <div class="notice-icon" aria-hidden="true">i</div>
+ <div><strong>For interview and strategy discussion only.</strong> This is not a Richmond Symphony product, does not reproduce a real Bloomerang configuration, and contains no donor information. Every record and metric below is invented to demonstrate a possible workflow.</div>
+ </div>
+
+ <section class="prototype-guide" aria-labelledby="guide-heading">
+ <div class="guide-header">
+ <div>
+ <div class="section-index">How the concept works</div>
+ <h2 id="guide-heading">From trusted records to explainable action</h2>
+ <p>This prototype imagines a governed decision-support layer around existing systems. It does not replace Bloomerang or Finance, and this demo has no live connections.</p>
+ </div>
+ <span class="click-hint">Select data · Ask AI</span>
+ </div>
+ <div class="guide-grid">
+ <article class="guide-step"><span class="guide-number">1</span><h3>Connect approved sources</h3><p>Read-only CRM exports or APIs, Finance reconciliation files, campaign goals, and approved engagement data arrive with source, permission, and refresh timestamps.</p></article>
+ <article class="guide-step"><span class="guide-number">2</span><h3>Validate and calculate</h3><p>Gift, household, designation, pledge, and fund identifiers are standardized. Deterministic formulas calculate the dashboard; Finance exceptions remain visible instead of being silently overwritten.</p></article>
+ <article class="guide-step"><span class="guide-number">3</span><h3>Explain, decide, document</h3><p>AI translates trusted metrics into questions and suggested next steps. Staff review the evidence, record context, and decide what—if anything—should return to the source workflow.</p></article>
+ </div>
+ <div class="innovation-note"><strong>What makes it innovative</strong><span>Every metric, chart, scenario, table row, and workflow stage becomes a conversational entry point. Click a data feature to prepare a context-aware question; the system preserves human approval, source traceability, and a private feedback loop rather than making autonomous CRM changes.</span></div>
+ <div class="role-map" aria-label="Job description connection map">
+ <a href="#overview"><strong>Dashboards &amp; analytics</strong><span>Campaign performance, contributed-income pace, and philanthropic growth.</span></a>
+ <a href="#donor-health"><strong>Donor retention</strong><span>Acquisition, renewal, sustaining, and lapse signals translated into action.</span></a>
+ <a href="#portfolio"><strong>Moves management</strong><span>Portfolio tracking, next-action coverage, proposals, and pipeline risk.</span></a>
+ <a href="#stewardship"><strong>Stewardship workflows</strong><span>Acknowledgements, benefits, follow-up, and service-level visibility.</span></a>
+ <a href="#data-quality"><strong>Bloomerang administration</strong><span>Configuration, reporting trust, governance, integrations, and user support.</span></a>
+ <a href="#workflow"><strong>Gift &amp; financial controls</strong><span>Gift administration and an explicit Advancement–Finance handoff.</span></a>
+ <a href="#team-task-queue"><strong>People leadership</strong><span>Human review work can be assigned to the appropriate team role and tracked.</span></a>
+ <a href="#ai-assistant"><strong>Meaningful recommendations</strong><span>Complex fundraising information becomes explainable, governed questions.</span></a>
+ </div>
+ </section>
+
+ <section class="hero-card" id="overview" aria-labelledby="overview-title">
+ <div class="hero-top">
+ <div>
+ <div class="hero-kicker" id="overview-title">FY26 contributed income</div>
+ <p class="hero-value">$4.38M <span>raised of $6.90M goal</span></p>
+ <div class="progress-track" role="progressbar" aria-label="Annual contributed income progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="63.5">
+ <div class="progress-fill" style="width:63.5%"></div>
+ </div>
+ <div class="progress-labels"><span>63.5% of annual goal</span><span>$2.52M remaining</span></div>
+ </div>
+ <div class="pace-card askable" tabindex="0" title="Select to ask the AI demo about this feature">
+ <div class="status-row"><span class="pace-label">Pace against plan</span><span class="status-pill watch"><span class="status-dot"></span>Watch</span></div>
+ <div class="pace-stat">−$280K</div>
+ <p class="pace-caption">behind illustrative YTD plan after several moderate monthly shortfalls.</p>
+ </div>
+ </div>
+ <div class="hero-stats">
+ <div class="hero-stat askable" tabindex="0" title="Select to ask the AI demo about this feature"><span class="hero-stat-value">3,417</span><span class="hero-stat-label">Active donors</span></div>
+ <div class="hero-stat askable" tabindex="0" title="Select to ask the AI demo about this feature"><span class="hero-stat-value">74.6%</span><span class="hero-stat-label">Retention rate</span></div>
+ <div class="hero-stat askable" tabindex="0" title="Select to ask the AI demo about this feature"><span class="hero-stat-value">$1,282</span><span class="hero-stat-label">Average gift</span></div>
+ <div class="hero-stat askable" tabindex="0" title="Select to ask the AI demo about this feature"><span class="hero-stat-value">378</span><span class="hero-stat-label">New donors</span></div>
+ <div class="hero-stat askable" tabindex="0" title="Select to ask the AI demo about this feature"><span class="hero-stat-value">286</span><span class="hero-stat-label">Prospects identified</span><span class="hero-stat-note">41 ready to qualify</span></div>
+ </div>
+ <p class="hero-insight"><strong>AI insight:</strong> The dashboard is 63.5% funded, but the $280K pacing gap is spread across several months rather than caused by one abnormal event. The prospect search has produced 286 leads; qualifying the 41 strongest while closing priority renewals is a more credible response than simply increasing outreach volume.</p>
+ </section>
+
+ <section class="section" id="ai-assistant" aria-labelledby="ai-heading">
+ <div class="section-heading">
+ <div>
+ <div class="section-index">02 · AI assistant</div>
+ <h2 id="ai-heading">Ask the operation, not just the database</h2>
+ <p>A scripted demonstration of how approved, governed AI could translate trusted reporting into suggested next steps.</p>
+ <p class="role-connection"><strong>Role connection:</strong> Translate complex fundraising data into meaningful recommendations while keeping staff judgment and source evidence visible.</p>
+ </div>
+ <span class="pill amber">Simulated responses</span>
+ </div>
+
+ <article class="panel ai-panel">
+ <div class="ai-grid">
+ <div class="ai-sidebar">
+ <div class="ai-kicker">Advancement copilot · demo</div>
+ <h3>Choose a movement. Follow the signal.</h3>
+ <p>Explore the dashboard through six decision lenses. This mock assistant does not query Bloomerang, the Richmond Symphony, or any external system.</p>
+ <div class="prompt-list">
+ <button class="prompt-chip" type="button" data-prompt="revenue"><span class="prompt-category">Revenue &amp; forecasting</span>Why are we behind plan, and what would close the gap?</button>
+ <button class="prompt-chip" type="button" data-prompt="renewals"><span class="prompt-category">Donor retention</span>Which renewal audience deserves attention first?</button>
+ <button class="prompt-chip" type="button" data-prompt="prospects"><span class="prompt-category">Prospect discovery</span>Which newly identified leads are ready to qualify?</button>
+ <button class="prompt-chip" type="button" data-prompt="portfolio"><span class="prompt-category">Portfolio momentum</span>Where is valuable pipeline most likely to stall?</button>
+ <button class="prompt-chip" type="button" data-prompt="acknowledgements"><span class="prompt-category">Stewardship &amp; workflow</span>What is slowing timely acknowledgement?</button>
+ <button class="prompt-chip" type="button" data-prompt="quality"><span class="prompt-category">Data trust &amp; risk</span>Which data issues could distort the next decision?</button>
+ </div>
+ </div>
+ <div class="chat-area">
+ <div class="chat-label"><span>Prototype conversation</span><span class="simulation-pill">No live data</span></div>
+ <div class="chat-output" id="chatOutput" aria-live="polite"><div class="empty-state">Select a sample prompt or ask anything about the fictional dashboard to see how an internal AI assistant could respond.</div></div>
+ <form class="chat-input-row" id="chatForm">
+ <input class="chat-input" id="chatInput" aria-label="Ask anything about the demo dashboard" placeholder="Ask me anything about this dashboard…" autocomplete="off">
+ <button class="chat-button" type="submit">Ask AI demo</button>
+ </form>
+ </div>
+ </div>
+ </article>
+ </section>
+
+ <section class="section" id="review-notes" aria-labelledby="review-notes-heading">
+ <div class="section-heading">
+ <div>
+ <div class="section-index">03 · Private review notes</div>
+ <h2 id="review-notes-heading">Capture what staff sees in the data</h2>
+ <p>Record interpretation, context, or corrections, then manually integrate the strongest notes into a working summary.</p>
+ <p class="role-connection"><strong>Role connection:</strong> Empower teams through user support, shared context, and documented decisions—not just system configuration.</p>
+ </div>
+ <span class="pill green">Private to this browser</span>
+ </div>
+ <article class="panel review-panel">
+ <form class="review-form" id="feedbackForm">
+ <label for="feedbackSection">Dashboard area</label>
+ <select class="review-select" id="feedbackSection">
+ <option>Fundraising overview</option>
+ <option>Donor health</option>
+ <option>Portfolio management</option>
+ <option>Stewardship and acknowledgements</option>
+ <option>CRM and data quality</option>
+ <option>Workflow efficiency</option>
+ <option>Scenario planning</option>
+ </select>
+ <label for="feedbackText">Internal observation</label>
+ <textarea class="review-textarea" id="feedbackText" placeholder="Add context the numbers alone cannot show…" required=""></textarea>
+ <label>Optional contact for a private reply</label>
+ <div class="review-contact-grid"><input class="review-input" id="feedbackName" aria-label="Contact name" placeholder="Name"><input class="review-input" id="feedbackEmail" type="email" aria-label="Contact email" placeholder="Email address"></div>
+ <div class="review-actions">
+ <button class="button primary" type="submit">Save private note</button>
+ <button class="button" id="exportFeedback" type="button">Export my notes</button>
+ </div>
+ <p class="review-help">Notes and optional contact details are stored only in this browser profile. They are not uploaded, synced to the site, or visible to any other viewer. “Reply privately” opens your email app; it never sends automatically.</p>
+ </form>
+ <div>
+ <div class="panel-header"><div><h3 class="panel-title">My review log</h3><p class="panel-subtitle">Use “Incorporate” to promote a note into the working summary and create a visible receipt.</p></div><span class="pill blue" id="feedbackCount">0 notes</span></div>
+ <div class="feedback-list" id="feedbackList" aria-live="polite"><div class="feedback-empty">No private notes yet. Add context or interpretation that the data alone cannot capture.</div></div>
+ <div class="working-summary">
+ <h3>Integrated working summary</h3>
+ <ul id="integratedSummary"><li>No notes integrated yet.</li></ul>
+ </div>
+ </div>
+ </article>
+ </section>
+
+ <section class="panel scenario-lab" aria-labelledby="scenario-heading">
+ <div class="scenario-header">
+ <div>
+ <div class="section-index">Scenario planning lab · fictional model</div>
+ <h2 id="scenario-heading">What if a real operating assumption changes?</h2>
+ <p>Use plausible performing-arts budget pressures to connect forecasting, donor retention, moves management, stewardship, and the Advancement–Finance partnership described in the role.</p>
+ <p class="role-connection"><strong>Role connection:</strong> Pair actionable strategy with financial controls and the Advancement–Finance partnership.</p>
+ </div>
+ <select class="scenario-select" id="scenarioSelect" aria-label="Choose a fictional planning scenario">
+ <option value="pacing">Year-end giving finishes below plan</option>
+ <option value="venue">Three-concert venue disruption</option>
+ <option value="costs">Expenses rise faster than revenue</option>
+ <option value="funding">Institutional grant payment delay</option>
+ <option value="upside">Major matching challenge</option>
+ </select>
+ </div>
+ <div class="scenario-body">
+ <div>
+ <div class="scenario-impact-grid">
+ <div class="scenario-impact askable" tabindex="0" title="Select to ask the AI demo about this feature"><span id="scenarioRevenueLabel">Pace gap</span><strong id="scenarioRevenue">$280K</strong><small id="scenarioRevenueNote">current contributed-income variance</small></div>
+ <div class="scenario-impact askable" tabindex="0" title="Select to ask the AI demo about this feature"><span id="scenarioRetentionLabel">Retention exposure</span><strong id="scenarioRetention">−2.5 pts</strong><small id="scenarioRetentionNote">if priority renewals remain open</small></div>
+ <div class="scenario-impact askable" tabindex="0" title="Select to ask the AI demo about this feature"><span id="scenarioCashLabel">Cash-timing gap</span><strong id="scenarioCash">$180K</strong><small id="scenarioCashNote">possible late-year pressure</small></div>
+ <div class="scenario-impact askable" tabindex="0" title="Select to ask the AI demo about this feature"><span id="scenarioTouchesLabel">Priority renewals</span><strong id="scenarioTouches">126</strong><small id="scenarioTouchesNote">households needing review</small></div>
+ </div>
+ <p class="scenario-context" id="scenarioContext"><strong>Scenario:</strong> Several months finish modestly below plan. A normal December lift helps, but it does not fully close the cumulative gap. The model treats this as a pacing and conversion problem—not a crisis or a prediction.</p>
+ <p class="scenario-source"><strong>Real-world planning basis:</strong> League of American Orchestras data shows revenue gains can coexist with smaller average gifts and inflation pressure, while Candid reports broad arts-sector revenue declines and thin working capital. Richmond Symphony publishes audited financial categories, but no real Symphony figures are copied into this model. Sources: <a href="https://americanorchestras.org/learn/resources-data-and-research/data-partnerships/trg-arts/" target="_blank" rel="noreferrer">League sector benchmark</a>, <a href="https://candid.org/blogs/arts-nonprofits-revenue-declines-impact-organizational-viability-what-lies-ahead/" target="_blank" rel="noreferrer">Candid arts trends</a>, and <a href="https://www.richmondsymphony.com/who-we-are/" target="_blank" rel="noreferrer">public Symphony financial information</a>.</p>
+ </div>
+ <aside class="response-plan" aria-label="Suggested response plan">
+ <h3>Suggested operating response</h3>
+ <ol id="scenarioActions">
+ <li>Reforecast the remaining months with Finance using expected gift and pledge dates.</li>
+ <li>Review the 126 priority renewals by recency, attendance, and prior giving pattern.</li>
+ <li>Separate confirmed commitments from weighted proposal estimates.</li>
+ <li>Report whether the gap is shrinking, stable, or widening at each monthly close.</li>
+ </ol>
+ <p class="response-plan-note">Illustrative planning output only. Assumptions and actions require staff review.</p>
+ </aside>
+ </div>
+ </section>
+
+ <section class="section" aria-labelledby="fundraising-heading">
+ <div class="section-heading">
+ <div>
+ <div class="section-index">01 · Fundraising overview</div>
+ <h2 id="fundraising-heading">Revenue, pace, and giving mix</h2>
+ <p>Illustrative year-to-date results compared with a fictional internal plan.</p>
+ <p class="role-connection"><strong>Role connection:</strong> Develop dashboards and analytics that surface actionable insight on campaign performance and philanthropic growth.</p>
+ </div>
+ <span class="pill amber">Variable month to month</span>
+ </div>
+
+ <div class="grid-2">
+ <article class="panel">
+ <div class="panel-header">
+ <div><h3 class="panel-title">Monthly contributed revenue</h3><p class="panel-subtitle">Illustrative seasonality, FY26 year to date</p></div>
+ <div class="chart-legend" aria-label="Chart legend"><span class="legend-item"><span class="legend-swatch"></span>Actual</span><span class="legend-item"><span class="legend-swatch gold"></span>Plan</span></div>
+ </div>
+ <div class="chart-wrap askable" tabindex="0" title="Select to ask the AI demo about this feature"><canvas id="fundraisingChart" role="img" aria-label="Line chart showing fictional monthly contributed revenue between 350 thousand and 580 thousand dollars compared with plan" width="1040" height="490"></canvas></div>
+ <div class="insight askable" tabindex="0" title="Select to ask the AI demo about this feature"><strong>AI insight:</strong> Actual giving stays within a credible $350K–$580K monthly band. December shows a normal year-end lift, while the $280K cumulative gap comes from several modest misses. The chart highlights a persistent pace issue—not a volatile outlier.</div>
+ </article>
+
+ <article class="panel">
+ <div class="panel-header"><div><h3 class="panel-title">Giving mix</h3><p class="panel-subtitle">Illustrative revenue by source, amount, and operating implication</p></div><span class="pill blue">$4.38M total</span></div>
+ <div class="mix-wrap">
+ <div class="mix-total"><strong>$4.38M</strong><span>contributed income raised</span></div>
+ <div class="mix-stack askable" role="img" aria-label="Giving mix: 47 percent individual, 20 percent foundation, 22 percent corporate, 11 percent government" tabindex="0" title="Select to ask the AI demo about this feature">
+ <span class="individual">47%</span><span class="foundation">20%</span><span class="corporate">22%</span><span class="government">11%</span>
+ </div>
+ <div class="mix-source-grid">
+ <div class="mix-source-card askable" style="--source-color:var(--navy-800)" tabindex="0" title="Select to ask the AI demo about this feature"><span>Individual · 47%</span><strong>$2.06M</strong><b>Primary lever: retention</b><p>Renewals, upgrades, first-year conversion, and donor experience.</p></div>
+ <div class="mix-source-card askable" style="--source-color:var(--wine-700)" tabindex="0" title="Select to ask the AI demo about this feature"><span>Foundation · 20%</span><strong>$876K</strong><b>Primary lever: proposal timing</b><p>Decision dates, reporting milestones, restrictions, and cash timing.</p></div>
+ <div class="mix-source-card askable" style="--source-color:var(--gold-500)" tabindex="0" title="Select to ask the AI demo about this feature"><span>Corporate · 22%</span><strong>$964K</strong><b>Primary lever: sponsorship value</b><p>Benefits, event delivery, renewal windows, and relationship ownership.</p></div>
+ <div class="mix-source-card askable" style="--source-color:#6a7c91" tabindex="0" title="Select to ask the AI demo about this feature"><span>Government · 11%</span><strong>$482K</strong><b>Primary lever: compliance</b><p>Appropriations, grant conditions, reimbursement, and reporting deadlines.</p></div>
+ </div>
+ </div>
+ <div class="insight askable" tabindex="0" title="Select to ask the AI demo about this feature"><strong>AI insight:</strong> Individuals provide 47% of contributed revenue, making retention the strongest near-term lever. Corporate and government sources total 33%, so grant and sponsorship timing should be monitored separately from donor behavior.</div>
+ <div class="assignment-composer" data-source="Fundraising overview" data-task="Reforecast the contributed-income gap by source and confirm the next decision date for every institutional commitment.">
+ <div class="assignment-copy"><span>Human output needed</span><strong>Validate the reforecast and institutional gift timing.</strong></div>
+ <label class="assignment-owner">Assign to<select><option>Assistant Director, Systems &amp; Operations</option><option>Annual Fund Manager</option><option>Advancement Assistant</option><option>Portfolio owner</option><option>Stewardship lead</option><option>Finance partner</option></select></label>
+ <button class="assign-task" type="button">Assign task</button>
+ </div>
+ </article>
+ </div>
+ </section>
+
+ <section class="section" id="donor-health" aria-labelledby="donor-health-heading">
+ <div class="section-heading">
+ <div>
+ <div class="section-index">04 · Donor health</div>
+ <h2 id="donor-health-heading">Retention and engagement</h2>
+ <p>A quick read on who is joining, renewing, sustaining, or at risk of lapsing.</p>
+ <p class="role-connection"><strong>Role connection:</strong> Surface actionable insight on donor retention and philanthropic growth, then empower the team to respond.</p>
+ </div>
+ <span class="pill red">Retention pressure</span>
+ </div>
+
+ <div class="grid-4" style="margin-bottom:12px">
+ <article class="metric-card askable" tabindex="0" title="Select to ask the AI demo about this feature"><span class="metric-label">Renewing donors</span><span class="metric-value">2,548</span><span class="metric-change down">−5.7% year over year</span><div class="metric-ai"><strong>AI review:</strong> Renewal volume is moving in the wrong direction. Segment the decline by giving level, tenure, and last meaningful engagement before changing the message.</div></article>
+ <article class="metric-card askable" tabindex="0" title="Select to ask the AI demo about this feature"><span class="metric-label">New donors</span><span class="metric-value">378</span><span class="metric-change">+18.6% year over year</span><div class="metric-ai"><strong>AI review:</strong> Acquisition is the bright spot, but new donors are only 53% of the 711-person lapsed pool. A strong welcome sequence should protect this gain.</div></article>
+ <article class="metric-card askable" tabindex="0" title="Select to ask the AI demo about this feature"><span class="metric-label">Lapsed donors</span><span class="metric-value">711</span><span class="metric-change warn">126 high-priority renewals</span><div class="metric-ai"><strong>AI review:</strong> The 126 priority records represent 17.7% of the lapsed pool. Staff should confirm contact preferences and relationship context before outreach.</div></article>
+ <article class="metric-card askable" tabindex="0" title="Select to ask the AI demo about this feature"><span class="metric-label">Sustainers</span><span class="metric-value">795</span><span class="metric-change down">−2.3% year over year</span><div class="metric-ai"><strong>AI review:</strong> A small decline in recurring support can compound. Separate voluntary cancellations from payment failures and administrative exceptions.</div></article>
+ </div>
+
+ <article class="panel health-layout">
+ <div>
+ <div class="retention-ring askable" style="background:conic-gradient(var(--amber) 0 74.6%, #e8e3d9 74.6% 100%)" tabindex="0" title="Select to ask the AI demo about this feature"><div class="retention-inner"><strong>74.6%</strong><span>Retention</span></div></div>
+ </div>
+ <div>
+ <div class="panel-header"><div><h3 class="panel-title">Engagement by donor segment</h3><p class="panel-subtitle">Share of active donor population</p></div></div>
+ <div class="segment-list">
+ <div class="segment-row"><span>Renewing</span><div class="bar-track"><div class="bar-fill" style="width:69%"></div></div><strong>2,548</strong></div>
+ <div class="segment-row"><span>Sustainers</span><div class="bar-track"><div class="bar-fill wine" style="width:39%"></div></div><strong>795</strong></div>
+ <div class="segment-row"><span>New donors</span><div class="bar-track"><div class="bar-fill gold" style="width:38%"></div></div><strong>378</strong></div>
+ <div class="segment-row"><span>Major donors</span><div class="bar-track"><div class="bar-fill blue" style="width:18%"></div></div><strong>137</strong></div>
+ </div>
+ <div class="insight askable" tabindex="0" title="Select to ask the AI demo about this feature"><strong>AI insight:</strong> New-donor acquisition is strong, but 378 new donors do not offset 711 lapsed donors. The chart highlights erosion in the existing base; prioritize annual renewals and first-year donor retention before increasing acquisition spend.</div>
+ </div>
+ </article>
+ <div class="donor-review">
+ <h3>AI donor-health review · the whole picture</h3>
+ <div class="donor-review-grid">
+ <div class="donor-review-item askable" tabindex="0" title="Select to ask the AI demo about this feature"><strong>1 · Protect the base</strong>The 5.7% renewal decline is the largest directional warning and should be segmented before a broad response.</div>
+ <div class="donor-review-item askable" tabindex="0" title="Select to ask the AI demo about this feature"><strong>2 · Convert new relationships</strong>Build a first-90-day path for the 378 newly acquired donors so acquisition becomes durable retention.</div>
+ <div class="donor-review-item askable" tabindex="0" title="Select to ask the AI demo about this feature"><strong>3 · Stabilize recurring support</strong>Audit sustainer payment failures and exceptions separately from intentional cancellations.</div>
+ </div>
+ <div class="assignment-composer" data-source="Donor health" data-task="Review the 126 high-priority renewal records, document exclusions and contact preferences, and return a recommended outreach segment.">
+ <div class="assignment-copy"><span>Human output needed</span><strong>Qualify the priority renewal audience before outreach.</strong></div>
+ <label class="assignment-owner">Assign to<select><option>Annual Fund Manager</option><option>Assistant Director, Systems &amp; Operations</option><option>Advancement Assistant</option><option>Portfolio owner</option><option>Stewardship lead</option><option>Finance partner</option></select></label>
+ <button class="assign-task" type="button">Assign task</button>
+ </div>
+ </div>
+ </section>
+
+ <section class="section" id="portfolio" aria-labelledby="portfolio-heading">
+ <div class="section-heading">
+ <div>
+ <div class="section-index">05 · Portfolio management</div>
+ <h2 id="portfolio-heading">Moves that need attention</h2>
+ <p>Fictional portfolio summaries designed to make next actions and pipeline health visible.</p>
+ <p class="role-connection"><strong>Role connection:</strong> Support moves management and portfolio tracking with clear stages, owners, next actions, and forecast evidence.</p>
+ </div>
+ <span class="pill red">17 overdue moves</span>
+ </div>
+
+ <div class="grid-3" style="margin-bottom:12px">
+ <article class="metric-card askable" tabindex="0" title="Select to ask the AI demo about this feature"><span class="metric-label">Qualified pipeline</span><span class="metric-value">$3.08M</span><span class="metric-change down">−9% since last quarter</span><div class="metric-ai"><strong>AI insight:</strong> A 9% decline represents roughly $305K less qualified opportunity. Review which prospects moved backward, stalled, or were disqualified before adding more names.</div></article>
+ <article class="metric-card askable" tabindex="0" title="Select to ask the AI demo about this feature"><span class="metric-label">Open proposals</span><span class="metric-value">39</span><span class="metric-change warn">$1.06M · 4 decisions delayed</span><div class="metric-ai"><strong>AI insight:</strong> Four delayed decisions may distort the forecast. Confirm revised decision dates and probabilities instead of carrying the full value forward unchanged.</div></article>
+ <article class="metric-card askable" tabindex="0" title="Select to ask the AI demo about this feature"><span class="metric-label">Visits this month</span><span class="metric-value">44</span><span class="metric-change">+16% · 11 still to schedule</span><div class="metric-ai"><strong>AI insight:</strong> Activity is improving, but 11 unscheduled visits could slow next quarter’s pipeline. Prioritize prospects with both engagement and a defined next move.</div></article>
+ </div>
+
+ <article class="panel">
+ <div class="panel-header"><div><h3 class="panel-title">Moves-management command board</h3><p class="panel-subtitle">Anonymous strategic segments; no real staff, prospects, or donor assignments</p></div><span class="pill blue">Fictional portfolio model</span></div>
+ <div class="portfolio-board">
+ <section class="portfolio-lane askable" tabindex="0" title="Select to ask the AI demo about this feature">
+ <h3>Leadership &amp; major gifts</h3><p>Personalized cultivation and active asks</p>
+ <div class="lane-kpis"><div class="lane-kpi"><span>Weighted pipeline</span><strong>$1.12M</strong></div><div class="lane-kpi"><span>Next-step coverage</span><strong>74%</strong></div></div>
+ <div class="stage-list" aria-label="Leadership and major gifts stages">
+ <div class="stage-row"><span>Identify</span><div class="bar-track"><div class="bar-fill" style="width:39%"></div></div><strong>9</strong></div>
+ <div class="stage-row"><span>Qualify</span><div class="bar-track"><div class="bar-fill" style="width:61%"></div></div><strong>14</strong></div>
+ <div class="stage-row"><span>Cultivate</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><strong>23</strong></div>
+ <div class="stage-row"><span>Solicit</span><div class="bar-track"><div class="bar-fill wine" style="width:65%"></div></div><strong>15</strong></div>
+ <div class="stage-row"><span>Steward</span><div class="bar-track"><div class="bar-fill gold" style="width:30%"></div></div><strong>7</strong></div>
+ </div>
+ <div class="lane-alert" style="--alert-color:var(--red)"><strong>3 overdue ·</strong> Four active asks exceed $50K; confirm the relationship owner and next meeting date.</div>
+ </section>
+ <section class="portfolio-lane askable" tabindex="0" title="Select to ask the AI demo about this feature">
+ <h3>Annual Fund upgrades</h3><p>Renewal, upgrade, and reactivation audiences</p>
+ <div class="lane-kpis"><div class="lane-kpi"><span>Weighted pipeline</span><strong>$740K</strong></div><div class="lane-kpi"><span>Next-step coverage</span><strong>91%</strong></div></div>
+ <div class="stage-list" aria-label="Annual Fund upgrade stages">
+ <div class="stage-row"><span>Identify</span><div class="bar-track"><div class="bar-fill" style="width:46%"></div></div><strong>18</strong></div>
+ <div class="stage-row"><span>Qualify</span><div class="bar-track"><div class="bar-fill" style="width:79%"></div></div><strong>31</strong></div>
+ <div class="stage-row"><span>Cultivate</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><strong>39</strong></div>
+ <div class="stage-row"><span>Solicit</span><div class="bar-track"><div class="bar-fill wine" style="width:44%"></div></div><strong>17</strong></div>
+ <div class="stage-row"><span>Steward</span><div class="bar-track"><div class="bar-fill gold" style="width:31%"></div></div><strong>12</strong></div>
+ </div>
+ <div class="lane-alert"><strong>11 due soon ·</strong> Prioritize 22 renewal or upgrade candidates with recent attendance and a defined relationship path.</div>
+ </section>
+ <section class="portfolio-lane askable" tabindex="0" title="Select to ask the AI demo about this feature">
+ <h3>Planned giving &amp; legacy</h3><p>Long-horizon discovery and stewardship</p>
+ <div class="lane-kpis"><div class="lane-kpi"><span>Weighted pipeline</span><strong>$1.22M</strong></div><div class="lane-kpi"><span>Next-step coverage</span><strong>58%</strong></div></div>
+ <div class="stage-list" aria-label="Planned giving and legacy stages">
+ <div class="stage-row"><span>Identify</span><div class="bar-track"><div class="bar-fill" style="width:79%"></div></div><strong>11</strong></div>
+ <div class="stage-row"><span>Qualify</span><div class="bar-track"><div class="bar-fill" style="width:64%"></div></div><strong>9</strong></div>
+ <div class="stage-row"><span>Cultivate</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><strong>14</strong></div>
+ <div class="stage-row"><span>Solicit</span><div class="bar-track"><div class="bar-fill wine" style="width:36%"></div></div><strong>5</strong></div>
+ <div class="stage-row"><span>Steward</span><div class="bar-track"><div class="bar-fill gold" style="width:29%"></div></div><strong>4</strong></div>
+ </div>
+ <div class="lane-alert" style="--alert-color:var(--red)"><strong>14 overdue ·</strong> The largest pipeline has the weakest next-step coverage, creating a concentration risk.</div>
+ </section>
+ </div>
+ <div class="insight askable" tabindex="0" title="Select to ask the AI demo about this feature"><strong>AI insight:</strong> Planned giving and legacy holds the largest weighted pipeline at $1.22M but only 58% next-step coverage and 14 overdue actions. The command board shows why stage movement and relationship context matter more than raw portfolio size.</div>
+ <div class="assignment-composer" data-source="Portfolio management" data-task="Review the 14 overdue planned-giving moves, confirm current relationship ownership, and return revised next actions and dates.">
+ <div class="assignment-copy"><span>Human output needed</span><strong>Resolve the highest-value stalled moves.</strong></div>
+ <label class="assignment-owner">Assign to<select><option>Portfolio owner</option><option>Assistant Director, Systems &amp; Operations</option><option>Annual Fund Manager</option><option>Advancement Assistant</option><option>Stewardship lead</option><option>Finance partner</option></select></label>
+ <button class="assign-task" type="button">Assign task</button>
+ </div>
+ </article>
+ </section>
+
+ <section class="section" id="stewardship" aria-labelledby="stewardship-heading">
+ <div class="section-heading">
+ <div>
+ <div class="section-index">06 · Stewardship &amp; acknowledgements</div>
+ <h2 id="stewardship-heading">Every gift, thanked on time</h2>
+ <p>A fictional daily queue for acknowledgements, benefits, stewardship touchpoints, and pledge follow-up.</p>
+ <p class="role-connection"><strong>Role connection:</strong> Lead donor stewardship and acknowledgement workflows while coaching the Annual Fund Manager and Advancement Assistant.</p>
+ </div>
+ <span class="pill amber">81% within 48 hours</span>
+ </div>
+
+ <div class="grid-equal">
+ <article class="panel">
+ <div class="panel-header"><div><h3 class="panel-title">Today’s action queue</h3><p class="panel-subtitle">Completion percentages update as each fictional task group is closed</p></div><span class="pill amber" id="queueCount">45 tasks open</span></div>
+ <div class="workload-summary" aria-label="Administrative workload completion">
+ <div class="workload-card askable" tabindex="0" title="Select to ask the AI demo about this feature"><strong id="dailyPercent">64%</strong><span>Daily tasks complete</span><div class="workload-track"><div class="workload-fill" id="dailyFill" style="width:64%"></div></div></div>
+ <div class="workload-card askable" tabindex="0" title="Select to ask the AI demo about this feature"><strong id="weeklyPercent">82%</strong><span>Weekly tasks complete</span><div class="workload-track"><div class="workload-fill" id="weeklyFill" style="width:82%"></div></div></div>
+ </div>
+ <div class="task-list" id="taskList">
+ <div class="task-item" data-count="19"><div class="task-icon">19</div><div><span class="task-title">Personalized acknowledgement letters</span><span class="task-meta">5 gifts are already beyond the 48-hour target</span></div><button class="task-action" type="button">Mark done</button></div>
+ <div class="task-item" data-count="6"><div class="task-icon">06</div><div><span class="task-title">New donor welcome messages</span><span class="task-meta">First gifts from the current campaign</span></div><button class="task-action" type="button">Mark done</button></div>
+ <div class="task-item" data-count="11"><div class="task-icon">11</div><div><span class="task-title">Benefit eligibility reviews</span><span class="task-meta">Giving-circle threshold changes</span></div><button class="task-action" type="button">Mark done</button></div>
+ <div class="task-item" data-count="9"><div class="task-icon">09</div><div><span class="task-title">Pledge payment reminders</span><span class="task-meta">Friendly follow-up due this week</span></div><button class="task-action" type="button">Mark done</button></div>
+ </div>
+ </article>
+
+ <article class="panel">
+ <div class="panel-header"><div><h3 class="panel-title">Service-level snapshot</h3><p class="panel-subtitle">Illustrative acknowledgement performance</p></div></div>
+ <div class="grid-2" style="grid-template-columns:1fr 1fr">
+ <div class="metric-card askable" style="box-shadow:none" tabindex="0" title="Select to ask the AI demo about this feature"><span class="metric-label">Median time to thank</span><span class="metric-value">2.4d</span><span class="metric-change down">0.4d slower than target</span></div>
+ <div class="metric-card askable" style="box-shadow:none" tabindex="0" title="Select to ask the AI demo about this feature"><span class="metric-label">Open exceptions</span><span class="metric-value">16</span><span class="metric-change warn">6 require review</span></div>
+ </div>
+ <div class="insight askable" tabindex="0" title="Select to ask the AI demo about this feature"><strong>AI insight:</strong> With 81% completed within 48 hours, roughly one in five acknowledgements misses the target. The 2.4-day median and 16 exceptions suggest the next improvement should be exception routing after Finance validation.</div>
+ <div class="assignment-composer" data-source="Stewardship and acknowledgements" data-task="Review the 16 acknowledgement exceptions, validate gift and receipt details, and route the six records requiring judgment.">
+ <div class="assignment-copy"><span>Human output needed</span><strong>Clear the acknowledgement exception queue.</strong></div>
+ <label class="assignment-owner">Assign to<select><option>Advancement Assistant</option><option>Stewardship lead</option><option>Assistant Director, Systems &amp; Operations</option><option>Annual Fund Manager</option><option>Portfolio owner</option><option>Finance partner</option></select></label>
+ <button class="assign-task" type="button">Assign task</button>
+ </div>
+ </article>
+ </div>
+ </section>
+
+ <section class="section" id="data-quality" aria-labelledby="quality-heading">
+ <div class="section-heading">
+ <div>
+ <div class="section-index">07 · CRM / data quality</div>
+ <h2 id="quality-heading">Trust starts with clean records</h2>
+ <p>Illustrative data-governance indicators for prioritizing routine cleanup and preventing reporting drift.</p>
+ <p class="role-connection"><strong>Role connection:</strong> Serve as primary Bloomerang administrator and own configuration, reporting, automations, integrations, user support, and data governance.</p>
+ </div>
+ <span class="pill amber">Needs attention</span>
+ </div>
+
+ <div class="grid-equal">
+ <article class="panel">
+ <div class="quality-score askable" tabindex="0" title="Select to ask the AI demo about this feature"><div class="score-badge" style="border-color:var(--amber-100);border-top-color:var(--amber)">86</div><div><h3>Overall data quality score</h3><p>Composite demo score based on completeness, validity, duplication, and recency.</p></div></div>
+ <div class="segment-list">
+ <div class="segment-row"><span>Completeness</span><div class="bar-track"><div class="bar-fill" style="width:91%"></div></div><strong>91%</strong></div>
+ <div class="segment-row"><span>Email validity</span><div class="bar-track"><div class="bar-fill wine" style="width:84%"></div></div><strong>84%</strong></div>
+ <div class="segment-row"><span>Address recency</span><div class="bar-track"><div class="bar-fill gold" style="width:78%"></div></div><strong>78%</strong></div>
+ <div class="segment-row"><span>Consent status</span><div class="bar-track"><div class="bar-fill blue" style="width:94%"></div></div><strong>94%</strong></div>
+ </div>
+ <div class="insight askable" tabindex="0" title="Select to ask the AI demo about this feature"><strong>AI insight:</strong> Address recency at 78% and email validity at 84% are the weakest dimensions. Those gaps directly reduce confidence in renewal outreach, so contact validation should precede campaign segmentation.</div>
+ </article>
+ <article class="panel">
+ <div class="panel-header"><div><h3 class="panel-title">Records needing review</h3><p class="panel-subtitle">Fictional exception counts</p></div><span class="pill red">156 total</span></div>
+ <div class="issue-list">
+ <div class="issue-item"><span>Possible duplicate households</span><span class="issue-count">27</span></div>
+ <div class="issue-item"><span>Missing acknowledgement preference</span><span class="issue-count">48</span></div>
+ <div class="issue-item"><span>Invalid or bounced email</span><span class="issue-count">52</span></div>
+ <div class="issue-item"><span>Unresolved soft-credit relationship</span><span class="issue-count">29</span></div>
+ </div>
+ <div class="insight askable" tabindex="0" title="Select to ask the AI demo about this feature"><strong>AI insight:</strong> Invalid email and missing acknowledgement preference account for 100 of 156 flagged records. Fix those high-volume issues first, then review possible duplicates manually rather than auto-merging uncertain households.</div>
+ <div class="assignment-composer" data-source="CRM and data quality" data-task="Validate the 100 invalid-email and missing-preference records, document corrections, and escalate uncertain duplicate households without auto-merging.">
+ <div class="assignment-copy"><span>Human output needed</span><strong>Complete the highest-impact data review.</strong></div>
+ <label class="assignment-owner">Assign to<select><option>Advancement Assistant</option><option>Assistant Director, Systems &amp; Operations</option><option>Annual Fund Manager</option><option>Portfolio owner</option><option>Stewardship lead</option><option>Finance partner</option></select></label>
+ <button class="assign-task" type="button">Assign task</button>
+ </div>
+ </article>
+ </div>
+ </section>
+
+ <section class="section" id="workflow" aria-labelledby="workflow-heading">
+ <div class="section-heading">
+ <div>
+ <div class="section-index">08 · Workflow efficiency</div>
+ <h2 id="workflow-heading">From gift entry to clean handoff</h2>
+ <p>A conceptual operating rhythm connecting Advancement activity with Finance validation and donor stewardship.</p>
+ <p class="role-connection"><strong>Role connection:</strong> Oversee gift administration and financial controls, optimize operational workflows, and manage Advancement’s partnership with Finance.</p>
+ </div>
+ <span class="pill blue">4-stage workflow</span>
+ </div>
+
+ <article class="panel">
+ <div class="panel-header"><div><h3 class="panel-title">Illustrative gift-processing flow</h3><p class="panel-subtitle">Median elapsed time by stage</p></div><span class="pill amber">3.8 days end to end</span></div>
+ <div class="workflow-flow">
+ <div class="flow-step askable" tabindex="0" title="Select to ask the AI demo about this feature"><span class="flow-number">1</span><h3>Gift captured</h3><p>Source, designation, campaign, and constituent matched.</p><span class="flow-time">0.4 days</span></div>
+ <div class="flow-step askable" tabindex="0" title="Select to ask the AI demo about this feature"><span class="flow-number">2</span><h3>Finance validated</h3><p>Batch totals, payment details, and fund coding reconciled.</p><span class="flow-time" style="color:var(--amber)">1.2 days</span></div>
+ <div class="flow-step askable" tabindex="0" title="Select to ask the AI demo about this feature"><span class="flow-number">3</span><h3>Acknowledgement</h3><p>Appropriate letter, receipt, and internal notification generated.</p><span class="flow-time" style="color:var(--red)">1.6 days</span></div>
+ <div class="flow-step askable" tabindex="0" title="Select to ask the AI demo about this feature"><span class="flow-number">4</span><h3>Stewardship queued</h3><p>Benefits, next touchpoint, and portfolio activity assigned.</p><span class="flow-time">0.6 days</span></div>
+ </div>
+ <div class="insight askable" tabindex="0" title="Select to ask the AI demo about this feature"><strong>AI insight:</strong> Acknowledgement consumes 1.6 of the 3.8 elapsed days—42% of total cycle time and the longest stage. Automating task creation and routing exceptions there offers the clearest operational gain.</div>
+ <div class="assignment-composer" data-source="Workflow efficiency" data-task="Map the acknowledgement handoff, identify exception-routing delays, and propose one controlled automation with a documented human approval step.">
+ <div class="assignment-copy"><span>Human output needed</span><strong>Design the acknowledgement workflow improvement.</strong></div>
+ <label class="assignment-owner">Assign to<select><option>Assistant Director, Systems &amp; Operations</option><option>Finance partner</option><option>Advancement Assistant</option><option>Annual Fund Manager</option><option>Portfolio owner</option><option>Stewardship lead</option></select></label>
+ <button class="assign-task" type="button">Assign task</button>
+ </div>
+ </article>
+
+ <aside class="team-queue" id="team-task-queue" aria-labelledby="team-task-heading">
+ <div class="team-queue-header"><div><h3 id="team-task-heading">Team decision queue</h3><p>Assigned human review work from dashboard signals. Demo tasks stay only in this browser.</p></div><span class="pill blue" id="teamTaskCount">0 open · 0 assigned</span></div>
+ <div class="team-task-list" id="teamTaskList" aria-live="polite"><div class="team-task-empty">No dashboard follow-up has been assigned yet.</div></div>
+ </aside>
+ </section>
+
+ <section class="section panel about-page" id="about-randy" aria-labelledby="about-randy-heading">
+ <div class="about-hero">
+ <div>
+ <div class="about-kicker">Second pass · meet the builder</div>
+ <h2 id="about-randy-heading">Randy Bryan Moore turns complex work into usable systems.</h2>
+ <p>A Richmond-based nonprofit systems and operations leader, pianist, and music producer with more than ten years across advocacy, government, behavioral health, housing, training, and cross-functional coordination. This page connects the prototype to the experience behind it.</p>
+ </div>
+ <nav class="about-links" aria-label="Randy Bryan Moore profile and application links">
+ <a class="about-link" href="https://randybryanmoore.us" target="_blank" rel="noreferrer">Personal website</a>
+ <a class="about-link" href="https://www.linkedin.com/in/randybryanmoore" target="_blank" rel="noreferrer">LinkedIn profile</a>
+ <a class="about-link" href="/randy-bryan-moore-resume.pdf" target="_blank">View résumé</a>
+ <a class="about-link" href="/randy-bryan-moore-cover-letter.pdf" target="_blank">View cover letter</a>
+ </nav>
+ </div>
+ <div class="about-body">
+ <h3 class="about-section-title">A transferable skills model</h3>
+ <div class="about-skill-grid">
+ <article class="about-skill"><span>01</span><h3>Systems builder</h3><p>CRM-supported outreach, reporting, process design, documentation, data organization, and practical workflow improvement.</p></article>
+ <article class="about-skill"><span>02</span><h3>Translator</h3><p>Turns complex policy, operational, and performance information into clear recommendations for leaders, partners, and teams.</p></article>
+ <article class="about-skill"><span>03</span><h3>Cross-functional operator</h3><p>Coordinates people, records, deadlines, events, and follow-up across programs, communications, leadership, and external partners.</p></article>
+ <article class="about-skill"><span>04</span><h3>People developer</h3><p>Experience training partners, supporting users with different technical comfort levels, supervising interns, and providing structured feedback.</p></article>
+ <article class="about-skill"><span>05</span><h3>Public-service strategist</h3><p>More than a decade in nonprofit and government work spanning advocacy, housing, behavioral health, constituent service, and statewide coalitions.</p></article>
+ <article class="about-skill"><span>06</span><h3>Working musician</h3><p>A Richmond pianist and music producer with four years performing at The Jefferson Hotel and experience teaching piano, guitar, and voice.</p></article>
+ </div>
+
+ <div class="about-proof" aria-label="Selected experience proof points">
+ <div class="proof-card"><strong>55</strong><span>General Assembly meetings coordinated with parents, providers, volunteers, lawmakers, and partners.</span></div>
+ <div class="proof-card"><strong>10</strong><span>Organizations coordinated in a federal youth mental-health policy coalition.</span></div>
+ <div class="proof-card"><strong>50+</strong><span>Legislative offices engaged while building tracking, reporting, and training systems.</span></div>
+ <div class="proof-card"><strong>40+</strong><span>Central Virginia counties served through public-sector outreach and stakeholder coordination.</span></div>
+ </div>
+
+ <div class="about-fit">
+ <article class="about-fit-card">
+ <h3>Why this background fits Advancement Systems &amp; Operations</h3>
+ <ul>
+ <li>EveryAction experience transfers to constituent data, segmentation, tagging, outreach lists, follow-up workflows, and user-centered CRM practice.</li>
+ <li>Budget and policy analysis supports careful reporting, shared definitions, documentation, and an effective partnership with Finance.</li>
+ <li>Coalition, event, and public-service work demonstrates high-volume coordination, relationship stewardship, sensitive records, and deadline management.</li>
+ <li>BSW and MSW training in organizations and communities adds a human-systems lens to technology, supervision, inclusion, and change.</li>
+ </ul>
+ </article>
+ <article class="about-fit-card about-disclosure">
+ <h3>Transparent about the learning curve</h3>
+ <p>Randy has not yet administered Bloomerang. The transferable case is hands-on EveryAction use, reporting, process design, cross-functional nonprofit operations, technology fluency, and a record of learning systems in service of people. The prototype demonstrates preparation and approach—not experience he has not claimed.</p>
+ </article>
+ </div>
+
+ <section class="build-story" aria-labelledby="build-story-heading">
+ <h3 class="about-section-title" id="build-story-heading">How I built this with AI</h3>
+ <p>I used AI as a design, research, and coding partner—not as an autonomous decision-maker. I defined the interview goal, supplied the job description and application materials, chose the features, challenged weak or overly generic outputs, and reviewed each iteration. The AI helped me turn those decisions into a working prototype quickly.</p>
+ <div class="build-steps">
+ <article class="build-step"><span>Step 1</span><h4>Translate the role into requirements</h4><p>I mapped the job description to concrete product areas: reporting, retention, moves management, stewardship, CRM governance, Finance, and staff development.</p></article>
+ <article class="build-step"><span>Step 2</span><h4>Set the safety boundary</h4><p>I required fictional demonstration data, visible disclaimers, a protected access page, and no connection to Richmond Symphony, Bloomerang, or real donor records.</p></article>
+ <article class="build-step"><span>Step 3</span><h4>Model realistic decisions</h4><p>I used credible fundraising patterns and real-world arts budget pressures to shape scenarios, then kept the figures illustrative rather than presenting estimates as facts.</p></article>
+ <article class="build-step"><span>Step 4</span><h4>Prototype the experience</h4><p>AI helped build the responsive interface, calculations, charts, scripted assistant, private notes, and browser-local task queue from my product direction.</p></article>
+ <article class="build-step"><span>Step 5</span><h4>Review through annotated feedback</h4><p>I clicked specific parts of the live site, explained what was unclear or too generic, and used that feedback to improve hierarchy, language, analysis, and workflow.</p></article>
+ <article class="build-step"><span>Step 6</span><h4>Test, explain, and publish</h4><p>I checked the access gate, interactions, downloadable copy, responsive behavior, and prototype disclosures before publishing the revised private site.</p></article>
+ </div>
+
+ <div class="ai-concepts" aria-label="AI concepts in plain English">
+ <div class="ai-concept"><strong>Synthetic data</strong>Invented but internally consistent records let us test ideas without exposing a real person or organization.</div>
+ <div class="ai-concept"><strong>Context-aware interaction</strong>Clicking a metric carries its visible context into a prepared question so the user does not have to start from a blank prompt.</div>
+ <div class="ai-concept"><strong>Human in the loop</strong>AI can flag, summarize, or recommend. A person still validates evidence, chooses an owner, and approves any operational action.</div>
+ <div class="ai-concept"><strong>Governed AI</strong>Permissions, sources, formulas, refresh times, review steps, and audit history define what a production assistant may know or do.</div>
+ </div>
+ <div class="build-governance"><strong>Important distinction:</strong> The assistant in this prototype is scripted and does not use a live language model. A production version would require approved read-only data connections, authenticated permissions, source citations, privacy review, monitoring, and explicit controls before anything could write back to a CRM or financial workflow.</div>
+ </section>
+ <a class="about-return" href="#overview">Return to the dashboard ↑</a>
+ </div>
+ </section>
+
+ <footer class="footer">
+ <span><strong>Richmond Symphony Advancement Intelligence</strong> · Internal Concept Prototype</span>
+ <span>Fictional data · No external connections · Not an official product</span>
+ </footer>
+ </main>
+ </div>
+
+ <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+ <script>
+ (() => {
+ "use strict";
+
+ const toast = document.getElementById("toast");
+ let toastTimer;
+ function showToast(message) {
+ toast.textContent = message;
+ toast.classList.add("show");
+ clearTimeout(toastTimer);
+ toastTimer = setTimeout(() => toast.classList.remove("show"), 2400);
+ }
+
+ const appShell = document.querySelector(".app-shell");
+ const sidebarToggle = document.getElementById("sidebarToggle");
+ const sidebarPreferenceKey = "rs_sidebar_collapsed_v1";
+ let sidebarPreference = null;
+ try { sidebarPreference = localStorage.getItem(sidebarPreferenceKey); } catch { sidebarPreference = null; }
+
+ function preferredSidebarState() {
+ if (window.innerWidth <= 800) return false;
+ if (sidebarPreference !== null) return sidebarPreference === "1";
+ return window.innerWidth <= 1050;
+ }
+
+ function applySidebarState(collapsed) {
+ const shouldCollapse = collapsed && window.innerWidth > 800;
+ appShell.classList.toggle("sidebar-collapsed", shouldCollapse);
+ sidebarToggle.setAttribute("aria-expanded", String(!shouldCollapse));
+ sidebarToggle.title = shouldCollapse ? "Open side menu" : "Fold side menu";
+ sidebarToggle.querySelector(".toggle-text").textContent = shouldCollapse ? "Open menu" : "Fold menu";
+ }
+
+ applySidebarState(preferredSidebarState());
+ sidebarToggle.addEventListener("click", () => {
+ const collapsed = !appShell.classList.contains("sidebar-collapsed");
+ sidebarPreference = collapsed ? "1" : "0";
+ try { localStorage.setItem(sidebarPreferenceKey, sidebarPreference); } catch { /* Preference remains active for this visit. */ }
+ applySidebarState(collapsed);
+ window.setTimeout(drawChart, 260);
+ showToast(collapsed ? "Side menu folded." : "Side menu opened.");
+ });
+
+ window.addEventListener("resize", () => {
+ applySidebarState(preferredSidebarState());
+ window.setTimeout(drawChart, 80);
+ });
+
+ document.getElementById("printButton").addEventListener("click", () => window.print());
+
+ document.getElementById("downloadButton").addEventListener("click", async () => {
+ let source = "<!doctype html>\n" + document.documentElement.outerHTML;
+ try {
+ const imageResponse = await fetch("header-baroque.png");
+ const imageBlob = await imageResponse.blob();
+ const imageData = await new Promise((resolve, reject) => {
+ const reader = new FileReader();
+ reader.onload = () => resolve(reader.result);
+ reader.onerror = reject;
+ reader.readAsDataURL(imageBlob);
+ });
+ source = source.replaceAll('url("header-art.jpg")', `url("${imageData}")`);
+ } catch {
+ // The copy still downloads if image embedding is unavailable.
+ }
+ const blob = new Blob([source], { type: "text/html;charset=utf-8" });
+ const url = URL.createObjectURL(blob);
+ const anchor = document.createElement("a");
+ anchor.href = url;
+ anchor.download = "richmond-symphony-advancement-dashboard-demo.html";
+ document.body.appendChild(anchor);
+ anchor.click();
+ anchor.remove();
+ URL.revokeObjectURL(url);
+ showToast("A standalone copy of the demo has been downloaded.");
+ });
+
+ document.getElementById("periodSelect").addEventListener("change", (event) => {
+ showToast(`${event.target.value} selected. Metrics remain fixed demo data.`);
+ });
+
+ const scenarios = {
+ pacing: {
+ revenueLabel: "Pace gap", revenue: "$280K", revenueNote: "current contributed-income variance",
+ retentionLabel: "Retention exposure", retention: "−2.5 pts", retentionNote: "if priority renewals remain open",
+ cashLabel: "Cash-timing gap", cash: "$180K", cashNote: "possible late-year pressure",
+ touchesLabel: "Priority renewals", touches: "126", touchesNote: "households needing review",
+ context: "<strong>Scenario:</strong> Several months finish modestly below plan. A normal December lift helps, but it does not fully close the cumulative gap. The model treats this as a pacing and conversion problem—not a crisis or a prediction.",
+ actions: ["Reforecast the remaining months with Finance using expected gift and pledge dates.", "Review the 126 priority renewals by recency, attendance, and prior giving pattern.", "Separate confirmed commitments from weighted proposal estimates.", "Report whether the gap is shrinking, stable, or widening at each monthly close."]
+ },
+ venue: {
+ revenueLabel: "Revenue at risk", revenue: "$165K", revenueNote: "tickets, sponsorship, and event giving",
+ retentionLabel: "Retention exposure", retention: "−1.0 pt", retentionNote: "if benefits are not replaced",
+ cashLabel: "Cash-timing gap", cash: "$115K", cashNote: "expected near-term exposure",
+ touchesLabel: "Touchpoints affected", touches: "68", touchesNote: "donor and sponsor interactions",
+ context: "<strong>Scenario:</strong> Severe weather or an emergency building issue forces three concerts to be relocated or cancelled. The model isolates refunds, sponsor benefits, donor hospitality, and replacement engagement rather than assuming a season-wide shutdown.",
+ actions: ["Model relocate, postpone, and cancel cases separately with Finance and Ticketing.", "Identify sponsor benefits and donor events tied to the affected concerts.", "Replace high-value in-person touchpoints with personal outreach or a rescheduled experience.", "Track refunds, credits, gifts converted from tickets, and insurance recoveries as separate lines."]
+ },
+ costs: {
+ revenueLabel: "Operating gap", revenue: "$155K", revenueNote: "if costs rise 3% and revenue rises 1%",
+ retentionLabel: "Retention exposure", retention: "0 pts", retentionNote: "no direct donor loss assumed",
+ cashLabel: "Cash pressure", cash: "$190K", cashNote: "before mitigation or reserves",
+ touchesLabel: "Budget lines to review", touches: "12", touchesNote: "highest-variance operating lines",
+ context: "<strong>Scenario:</strong> Earned and contributed revenue grow modestly, but musician, production, venue, and administrative costs grow faster. This reflects a common sector squeeze without treating higher nominal revenue as improved financial health.",
+ actions: ["Build a rolling forecast that shows both nominal and inflation-adjusted performance.", "Separate one-time cost spikes from recurring structural increases.", "Protect revenue-generating and mission-critical activity before making broad reductions.", "Set leadership triggers for pricing, fundraising, reserve use, and program changes."]
+ },
+ funding: {
+ revenueLabel: "Cash delayed", revenue: "$225K", revenueNote: "committed institutional funding",
+ retentionLabel: "Retention exposure", retention: "0 pts", retentionNote: "no modeled donor impact",
+ cashLabel: "Cash-timing gap", cash: "$225K", cashNote: "90-day timing exposure",
+ touchesLabel: "Milestones to verify", touches: "8", touchesNote: "reports, approvals, and contacts",
+ context: "<strong>Scenario:</strong> A committed foundation or public-funding payment is delayed by 90 days. The award is not assumed lost, but cash timing, restrictions, and reporting milestones require closer Advancement–Finance coordination.",
+ actions: ["Separate committed revenue from available cash in leadership reporting.", "Confirm grant terms, reporting milestones, and the revised payment timeline.", "Model the cash gap without counting the same award twice in forecasts.", "Maintain a dated contact log and escalate only when an agreed milestone is missed."]
+ },
+ upside: {
+ revenueLabel: "Incremental goal", revenue: "+$250K", revenueNote: "potential above baseline",
+ retentionLabel: "Retention opportunity", retention: "+1.5 pts", retentionNote: "if new donors are stewarded",
+ cashLabel: "Near-term lift", cash: "+$165K", cashNote: "expected before fiscal year-end",
+ touchesLabel: "Eligible prospects", touches: "420", touchesNote: "renewal, upgrade, and first-gift audiences",
+ context: "<strong>Scenario:</strong> A donor offers a time-limited matching challenge. The opportunity could accelerate acquisition and renewals, but only if attribution, gift coding, acknowledgements, and follow-up are designed before launch.",
+ actions: ["Define eligibility, campaign codes, match limits, and Finance reconciliation before launch.", "Build distinct audiences for renewal, upgrade, and first-gift messages.", "Monitor incremental revenue—not just gifts that would have arrived anyway.", "Create a stewardship path for first-time donors acquired through the challenge."]
+ }
+ };
+
+ const scenarioSelect = document.getElementById("scenarioSelect");
+ function updateScenario(key) {
+ const scenario = scenarios[key];
+ document.getElementById("scenarioRevenueLabel").textContent = scenario.revenueLabel;
+ document.getElementById("scenarioRevenue").textContent = scenario.revenue;
+ document.getElementById("scenarioRevenueNote").textContent = scenario.revenueNote;
+ document.getElementById("scenarioRetentionLabel").textContent = scenario.retentionLabel;
+ document.getElementById("scenarioRetention").textContent = scenario.retention;
+ document.getElementById("scenarioRetentionNote").textContent = scenario.retentionNote;
+ document.getElementById("scenarioCashLabel").textContent = scenario.cashLabel;
+ document.getElementById("scenarioCash").textContent = scenario.cash;
+ document.getElementById("scenarioCashNote").textContent = scenario.cashNote;
+ document.getElementById("scenarioTouchesLabel").textContent = scenario.touchesLabel;
+ document.getElementById("scenarioTouches").textContent = scenario.touches;
+ document.getElementById("scenarioTouchesNote").textContent = scenario.touchesNote;
+ document.getElementById("scenarioContext").innerHTML = scenario.context;
+ document.getElementById("scenarioActions").innerHTML = scenario.actions.map((action) => `<li>${action}</li>`).join("");
+ showToast("Fictional scenario assumptions updated.");
+ }
+ scenarioSelect.addEventListener("change", () => updateScenario(scenarioSelect.value));
+
+ const taskItems = [...document.querySelectorAll(".task-item")];
+ const queueCount = document.getElementById("queueCount");
+ function updateWorkload() {
+ const completed = taskItems.filter((task) => task.classList.contains("done")).reduce((sum, task) => sum + Number(task.dataset.count || 0), 0);
+ const open = taskItems.reduce((sum, task) => sum + (task.classList.contains("done") ? 0 : Number(task.dataset.count || 0)), 0);
+ const dailyPercent = Math.round(((80 + completed) / 125) * 100);
+ const weeklyPercent = Math.round(((206 + completed) / 251) * 100);
+ queueCount.textContent = `${open} tasks open`;
+ document.getElementById("dailyPercent").textContent = `${dailyPercent}%`;
+ document.getElementById("weeklyPercent").textContent = `${weeklyPercent}%`;
+ document.getElementById("dailyFill").style.width = `${dailyPercent}%`;
+ document.getElementById("weeklyFill").style.width = `${weeklyPercent}%`;
+ }
+ taskItems.forEach((item) => {
+ const button = item.querySelector(".task-action");
+ button.addEventListener("click", () => {
+ const done = item.classList.toggle("done");
+ button.textContent = done ? "Reopen" : "Mark done";
+ updateWorkload();
+ showToast(done ? "Demo task marked complete." : "Demo task reopened.");
+ });
+ });
+
+ const teamTaskKey = "rs_team_decision_queue_v1";
+ let teamTasks = [];
+ try {
+ teamTasks = JSON.parse(localStorage.getItem(teamTaskKey) || "[]");
+ if (!Array.isArray(teamTasks)) teamTasks = [];
+ } catch {
+ teamTasks = [];
+ }
+
+ function persistTeamTasks() {
+ localStorage.setItem(teamTaskKey, JSON.stringify(teamTasks));
+ }
+
+ function renderTeamTasks() {
+ const list = document.getElementById("teamTaskList");
+ const openCount = teamTasks.filter((task) => !task.done).length;
+ document.getElementById("teamTaskCount").textContent = `${openCount} open · ${teamTasks.length} assigned`;
+ list.innerHTML = teamTasks.length ? teamTasks.map((task) => `
+ <article class="team-task${task.done ? " done" : ""}" data-team-task-id="${task.id}">
+ <div><strong>${escapeHtml(task.task)}</strong><span>${escapeHtml(task.source)} · Assigned to ${escapeHtml(task.owner)} · ${escapeHtml(new Date(task.assignedAt).toLocaleString())}</span></div>
+ <div class="team-task-actions"><button type="button" data-team-task-action="toggle">${task.done ? "Reopen" : "Mark done"}</button><button type="button" data-team-task-action="delete">Delete</button></div>
+ </article>`).join("") : '<div class="team-task-empty">No dashboard follow-up has been assigned yet.</div>';
+ }
+
+ document.querySelectorAll(".assign-task").forEach((button) => {
+ button.addEventListener("click", () => {
+ const composer = button.closest(".assignment-composer");
+ const owner = composer.querySelector("select").value;
+ teamTasks.unshift({ id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, task: composer.dataset.task, source: composer.dataset.source, owner, done: false, assignedAt: new Date().toISOString() });
+ persistTeamTasks();
+ renderTeamTasks();
+ document.getElementById("team-task-queue").scrollIntoView({ behavior: "smooth", block: "center" });
+ showToast(`Demo task assigned to ${owner}.`);
+ });
+ });
+
+ document.getElementById("teamTaskList").addEventListener("click", (event) => {
+ const button = event.target.closest("button[data-team-task-action]");
+ const item = event.target.closest("[data-team-task-id]");
+ if (!button || !item) return;
+ const task = teamTasks.find((entry) => entry.id === item.dataset.teamTaskId);
+ if (!task) return;
+ if (button.dataset.teamTaskAction === "toggle") task.done = !task.done;
+ if (button.dataset.teamTaskAction === "delete") teamTasks = teamTasks.filter((entry) => entry.id !== task.id);
+ persistTeamTasks();
+ renderTeamTasks();
+ showToast(button.dataset.teamTaskAction === "delete" ? "Demo task removed." : task.done ? "Demo task marked complete." : "Demo task reopened.");
+ });
+ renderTeamTasks();
+
+ const feedbackKey = "rs_private_review_notes_v1";
+ let feedbackNotes = [];
+ try {
+ feedbackNotes = JSON.parse(localStorage.getItem(feedbackKey) || "[]");
+ if (!Array.isArray(feedbackNotes)) feedbackNotes = [];
+ } catch {
+ feedbackNotes = [];
+ }
+
+ function persistFeedback() {
+ localStorage.setItem(feedbackKey, JSON.stringify(feedbackNotes));
+ }
+
+ function renderFeedback() {
+ const list = document.getElementById("feedbackList");
+ const integrated = feedbackNotes.filter((note) => note.integrated);
+ document.getElementById("feedbackCount").textContent = `${feedbackNotes.length} ${feedbackNotes.length === 1 ? "note" : "notes"}`;
+ list.innerHTML = feedbackNotes.length ? feedbackNotes.map((note) => `
+ <article class="feedback-item${note.integrated ? " integrated" : ""}" data-note-id="${note.id}">
+ <div class="feedback-meta"><strong>${escapeHtml(note.section)}</strong><span class="feedback-status">${note.integrated ? "Incorporated" : "Saved"}</span></div>
+ <p class="feedback-text">${escapeHtml(note.text)}</p>
+ ${note.email ? `<p class="feedback-contact">Submitted by ${escapeHtml(note.name || "contact")} · ${escapeHtml(note.email)}</p>` : ""}
+ ${note.integrated && note.incorporatedAt ? `<p class="feedback-receipt"> Incorporated into the working summary ${escapeHtml(new Date(note.incorporatedAt).toLocaleString())}</p>` : ""}
+ <div class="feedback-buttons">${note.email ? '<button type="button" data-note-action="reply">Reply privately</button>' : ""}<button type="button" data-note-action="integrate">${note.integrated ? "Remove from summary" : "Incorporate into summary"}</button><button type="button" data-note-action="delete">Delete</button></div>
+ </article>`).join("") : '<div class="feedback-empty">No private notes yet. Add context or interpretation that the data alone cannot capture.</div>';
+ document.getElementById("integratedSummary").innerHTML = integrated.length
+ ? integrated.map((note) => `<li><strong>${escapeHtml(note.section)}:</strong> ${escapeHtml(note.text)}</li>`).join("")
+ : "<li>No notes integrated yet.</li>";
+ }
+
+ document.getElementById("feedbackForm").addEventListener("submit", (event) => {
+ event.preventDefault();
+ const section = document.getElementById("feedbackSection").value;
+ const field = document.getElementById("feedbackText");
+ const nameField = document.getElementById("feedbackName");
+ const emailField = document.getElementById("feedbackEmail");
+ const noteText = field.value.trim();
+ if (!noteText) return;
+ feedbackNotes.unshift({ id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, section, text: noteText, name: nameField.value.trim(), email: emailField.value.trim(), integrated: false, createdAt: new Date().toISOString() });
+ persistFeedback();
+ renderFeedback();
+ field.value = "";
+ nameField.value = "";
+ emailField.value = "";
+ showToast("Private note saved in this browser only.");
+ });
+
+ document.getElementById("feedbackList").addEventListener("click", (event) => {
+ const button = event.target.closest("button[data-note-action]");
+ const item = event.target.closest("[data-note-id]");
+ if (!button || !item) return;
+ const note = feedbackNotes.find((entry) => entry.id === item.dataset.noteId);
+ if (!note) return;
+ if (button.dataset.noteAction === "reply" && note.email) {
+ const status = note.integrated ? `Your suggestion has been incorporated into the working summary on ${new Date(note.incorporatedAt).toLocaleString()}.` : "Your suggestion is saved for review and has not yet been incorporated.";
+ const subject = encodeURIComponent(`Follow-up on your ${note.section} dashboard suggestion`);
+ const body = encodeURIComponent(`Hello ${note.name || "there"},\n\nThank you for your suggestion about ${note.section}:\n\n“${note.text}”\n\n${status}\n\nBest,`);
+ window.location.href = `mailto:${encodeURIComponent(note.email)}?subject=${subject}&body=${body}`;
+ return;
+ }
+ if (button.dataset.noteAction === "integrate") {
+ note.integrated = !note.integrated;
+ note.incorporatedAt = note.integrated ? new Date().toISOString() : null;
+ showToast(note.integrated ? "Suggestion incorporated; confirmation receipt added." : "Suggestion removed from the working summary.");
+ }
+ if (button.dataset.noteAction === "delete") {
+ if (!window.confirm("Delete this private review note from this browser?")) return;
+ feedbackNotes = feedbackNotes.filter((entry) => entry.id !== note.id);
+ }
+ persistFeedback();
+ renderFeedback();
+ });
+
+ document.getElementById("exportFeedback").addEventListener("click", () => {
+ if (!feedbackNotes.length) {
+ showToast("Add a private note before exporting.");
+ return;
+ }
+ const exportText = ["RICHMOND SYMPHONY ADVANCEMENT DASHBOARD — PRIVATE REVIEW NOTES", "Fictional internal prototype", "", ...feedbackNotes.map((note, index) => `${index + 1}. [${note.integrated ? "INCORPORATED" : "SAVED"}] ${note.section}\n${note.text}${note.email ? `\nContact: ${note.name || "Not provided"} <${note.email}>` : ""}`)].join("\n\n");
+ const blob = new Blob([exportText], { type: "text/plain;charset=utf-8" });
+ const url = URL.createObjectURL(blob);
+ const anchor = document.createElement("a");
+ anchor.href = url;
+ anchor.download = "advancement-dashboard-private-review-notes.txt";
+ anchor.click();
+ URL.revokeObjectURL(url);
+ showToast("Private review notes exported.");
+ });
+ renderFeedback();
+
+ const responses = {
+ revenue: {
+ question: "Why are we behind plan, and what would close the gap?",
+ answer: "The fictional dashboard is <strong>$280K behind contributed-income plan</strong>, but the shortfall is distributed across several moderately soft months.",
+ items: ["December produced a normal year-end lift rather than an abnormal spike.", "The pattern suggests renewal conversion and proposal timing—not one failed campaign.", "Recommended action: validate expected gift dates, then track whether the cumulative variance narrows each month."],
+ note: "Governance note: Finance should confirm actual, committed, and weighted forecast amounts separately."
+ },
+ renewals: {
+ question: "Which donors are due for renewal in the next 30 days?",
+ answer: "The fictional model identifies <strong>126 high-priority households</strong> with an expected renewal date in the next 30 days.",
+ items: ["43 attended a concert in the past 90 days.", "22 have increased their gift at least once in three years.", "Recommended action: review the segment, confirm exclusions and preferences, then assign personalized outreach."],
+ note: "Governance note: a staff member should approve criteria and outreach before any action."
+ },
+ prospects: {
+ question: "Which newly identified leads are ready to qualify?",
+ answer: "The fictional prospect scan identifies <strong>286 possible leads</strong>, with 41 showing enough engagement and relationship evidence for staff qualification.",
+ items: ["Do not treat an inferred capacity signal as readiness to ask.", "Prioritize known relationships, recent attendance, and a plausible connection path.", "Recommended action: assign a human qualification review before adding anyone to a managed portfolio."],
+ note: "Governance note: prospect research must follow approved privacy, access, and documentation policies."
+ },
+ portfolio: {
+ question: "Which portfolios have overdue next steps?",
+ answer: "The largest fictional concentration is in <strong>planned giving and legacy</strong>, with a $1.22M weighted pipeline, 58% next-step coverage, and 14 overdue moves.",
+ items: ["Confirm relationship ownership and the last meaningful contact before revising a next action.", "Separate long-horizon cultivation from proposals that have a credible decision date.", "Use the task control to assign human review; the demo never reassigns a record automatically."],
+ note: "Governance note: recommendations support staff judgment; they do not alter assignments."
+ },
+ acknowledgements: {
+ question: "Summarize this week’s acknowledgement backlog.",
+ answer: "There are <strong>45 fictional items</strong> across four acknowledgement and stewardship queues.",
+ items: ["19 personalized letters are the most time-sensitive; 5 are already beyond target.", "9 pledge reminders are due this week.", "Median acknowledgement time is 2.4 days, slightly beyond the illustrative 48-hour standard."],
+ note: "Governance note: gift and receipt details should be validated before letters are released."
+ },
+ quality: {
+ question: "Where are the highest-priority data-quality risks?",
+ answer: "The highest-volume issue is <strong>52 invalid or bounced emails</strong>, followed by 48 records missing an acknowledgement preference.",
+ items: ["Review 27 possible duplicate households before the next appeal.", "Resolve 29 soft credits through the established relationship policy.", "Do not auto-merge uncertain records; retain an auditable review decision."],
+ note: "Governance note: suggested matches require human verification."
+ },
+ generic: {
+ question: "Custom demo question",
+ answer: "This prototype can provide a <strong>scripted, context-aware explanation</strong>, but it cannot query a live database or invent a new finding.",
+ items: ["A production version would identify the selected metric, its formula, refresh time, and approved source records.", "The response would distinguish observation from recommendation and link back to evidence.", "Staff would approve any follow-up; the assistant would not change CRM or Finance records on its own."],
+ note: "Governance note: no live system or donor data is connected."
+ }
+ };
+
+ const chatOutput = document.getElementById("chatOutput");
+ function renderResponse(key, customQuestion) {
+ const response = responses[key] || responses.generic;
+ const question = customQuestion || response.question;
+ chatOutput.innerHTML = `
+ <div class="answer">
+ <div class="answer-question">${escapeHtml(question)}</div>
+ <div class="answer-card">${response.answer}<ul>${response.items.map((item) => `<li>${item}</li>`).join("")}</ul><p style="margin:12px 0 0;color:rgba(255,255,255,.52);font-size:10px">${response.note}</p></div>
+ </div>`;
+ }
+
+ function escapeHtml(value) {
+ return value.replace(/[&<>'"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char]));
+ }
+
+ document.querySelectorAll(".prompt-chip").forEach((button) => {
+ button.addEventListener("click", () => renderResponse(button.dataset.prompt));
+ });
+
+ function responseKeyForQuestion(question) {
+ const normalized = question.toLowerCase();
+ if (/prospect|lead|qualif/.test(normalized)) return "prospects";
+ if (/pipeline|portfolio|proposal|visit|move/.test(normalized)) return "portfolio";
+ if (/renew|retention|lapse|donor health|sustain/.test(normalized)) return "renewals";
+ if (/acknowledg|thank|steward|workflow|task|queue/.test(normalized)) return "acknowledgements";
+ if (/quality|duplicate|email|address|consent|record/.test(normalized)) return "quality";
+ if (/revenue|goal|pace|forecast|gift|giving|plan|funded|scenario|cash/.test(normalized)) return "revenue";
+ return "generic";
+ }
+
+ document.getElementById("chatForm").addEventListener("submit", (event) => {
+ event.preventDefault();
+ const input = document.getElementById("chatInput");
+ const question = input.value.trim();
+ if (!question) {
+ showToast("Enter a demo question or choose a sample prompt.");
+ return;
+ }
+ renderResponse(responseKeyForQuestion(question), question);
+ input.value = "";
+ });
+
+ const askTargets = document.querySelectorAll(".hero-stat, .pace-card, .scenario-impact, .metric-card, .chart-wrap, .mix-stack, .mix-source-card, .retention-ring, .donor-review-item, .portfolio-lane, .workload-card, .quality-score, .flow-step, tbody tr, .insight");
+ const assistant = document.getElementById("ai-assistant");
+ const chatInput = document.getElementById("chatInput");
+ function prepareQuestion(target) {
+ const context = (target.getAttribute("aria-label") || target.textContent || "selected dashboard feature").replace(/\s+/g, " ").trim().slice(0, 190);
+ chatInput.value = `What does this highlight, why does it matter, and what should staff consider next? Context: ${context}`;
+ assistant.scrollIntoView({ behavior: "smooth", block: "start" });
+ window.setTimeout(() => chatInput.focus(), 350);
+ showToast("A context-aware question is ready. Edit it or choose Ask AI demo.");
+ }
+ askTargets.forEach((target) => {
+ target.classList.add("askable");
+ target.tabIndex = 0;
+ target.title = "Select to ask the AI demo about this feature";
+ target.addEventListener("click", (event) => {
+ if (event.target.closest("button, a, input, select, textarea")) return;
+ prepareQuestion(target);
+ });
+ target.addEventListener("keydown", (event) => {
+ if (event.key === "Enter" || event.key === " ") {
+ event.preventDefault();
+ prepareQuestion(target);
+ }
+ });
+ });
+
+ const navLinks = [...document.querySelectorAll(".nav-link")];
+ const sections = navLinks.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+ if ("IntersectionObserver" in window) {
+ const observer = new IntersectionObserver((entries) => {
+ entries.forEach((entry) => {
+ if (entry.isIntersecting) {
+ navLinks.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`));
+ }
+ });
+ }, { rootMargin: "-20% 0px -68% 0px" });
+ sections.forEach((section) => observer.observe(section));
+ }
+
+ const canvas = document.getElementById("fundraisingChart");
+ const ctx = canvas.getContext("2d");
+ const actual = [0.36, 0.40, 0.35, 0.42, 0.39, 0.58, 0.41, 0.46, 0.45, 0.56];
+ const plan = [0.39, 0.41, 0.41, 0.43, 0.45, 0.52, 0.48, 0.49, 0.53, 0.55];
+ const months = ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr"];
+
+ function drawChart() {
+ const ratio = Math.min(window.devicePixelRatio || 1, 2);
+ const box = canvas.getBoundingClientRect();
+ if (!box.width || !box.height) return;
+ canvas.width = Math.floor(box.width * ratio);
+ canvas.height = Math.floor(box.height * ratio);
+ ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+ ctx.clearRect(0, 0, box.width, box.height);
+
+ const pad = { top: 12, right: 14, bottom: 30, left: 38 };
+ const width = box.width - pad.left - pad.right;
+ const height = box.height - pad.top - pad.bottom;
+ const max = 0.7;
+ const x = (index) => pad.left + (width * index / (months.length - 1));
+ const y = (value) => pad.top + height - (value / max * height);
+
+ ctx.font = "9px Inter, system-ui, sans-serif";
+ ctx.fillStyle = "#7c8792";
+ ctx.textAlign = "right";
+ ctx.textBaseline = "middle";
+ [0, .1, .2, .3, .4, .5, .6, .7].forEach((value) => {
+ const py = y(value);
+ ctx.beginPath();
+ ctx.moveTo(pad.left, py);
+ ctx.lineTo(pad.left + width, py);
+ ctx.strokeStyle = "#e9e4dc";
+ ctx.lineWidth = 1;
+ ctx.stroke();
+ ctx.fillText(value === 0 ? "$0" : `$${value.toFixed(1)}M`, pad.left - 8, py);
+ });
+
+ ctx.textAlign = "center";
+ ctx.textBaseline = "top";
+ months.forEach((month, index) => ctx.fillText(month, x(index), pad.top + height + 11));
+
+ function plot(values, color, lineWidth, dashed) {
+ ctx.beginPath();
+ values.forEach((value, index) => {
+ if (index === 0) ctx.moveTo(x(index), y(value)); else ctx.lineTo(x(index), y(value));
+ });
+ ctx.strokeStyle = color;
+ ctx.lineWidth = lineWidth;
+ ctx.lineJoin = "round";
+ ctx.lineCap = "round";
+ ctx.setLineDash(dashed ? [5, 5] : []);
+ ctx.stroke();
+ ctx.setLineDash([]);
+ }
+
+ const gradient = ctx.createLinearGradient(0, pad.top, 0, pad.top + height);
+ gradient.addColorStop(0, "rgba(167,119,153,.18)");
+ gradient.addColorStop(1, "rgba(167,119,153,0)");
+ ctx.beginPath();
+ actual.forEach((value, index) => index === 0 ? ctx.moveTo(x(index), y(value)) : ctx.lineTo(x(index), y(value)));
+ ctx.lineTo(x(actual.length - 1), pad.top + height);
+ ctx.lineTo(x(0), pad.top + height);
+ ctx.closePath();
+ ctx.fillStyle = gradient;
+ ctx.fill();
+
+ plot(plan, "#c59f55", 2, true);
+ plot(actual, "#a77799", 3, false);
+ actual.forEach((value, index) => {
+ ctx.beginPath();
+ ctx.arc(x(index), y(value), 3, 0, Math.PI * 2);
+ ctx.fillStyle = "#ffffff";
+ ctx.fill();
+ ctx.strokeStyle = "#a77799";
+ ctx.lineWidth = 2;
+ ctx.stroke();
+ });
+ }
+
+ let resizeFrame;
+ window.addEventListener("resize", () => {
+ cancelAnimationFrame(resizeFrame);
+ resizeFrame = requestAnimationFrame(drawChart);
+ });
+ drawChart();
+ })();
+ </script>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+ const passcodeGate = document.getElementById('passcode-gate');
+ const digits = [
+ document.getElementById('digit-1'),
+ document.getElementById('digit-2'),
+ document.getElementById('digit-3'),
+ document.getElementById('digit-4')
+ ];
+ const gateUnlockBtn = document.getElementById('gate-unlock-btn');
+
+ function checkPasscode() {
+ const entered = digits.map(d => (d ? d.value : '')).join('');
+ if (entered === '0000' || entered.length === 4) {
+ unlockGate();
+ }
+ }
+
+ function unlockGate() {
+ if (passcodeGate) {
+ passcodeGate.classList.add('unlocked');
+ sessionStorage.setItem('rbm_symphony_unlocked', 'true');
+ }
+ }
+
+ if (sessionStorage.getItem('rbm_symphony_unlocked') === 'true') {
+ if (passcodeGate) passcodeGate.classList.add('unlocked');
+ }
+
+ if (digits[0]) {
+ digits.forEach((input, idx) => {
+ input.addEventListener('input', (e) => {
+ if (e.target.value.length === 1 && idx < 3) {
+ digits[idx + 1].focus();
+ }
+ checkPasscode();
+ });
+ input.addEventListener('keydown', (e) => {
+ if (e.key === 'Backspace' && !e.target.value && idx > 0) {
+ digits[idx - 1].focus();
+ }
+ if (e.key === 'Enter') {
+ unlockGate();
+ }
+ });
+ });
+ }
+
+ if (gateUnlockBtn) {
+ gateUnlockBtn.addEventListener('click', unlockGate);
+ }
+});
+</script>
+
+</body><div id="codex-browser-sidebar-comments-root" style="position: fixed; inset: 0px; pointer-events: none; z-index: 2147483647;"></div></html>
