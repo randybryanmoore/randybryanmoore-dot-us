@@ -10,9 +10,10 @@
   --navy:          #182b4d;
   --navy-deep:     #0d1a32;
   --navy-light:    #243d6b;
-  /* The one blue used for every blue surface. Solid, so it paints the same
-     whatever it sits on. Sampled from the candidate profile card. */
-  --block-fill:    #19253c;
+  /* The signature blue, used as the ground for navy sections. */
+  --navy-ground:   #19253c;
+  /* Panels and cards lift off that ground in the lighter navy. */
+  --block-fill:    #182b4d;
   --maroon:        #4c0e1c;
   --maroon-deep:   #2b0710;
   --cream:         #f2eadf;
@@ -146,7 +147,7 @@ img {
 }
 
 .section-navy {
-  background: var(--navy);
+  background: var(--navy-ground);
   color: var(--paper);
   border-color: rgba(242, 234, 223, 0.18);
 }
@@ -487,7 +488,7 @@ img {
 .home-hero {
   min-height: calc(100svh - var(--nav-h));
   overflow: hidden;
-  background: var(--navy);
+  background: var(--navy-ground);
   color: var(--cream);
   border-bottom: 1px solid var(--line-light);
 }
