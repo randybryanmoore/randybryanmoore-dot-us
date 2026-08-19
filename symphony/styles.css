@@ -10,8 +10,9 @@
   --navy:          #182b4d;
   --navy-deep:     #0d1a32;
   --navy-light:    #243d6b;
-  /* The single blue used for panel/card fills over dark grounds. */
-  --block-fill:    rgba(255, 255, 255, 0.05);
+  /* The one blue used for every blue surface. Solid, so it paints the same
+     whatever it sits on. Sampled from the candidate profile card. */
+  --block-fill:    #19253c;
   --maroon:        #4c0e1c;
   --maroon-deep:   #2b0710;
   --cream:         #f2eadf;
@@ -736,7 +737,7 @@ img {
 }
 
 .pillar-item {
-  background: rgba(0, 0, 0, 0.25);
+  background: var(--block-fill);
   border: 1px solid rgba(242, 234, 223, 0.2);
   border-left: 3.5px solid var(--maroon);
   padding: 14px 16px;
@@ -790,7 +791,12 @@ img {
   background: var(--paper);
 }
 
-.section-maroon .card-editorial,
+.section-maroon .card-editorial {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(242, 234, 223, 0.2);
+  color: var(--cream);
+}
+
 .section-navy .card-editorial {
   background: var(--block-fill);
   border-color: rgba(242, 234, 223, 0.2);
@@ -869,7 +875,7 @@ img {
 .tab-nav {
   display: flex;
   flex-wrap: wrap;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--block-fill);
   border-bottom: 1px solid rgba(242, 234, 223, 0.2);
 }
 
@@ -981,7 +987,7 @@ img {
 }
 
 .section-navy .lifecycle-card {
-  background: rgba(0, 0, 0, 0.25);
+  background: var(--block-fill);
   border-color: rgba(242, 234, 223, 0.2);
 }
 
