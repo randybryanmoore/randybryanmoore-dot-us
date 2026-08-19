@@ -2246,9 +2246,14 @@ body.annotation-active {
 }
 
 
-/* Red accent on the hero name */
+/* MSW carries the red as an underline rather than as letter colour --
+   #6E1322 on the blue ground measures 1.19:1, far below readable. */
 .hero-msw {
-  color: var(--red-accent);
+  color: var(--cream);
+  text-decoration: underline;
+  text-decoration-color: var(--red);
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 8px;
 }
 
 /* The music suite panel sits on blue now, so it takes the panel fill. */
