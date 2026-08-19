@@ -1,544 +1,739 @@
-// Richmond Symphony Advancement Systems & Operations Candidate Suite
+window.copyAllNotesAndReset = function(e) {
+  if (typeof window.reviewToolsEnabled === 'function' && !window.reviewToolsEnabled()) return;
+  if (e && e.stopPropagation) { e.preventDefault(); e.stopPropagation(); }
+  if (typeof window.executeCopyAndReset === 'function') {
+    window.executeCopyAndReset();
+  }
+};
+
+// =========================================================================
+// Richmond Symphony Advancement Systems & Operations Portfolio Suite
 // Candidate: Randy Bryan Moore, MSW
-// State-of-the-Art Visual Review & Pinpoint Annotation Suite (v2.0)
+// Complete Integrated Interactive Engine & Pinpoint Annotation Suite
+// =========================================================================
 
-document.addEventListener('DOMContentLoaded', () => {
-  // =========================================================================
-  // 1. Passcode Gate Logic (Universal Passcode: 0000)
-  // =========================================================================
-  const PASSCODE = '0000';
-  const gateOverlay = document.getElementById('passcode-gate');
-  const pinInputs = document.querySelectorAll('.pin-digit');
-  const gateUnlockBtn = document.getElementById('gate-unlock-btn');
-  const gateError = document.getElementById('gate-error');
-
-  function getEnteredPin() {
-    return Array.from(pinInputs).map(i => i.value).join('');
-  }
-
-  function unlockDossier() {
-    if (gateOverlay) {
-      gateOverlay.classList.add('unlocked');
-      sessionStorage.setItem('symphony_dossier_auth', 'true');
-    }
-  }
-
-  function validatePin() {
-    const entered = getEnteredPin();
-    if (entered === PASSCODE) {
-      unlockDossier();
-    } else {
-      if (gateError) gateError.style.display = 'block';
-      pinInputs.forEach(i => {
-        i.value = '';
-        i.style.borderColor = 'var(--wine)';
-      });
-      if (pinInputs[0]) pinInputs[0].focus();
-    }
-  }
-
-  if (sessionStorage.getItem('symphony_dossier_auth') === 'true') {
-    unlockDossier();
-  }
-
-  pinInputs.forEach((input, idx) => {
-    input.addEventListener('input', (e) => {
-      if (e.target.value.length === 1 && idx < pinInputs.length - 1) {
-        pinInputs[idx + 1].focus();
-      }
-      if (getEnteredPin().length === 4) {
-        validatePin();
-      }
-    });
-
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Backspace' && !e.target.value && idx > 0) {
-        pinInputs[idx - 1].focus();
-      } else if (e.key === 'Enter') {
-        validatePin();
-      }
-    });
-  });
-
-  if (gateUnlockBtn) {
-    gateUnlockBtn.addEventListener('click', validatePin);
-  }
-
-  // =========================================================================
-  // 2. Case Study Tabs
-  // =========================================================================
-  const caseNavBtns = document.querySelectorAll('.case-nav-btn');
-  const caseContents = document.querySelectorAll('.case-study-content');
-
-  caseNavBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      caseNavBtns.forEach(b => b.classList.remove('active'));
-      caseContents.forEach(c => c.classList.remove('active'));
-
-      btn.classList.add('active');
-      const caseId = btn.getAttribute('data-case');
-      const targetContent = document.getElementById('case-' + caseId);
-      if (targetContent) {
-        targetContent.classList.add('active');
-      }
-    });
-  });
-
-  // =========================================================================
-  // 3. Audio Player & Canvas Waveform Visualizer
-  // =========================================================================
-  const canvas = document.getElementById('waveform-canvas');
-  const playBtn = document.getElementById('play-trigger-btn');
-  const trackItems = document.querySelectorAll('.track-item');
-  const activeTrackName = document.getElementById('active-track-name');
-  const activeTrackMeta = document.getElementById('active-track-meta');
-
-  let audioCtx = null;
-  let isPlaying = false;
-  let animationId = null;
-  let wavePhase = 0;
-
-  function initAudio() {
-    if (!audioCtx) {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-  }
-
-  const trackData = {
-    nocturne: {
-      name: 'Acoustic Piano Repertoire: Nocturne in C-Sharp Minor, Op. Posth.',
-      meta: 'Chopin • Solo Piano Repertoire Study',
-      freqs: [277.18, 329.63, 415.30, 554.37, 659.25]
-    },
-    clair: {
-      name: 'Debussy: Clair de Lune',
-      meta: 'Impressionist Repertoire • Dynamic Phrasing',
-      freqs: [261.63, 329.63, 392.00, 523.25, 659.25]
-    },
-    hymn: {
-      name: 'Appalachian Hymnody & Modal Themes',
-      meta: 'Traditional Repertoire • Harmonic Voicings',
-      freqs: [220.00, 277.18, 329.63, 440.00, 554.37]
-    }
-  };
-
-  let currentTrack = 'nocturne';
-  let activeOscillators = [];
-
-  function playPianoChord() {
-    initAudio();
-    if (audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-
-    const info = trackData[currentTrack] || trackData.nocturne;
-    stopAudio();
-
-    const masterGain = audioCtx.createGain();
-    masterGain.gain.setValueAtTime(0.01, audioCtx.currentTime);
-    masterGain.gain.linearRampToValueAtTime(0.18, audioCtx.currentTime + 0.1);
-    masterGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 3.5);
-    masterGain.connect(audioCtx.destination);
-
-    info.freqs.forEach((freq, idx) => {
-      const osc = audioCtx.createOscillator();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(freq, audioCtx.currentTime + idx * 0.12);
-      osc.connect(masterGain);
-      osc.start(audioCtx.currentTime + idx * 0.12);
-      osc.stop(audioCtx.currentTime + 4.0);
-      activeOscillators.push(osc);
-    });
-
-    isPlaying = true;
-    if (playBtn) playBtn.innerHTML = '⏸';
-    drawWaveform();
-
-    setTimeout(() => {
-      if (isPlaying) {
-        playPianoChord();
-      }
-    }, 3800);
-  }
-
-  function stopAudio() {
-    activeOscillators.forEach(osc => {
-      try { osc.stop(); } catch (e) {}
-    });
-    activeOscillators = [];
-  }
-
-  function drawWaveform() {
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    canvas.width = canvas.parentElement.clientWidth || 400;
-    canvas.height = 64;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = isPlaying ? '#4C0E1C' : '#808370';
-    ctx.beginPath();
-
-    const sliceWidth = canvas.width / 50;
-    let x = 0;
-
-    for (let i = 0; i < 50; i++) {
-      const amplitude = isPlaying ? 16 : 2;
-      const y = (canvas.height / 2) + Math.sin(i * 0.35 + wavePhase) * amplitude;
-      if (i === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-      x += sliceWidth;
-    }
-
-    ctx.stroke();
-    wavePhase += 0.12;
-
-    if (isPlaying) {
-      animationId = requestAnimationFrame(drawWaveform);
-    }
-  }
-
-  if (canvas) {
-    drawWaveform();
-  }
-
-  if (playBtn) {
-    playBtn.addEventListener('click', () => {
-      if (isPlaying) {
-        isPlaying = false;
-        stopAudio();
-        playBtn.innerHTML = '▶';
-        if (animationId) cancelAnimationFrame(animationId);
-        drawWaveform();
-      } else {
-        playPianoChord();
-      }
-    });
-  }
-
-  trackItems.forEach(item => {
-    item.addEventListener('click', () => {
-      trackItems.forEach(t => t.classList.remove('active'));
-      item.classList.add('active');
-      currentTrack = item.getAttribute('data-track');
-
-      const info = trackData[currentTrack];
-      if (info) {
-        if (activeTrackName) activeTrackName.innerText = info.name;
-        if (activeTrackMeta) activeTrackMeta.innerText = info.meta;
-      }
-
-      if (isPlaying) {
-        stopAudio();
-        playPianoChord();
-      }
-    });
-  });
-
-  // =========================================================================
-  // 4. State-of-the-Art Visual Review & Pinpoint Annotation Suite (v2.0)
-  // =========================================================================
-  let pinModeActive = true;
-  let editModeActive = false;
-  let drawerOpen = false;
-  const pins = [];
-
-  const dockPinBtn = document.getElementById('dock-pin-mode-btn');
-  const dockEditBtn = document.getElementById('dock-edit-mode-btn');
-  const dockDrawerBtn = document.getElementById('dock-drawer-toggle-btn');
-  const dockNotesCount = document.getElementById('dock-notes-count');
-  
-  const popover = document.getElementById('annotation-popover');
-  const popoverTargetSnippet = document.getElementById('popover-target-snippet');
-  const popoverCommentInput = document.getElementById('popover-comment-input');
-  const popoverSaveBtn = document.getElementById('popover-save-btn');
-  const popoverCancelBtn = document.getElementById('popover-cancel-btn');
-  const popoverCloseBtn = document.getElementById('popover-close-btn');
-  const tagChips = document.querySelectorAll('.tag-chip');
-  
+// Global Feedback Drawer Controllers (Available Immediately at Line 1)
+window.openFeedbackDrawer = function(e) {
+  if (typeof window.reviewToolsEnabled === 'function' && !window.reviewToolsEnabled()) return;
+  if (e && e.stopPropagation) { e.preventDefault(); e.stopPropagation(); }
   const drawer = document.getElementById('feedback-drawer');
-  const drawerBody = document.getElementById('drawer-body');
-  const drawerCount = document.getElementById('drawer-count');
-  const drawerCloseBtn = document.getElementById('drawer-close-btn');
-  const drawerExportBtn = document.getElementById('drawer-export-btn');
-
-  let selectedTag = 'Copy & Wording';
-  let pendingElement = null;
-  let pendingCoords = { x: 0, y: 0, pageX: 0, pageY: 0 };
-  let pendingText = '';
-
-  document.body.classList.add('annotation-active');
-
-  // Tag chip selection
-  tagChips.forEach(chip => {
-    chip.addEventListener('click', (e) => {
-      e.stopPropagation();
-      tagChips.forEach(c => c.classList.remove('selected'));
-      chip.classList.add('selected');
-      selectedTag = chip.getAttribute('data-tag');
-    });
-  });
-
-  // Toggle Pin Mode
-  if (dockPinBtn) {
-    dockPinBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      pinModeActive = !pinModeActive;
-      dockPinBtn.classList.toggle('active', pinModeActive);
-      document.body.classList.toggle('annotation-active', pinModeActive);
-      if (pinModeActive && editModeActive) {
-        dockEditBtn.click(); // turn off edit mode
-      }
-      closePopover();
-    });
+  if (drawer) {
+    drawer.classList.add('open');
+    drawer.style.display = 'flex';
+    drawer.style.zIndex = '2147483647';
+    if (typeof window.refreshFeedbackDrawerUI === 'function') {
+      window.refreshFeedbackDrawerUI();
+    }
   }
+};
 
-  // Toggle Live WYSIWYG Edit Mode
-  if (dockEditBtn) {
-    dockEditBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      editModeActive = !editModeActive;
-      dockEditBtn.classList.toggle('active', editModeActive);
-      
-      if (editModeActive && pinModeActive) {
-        dockPinBtn.click(); // turn off pin mode
-      }
+window.closeFeedbackDrawer = function(e) {
+  if (typeof window.reviewToolsEnabled === 'function' && !window.reviewToolsEnabled()) return;
+  if (e && e.stopPropagation) { e.preventDefault(); e.stopPropagation(); }
+  const drawer = document.getElementById('feedback-drawer');
+  if (drawer) {
+    drawer.classList.remove('open');
+    drawer.style.display = 'none';
+  }
+};
 
-      const editableSelectors = 'h1, h2, h3, h4, p, span, li, a, blockquote, td';
-      document.querySelectorAll(editableSelectors).forEach(el => {
-        if (!el.closest('#annotation-dock') && !el.closest('#annotation-popover') && !el.closest('#feedback-drawer')) {
-          el.contentEditable = editModeActive ? 'true' : 'false';
-          el.style.outline = editModeActive ? '1.5px dashed var(--forest)' : '';
-          el.style.backgroundColor = editModeActive ? 'rgba(24, 59, 43, 0.04)' : '';
+window.toggleFeedbackDrawer = function(e) {
+  if (typeof window.reviewToolsEnabled === 'function' && !window.reviewToolsEnabled()) return;
+  if (e && e.stopPropagation) { e.preventDefault(); e.stopPropagation(); }
+  const drawer = document.getElementById('feedback-drawer');
+  if (drawer) {
+    if (drawer.style.display === 'flex' || drawer.classList.contains('open')) {
+      window.closeFeedbackDrawer(e);
+    } else {
+      window.openFeedbackDrawer(e);
+    }
+  }
+};
+
+// =========================================================================
+// Review Tools Switch (annotation / feedback dock)
+// -------------------------------------------------------------------------
+// The pin-feedback dock, live-edit mode, inspector and notes drawer are
+// INTERNAL review tools. To go live, set this on the body tag in index.html:
+//
+//     <body data-review-tools="off">
+//
+// That strips the dock, popover, drawer and inspector from the DOM and skips
+// all of their event listeners and localStorage use. Per-visit override:
+// append ?review=1 to force them on, or ?review=0 to force them off.
+// =========================================================================
+function reviewToolsEnabled() {
+  try {
+    var param = new URLSearchParams(window.location.search).get('review');
+    if (param === '1' || param === 'on' || param === 'true') return true;
+    if (param === '0' || param === 'off' || param === 'false') return false;
+    var host = document.body || document.documentElement;
+    var attr = (host.getAttribute('data-review-tools') || 'on').toLowerCase();
+    return attr !== 'off' && attr !== 'false' && attr !== '0';
+  } catch (err) {
+    return false;
+  }
+}
+window.reviewToolsEnabled = reviewToolsEnabled;
+
+(function() {
+  function initSuite() {
+    // =========================================================================
+    // 1. Passcode Gate (Universal PIN: 0000 / 1-Click Unlock)
+    // =========================================================================
+    try {
+      const gateOverlay = document.getElementById('passcode-gate');
+      const pinInputs = document.querySelectorAll('.pin-digit');
+      const gateUnlockBtn = document.getElementById('gate-unlock-btn');
+
+      function unlockDossier() {
+        if (gateOverlay) {
+          gateOverlay.classList.add('unlocked');
+          gateOverlay.style.opacity = '0';
+          gateOverlay.style.visibility = 'hidden';
+          gateOverlay.style.pointerEvents = 'none';
+          setTimeout(() => { gateOverlay.style.display = 'none'; }, 350);
         }
-      });
-    });
-  }
-
-  // Toggle Drawer
-  if (dockDrawerBtn) {
-    dockDrawerBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      drawerOpen = !drawerOpen;
-      if (drawer) drawer.style.display = drawerOpen ? 'flex' : 'none';
-      renderDrawer();
-    });
-  }
-
-  if (drawerCloseBtn) {
-    drawerCloseBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      drawerOpen = false;
-      if (drawer) drawer.style.display = 'none';
-    });
-  }
-
-  // Hover highlighting
-  let lastHovered = null;
-  document.addEventListener('mouseover', (e) => {
-    if (!pinModeActive || editModeActive) return;
-    if (e.target.closest('#annotation-dock') || e.target.closest('#annotation-popover') || e.target.closest('#feedback-drawer') || e.target.closest('.annotation-canvas-pin')) return;
-
-    if (lastHovered && lastHovered !== e.target) {
-      lastHovered.classList.remove('annotation-highlight-hover');
-    }
-    lastHovered = e.target;
-    lastHovered.classList.add('annotation-highlight-hover');
-  });
-
-  document.addEventListener('mouseout', (e) => {
-    if (lastHovered && e.target === lastHovered) {
-      lastHovered.classList.remove('annotation-highlight-hover');
-      lastHovered = null;
-    }
-  });
-
-  // Drop pinpoint on click
-  document.addEventListener('click', (e) => {
-    if (!pinModeActive || editModeActive) return;
-    if (e.target.closest('#annotation-dock') || e.target.closest('#annotation-popover') || e.target.closest('#feedback-drawer') || e.target.closest('.annotation-canvas-pin')) return;
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    pendingElement = e.target;
-    const tagName = pendingElement.tagName.toLowerCase();
-    const textContent = pendingElement.innerText.trim();
-    pendingText = textContent.length > 70 ? textContent.substring(0, 67) + '...' : textContent;
-
-    const selectedText = window.getSelection().toString().trim();
-    if (selectedText) {
-      pendingText = '"' + selectedText + '"';
-    }
-
-    pendingCoords = {
-      x: e.clientX,
-      y: e.clientY,
-      pageX: e.pageX,
-      pageY: e.pageY
-    };
-
-    openPopover(tagName, pendingText, pendingCoords);
-  });
-
-  function openPopover(tagName, snippet, coords) {
-    if (!popover) return;
-    popoverTargetSnippet.innerText = '<' + tagName + '> ' + (snippet || 'Visual Element');
-    popoverCommentInput.value = '';
-
-    // Calculate position
-    const popoverWidth = 320;
-    let left = coords.pageX + 15;
-    let top = coords.pageY - 20;
-
-    if (left + popoverWidth > window.innerWidth + window.scrollX) {
-      left = coords.pageX - popoverWidth - 15;
-    }
-
-    popover.style.left = left + 'px';
-    popover.style.top = top + 'px';
-    popover.style.display = 'block';
-
-    setTimeout(() => popoverCommentInput.focus(), 50);
-  }
-
-  function closePopover() {
-    if (popover) popover.style.display = 'none';
-    pendingElement = null;
-  }
-
-  if (popoverCancelBtn) popoverCancelBtn.addEventListener('click', closePopover);
-  if (popoverCloseBtn) popoverCloseBtn.addEventListener('click', closePopover);
-
-  // Save Pin
-  function saveCurrentPin() {
-    const comment = popoverCommentInput.value.trim();
-    if (!comment) return;
-
-    const pinId = pins.length + 1;
-    const newPin = {
-      id: pinId,
-      tag: selectedTag,
-      comment: comment,
-      snippet: pendingText,
-      elementTag: pendingElement ? pendingElement.tagName.toLowerCase() : 'element',
-      pageX: pendingCoords.pageX,
-      pageY: pendingCoords.pageY,
-      element: pendingElement
-    };
-
-    pins.push(newPin);
-
-    // Create Pin Badge on Screen
-    const pinMarker = document.createElement('div');
-    pinMarker.className = 'annotation-canvas-pin';
-    pinMarker.id = 'canvas-pin-' + pinId;
-    pinMarker.innerText = pinId;
-    pinMarker.title = '[' + selectedTag + '] ' + comment;
-    pinMarker.style.left = pendingCoords.pageX + 'px';
-    pinMarker.style.top = pendingCoords.pageY + 'px';
-
-    pinMarker.addEventListener('click', (e) => {
-      e.stopPropagation();
-      openPopover(newPin.elementTag, newPin.snippet, { pageX: newPin.pageX, pageY: newPin.pageY });
-      popoverCommentInput.value = newPin.comment;
-    });
-
-    document.body.appendChild(pinMarker);
-
-    closePopover();
-    updateCounts();
-    renderDrawer();
-  }
-
-  if (popoverSaveBtn) popoverSaveBtn.addEventListener('click', saveCurrentPin);
-
-  if (popoverCommentInput) {
-    popoverCommentInput.addEventListener('keydown', (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
-        saveCurrentPin();
-      } else if (e.key === 'Escape') {
-        closePopover();
+        try {
+          sessionStorage.setItem('symphony_dossier_auth', 'true');
+          sessionStorage.setItem('rbm_sym_unlocked', '1');
+          localStorage.setItem('symphony_dossier_auth', 'true');
+        } catch (e) {}
       }
-    });
-  }
 
-  function updateCounts() {
-    const count = pins.length;
-    if (dockNotesCount) dockNotesCount.innerText = count;
-    if (drawerCount) drawerCount.innerText = count;
-  }
+      if (sessionStorage.getItem('symphony_dossier_auth') === 'true' || 
+          sessionStorage.getItem('rbm_sym_unlocked') === '1' ||
+          localStorage.getItem('symphony_dossier_auth') === 'true') {
+        unlockDossier();
+      }
 
-  function renderDrawer() {
-    if (!drawerBody) return;
-    if (pins.length === 0) {
-      drawerBody.innerHTML = '<p style="color:var(--muted-olive); font-size:0.85rem; font-style:italic; text-align:center; padding:1.5rem 0;">Click anywhere on the page to drop a pin and add feedback.</p>';
-      return;
+      if (gateUnlockBtn) {
+        gateUnlockBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          pinInputs.forEach(i => i.value = '0');
+          unlockDossier();
+        });
+      }
+
+      pinInputs.forEach((input, idx) => {
+        input.addEventListener('input', (e) => {
+          if (e.target.value.length >= 1 && idx < pinInputs.length - 1) {
+            pinInputs[idx + 1].focus();
+          }
+          const entered = Array.from(pinInputs).map(i => i.value).join('');
+          if (entered === '0000' || entered.length === 4) {
+            unlockDossier();
+          }
+        });
+
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && !e.target.value && idx > 0) {
+            pinInputs[idx - 1].focus();
+          } else if (e.key === 'Enter') {
+            e.preventDefault();
+            unlockDossier();
+          }
+        });
+      });
+    } catch (err) {
+      console.warn('Gate init error:', err);
     }
 
-    drawerBody.innerHTML = pins.map(p => 
-      '<div class="drawer-item" data-pin-id="' + p.id + '" style="cursor:pointer;">' +
-        '<button class="drawer-item-delete" title="Delete pin" data-delete-id="' + p.id + '">✕</button>' +
-        '<div class="drawer-item-tag">#' + p.id + ' • ' + p.tag + '</div>' +
-        '<div style="font-size:0.75rem; color:var(--muted-olive); font-style:italic; margin:2px 0;">Target: ' + (p.snippet || p.elementTag) + '</div>' +
-        '<p class="drawer-item-text"><strong>' + p.comment + '</strong></p>' +
-      '</div>'
-    ).join('');
+    // =========================================================================
+    // 2. Scroll Progress Bar
+    // =========================================================================
+    try {
+      const progressBar = document.getElementById('scroll-progress');
+      if (progressBar) {
+        window.addEventListener('scroll', () => {
+          const total = document.documentElement.scrollHeight - window.innerHeight;
+          if (total > 0) {
+            progressBar.style.width = (window.scrollY / total * 100) + '%';
+          }
+        }, { passive: true });
+      }
+    } catch (err) {
+      console.warn('Progress init error:', err);
+    }
 
-    // Attach click listeners to drawer items for smooth scroll to pin
-    drawerBody.querySelectorAll('.drawer-item').forEach(item => {
-      item.addEventListener('click', (e) => {
-        if (e.target.classList.contains('drawer-item-delete')) return;
-        const pinId = item.getAttribute('data-pin-id');
-        const pinMarker = document.getElementById('canvas-pin-' + pinId);
-        if (pinMarker) {
-          pinMarker.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          pinMarker.style.transform = 'translate(-50%, -50%) scale(1.6)';
-          pinMarker.style.boxShadow = '0 0 20px rgba(76, 14, 28, 0.9)';
-          setTimeout(() => {
-            pinMarker.style.transform = 'translate(-50%, -50%) scale(1)';
-            pinMarker.style.boxShadow = '0 3px 8px rgba(0, 0, 0, 0.35)';
-          }, 800);
-        }
+    // =========================================================================
+    // 3. QR Code Generator SVG
+    // =========================================================================
+    try {
+      function generateQRCodeSVG(text, size = 130) {
+        const encoded = encodeURIComponent(text);
+        return `<img src="https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encoded}&color=182b4d" alt="QR Code" width="${size}" height="${size}" style="display:block; border-radius:4px;" />`;
+      }
+      const qrTargets = document.querySelectorAll('.qr-code-target');
+      // The QR is scanned from a phone, so it must never encode a file:// or
+      // localhost URL -- those are unreachable off this machine. Only trust
+      // location.href when the page is actually served from a public host.
+      const CANONICAL_URL = 'https://randybryanmoore.us/symphony/';
+      const loc = window.location;
+      const isPubliclyServed = (loc.protocol === 'http:' || loc.protocol === 'https:') &&
+        !/^(localhost|127\.0\.0\.1|\[::1\]|0\.0\.0\.0)$/.test(loc.hostname);
+      const currentUrl = isPubliclyServed ? loc.href.split('#')[0] : CANONICAL_URL;
+      qrTargets.forEach(el => {
+        const sz = parseInt(el.getAttribute('data-size')) || 130;
+        el.innerHTML = generateQRCodeSVG(currentUrl, sz);
       });
-    });
+    } catch (err) {
+      console.warn('QR init error:', err);
+    }
 
-    // Attach delete listeners
-    drawerBody.querySelectorAll('.drawer-item-delete').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const deleteId = parseInt(btn.getAttribute('data-delete-id'), 10);
-        const idx = pins.findIndex(p => p.id === deleteId);
-        if (idx !== -1) {
-          pins.splice(idx, 1);
-          const pinMarker = document.getElementById('canvas-pin-' + deleteId);
-          if (pinMarker) pinMarker.remove();
-          updateCounts();
-          renderDrawer();
-        }
+    // =========================================================================
+    // 4. Case Studies Interactive Tab Switcher
+    // =========================================================================
+    try {
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const tabPanes = document.querySelectorAll('.tab-pane');
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const tabId = btn.getAttribute('data-tab');
+          tabBtns.forEach(b => b.classList.remove('active'));
+          tabPanes.forEach(p => p.classList.remove('active'));
+
+          btn.classList.add('active');
+          const target = document.getElementById('tab-' + tabId);
+          if (target) {
+            target.classList.add('active');
+          }
+        });
       });
-    });
-  }
+    } catch (err) {
+      console.warn('Tabs init error:', err);
+    }
 
-  // Export to AI Prompt
-  if (drawerExportBtn) {
-    drawerExportBtn.addEventListener('click', () => {
-      if (pins.length === 0) {
-        alert('No notes pinned yet! Click anywhere on the page to drop feedback pins.');
+    // =========================================================================
+    // 5. Repertoire Synthesis Engine & Live Canvas Waveform
+    // =========================================================================
+    try {
+      const playBtn = document.getElementById('play-trigger-btn');
+      const trackOptions = document.querySelectorAll('.track-option');
+      const canvas = document.getElementById('waveform-canvas');
+      let audioCtx = null;
+      let isPlaying = false;
+      let synthTimer = null;
+      let selectedTrack = 'jefferson';
+
+      const notes = {
+        'C3': 130.81, 'E3': 164.81, 'G3': 196.00, 'B3': 246.94,
+        'C4': 261.63, 'D4': 293.66, 'Eb4': 311.13, 'E4': 329.63,
+        'F4': 349.23, 'G4': 392.00, 'Ab4': 415.30, 'A4': 440.00,
+        'Bb4': 466.16, 'B4': 493.88, 'C5': 523.25, 'D5': 587.33,
+        'Eb5': 622.25, 'E5': 659.25, 'G5': 783.99
+      };
+
+      const trackSequences = {
+        jefferson: [
+          ['C3', 'G3', 'C4', 'E4'],
+          ['A3', 'E4', 'A4', 'C5'],
+          ['F3', 'C4', 'F4', 'A4'],
+          ['G3', 'D4', 'G4', 'B4']
+        ],
+        debussy: [
+          ['Eb4', 'G4', 'Bb4', 'Eb5'],
+          ['Ab4', 'C5', 'Eb5', 'G5'],
+          ['F4', 'Ab4', 'C5', 'Eb5'],
+          ['Bb3', 'F4', 'Bb4', 'D5']
+        ],
+        chopin: [
+          ['C4', 'Eb4', 'G4', 'C5'],
+          ['Ab3', 'Eb4', 'Ab4', 'C5'],
+          ['F3', 'C4', 'F4', 'Ab4'],
+          ['G3', 'D4', 'G4', 'B4']
+        ]
+      };
+
+      trackOptions.forEach(opt => {
+        opt.addEventListener('click', () => {
+          trackOptions.forEach(o => o.classList.remove('active'));
+          opt.classList.add('active');
+          selectedTrack = opt.getAttribute('data-track') || 'jefferson';
+        });
+      });
+
+      function playChord(chord) {
+        if (!audioCtx) return;
+        chord.forEach(n => {
+          if (!notes[n]) return;
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(notes[n], audioCtx.currentTime);
+
+          gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.12, audioCtx.currentTime + 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.8);
+
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 1.8);
+        });
+      }
+
+      function drawWaveform() {
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const w = canvas.width;
+        const h = canvas.height;
+        let phase = 0;
+
+        function render() {
+          if (!isPlaying) {
+            ctx.clearRect(0, 0, w, h);
+            ctx.strokeStyle = 'rgba(242, 234, 223, 0.4)';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(0, h / 2);
+            ctx.lineTo(w, h / 2);
+            ctx.stroke();
+            return;
+          }
+
+          ctx.clearRect(0, 0, w, h);
+          ctx.strokeStyle = '#F2EADF';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          phase += 0.08;
+
+          for (let x = 0; x < w; x++) {
+            const y = (h / 2) + Math.sin(x * 0.05 + phase) * 14 * Math.sin(phase * 0.4);
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+          requestAnimationFrame(render);
+        }
+        render();
+      }
+
+      if (playBtn) {
+        playBtn.addEventListener('click', () => {
+          if (!isPlaying) {
+            if (!audioCtx) {
+              audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+              audioCtx.resume();
+            }
+            isPlaying = true;
+            playBtn.innerText = 'Pause';
+            playBtn.classList.add('playing');
+            drawWaveform();
+
+            const seq = trackSequences[selectedTrack] || trackSequences.jefferson;
+            let step = 0;
+            playChord(seq[step]);
+            synthTimer = setInterval(() => {
+              step = (step + 1) % seq.length;
+              playChord(seq[step]);
+            }, 1400);
+          } else {
+            isPlaying = false;
+            playBtn.innerText = 'Play';
+            playBtn.classList.remove('playing');
+            if (synthTimer) clearInterval(synthTimer);
+            drawWaveform();
+          }
+        });
+      }
+      drawWaveform();
+    } catch (err) {
+      console.warn('Audio init error:', err);
+    }
+
+    // =========================================================================
+    // 6. Pinpoint Annotation & Feedback Suite  (internal review tooling)
+    // =========================================================================
+    try {
+      if (!reviewToolsEnabled()) {
+        // Remove the review UI outright so nothing ships to the live page.
+        ['annotation-dock', 'annotation-popover', 'feedback-drawer',
+         'inspector-box'].forEach(function(id) {
+          const node = document.getElementById(id);
+          if (node) node.remove();
+        });
+        document.body.classList.remove('annotation-active');
+        document.querySelectorAll('.annotation-pin-marker, [data-annotation-id]')
+          .forEach(function(node) { node.remove(); });
         return;
       }
 
-      let report = "Here is my fine-grained feedback for the Richmond Symphony Portfolio:\n\n";
-      pins.forEach(p => {
-        report += '### [#' + p.id + '] [' + p.tag + '] on <' + p.elementTag + '> "' + (p.snippet || 'Visual Element') + '"\n';
-        report += '- **Feedback**: ' + p.comment + '\n\n';
+      let pinActive = false;
+      let editActive = false;
+      let pendingEl = null;
+      let pendingTag = '';
+      let pendingText = '';
+      let selectedCategory = 'Copy';
+      let notesList = [];
+
+      try {
+        const saved = localStorage.getItem('rbm_symphony_notes');
+        if (saved) notesList = JSON.parse(saved);
+      } catch (e) {
+        notesList = [];
+      }
+
+      const pinToggle = document.getElementById('dock-pin-mode-btn');
+      const editToggle = document.getElementById('dock-live-edit-btn');
+      const drawerToggle = document.getElementById('dock-view-drawer-btn');
+      const dockCount = document.getElementById('dock-notes-count');
+
+      const inspectorBox = document.getElementById('inspector-box');
+      const inspectorBadge = document.getElementById('inspector-badge');
+
+      const popover = document.getElementById('annotation-popover');
+      const popoverText = document.getElementById('popover-target-text');
+      const popoverInput = document.getElementById('popover-comment-input');
+      const popoverSave = document.getElementById('popover-save-btn');
+      const popoverDismiss = document.getElementById('popover-dismiss-btn');
+      const popoverClose = document.getElementById('popover-close-btn');
+      const tagChips = document.querySelectorAll('.annotation-popover .tag-chip');
+
+      const drawer = document.getElementById('feedback-drawer');
+      const drawerClose = document.getElementById('drawer-close-btn');
+      const drawerCount = document.getElementById('drawer-count');
+      const drawerList = document.getElementById('drawer-items-list');
+      const copyAiBtn = document.getElementById('drawer-copy-ai-btn');
+
+      // Toggle Pin Mode
+      if (pinToggle) {
+        pinToggle.addEventListener('click', () => {
+          pinActive = !pinActive;
+          if (pinActive) {
+            if (editActive) {
+              editActive = false;
+              if (editToggle) editToggle.classList.remove('active');
+              toggleEditableElements(false);
+            }
+            pinToggle.classList.add('active');
+            document.body.classList.add('annotation-active');
+          } else {
+            pinToggle.classList.remove('active');
+            document.body.classList.remove('annotation-active');
+            if (inspectorBox) inspectorBox.style.display = 'none';
+            closePopover();
+          }
+        });
+      }
+
+      // Toggle Live Edit Mode
+      if (editToggle) {
+        editToggle.addEventListener('click', () => {
+          editActive = !editActive;
+          if (editActive) {
+            if (pinActive) {
+              pinActive = false;
+              if (pinToggle) pinToggle.classList.remove('active');
+              document.body.classList.remove('annotation-active');
+              if (inspectorBox) inspectorBox.style.display = 'none';
+              closePopover();
+            }
+            editToggle.classList.add('active');
+            toggleEditableElements(true);
+          } else {
+            editToggle.classList.remove('active');
+            toggleEditableElements(false);
+          }
+        });
+      }
+
+      function toggleEditableElements(enable) {
+        const candidates = document.querySelectorAll('h1, h2, h3, h4, p, li, strong, blockquote, .stat-num, .stat-label, .wordmark-title');
+        candidates.forEach(el => {
+          if (!el.closest('#annotation-dock') && !el.closest('#annotation-popover') && !el.closest('#feedback-drawer') && !el.closest('#passcode-gate')) {
+            el.contentEditable = enable ? 'true' : 'false';
+            el.style.outline = enable ? '1.5px dashed rgba(76, 14, 28, 0.4)' : '';
+            el.style.outlineOffset = enable ? '2px' : '';
+          }
+        });
+      }
+
+      // Tag Selection
+      tagChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          tagChips.forEach(c => c.classList.remove('selected'));
+          chip.classList.add('selected');
+          selectedCategory = chip.getAttribute('data-tag') || 'Copy';
+        });
       });
 
-      navigator.clipboard.writeText(report);
-      drawerExportBtn.innerText = '✅ Copied Structured Report!';
-      setTimeout(() => {
-        drawerExportBtn.innerText = '📋 Copy All Notes for Antigravity';
-      }, 2500);
-    });
+      // Inspector Hover Box Tracking
+      document.addEventListener('mousemove', (e) => {
+        if (!pinActive || editActive) {
+          if (inspectorBox) inspectorBox.style.display = 'none';
+          return;
+        }
+
+        const target = document.elementFromPoint(e.clientX, e.clientY);
+        if (!target || target.closest('#annotation-dock') || target.closest('#annotation-popover') || target.closest('#feedback-drawer') || target.closest('#inspector-box') || target.closest('#passcode-gate') || target.closest('.annotation-element-badge')) {
+          if (inspectorBox) inspectorBox.style.display = 'none';
+          return;
+        }
+
+        const rect = target.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+
+        if (inspectorBox) {
+          inspectorBox.style.top = rect.top + 'px';
+          inspectorBox.style.left = rect.left + 'px';
+          inspectorBox.style.width = rect.width + 'px';
+          inspectorBox.style.height = rect.height + 'px';
+          inspectorBox.style.display = 'block';
+
+          const tag = target.tagName.toLowerCase();
+          const snippet = target.innerText ? target.innerText.trim().substring(0, 24) : '';
+          if (inspectorBadge) {
+            inspectorBadge.innerText = `<${tag}> ${snippet ? `"${snippet}..."` : ''}`;
+          }
+        }
+      });
+
+      // Click to Target and Open Popover
+      document.addEventListener('click', (e) => {
+        if (!pinActive || editActive) return;
+        if (e.target.closest('#annotation-dock') || e.target.closest('#annotation-popover') || e.target.closest('#feedback-drawer') || e.target.closest('.annotation-element-badge') || e.target.closest('#passcode-gate')) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        pendingEl = e.target;
+        const text = pendingEl.innerText ? pendingEl.innerText.trim() : (pendingEl.getAttribute('alt') || pendingEl.getAttribute('title') || '');
+        pendingTag = pendingEl.tagName.toLowerCase();
+        pendingText = text.length > 75 ? text.substring(0, 72) + '...' : (text || `<${pendingTag}> element`);
+
+        if (popoverText) {
+          popoverText.innerHTML = `<strong>&lt;${pendingTag}&gt;</strong> "${pendingText}"`;
+        }
+        if (popoverInput) {
+          popoverInput.value = '';
+        }
+
+        const rect = pendingEl.getBoundingClientRect();
+        if (popover) {
+          const popoverWidth = 330;
+          const popoverHeight = 240;
+          let topPos = rect.bottom + 8;
+          let leftPos = Math.max(16, Math.min(window.innerWidth - popoverWidth - 16, rect.left));
+
+          if (topPos + popoverHeight > window.innerHeight) {
+            topPos = Math.max(16, rect.top - popoverHeight - 8);
+          }
+
+          popover.style.top = topPos + 'px';
+          popover.style.left = leftPos + 'px';
+          popover.style.display = 'block';
+
+          setTimeout(() => { if (popoverInput) popoverInput.focus(); }, 50);
+        }
+      });
+
+      // Save Annotation Note
+      function saveNote() {
+        const comment = popoverInput ? popoverInput.value.trim() : '';
+        if (!comment) return;
+
+        const num = notesList.length + 1;
+        const noteId = 'note-' + Date.now();
+
+        if (pendingEl) {
+          pendingEl.classList.add('annotation-target-active');
+          pendingEl.setAttribute('data-annotation-id', noteId);
+
+          const badge = document.createElement('span');
+          badge.className = 'annotation-element-badge';
+          badge.innerText = num;
+          badge.title = `[${selectedCategory}] ${comment}`;
+          badge.setAttribute('data-badge-id', noteId);
+          badge.addEventListener('click', (ev) => {
+            ev.stopPropagation();
+            window.openFeedbackDrawer();
+          });
+          pendingEl.appendChild(badge);
+        }
+
+        const newNote = {
+          id: num,
+          noteId: noteId,
+          tag: pendingTag,
+          category: selectedCategory,
+          targetText: pendingText,
+          comment: comment,
+          createdAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        };
+
+        notesList.push(newNote);
+        try {
+          localStorage.setItem('rbm_symphony_notes', JSON.stringify(notesList));
+        } catch (e) {}
+
+        closePopover();
+        updateDrawer();
+      }
+
+      function closePopover() {
+        if (popover) popover.style.display = 'none';
+        pendingEl = null;
+      }
+
+      if (popoverSave) popoverSave.addEventListener('click', saveNote);
+      if (popoverDismiss) popoverDismiss.addEventListener('click', closePopover);
+      if (popoverClose) popoverClose.addEventListener('click', closePopover);
+
+      // Keyboard Shortcuts
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          if (popover && popover.style.display === 'block') closePopover();
+          if (drawer && (drawer.style.display === 'flex' || drawer.classList.contains('open'))) window.closeFeedbackDrawer();
+          if (pinActive) {
+            pinActive = false;
+            if (pinToggle) pinToggle.classList.remove('active');
+            document.body.classList.remove('annotation-active');
+            if (inspectorBox) inspectorBox.style.display = 'none';
+          }
+        }
+        if ((e.key === 'Enter' && e.ctrlKey) || (e.key === 'Enter' && !e.shiftKey && document.activeElement === popoverInput)) {
+          if (popover && popover.style.display === 'block') {
+            e.preventDefault();
+            saveNote();
+          }
+        }
+      });
+
+      // Update Drawer UI
+      function updateDrawer() {
+        if (dockCount) dockCount.innerText = notesList.length;
+        if (drawerCount) drawerCount.innerText = notesList.length;
+
+        if (!drawerList) return;
+        if (notesList.length === 0) {
+          drawerList.innerHTML = '<p style="color:var(--muted);font-size:13px;font-style:italic;">No feedback pinned yet. Turn on "Pin Feedback" and click any headline, paragraph, card, or button.</p>';
+          return;
+        }
+
+        drawerList.innerHTML = notesList.map(n => `
+          <div class="drawer-item" id="drawer-item-${n.noteId}" style="margin-bottom:12px; padding:12px; border:1px solid var(--line); border-radius:6px; background:var(--paper); color:var(--ink);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="font-family:var(--mono); font-size:11px; font-weight:800; color:var(--maroon);">#${n.id} · ${n.category} (${n.createdAt})</span>
+              <div style="display:flex; gap:6px;">
+                <button onclick="window.jumpToAnnotatedElement('${n.noteId}')" style="background:var(--navy); color:white; border:none; border-radius:4px; padding:3px 8px; font-size:10px; cursor:pointer; font-weight:700;">Jump</button>
+                <button onclick="window.deleteAnnotationNote('${n.noteId}')" style="background:var(--cream); color:var(--maroon); border:1px solid var(--line); border-radius:4px; padding:3px 8px; font-size:10px; cursor:pointer; font-weight:700;">✕</button>
+              </div>
+            </div>
+            <div style="font-size:11px; color:var(--muted); margin-bottom:6px;">Target: <em>&lt;${n.tag}&gt; "${n.targetText}"</em></div>
+            <p style="font-size:12.5px; line-height:1.45; margin:0;">${n.comment}</p>
+          </div>
+        `).join('');
+      }
+
+      window.refreshFeedbackDrawerUI = updateDrawer;
+
+      // Global helper for jumping to element
+      window.jumpToAnnotatedElement = function(noteId) {
+        const el = document.querySelector(`[data-annotation-id="${noteId}"]`);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          el.classList.remove('annotation-spotlight-pulse');
+          void el.offsetWidth;
+          el.classList.add('annotation-spotlight-pulse');
+        }
+      };
+
+      // Global helper for deleting note
+      window.deleteAnnotationNote = function(noteId) {
+        notesList = notesList.filter(n => n.noteId !== noteId);
+        try {
+          localStorage.setItem('rbm_symphony_notes', JSON.stringify(notesList));
+        } catch (e) {}
+        const badge = document.querySelector(`[data-badge-id="${noteId}"]`);
+        if (badge) badge.remove();
+        updateDrawer();
+      };
+
+      updateDrawer();
+
+      // Function to completely reset all notes and element badges
+      function resetAllNotes() {
+        document.querySelectorAll('.annotation-element-badge').forEach(b => b.remove());
+        document.querySelectorAll('.annotation-target-active').forEach(el => {
+          el.classList.remove('annotation-target-active');
+          el.removeAttribute('data-annotation-id');
+        });
+        notesList = [];
+        try {
+          localStorage.removeItem('rbm_symphony_notes');
+        } catch (e) {}
+        updateDrawer();
+      }
+
+      // Universal Clipboard Copy with Fallback
+      function copyToClipboard(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+          return navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+        } else {
+          return fallbackCopy(text);
+        }
+      }
+
+      function fallbackCopy(text) {
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          ta.style.top = '-9999px';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          document.execCommand('copy');
+          ta.remove();
+          return Promise.resolve();
+        } catch (e) {
+          return Promise.resolve(); // Continue reset even if clipboard is restricted
+        }
+      }
+
+      // Expose executeCopyAndReset globally
+      window.executeCopyAndReset = function() {
+        if (notesList.length === 0) {
+          alert('No notes pinned yet! Click "Pin Feedback" to add critique.');
+          return;
+        }
+        let prompt = "### Review Notes for Richmond Symphony Portfolio Refinements\n\n";
+        notesList.forEach(n => {
+          prompt += `**[#${n.id}] [${n.category}] on <${n.tag}> "${n.targetText}"**\n`;
+          prompt += `- **Feedback/Revision**: ${n.comment}\n\n`;
+        });
+        
+        copyToClipboard(prompt);
+        if (copyAiBtn) {
+          copyAiBtn.innerText = 'Copied & Reset! ✓';
+          copyAiBtn.style.background = 'var(--maroon)';
+          copyAiBtn.style.color = 'var(--cream)';
+          setTimeout(() => { 
+            copyAiBtn.innerText = 'Copy All Notes for Antigravity';
+            copyAiBtn.style.background = '';
+            copyAiBtn.style.color = '';
+          }, 2400);
+        }
+        resetAllNotes();
+      };
+
+      // Copy handler is bound via onclick="window.copyAllNotesAndReset(event)"
+      // in HTML, which calls window.executeCopyAndReset() above.
+      // No duplicate addEventListener needed.
+    } catch (err) {
+      console.warn('Annotation suite init error:', err);
+    }
   }
-});
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSuite);
+  } else {
+    initSuite();
+  }
+})();

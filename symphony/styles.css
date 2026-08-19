@@ -376,12 +376,20 @@ img {
   flex-direction: column;
 }
 
+/* Fixed two-line lockup: the name previously broke after the comma
+   ("Randy Bryan Moore," / "MSW") and split to 4 lines on mobile. */
 .wordmark-title {
   font-family: var(--serif);
   font-size: 1.15rem;
   font-weight: 600;
   line-height: 1.15;
   color: var(--cream);
+  display: flex;
+  flex-direction: column;
+}
+
+.wordmark-title > span {
+  white-space: nowrap;
 }
 
 .wordmark-sub {
@@ -483,7 +491,7 @@ img {
 
 .home-hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  grid-template-columns: minmax(0, 1.05fr) minmax(420px, 0.95fr);
   min-height: calc(100svh - var(--nav-h));
 }
 
@@ -498,11 +506,11 @@ img {
 }
 
 .home-hero h1 {
-  margin-bottom: 24px;
-  font-size: clamp(52px, 7.5vw, 110px);
+  margin-bottom: 20px;
+  font-size: clamp(36px, 4.8vw, 68px);
   font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 0.98;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
   color: var(--cream);
 }
 
@@ -532,9 +540,9 @@ img {
 }
 
 .hero-deck {
-  max-width: 640px;
-  font-size: clamp(18px, 1.8vw, 24px);
-  line-height: 1.48;
+  max-width: 620px;
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: 1.55;
   color: rgba(242, 234, 223, 0.92);
   margin-bottom: 28px;
 }
@@ -624,34 +632,55 @@ img {
 
 .candidate-profile-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--line-light);
-  padding-bottom: 18px;
-  margin-bottom: 18px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 22px;
+  border-bottom: 1.5px solid var(--line-light);
+  padding-bottom: 28px;
+  margin-bottom: 26px;
+  min-width: 0;
 }
 
 .candidate-avatar-wrap {
-  display: flex;
-  gap: 14px;
-  align-items: center;
+  display: block;
+  min-width: 0;
 }
 
 .candidate-avatar {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  border: 2px solid var(--cream);
+  width: 100%;
+  height: clamp(260px, 24vw, 360px);
+  border-radius: 14px;
+  border: 4px solid var(--cream);
   object-fit: cover;
+  object-position: center 22%;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+  background: var(--navy);
+  display: block;
+}
+
+/* Name/role sit beside the QR beneath the portrait so the large
+   scannable QR never overlaps the candidate name. */
+.candidate-identity-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-width: 0;
+}
+
+.candidate-identity {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .candidate-name {
   font-family: var(--serif);
-  font-size: 1.35rem;
-  font-weight: 600;
+  font-size: clamp(1.4rem, 2vw, 2.1rem);
+  font-weight: 700;
   color: var(--cream);
-  line-height: 1.1;
-  margin-bottom: 3px;
+  line-height: 1.15;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
 }
 
 .candidate-target-role {
@@ -670,6 +699,21 @@ img {
   border-radius: 4px;
   border: 1px solid var(--line);
   text-align: center;
+  flex: 0 0 auto;
+  align-self: center;
+}
+
+/* Below ~560px the QR would squeeze the name into 3 lines, so stack them. */
+@media (max-width: 560px) {
+  .candidate-identity-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .candidate-qr-frame {
+    align-self: flex-start;
+  }
 }
 
 .candidate-qr-caption {
@@ -692,23 +736,25 @@ img {
 .pillar-item {
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(242, 234, 223, 0.2);
-  border-left: 3px solid var(--maroon);
-  padding: 12px 14px;
-  border-radius: 4px;
+  border-left: 3.5px solid var(--maroon);
+  padding: 14px 16px;
+  border-radius: 6px;
 }
 
 .pillar-item strong {
   display: block;
-  font-size: 13.5px;
+  font-size: 15px;
+  font-weight: 700;
   color: var(--cream);
-  margin-bottom: 2px;
+  margin-bottom: 4px;
+  line-height: 1.25;
 }
 
 .pillar-item span {
   display: block;
-  font-size: 12px;
-  color: rgba(242, 234, 223, 0.8);
-  line-height: 1.4;
+  font-size: 13.5px;
+  color: rgba(242, 234, 223, 0.88);
+  line-height: 1.48;
 }
 
 .candidate-quick-contact {
@@ -804,14 +850,19 @@ img {
   overflow: hidden;
 }
 
+/* Tabs wrap instead of scrolling so every case study stays visible;
+   a horizontally scrolled tab could hide a case study from reviewers. */
 .tab-nav {
   display: flex;
+  flex-wrap: wrap;
   background: rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid rgba(242, 234, 223, 0.2);
-  overflow-x: auto;
 }
 
 .tab-btn {
+  flex: 1 1 auto;
+  justify-content: center;
+  text-align: center;
   padding: 16px 22px;
   font-family: var(--sans);
   font-size: 13px;
@@ -1144,6 +1195,11 @@ img {
   text-decoration: none;
   text-transform: uppercase;
   color: var(--maroon);
+  /* Inline link was 14px tall; pad it to an accessible tap target. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 4px 2px;
 }
 
 /* Alignment Matrix Table */
@@ -1524,20 +1580,21 @@ body.annotation-active {
 
 /* Floating Dock */
 .annotation-dock {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: var(--navy);
-  color: var(--cream);
-  border: 1.5px solid rgba(242, 234, 223, 0.5);
-  border-radius: 999px;
-  padding: 6px 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: var(--shadow);
-  z-index: 999999;
-  user-select: none;
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  background: #0D1A32 !important;
+  color: #F2EADF !important;
+  border: 2px solid #F2EADF !important;
+  border-radius: 999px !important;
+  padding: 8px 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(242, 234, 223, 0.25) !important;
+  z-index: 2147483647 !important;
+  user-select: none !important;
+  backdrop-filter: blur(8px) !important;
 }
 
 .dock-btn {
@@ -1579,15 +1636,16 @@ body.annotation-active {
 
 /* Floating Popover */
 .annotation-popover {
-  position: fixed;
-  background: var(--paper);
-  color: var(--ink);
-  border: 2px solid var(--maroon);
-  border-radius: 8px;
-  padding: 18px 20px;
-  width: 330px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
-  z-index: 1000000;
+  position: fixed !important;
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  border: 2.5px solid var(--maroon) !important;
+  border-radius: 10px !important;
+  padding: 18px 20px !important;
+  width: 330px !important;
+  max-width: calc(100vw - 32px) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+  z-index: 2147483647 !important;
   display: none;
 }
 
@@ -1702,20 +1760,25 @@ body.annotation-active {
 
 /* Feedback Drawer */
 .feedback-drawer {
-  position: fixed;
-  bottom: 84px;
-  right: 24px;
-  width: 380px;
-  max-height: 520px;
-  background: var(--paper);
-  color: var(--ink);
-  border: 2px solid var(--maroon);
-  border-radius: 8px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  position: fixed !important;
+  bottom: 84px !important;
+  right: 24px !important;
+  width: 380px !important;
+  max-width: calc(100vw - 32px) !important;
+  max-height: min(560px, 75vh) !important;
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  border: 2.5px solid var(--maroon) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6) !important;
   display: none;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 999998;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  z-index: 2147483647 !important;
+}
+
+.feedback-drawer.open {
+  display: flex !important;
 }
 
 .drawer-header {
@@ -1991,12 +2054,22 @@ body.annotation-active {
   }
 
   .annotation-dock {
-    bottom: 12px;
-    right: 12px;
-    left: 12px;
-    padding: 4px 8px;
-    justify-content: space-around;
-  }
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  background: #0D1A32 !important;
+  color: #F2EADF !important;
+  border: 2px solid #F2EADF !important;
+  border-radius: 999px !important;
+  padding: 8px 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(242, 234, 223, 0.25) !important;
+  z-index: 2147483647 !important;
+  user-select: none !important;
+  backdrop-filter: blur(8px) !important;
+}
 
   .dock-btn {
     padding: 8px 10px;
@@ -2018,5 +2091,28 @@ body.annotation-active {
     width: 44px;
     height: 52px;
     font-size: 1.5rem;
+  }
+}
+
+/* Responsive Mobile Floating Dock */
+@media (max-width: 768px) {
+  .annotation-dock {
+    bottom: max(16px, env(safe-area-inset-bottom, 16px)) !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: auto !important;
+    max-width: calc(100vw - 24px) !important;
+    padding: 6px 12px !important;
+    gap: 6px !important;
+  }
+  .dock-btn {
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+    letter-spacing: 0.02em !important;
+  }
+  .dock-badge {
+    font-size: 9px !important;
+    padding: 1px 5px !important;
   }
 }
