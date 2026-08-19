@@ -15,9 +15,12 @@
      Layer 1 (panels and cards sitting on it) is the mid shade.
      Layer 2 (anything resting on a panel) is the lightest.
      Same rule for both hues. */
-  --blue-l1:       #0d1a32;   /* L1 -- furthest back, behind the sections */
-  --blue-l2:       #182b4d;   /* L2 -- section grounds, the MAIN blue */
-  --blue-l3:       #243d6b;   /* L3 -- everything resting on top */
+  /* #243d6b is THE blue -- section grounds, panels, cards and insets all
+     carry it, so it is what you see everywhere. Only the layer sitting
+     behind the sections goes darker, to give the page a floor. */
+  --blue-l1:       #182b4d;   /* behind the sections only */
+  --blue-l2:       #243d6b;   /* MAIN -- section grounds */
+  --blue-l3:       #243d6b;   /* MAIN -- panels, cards, insets */
 
   /* aliases so existing rules keep resolving */
   --blue-base:     var(--blue-l1);
@@ -840,8 +843,13 @@ img {
   color: var(--cream);
 }
 
+/* On the red roadmap cards the tag needs a cream chip -- a red chip on a
+   red card is invisible now that the red has no lighter tier. */
 #roadmap .card-editorial .lifecycle-stage__tag {
-  background: var(--red) !important;
+  background: var(--cream) !important;
+  color: var(--red) !important;
+  padding: 3px 9px !important;
+  border-radius: 4px !important;
 }
 
 .card-editorial:hover {
@@ -1397,8 +1405,9 @@ img {
 }
 
 .footer-contact-box {
-  background: var(--red);
-  border: 1px solid rgba(242, 234, 223, 0.2);
+  /* Same red as the footer behind it, so it separates by rule, not by fill. */
+  background: transparent;
+  border: 1px solid rgba(242, 234, 223, 0.45);
   padding: 20px;
   margin-bottom: 28px;
   display: grid;
