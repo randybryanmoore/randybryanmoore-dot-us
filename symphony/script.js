@@ -168,7 +168,7 @@ window.reviewToolsEnabled = reviewToolsEnabled;
       // The QR is scanned from a phone, so it must never encode a file:// or
       // localhost URL -- those are unreachable off this machine. Only trust
       // location.href when the page is actually served from a public host.
-      const CANONICAL_URL = 'https://randybryanmoore.us/symphony/';
+      const CANONICAL_URL = 'https://symphony.randybryanmoore.us/';
       const loc = window.location;
       const isPubliclyServed = (loc.protocol === 'http:' || loc.protocol === 'https:') &&
         !/^(localhost|127\.0\.0\.1|\[::1\]|0\.0\.0\.0)$/.test(loc.hostname);
