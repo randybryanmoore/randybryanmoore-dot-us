@@ -1941,6 +1941,16 @@ body.annotation-active {
 }
 
 /* Responsive Breakpoints & Mobile Optimization */
+/* Between the mobile breakpoint and roughly 1250px the wordmark column is
+   squeezed to ~115px, wrapping "Richmond Symphony · Candidate" onto three
+   lines. Drop the subtitle across that whole range; the two-line name still
+   identifies the page. */
+@media (max-width: 1250px) {
+  .wordmark-sub {
+    display: none;
+  }
+}
+
 @media (max-width: 960px) {
   .grid-3,
   .tab-grid,
