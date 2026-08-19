@@ -15,12 +15,11 @@
      Layer 1 (panels and cards sitting on it) is the mid shade.
      Layer 2 (anything resting on a panel) is the lightest.
      Same rule for both hues. */
-  /* #182b4d is THE blue -- the deep one. Section grounds, panels, cards and
-     insets all carry it, so it is the blue you see the most of. Only the
-     thin layer behind the sections goes darker, to give the page a floor. */
-  --blue-l1:       #0d1a32;   /* behind the sections only */
-  --blue-l2:       #182b4d;   /* MAIN -- section grounds */
-  --blue-l3:       #182b4d;   /* MAIN -- panels, cards, insets */
+  /* #0d1a32 is THE blue. Every blue surface carries it -- grounds, panels,
+     cards, insets and the layer behind the sections. One value, no tiers. */
+  --blue-l1:       #0d1a32;   /* MAIN -- behind the sections */
+  --blue-l2:       #0d1a32;   /* MAIN -- section grounds */
+  --blue-l3:       #0d1a32;   /* MAIN -- panels, cards, insets */
 
   /* aliases so existing rules keep resolving */
   --blue-base:     var(--blue-l1);
