@@ -10,14 +10,15 @@
   --navy:          #182b4d;
   --navy-deep:     #0d1a32;
   --navy-light:    #243d6b;
-  /* The signature blue, used as the ground for navy sections. */
-  --navy-ground:   #19253c;
-  /* Panels and cards lift off that ground in the lighter navy. */
+  /* ONE blue across the whole site: grounds, panels, cards, buttons.
+     Both tokens resolve to --navy so nothing can drift out of step. */
+  --navy-ground:   #182b4d;
   --block-fill:    #182b4d;
-  --maroon:        #4c0e1c;
-  /* Red accent for use ON the dark blue ground, where --maroon disappears. */
-  --red-accent:    #d4506a;
-  --maroon-deep:   #2b0710;
+  /* ONE red across the site: header band, buttons, chapter strip, roadmap
+     cards and the MSW accent all resolve here. */
+  --maroon:        #A31D33;
+  --red-accent:    #A31D33;
+  --maroon-deep:   #6E1322;
   --cream:         #f2eadf;
   --paper:         #fbf6ed;
   --paper-deep:    #e8ddcc;
@@ -916,7 +917,7 @@ img {
 
 .tab-btn.active {
   color: var(--cream);
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--block-fill);
   border-bottom-color: var(--cream);
 }
 
@@ -955,7 +956,7 @@ img {
 }
 
 .tab-stats-box {
-  background: rgba(0, 0, 0, 0.25);
+  background: var(--navy-deep);
   border: 1px solid rgba(242, 234, 223, 0.2);
   padding: 24px;
   display: grid;
@@ -1090,7 +1091,7 @@ img {
 }
 
 .player-console {
-  background: rgba(0, 0, 0, 0.35);
+  background: var(--navy-deep);
   border: 1px solid rgba(242, 234, 223, 0.2);
   padding: 24px;
 }
@@ -1107,14 +1108,14 @@ img {
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
-  background: var(--block-fill);
+  background: var(--navy-deep);
   border: 1px solid rgba(242, 234, 223, 0.2);
   cursor: pointer;
   transition: all 160ms ease;
 }
 
 .track-option:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--block-fill);
   border-color: var(--cream);
 }
 
@@ -1168,7 +1169,7 @@ img {
 .waveform-canvas-box {
   flex-grow: 1;
   height: 52px;
-  background: rgba(0, 0, 0, 0.4);
+  background: var(--navy-deep);
   border: 1px solid rgba(242, 234, 223, 0.2);
   display: flex;
   align-items: center;
