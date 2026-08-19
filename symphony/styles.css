@@ -2131,9 +2131,9 @@ body.annotation-active {
 
 
 /* =======================================================================
-   Build Badge -- which agent last worked the page, and what version.
-   Shares the data-review-tools switch, so it never ships to the live
-   dossier. Edit the letter and version in index.html.
+   Build Watermark -- which agent last worked the page, the version and
+   the date. Always visible, including on the published dossier. Edit the
+   letter, version and date in index.html.
    ======================================================================= */
 .build-badge {
   position: fixed;
@@ -2175,6 +2175,16 @@ body.annotation-active {
   opacity: 0.9;
 }
 
+.build-badge-date {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  opacity: 0.62;
+  padding-left: 7px;
+  border-left: 1px solid rgba(242, 234, 223, 0.28);
+}
+
 @media (max-width: 768px) {
   .build-badge {
     top: auto;
@@ -2182,4 +2192,18 @@ body.annotation-active {
     left: 12px;
     right: auto;
   }
+}
+
+
+/* Spotify artist player under the 1,000 Songs block */
+.spotify-embed-wrap {
+  margin-top: 32px;
+}
+
+.spotify-embed-wrap iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.25);
 }

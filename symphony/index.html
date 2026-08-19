@@ -58,17 +58,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1787099494">
+  <link rel="stylesheet" href="styles.css?v=1787099854">
 </head>
 <!-- Review tooling switch: set data-review-tools="off" before going live to
      strip the pin-feedback dock, live edit, inspector and notes drawer. -->
-<body data-review-tools="off">
-  <!-- Build badge: which agent last worked this page, and the version.
-       Claude sets C; set A when Antigravity works it. Bump the version on
-       each substantive pass. Hidden automatically when review tools are off. -->
+<body data-review-tools="on">
+  <!-- Build watermark: which agent last worked this page, the version and
+       the date. Claude sets C; set A when Antigravity works it. Bump the
+       version and date on each substantive pass. Always visible -- it is
+       independent of the review-tools switch. -->
   <div class="build-badge" id="build-badge" aria-hidden="true">
     <span class="build-badge-agent">C</span>
-    <span class="build-badge-version">v1.5.0</span>
+    <span class="build-badge-version">v1.5.1</span>
+    <span class="build-badge-date">2026-08-18</span>
   </div>
 
   <!-- Confidential Passcode Gate (PIN: 0000) -->
@@ -848,6 +850,17 @@
             </div>
           </article>
         </div>
+
+        <!-- Spotify artist player -->
+        <div class="spotify-embed-wrap">
+          <p class="kicker kicker-light" style="margin-bottom: 12px;">Original Music · Spotify</p>
+          <iframe
+            src="https://open.spotify.com/embed/artist/0zaqvfVeDQZJ1q70foOsRs?utm_source=generator&amp;theme=0"
+            title="Randy Bryan on Spotify"
+            width="100%" height="352" frameborder="0" loading="lazy"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
       </div>
     </div>
   </section>
@@ -957,6 +970,6 @@
 
   <!-- Unified Inlined Suite Script -->
   
-  <script src="script.js?v=1787099494"></script>
+  <script src="script.js?v=1787099854"></script>
 </body>
 </html>

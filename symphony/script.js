@@ -353,7 +353,7 @@ window.reviewToolsEnabled = reviewToolsEnabled;
       if (!reviewToolsEnabled()) {
         // Remove the review UI outright so nothing ships to the live page.
         ['annotation-dock', 'annotation-popover', 'feedback-drawer',
-         'inspector-box', 'build-badge'].forEach(function(id) {
+         'inspector-box'].forEach(function(id) {
           const node = document.getElementById(id);
           if (node) node.remove();
         });
