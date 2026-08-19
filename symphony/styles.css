@@ -744,7 +744,8 @@ img {
 }
 
 .pillar-item {
-  background: var(--block-fill);
+  /* Dark blue insets inside the candidate card. */
+  background: var(--navy-deep);
   border: 1px solid rgba(242, 234, 223, 0.2);
   border-left: 3.5px solid var(--maroon);
   padding: 14px 16px;
