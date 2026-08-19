@@ -10,15 +10,28 @@
   --navy:          #182b4d;
   --navy-deep:     #0d1a32;
   --navy-light:    #243d6b;
-  /* ONE blue across the whole site: grounds, panels, cards, buttons.
-     Both tokens resolve to --navy so nothing can drift out of step. */
-  --navy-ground:   #182b4d;
-  --block-fill:    #182b4d;
+  /* ELEVATION SCALE -- depth reads through lightness.
+     Layer 0 (furthest back, the page/section ground) is darkest.
+     Layer 1 (panels and cards sitting on it) is the mid shade.
+     Layer 2 (anything resting on a panel) is the lightest.
+     Same rule for both hues. */
+  --blue-base:     #0d1a32;   /* furthest back -- behind the sections */
+  --blue-back:     #182b4d;   /* MAIN blue -- the section grounds */
+  --blue-mid:      #243d6b;   /* panels and cards resting on it */
+  --blue-top:      #2e4a7d;   /* anything resting on a panel */
+
+  --red-back:      #6E1322;
+  --red-mid:       #A31D33;
+  --red-top:       #C9455C;
+
+  /* aliases kept so existing rules keep resolving */
+  --navy-ground:   var(--blue-back);
+  --block-fill:    var(--blue-mid);
   /* ONE red across the site: header band, buttons, chapter strip, roadmap
      cards and the MSW accent all resolve here. */
-  --maroon:        #A31D33;
-  --red-accent:    #A31D33;
-  --maroon-deep:   #6E1322;
+  --maroon:        var(--red-mid);
+  --red-accent:    var(--red-mid);
+  --maroon-deep:   var(--red-back);
   --cream:         #f2eadf;
   --paper:         #fbf6ed;
   --paper-deep:    #e8ddcc;
@@ -620,7 +633,7 @@ img {
 
 /* Hero Showcase Card / Sidebar */
 .home-hero-card-col {
-  background: var(--navy-deep);
+  background: var(--blue-base);
   border-left: 1px solid var(--line-light);
   padding: clamp(40px, 5vw, 60px) clamp(24px, 4vw, 48px);
   display: flex;
@@ -746,7 +759,7 @@ img {
 
 .pillar-item {
   /* Dark blue insets inside the candidate card. */
-  background: var(--navy-deep);
+  background: var(--blue-top);
   border: 1px solid rgba(242, 234, 223, 0.2);
   border-left: 3.5px solid var(--maroon);
   padding: 14px 16px;
@@ -917,7 +930,7 @@ img {
 
 .tab-btn.active {
   color: var(--cream);
-  background: var(--block-fill);
+  background: var(--blue-top);
   border-bottom-color: var(--cream);
 }
 
@@ -956,7 +969,7 @@ img {
 }
 
 .tab-stats-box {
-  background: var(--navy-deep);
+  background: var(--blue-top);
   border: 1px solid rgba(242, 234, 223, 0.2);
   padding: 24px;
   display: grid;
@@ -1091,7 +1104,7 @@ img {
 }
 
 .player-console {
-  background: var(--navy-deep);
+  background: var(--blue-top);
   border: 1px solid rgba(242, 234, 223, 0.2);
   padding: 24px;
 }
@@ -1108,7 +1121,7 @@ img {
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
-  background: var(--navy-deep);
+  background: var(--blue-top);
   border: 1px solid rgba(242, 234, 223, 0.2);
   cursor: pointer;
   transition: all 160ms ease;
@@ -1169,7 +1182,7 @@ img {
 .waveform-canvas-box {
   flex-grow: 1;
   height: 52px;
-  background: var(--navy-deep);
+  background: var(--blue-top);
   border: 1px solid rgba(242, 234, 223, 0.2);
   display: flex;
   align-items: center;
