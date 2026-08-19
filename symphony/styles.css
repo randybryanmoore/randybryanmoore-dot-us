@@ -14,33 +14,35 @@
      Layer 0 (furthest back, the page/section ground) is darkest.
      Layer 1 (panels and cards sitting on it) is the mid shade.
      Layer 2 (anything resting on a panel) is the lightest.
-     Same rule for both hues. */
-  /* #0d1a32 is THE blue. Every blue surface carries it -- grounds, panels,
-     cards, insets and the layer behind the sections. One value, no tiers. */
-  --blue-l1:       #0d1a32;   /* MAIN -- behind the sections */
-  --blue-l2:       #0d1a32;   /* MAIN -- section grounds */
-  --blue-l3:       #0d1a32;   /* MAIN -- panels, cards, insets */
+  /* BLUE -- your deepest navy is the dominant ground; each layer forward
+     steps lighter, so depth reads without introducing a second colour. */
+  --blue-l1:       #0d1a32;   /* MAIN -- section grounds, the blue you see most */
+  --blue-l2:       #182b4d;   /* panels and cards resting on it */
+  --blue-l3:       #243d6b;   /* insets resting on a panel */
 
   /* aliases so existing rules keep resolving */
-  --blue-base:     var(--blue-l1);
-  --blue-back:     var(--blue-l2);
-  --blue-mid:      var(--blue-l3);
-  --blue-top:      var(--blue-l3);
+  --blue-base:     var(--blue-l1);   /* behind the sections */
+  --blue-back:     var(--blue-l1);   /* section grounds */
+  --blue-mid:      var(--blue-l2);   /* panels and cards */
+  --blue-top:      var(--blue-l3);   /* insets on a panel */
 
-  /* ONE red across the entire site -- the darkest. No tiers. */
-  --red:           #2b0710;
-  --red-back:      var(--red);
-  --red-mid:       var(--red);
-  --red-top:       var(--red);
+  /* RED -- one value only, the footer red. Every red surface carries it. */
+  --red-1:         #2b0710;   /* the only red in the artifact */
+  --red-2:         var(--red-1);
+  --red-3:         var(--red-1);
+  --red:           var(--red-1);
+  --red-back:      var(--red-1);
+  --red-mid:       var(--red-2);
+  --red-top:       var(--red-3);
 
   /* aliases kept so existing rules keep resolving */
   --navy-ground:   var(--blue-back);
   --block-fill:    var(--blue-mid);
   /* ONE red across the site: header band, buttons, chapter strip, roadmap
      cards and the MSW accent all resolve here. */
-  --maroon:        var(--red-mid);
-  --red-accent:    var(--red-mid);
-  --maroon-deep:   var(--red-back);
+  --maroon:        var(--red-3);
+  --red-accent:    var(--red-3);
+  --maroon-deep:   var(--red-1);
   --cream:         #f2eadf;
   --paper:         #fbf6ed;
   --paper-deep:    #e8ddcc;
