@@ -795,6 +795,18 @@ img {
   color: var(--cream);
 }
 
+/* Roadmap cards carry the maroon accent instead of the translucent
+   white fill, so the 30-60-90 plan reads as its own movement. */
+#roadmap .card-editorial {
+  background: var(--maroon);
+  border-color: rgba(242, 234, 223, 0.28);
+  color: var(--cream);
+}
+
+#roadmap .card-editorial .lifecycle-stage__tag {
+  background: rgba(242, 234, 223, 0.2) !important;
+}
+
 .card-editorial:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow);
@@ -2114,5 +2126,60 @@ body.annotation-active {
   .dock-badge {
     font-size: 9px !important;
     padding: 1px 5px !important;
+  }
+}
+
+
+/* =======================================================================
+   Build Badge -- which agent last worked the page, and what version.
+   Shares the data-review-tools switch, so it never ships to the live
+   dossier. Edit the letter and version in index.html.
+   ======================================================================= */
+.build-badge {
+  position: fixed;
+  top: calc(var(--nav-h) + 10px);
+  right: 14px;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 10px 5px 5px;
+  border-radius: 999px;
+  background: rgba(13, 26, 50, 0.88);
+  border: 1px solid rgba(242, 234, 223, 0.28);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  font-family: var(--mono);
+  pointer-events: none;
+  user-select: none;
+}
+
+.build-badge-agent {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.build-badge-version {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--cream);
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .build-badge {
+    top: auto;
+    bottom: 12px;
+    left: 12px;
+    right: auto;
   }
 }
