@@ -27,8 +27,8 @@
   --blue-mid:      var(--blue-l3);
   --blue-top:      var(--blue-l3);
 
-  /* ONE red across the entire site. No tiers. */
-  --red:           #6E1322;
+  /* ONE red across the entire site -- the darkest. No tiers. */
+  --red:           #2b0710;
   --red-back:      var(--red);
   --red-mid:       var(--red);
   --red-top:       var(--red);
