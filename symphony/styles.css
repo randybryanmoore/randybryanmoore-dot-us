@@ -15,14 +15,21 @@
      Layer 1 (panels and cards sitting on it) is the mid shade.
      Layer 2 (anything resting on a panel) is the lightest.
      Same rule for both hues. */
-  --blue-base:     #0d1a32;   /* furthest back -- behind the sections */
-  --blue-back:     #182b4d;   /* MAIN blue -- the section grounds */
-  --blue-mid:      #243d6b;   /* panels and cards resting on it */
-  --blue-top:      #2e4a7d;   /* anything resting on a panel */
+  --blue-l1:       #0d1a32;   /* L1 -- furthest back, behind the sections */
+  --blue-l2:       #182b4d;   /* L2 -- section grounds, the MAIN blue */
+  --blue-l3:       #243d6b;   /* L3 -- everything resting on top */
 
-  --red-back:      #6E1322;
-  --red-mid:       #A31D33;
-  --red-top:       #C9455C;
+  /* aliases so existing rules keep resolving */
+  --blue-base:     var(--blue-l1);
+  --blue-back:     var(--blue-l2);
+  --blue-mid:      var(--blue-l3);
+  --blue-top:      var(--blue-l3);
+
+  /* ONE red across the entire site. No tiers. */
+  --red:           #6E1322;
+  --red-back:      var(--red);
+  --red-mid:       var(--red);
+  --red-top:       var(--red);
 
   /* aliases kept so existing rules keep resolving */
   --navy-ground:   var(--blue-back);
@@ -584,7 +591,7 @@ img {
 }
 
 .home-hero .hero-paths .button-navy {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--blue-l3);
 }
 
 .home-hero .hero-paths .button-navy:hover {
@@ -814,7 +821,7 @@ img {
 }
 
 .section-maroon .card-editorial {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--red);
   border-color: rgba(242, 234, 223, 0.2);
   color: var(--cream);
 }
@@ -834,7 +841,7 @@ img {
 }
 
 #roadmap .card-editorial .lifecycle-stage__tag {
-  background: rgba(242, 234, 223, 0.2) !important;
+  background: var(--red) !important;
 }
 
 .card-editorial:hover {
@@ -925,7 +932,7 @@ img {
 
 .tab-btn:hover {
   color: var(--cream);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--blue-l3);
 }
 
 .tab-btn.active {
@@ -1098,7 +1105,7 @@ img {
 
 /* Musical Artistry & Web Audio Suite */
 .music-suite-box {
-  background: rgba(0, 0, 0, 0.22);
+  background: var(--blue-l2);
   border: 1px solid rgba(242, 234, 223, 0.25);
   padding: clamp(28px, 4vw, 44px);
 }
@@ -1133,7 +1140,7 @@ img {
 }
 
 .track-option.active {
-  background: rgba(242, 234, 223, 0.15);
+  background: var(--blue-l3);
   border-color: var(--cream);
 }
 
@@ -1390,7 +1397,7 @@ img {
 }
 
 .footer-contact-box {
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--red);
   border: 1px solid rgba(242, 234, 223, 0.2);
   padding: 20px;
   margin-bottom: 28px;
@@ -1658,7 +1665,7 @@ body.annotation-active {
 }
 
 .dock-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--blue-l3);
 }
 
 .dock-btn.active {
@@ -2175,7 +2182,7 @@ body.annotation-active {
   gap: 7px;
   padding: 5px 10px 5px 5px;
   border-radius: 999px;
-  background: rgba(13, 26, 50, 0.88);
+  background: var(--blue-l1);
   border: 1px solid rgba(242, 234, 223, 0.28);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(6px);
@@ -2235,7 +2242,7 @@ body.annotation-active {
   width: 100%;
   border: 0;
   border-radius: 12px;
-  background: rgba(0, 0, 0, 0.25);
+  background: var(--blue-l2);
 }
 
 
