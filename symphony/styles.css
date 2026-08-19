@@ -1654,7 +1654,30 @@ body.annotation-active {
   z-index: 2147483647 !important;
   user-select: none !important;
   backdrop-filter: blur(8px) !important;
+  /* Rests dim so it stops covering the page; wakes on hover or focus. */
+  opacity: 0.45 !important;
+  transition: opacity 160ms ease !important;
 }
+
+.annotation-dock:hover,
+.annotation-dock:focus-within {
+  opacity: 1 !important;
+}
+
+/* Leave room so the last content can scroll clear of the dock. */
+body[data-review-tools="on"] {
+  padding-bottom: 96px;
+}
+
+@media (max-width: 768px) {
+  .annotation-dock {
+    bottom: 12px !important;
+    right: 12px !important;
+    left: 12px !important;
+    justify-content: center !important;
+  }
+}
+
 
 .dock-btn {
   background: transparent;
