@@ -181,6 +181,20 @@
       }
     });
 
+    // Touch & Click toggle on Version Item Rows (prevents stuck hover on iPad/mobile)
+    const versionItems = document.querySelectorAll('.version-item-wrap');
+    versionItems.forEach(item => {
+      const row = item.querySelector('.version-item-row');
+      if (row) {
+        row.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const wasActive = item.classList.contains('active');
+          versionItems.forEach(vi => vi.classList.remove('active'));
+          if (!wasActive) item.classList.add('active');
+        });
+      }
+    });
+
     if (copyHandoffBtn) {
       copyHandoffBtn.addEventListener('click', () => {
         const handoffText = `# Master Agent Handoff Context — Richmond Symphony Candidate Dossier
@@ -262,7 +276,7 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
 - **Logged Engineering Time**: **1.0 Hour** (58 minutes)
 - **Edit Session Started**: Aug 19, 2026 · 11:00 PM EDT
 - **Officially Pushed Live**: Aug 19, 2026 · 11:58 PM EDT (GitHub Pages \`gh-pages\` + \`main\`)
-- **Verified Commit SHA**: \`#a340180\`
+- **Verified Commit SHA**: \`#7f08db5\`
 - **Granular Timestamped Edits**:
   - \`[11:06 PM EDT]\`: Restored clean passcode title and unlock button layout to canonical single red theme.
   - \`[11:13 PM EDT]\`: Reverted all red CSS variables back to canonical \`#2b0710\` footer red across all site surfaces.
@@ -284,6 +298,7 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
   - \`[11:56 PM EDT]\`: Converted passcode overlay to 100% solid opaque ground (#0d1a32) and added body.dossier-locked scroll isolation to eliminate background bleed.
   - \`[11:57 PM EDT]\`: Styled Operations Dashboard button in canonical red (button-maroon) and centered all hero action buttons and copy.
   - \`[11:58 PM EDT]\`: Integrated total hours logged metric into Telemetry Modal and Handoff suite (7.0h cumulative / AG: 3.75h • CL: 3.25h).
+  - \`[12:01 AM EDT]\`: Debugged telemetry widget positioning, eliminated dock collision media query, added vertical max-height scroll containment, and touch accordion toggle.
 
 ### 🌟 Milestone v1.6.0 · Advancement Systems, Bio Expansion & Dual-Stream Annotation
 - **Authoring & Edit Agent**: Antigravity (\`AG\`)
@@ -311,7 +326,7 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
 - **Verified Commit SHA**: \`#a602086\`
 - **Granular Timestamped Edits**:
   - \`[8:35 PM EDT]\`: Decoupled development repo from serving repo (\`randy-symphony-portfolio\` on \`gh-pages\`).
-  - \`[8:48 PM EDT]\`: Fixed dead fallback URLs on QR codes to \`https://symphony.randybryanmoore.us/\`.
+  - \`[8:48 PM EDT]\`: Fixed dead fallback URLs on QR codes to canonical domain.
   - \`[9:00 PM EDT]\`: Regenerated hardcoded inline SVG QR code on \`one_pager.html\`.
   - \`[9:10 PM EDT]\`: Corrected candidate vCard (\`Randy_Bryan_Moore.vcf\`) URL and phone payload.
   - \`[9:18 PM EDT]\`: Re-framed Muster CRM claims around Active Minds Salesforce integration (removed unsourced 98.4% metric).

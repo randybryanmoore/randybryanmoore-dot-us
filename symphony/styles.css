@@ -2558,7 +2558,7 @@ body[data-review-tools="on"] {
    ======================================================================= */
 .build-badge {
   position: fixed;
-  top: calc(var(--nav-h) + 12px);
+  top: 14px;
   right: 18px;
   z-index: 9998;
   display: flex;
@@ -2566,10 +2566,11 @@ body[data-review-tools="on"] {
   gap: 7px;
   padding: 4px 10px 4px 5px;
   border-radius: 999px;
-  background: rgba(13, 26, 50, 0.88);
+  background: rgba(13, 26, 50, 0.92);
   border: 1.5px solid rgba(242, 234, 223, 0.3);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 12px rgba(223, 202, 116, 0.15);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   font-family: var(--mono);
   user-select: none;
   cursor: pointer;
@@ -2581,7 +2582,7 @@ body[data-review-tools="on"] {
   transform: translateY(-2px);
   border-color: var(--gold-light);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55), 0 0 18px rgba(223, 202, 116, 0.35);
-  background: rgba(24, 43, 77, 0.95);
+  background: rgba(24, 43, 77, 0.98);
 }
 
 .build-badge-agent {
@@ -2636,7 +2637,7 @@ body[data-review-tools="on"] {
   font-weight: 600;
   letter-spacing: 0.04em;
   color: var(--cream);
-  opacity: 0.65;
+  opacity: 0.75;
   padding-left: 6px;
   border-left: 1px solid rgba(242, 234, 223, 0.25);
 }
@@ -2644,10 +2645,13 @@ body[data-review-tools="on"] {
 /* Provenance Inspector Modal */
 .build-provenance-modal {
   position: fixed;
-  top: calc(var(--nav-h) + 52px);
+  top: 54px;
   right: 18px;
-  width: 320px;
-  max-width: calc(100vw - 36px);
+  width: 340px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   background: var(--paper);
   border: 2px solid var(--maroon);
   border-radius: 12px;
@@ -2657,7 +2661,7 @@ body[data-review-tools="on"] {
   z-index: 9999;
   display: none;
   font-family: var(--sans);
-  animation: popIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: universalPopIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .build-provenance-modal.open {
@@ -2761,9 +2765,9 @@ body[data-review-tools="on"] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4px 8px;
+  padding: 5px 8px;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(0, 0, 0, 0.08);
   cursor: pointer;
   transition: all 140ms ease;
@@ -2771,10 +2775,10 @@ body[data-review-tools="on"] {
   font-size: 10px;
 }
 
-.version-item-row:hover {
+.version-item-row:hover,
+.version-item-wrap.active .version-item-row {
   background: #ffffff;
   border-color: var(--gold-light);
-  transform: translateX(2px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
@@ -2828,23 +2832,23 @@ body[data-review-tools="on"] {
   position: absolute;
   right: calc(100% + 12px);
   top: -20px;
-  width: 295px;
+  width: 300px;
   background: var(--paper);
   border: 2px solid var(--maroon);
   border-radius: 10px;
   padding: 12px 14px;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 0 16px rgba(223, 202, 116, 0.2);
-  z-index: 10000;
+  z-index: 10001;
   display: none;
-  pointer-events: none;
+  pointer-events: auto;
   font-family: var(--sans);
   text-align: left;
   animation: universalPopIn 0.16s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.version-item-wrap:hover .version-hover-card {
+.version-item-wrap:hover .version-hover-card,
+.version-item-wrap.active .version-hover-card {
   display: block;
-  pointer-events: auto;
 }
 
 .version-hover-header {
@@ -2881,33 +2885,36 @@ body[data-review-tools="on"] {
   gap: 4px;
 }
 
-@media (max-width: 768px) {
-  .version-hover-card {
-    right: auto;
-    left: 0;
-    top: calc(100% + 6px);
-    width: 100%;
-  }
-}
-
 .provenance-actions {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .build-badge {
-    top: auto;
-    bottom: 14px;
-    left: 14px;
-    right: auto;
+    top: 10px;
+    right: 12px;
+    padding: 3px 8px 3px 4px;
+    gap: 5px;
+  }
+  .build-badge-date {
+    display: none;
   }
   .build-provenance-modal {
-    top: auto;
-    bottom: 64px;
-    left: 14px;
+    top: 48px;
+    right: 12px;
+    width: 320px;
+    max-width: calc(100vw - 24px);
+    max-height: calc(100vh - 65px);
+  }
+  .version-hover-card {
+    position: static;
     right: auto;
+    top: auto;
+    width: 100%;
+    margin-top: 8px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
   }
 }
 
