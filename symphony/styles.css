@@ -26,10 +26,10 @@
   --blue-mid:      var(--blue-l2);   /* panels and cards */
   --blue-top:      var(--blue-l3);   /* insets on a panel */
 
-  /* RED -- one value only, the footer red. Every red surface carries it. */
-  --red-1:         #2b0710;   /* the only red in the artifact */
-  --red-2:         var(--red-1);
-  --red-3:         var(--red-1);
+  /* RED -- Deep Cabernet Maroon brand palette */
+  --red-1:         #4c0e1c;   /* Cabernet Maroon */
+  --red-2:         #681427;   /* slightly brighter Cabernet accent/hover */
+  --red-3:         #4c0e1c;
   --red:           var(--red-1);
   --red-back:      var(--red-1);
   --red-mid:       var(--red-2);
@@ -40,9 +40,9 @@
   --block-fill:    var(--blue-mid);
   /* ONE red across the site: header band, buttons, chapter strip, roadmap
      cards and the MSW accent all resolve here. */
-  --maroon:        var(--red-3);
-  --red-accent:    var(--red-3);
-  --maroon-deep:   var(--red-1);
+  --maroon:        #4c0e1c;
+  --red-accent:    #681427;
+  --maroon-deep:   #340812;
   --cream:         #f2eadf;
   --paper:         #fbf6ed;
   --paper-deep:    #e8ddcc;
