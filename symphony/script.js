@@ -84,7 +84,7 @@
     }
 
     // =========================================================================
-    // 3. Build Telemetry & Agent Provenance Inspector (100/100 Suite)
+    // 3. Build Telemetry & Comprehensive Cross-Agent Provenance Inspector
     // =========================================================================
     const buildBadge = document.getElementById('build-badge');
     const provModal = document.getElementById('build-provenance-modal');
@@ -119,21 +119,90 @@
 
     if (copyHandoffBtn) {
       copyHandoffBtn.addEventListener('click', () => {
-        const handoffText = `### Agent Handoff Telemetry Context
-- **Candidate Dossier**: Randy Bryan Moore, MSW — Assistant Director, Advancement Systems & Operations
-- **Live Portfolio URL**: https://randybryanmoore.github.io/randy-symphony-portfolio/ (symphony.randybryanmoore.us)
-- **Active Release Version**: v1.6.2
-- **Last Active Agent**: Antigravity (Google DeepMind)
-- **Target Git Repositories**: 
-  - Primary: randybryanmoore-dot-us (branch: main)
-  - Portfolio: randy-symphony-portfolio (branches: main, gh-pages)
-- **Latest Verified Commit**: a13e640
-- **Architecture**: Single-page executive dossier + dual-stream annotation engine + atomic Git Data tree deploy pipeline.
-- **Passcode Gate PIN**: 0000`;
+        const handoffText = `# Master Agent Handoff Context — Richmond Symphony Dossier
+
+Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete multi-session memory and architectural fidelity.
+
+---
+
+## 🎯 Project Overview & Role Target
+- **Candidate**: Randy Bryan Moore, MSW
+- **Target Position**: Assistant Director, Advancement Systems & Operations
+- **Organization**: Richmond Symphony (Richmond, Virginia)
+- **Artifact Purpose**: Confidential executive candidate portfolio and operational dossier evaluated by the hiring selection committee. Accuracy of claims and strict alignment with the job description matter above all else.
+- **Universal Selection Committee PIN**: \`0000\`
+
+---
+
+## 🌐 Live URL & Repository Architecture
+- **Canonical Live URL**: https://symphony.randybryanmoore.us (via custom domain)
+- **GitHub Pages Host**: https://randybryanmoore.github.io/randy-symphony-portfolio/
+- **Primary Development Repo**: \`randybryanmoore/randybryanmoore-dot-us\` (Branch: \`main\`, working copy in \`symphony/\`)
+- **Public Serving Repo**: \`randybryanmoore/randy-symphony-portfolio\` (Branches: \`gh-pages\` and \`main\`, served from root)
+- **Deployment Pipeline**: Single atomic commit via GitHub Git Data Tree API (\`python3 push_script.py\`). Both \`gh-pages\` and \`main\` in the portfolio repo are synchronized atomically on every build.
+
+---
+
+## 🎨 Strict Brand Color Hierarchy & Rules
+*Do not alter these tokens without explicit instructions from Randy.*
+- **DOMINANT BLUE (3-Layer Depth)**:
+  - \`--blue-l1\`: \`#0d1a32\` (Page and section ground — furthest back, dominant blue)
+  - \`--blue-l2\`: \`#182b4d\` (Mid-layer panels, cards, and containers)
+  - \`--blue-l3\`: \`#243d6b\` (Top-layer insets, active tabs, and highlighted controls)
+- **FLAT FOOTER RED (Strict Single Palette)**:
+  - \`--red-1\`, \`--maroon\`, \`--maroon-deep\`: \`#2b0710\` (Canonical deep red — the only red across the site).
+  - *Rule*: Never place unbordered text directly on red without a high-contrast cream rule or tag chip (\`#f2eadf\`).
+- **CREAM & PAPER ACCENTS**:
+  - \`--cream\`: \`#f2eadf\`
+  - \`--paper\`: \`#fbf6ed\`
+  - \`--gold-light\`: \`#dfca74\` (Telemetry SHA and Private Note highlights)
+
+---
+
+## 📚 Sourced Claims & Verified Facts (Do NOT Alter or Hallucinate)
+1. **Bloomerang CRM**: Primary administration, Moves Management workflows, and gift processing reconciliation with Finance to govern the **$6.9M** contributed-income goal.
+2. **EveryAction**: 50+ General Assembly legislative meetings for Save the Children Action Network.
+3. **Muster Platform**: Requirements definition and Salesforce integration design for Active Minds across Congressional targets (no unsourced deliverability percentages).
+4. **People Leadership**: Supervised graduate MSW interns at Virginia Housing Alliance and trained 40 partner organizations at Virginia Civic Engagement Table (aligns with JD requirement to supervise Annual Fund Manager and Advancement Assistant).
+5. **Musical Artistry (Section 06)**:
+   - Songwriter, producer, multi-instrumentalist (vocalist, piano, guitar, and harp).
+   - Composed full orchestral arrangements for production cover of Kate Bush's *Hounds of Love*.
+   - 4-year contract pianist with regular resident lobby performances at Richmond's historic Jefferson Hotel (2022–Present).
+   - Instructor at School of Rock and creator of the 1,000 Songs songwriting marathon.
+
+---
+
+## 📜 Comprehensive Chronological Work Log Across All Sessions
+
+### Phase 1: Claude Code Baseline Fixes & Structural Alignment
+- Fixed QR code fallback URLs to point to \`https://symphony.randybryanmoore.us/\`.
+- Corrected Muster CRM claims to reflect source-grounded Salesforce integration facts.
+- Added People Leadership row to the Alignment Matrix.
+- Established the strict 3-step blue elevation and \`#2b0710\` red palette.
+- Embedded Spotify artist player (\`0zaqvfVeDQZJ1q70foOsRs\`) and TikTok review links (44px tap targets).
+- Configured \`data-review-tools="on"\` toggle and initial \`v1.5.1\` build badge.
+
+### Phase 2: Antigravity Systems & Interactive Enhancements (v1.6.0 – v1.6.2)
+- **Hero & Profile Card**: Elevated hero copy padding, enlarged candidate headshot to 420px, dynamic 150px mobile QR code, and full position title in top eyebrow kicker.
+- **Section 06 Music Bio**: Enriched narrative highlighting Songwriter, Producer, Vocalist, Piano, Guitar, Harp, and Kate Bush *Hounds of Love* orchestral arrangement with dedicated brand badges.
+- **100/100 Dual-Stream Annotation Suite**:
+  - *AI Review Queue* (\`localStorage['rbm_symphony_notes']\`): Multi-element batch selection, category chips, 1-click Antigravity prompt copy + auto-reset.
+  - *Private Notes Journal* (\`localStorage['rbm_symphony_private_notes']\`): Permanent personal memos & interview prep talking points, gold \`🔒#N\` badges, never deleted on AI prompt copy, separate Markdown export.
+  - *Drawer Suite*: Tabs (\`AI Queue\`, \`Private Notes\`, \`All\`), search filter, smooth-scroll spotlight ripple jump, and badge visibility toggle.
+- **100/100 Telemetry & Version Watermark**: Glassmorphic badge (\`● LIVE\`, version, commit SHA, build date), provenance modal, version breakdown explanation, and 1-click master handoff context generator (\`Shift + V\`).
+- **Atomic Single-Commit Deployment Pipeline**: Engineered \`push_script.py\` using GitHub Git Data Tree API to push all assets in a single atomic tree commit, eliminating build collisions on GitHub Pages.
+- **Restored Canonical Palette**: Preserved \`#2b0710\` flat footer red across all site surfaces.
+
+---
+
+## 🛠️ Instructions for Successor Agent
+1. **Pre-Edit Transparency**: Always explain intended changes in 3-7 bullets before modifying code.
+2. **Build & Deploy Flow**: Run \`python3 /Users/randybryanmoore/.gemini/antigravity/brain/08fa8fc4-477a-43de-96bc-e65050585686/scratch/build_script.py\` followed by \`git push origin main\` and \`python3 /Users/randybryanmoore/GITHUB/randybryanmoore-dot-us/symphony/push_script.py\`.
+3. **Never touch unrelated files** or modify the core color tokens without explicit user approval.`;
 
         navigator.clipboard.writeText(handoffText).then(() => {
-          copyHandoffBtn.innerText = 'Copied Agent Handoff! ✓';
-          setTimeout(() => { copyHandoffBtn.innerText = '📋 Copy Agent Handoff Context'; }, 2400);
+          copyHandoffBtn.innerText = 'Copied Complete Agent Handoff! ✓';
+          setTimeout(() => { copyHandoffBtn.innerText = '📋 Copy Complete Agent Handoff'; }, 2400);
         });
       });
     }

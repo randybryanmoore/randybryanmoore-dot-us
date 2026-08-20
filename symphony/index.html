@@ -72,7 +72,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1787195525">
+  <link rel="stylesheet" href="styles.css?v=1787195625">
 </head>
 <!-- Review tooling switch: set data-review-tools="off" before going live to
      strip the pin-feedback dock, live edit, inspector and notes drawer. -->
@@ -82,10 +82,10 @@
        version and date on each substantive pass. Always visible -- it is
        independent of the review-tools switch. -->
   <div class="build-badge" id="build-badge" title="Click to view System Build Telemetry & Agent Handoff (Shift+V)">
-    <span class="build-badge-agent" title="Active AI Agent: Antigravity">A</span>
+    <span class="build-badge-agent" title="Active AI Agent: Antigravity (AGY)">A</span>
     <span class="build-badge-live-dot" title="Live & Synchronized"></span>
     <span class="build-badge-version">v1.6.2</span>
-    <span class="build-badge-sha">#a13e640</span>
+    <span class="build-badge-sha">#52fbf42</span>
     <span class="build-badge-date">2026-08-19</span>
   </div>
 
@@ -106,7 +106,7 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Git Commit SHA</div>
-        <div class="provenance-card-value" id="prov-commit-sha">#a13e640</div>
+        <div class="provenance-card-value" id="prov-commit-sha">#52fbf42</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Sync Branch</div>
@@ -121,12 +121,32 @@
         <div class="provenance-card-value" style="color:#15803d; font-weight:800;">● Live &amp; Built</div>
       </div>
     </div>
+
+    <!-- Version Explanation & Semantic Changelog -->
+    <div class="provenance-version-box">
+      <div class="provenance-version-title">
+        <span>Version Architecture</span>
+        <span style="color:var(--navy); font-size:9px;">[Major].[Feature].[Patch]</span>
+      </div>
+      <div class="provenance-version-desc">
+        Semantic milestone tracking multi-agent engineering across Claude Code and Antigravity.
+      </div>
+      <div class="provenance-changelog-list">
+        <span><strong>v1.6.2 (Current)</strong>: Songwriter &amp; Producer bio, canonical #2b0710 red theme, 100/100 dual-stream annotation &amp; master handoff engine.</span>
+        <span><strong>v1.6.0</strong>: Multi-element batch feedback suite &amp; private persistent journal separation.</span>
+        <span><strong>v1.5.1</strong>: Claude Code baseline (Bloomerang CRM alignment, Section 06 music re-architecture, dead URL fixes).</span>
+        <span><strong>v1.0.0</strong>: Initial executive candidate portfolio baseline.</span>
+      </div>
+    </div>
+
     <div class="provenance-actions">
       <button id="provenance-copy-handoff-btn" class="button button-maroon" style="width:100%; justify-content:center; font-size:11.5px; padding:7px 10px;">
-        📋 Copy Agent Handoff Context
+        📋 Copy Complete Agent Handoff
       </button>
     </div>
   </div>
+
+  
 
   <!-- Build Provenance & Telemetry Modal -->
   <div class="build-provenance-modal" id="build-provenance-modal">
