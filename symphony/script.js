@@ -29,6 +29,8 @@
           gateOverlay.style.display = 'none';
         }, 350);
       }
+      document.body.classList.remove('dossier-locked');
+      document.documentElement.classList.remove('dossier-locked');
       try {
         sessionStorage.setItem('symphony_dossier_auth', 'true');
         sessionStorage.setItem('rbm_sym_unlocked', '1');
@@ -37,6 +39,8 @@
     }
 
     function lockDossier() {
+      document.body.classList.add('dossier-locked');
+      document.documentElement.classList.add('dossier-locked');
       try {
         sessionStorage.removeItem('symphony_dossier_auth');
         sessionStorage.removeItem('rbm_sym_unlocked');
@@ -86,6 +90,8 @@
           localStorage.getItem('symphony_dossier_auth') === 'true') {
         unlockDossier();
       } else {
+        document.body.classList.add('dossier-locked');
+        document.documentElement.classList.add('dossier-locked');
         if (masterInput) {
           setTimeout(() => {
             masterInput.focus();
@@ -202,6 +208,7 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
 
 ## 🌐 2. Live URL & Dual-Repository Synchronization Architecture
 - **Canonical Custom Domain URL**: https://symphony.randybryanmoore.us
+- **Primary Website & Portfolio Target**: https://randybryanmoore.us
 - **GitHub Pages Host**: https://randybryanmoore.github.io/randy-symphony-portfolio/
 - **Primary Working Git Repo**: \`randybryanmoore/randybryanmoore-dot-us\` (Branch: \`main\`, working files in \`symphony/\`)
 - **Serving GitHub Pages Repo**: \`randybryanmoore/randy-symphony-portfolio\` (Branches: \`gh-pages\` and \`main\`, served from root)
@@ -245,7 +252,7 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
 - **Deployed & Pushed Live By**: Antigravity (\`AG\`)
 - **Edit Session Started**: Aug 19, 2026 · 11:00 PM EDT
 - **Officially Pushed Live**: Aug 19, 2026 · 11:42 PM EDT (GitHub Pages \`gh-pages\` + \`main\`)
-- **Verified Commit SHA**: \`#006b841\`
+- **Verified Commit SHA**: \`#091ee8f\`
 - **Granular Timestamped Edits**:
   - \`[11:06 PM EDT]\`: Restored clean passcode title and unlock button layout to canonical single red theme.
   - \`[11:13 PM EDT]\`: Reverted all red CSS variables back to canonical \`#2b0710\` footer red across all site surfaces.
@@ -263,6 +270,8 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
   - \`[11:47 PM EDT]\`: Standardized Agent Telemetry Abbreviations to \`AG\` (Antigravity), \`CL\` (Claude Code), and \`CDX\` (Codex) across all badges and documentation.
   - \`[11:49 PM EDT]\`: Enshrined authoring and deployment app provenance attribution directly onto all version selectors and export handoff dossiers.
   - \`[11:51 PM EDT]\`: Resolved iPad Chrome overlay nesting and centered layout geometry for zero mobile layout shift.
+  - \`[11:54 PM EDT]\`: Moved QR code below the continuous ticker note in left hero column, themed matrix pixels in canonical red (\`#2b0710\`), and targeted \`https://randybryanmoore.us\`.
+  - \`[11:56 PM EDT]\`: Converted passcode overlay to 100% solid opaque ground (#0d1a32) and added body.dossier-locked scroll isolation to eliminate background bleed.
 
 ### 🌟 Milestone v1.6.0 · Advancement Systems, Bio Expansion & Dual-Stream Annotation
 - **Authoring & Edit Agent**: Antigravity (\`AG\`)
@@ -337,17 +346,18 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
     });
 
     // =========================================================================
-    // 4. QR Code Generator SVG
+    // 4. Red QR Code Generator SVG (Target: https://randybryanmoore.us)
     // =========================================================================
-    function generateQRCodeSVG(text, size = 120) {
+    function generateQRCodeSVG(text, size = 110, color = '2b0710') {
       const encoded = encodeURIComponent(text);
-      return `<img src="https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encoded}&color=182b4d" alt="QR Code" width="${size}" height="${size}" style="display:block; border-radius:4px;" />`;
+      return `<img src="https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encoded}&color=${color}" alt="QR Code to ${text}" width="${size}" height="${size}" style="display:block; border-radius:4px;" />`;
     }
     const qrTargets = document.querySelectorAll('.qr-code-target');
-    const currentUrl = window.location.href.split('#')[0];
     qrTargets.forEach(el => {
-      const sz = parseInt(el.getAttribute('data-size')) || 90;
-      el.innerHTML = generateQRCodeSVG(currentUrl, sz);
+      const sz = parseInt(el.getAttribute('data-size')) || 110;
+      const targetUrl = el.getAttribute('data-url') || 'https://randybryanmoore.us';
+      const color = el.getAttribute('data-color') || '2b0710';
+      el.innerHTML = generateQRCodeSVG(targetUrl, sz, color);
     });
 
     // =========================================================================

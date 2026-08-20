@@ -72,11 +72,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1787197769">
+  <link rel="stylesheet" href="styles.css?v=1787197888">
 </head>
 <!-- Review tooling switch: set data-review-tools="off" before going live to
      strip the pin-feedback dock, live edit, inspector and notes drawer. -->
-<body data-review-tools="on">
+<body data-review-tools="on" class="dossier-locked">
 
   <!-- Build watermark: which agent last worked this page, the version and
        the date. Claude sets CL; AG sets Antigravity. Bump the
@@ -86,7 +86,7 @@
     <span class="build-badge-agent" title="Active AI Agent: Antigravity (AG)">AG</span>
     <span class="build-badge-live-dot" title="Live & Synchronized"></span>
     <span class="build-badge-version">v1.6.2</span>
-    <span class="build-badge-sha">#006b841</span>
+    <span class="build-badge-sha">#091ee8f</span>
     <span class="build-badge-date">Aug 19, 2026</span>
   </div>
 
@@ -107,7 +107,7 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Git Commit SHA</div>
-        <div class="provenance-card-value" id="prov-commit-sha">#006b841</div>
+        <div class="provenance-card-value" id="prov-commit-sha">#091ee8f</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Sync Branch</div>
@@ -150,7 +150,7 @@
                 <div><strong>Deployed &amp; Pushed Live By:</strong> Antigravity (AG)</div>
                 <div><strong>Edit Started:</strong> Aug 19, 2026 · 11:00 PM EDT</div>
                 <div><strong>Officially Pushed Live:</strong> Aug 19, 2026 · 11:42 PM EDT (GitHub Pages)</div>
-                <div><strong>Commit SHA:</strong> #006b841</div>
+                <div><strong>Commit SHA:</strong> #091ee8f</div>
               </div>
             </div>
             <ul class="version-hover-bullets">
@@ -167,6 +167,8 @@
               <li><strong>[11:47 PM]</strong> Standardized Agent Telemetry Abbreviations to <strong>AG</strong> (Antigravity), <strong>CL</strong> (Claude Code), and <strong>CDX</strong> (Codex).</li>
               <li><strong>[11:49 PM]</strong> Enshrined authoring and deployment app provenance attribution directly onto all version selectors and export handoff dossiers.</li>
               <li><strong>[11:51 PM]</strong> Resolved iPad Chrome overlay nesting and centered layout geometry for zero mobile layout shift.</li>
+              <li><strong>[11:54 PM]</strong> Moved QR code below the continuous ticker note in left hero column, themed matrix pixels in canonical red (<code>#2b0710</code>), and targeted <code>https://randybryanmoore.us</code>.</li>
+              <li><strong>[11:56 PM]</strong> Converted passcode overlay to 100% solid opaque ground (#0d1a32) and added body.dossier-locked scroll isolation to eliminate background bleed.</li>
             </ul>
           </div>
         </div>
@@ -384,6 +386,20 @@
             <span>Advancing culture · Stewarding patronage · Contextualizing systems</span>
           </div>
         </div>
+
+        <!-- Hero QR Code Card (Canonical Red / Target: randybryanmoore.us) -->
+        <div class="hero-qr-strip">
+          <div class="hero-qr-frame">
+            <div class="qr-code-target" data-size="110" data-url="https://randybryanmoore.us" data-color="2b0710"></div>
+          </div>
+          <div class="hero-qr-info">
+            <span class="hero-qr-badge-label">Executive Portfolio &amp; Bio</span>
+            <a href="https://randybryanmoore.us" target="_blank" rel="noopener" class="hero-qr-link">
+              randybryanmoore.us <span aria-hidden="true">↗</span>
+            </a>
+            <p class="hero-qr-desc">Scan or click to visit candidate master website, advocacy track record &amp; media portfolio.</p>
+          </div>
+        </div>
       </div>
 
       <!-- Right Column: Candidate Profile Card -->
@@ -393,25 +409,19 @@
             <div class="candidate-avatar-wrap">
               <img src="images/headshot.jpg" alt="Randy Bryan Moore, MSW" class="candidate-avatar" id="hero-candidate-avatar">
             </div>
-            <div class="candidate-identity-row">
-              <div class="candidate-qr-frame">
-                <div class="qr-code-target" data-size="150"></div>
-                <span class="candidate-qr-caption">Mobile Scan</span>
-              </div>
-            </div>
           </div>
 
           <div class="pillar-list">
             <div class="pillar-item">
-              <strong>Bloomerang CRM & Advancement Systems Governance</strong>
-              <span>Primary Bloomerang CRM administration, Moves Management tracking, EveryAction experience, automated gift workflows & Finance alignment.</span>
+              <strong>Bloomerang CRM &amp; Advancement Systems Governance</strong>
+              <span>Primary Bloomerang CRM administration, Moves Management tracking, EveryAction experience, automated gift workflows &amp; Finance alignment.</span>
             </div>
             <div class="pillar-item">
-              <strong>Richmond Cultural & Arts Immersion</strong>
-              <span>Songwriter, producer, multi-instrumentalist & contract pianist (4-year resident performer at The Jefferson Hotel), music educator, and active patron steward.</span>
+              <strong>Richmond Cultural &amp; Arts Immersion</strong>
+              <span>Songwriter, producer, multi-instrumentalist &amp; contract pianist (4-year resident performer at The Jefferson Hotel), music educator, and active patron steward.</span>
             </div>
             <div class="pillar-item">
-              <strong>Public-Service Leadership & Operations</strong>
+              <strong>Public-Service Leadership &amp; Operations</strong>
               <span>U.S. Senator Mark Warner's office, Save the Children, Virginia Housing Alliance.</span>
             </div>
           </div>
