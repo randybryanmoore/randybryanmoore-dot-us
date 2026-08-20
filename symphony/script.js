@@ -180,7 +180,14 @@
         const handoffText = `# Master Agent Handoff Context — Richmond Symphony Candidate Dossier
 *Generated on ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} at ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} EDT*
 
-Paste this entire document into Claude Code, Codex, Cursor, or Antigravity to pick up with 100% complete multi-session technical fidelity, exact timestamped provenance, and zero memory loss.
+Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigravity (AG) to pick up with 100% complete multi-session technical fidelity, exact timestamped provenance, and zero memory loss.
+
+---
+
+## 🏷️ Standardized AI Agent Identification
+- **\`AG\`** = **Antigravity** (Google DeepMind)
+- **\`CL\`** = **Claude Code** (Anthropic)
+- **\`CDX\`** = **Codex** (OpenAI)
 
 ---
 
@@ -234,10 +241,10 @@ Paste this entire document into Claude Code, Codex, Cursor, or Antigravity to pi
 ## 📜 5. Complete Timestamped Chronological Work Log (Every Documented Change)
 
 ### 🚀 Milestone v1.6.2 · System Telemetry, iPadOS Passcode & Non-Destructive Annotation
-- **Authoring Agent**: Antigravity (AGY)
+- **Authoring Agent**: Antigravity (\`AG\`)
 - **Edit Session Started**: Aug 19, 2026 · 11:00 PM EDT
 - **Officially Pushed Live**: Aug 19, 2026 · 11:42 PM EDT (GitHub Pages \`gh-pages\` + \`main\`)
-- **Verified Commit SHA**: \`#78bcf55\`
+- **Verified Commit SHA**: \`#78bc0d8\`
 - **Granular Timestamped Edits**:
   - \`[11:06 PM EDT]\`: Restored clean passcode title and unlock button layout to canonical single red theme.
   - \`[11:13 PM EDT]\`: Reverted all red CSS variables back to canonical \`#2b0710\` footer red across all site surfaces.
@@ -252,9 +259,10 @@ Paste this entire document into Claude Code, Codex, Cursor, or Antigravity to pi
   - \`[11:36 PM EDT]\`: Updated all Private Note active states (dock button, popover tab, popover border, save button, tags) to turn canonical red (\`#2b0710\`).
   - \`[11:38 PM EDT]\`: Exhaustively expanded master agent handoff prompt with all project changes.
   - \`[11:41 PM EDT]\`: Implemented native iPadOS/iOS single master overlay input with 4 visual digit boxes (\`.pin-digit-box\`), eliminating iPad Safari focus-blocking restrictions.
+  - \`[11:47 PM EDT]\`: Standardized Agent Telemetry Abbreviations to \`AG\` (Antigravity), \`CL\` (Claude Code), and \`CDX\` (Codex) across all badges and documentation.
 
 ### 🌟 Milestone v1.6.0 · Advancement Systems, Bio Expansion & Dual-Stream Annotation
-- **Authoring Agent**: Antigravity (AGY)
+- **Authoring Agent**: Antigravity (\`AG\`)
 - **Edit Session Started**: Aug 19, 2026 · 6:45 PM EDT
 - **Officially Pushed Live**: Aug 19, 2026 · 9:29 PM EDT (GitHub Pages \`gh-pages\` + \`main\`)
 - **Verified Commit SHA**: \`#233b07c\`
@@ -269,7 +277,7 @@ Paste this entire document into Claude Code, Codex, Cursor, or Antigravity to pi
   - \`[9:28 PM EDT]\`: Built single-commit atomic deploy automation pipeline (\`push_script.py\`) via GitHub Git Data Tree API.
 
 ### 🛠️ Milestone v1.5.1 · Baseline Alignment & Sourced Fact Verification
-- **Authoring Agent**: Claude Code
+- **Authoring Agent**: Claude Code (\`CL\`)
 - **Edit Session Started**: Aug 18, 2026 · 8:30 PM EDT
 - **Officially Pushed Live**: Aug 18, 2026 · 9:40 PM EDT (GitHub Pages) (Final Handoff: Aug 19 · 11:58 AM EDT)
 - **Verified Commit SHA**: \`#a602086\`
@@ -286,7 +294,7 @@ Paste this entire document into Claude Code, Codex, Cursor, or Antigravity to pi
   - \`[9:38 PM EDT]\`: Configured \`noindex, nofollow\` search directives and baseline \`v1.5.1\` watermark.
 
 ### 🏛️ Milestone v1.0.0 · Candidate Dossier Foundation
-- **Authoring Agent**: Claude Code
+- **Authoring Agent**: Claude Code (\`CL\`)
 - **Edit Session Started**: Aug 17, 2026 · 1:15 PM EDT
 - **Officially Pushed Live**: Aug 17, 2026 · 2:00 PM EDT (GitHub Pages)
 - **Verified Commit SHA**: \`#b12e094\`
