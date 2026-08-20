@@ -50,23 +50,88 @@
       });
     }
 
+    function checkAndUnlock() {
+      const entered = Array.from(pinInputs).map(i => i.value).join('');
+      if (entered === '0000' || entered.length === 4) {
+        setTimeout(unlockDossier, 60);
+      }
+    }
+
     pinInputs.forEach((input, idx) => {
-      input.addEventListener('input', (e) => {
-        if (e.target.value.length >= 1 && idx < pinInputs.length - 1) {
+      // Auto-select on focus
+      input.addEventListener('focus', () => {
+        input.select();
+      });
+
+      // Instant auto-advance on 0-9 keypress
+      input.addEventListener('keydown', (e) => {
+        if (e.key >= '0' && e.key <= '9') {
+          e.preventDefault();
+          input.value = e.key;
+          if (idx < pinInputs.length - 1) {
+            pinInputs[idx + 1].focus();
+            pinInputs[idx + 1].select();
+          }
+          checkAndUnlock();
+        } else if (e.key === 'Backspace') {
+          e.preventDefault();
+          if (input.value) {
+            input.value = '';
+          } else if (idx > 0) {
+            pinInputs[idx - 1].value = '';
+            pinInputs[idx - 1].focus();
+          }
+          checkAndUnlock();
+        } else if (e.key === 'ArrowLeft' && idx > 0) {
+          e.preventDefault();
+          pinInputs[idx - 1].focus();
+        } else if (e.key === 'ArrowRight' && idx < pinInputs.length - 1) {
+          e.preventDefault();
           pinInputs[idx + 1].focus();
-        }
-        const entered = Array.from(pinInputs).map(i => i.value).join('');
-        if (entered === '0000' || entered.length === 4) {
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
           unlockDossier();
         }
       });
 
-      input.addEventListener('keydown', (e) => {
-        if (e.key === 'Backspace' && !e.target.value && idx > 0) {
-          pinInputs[idx - 1].focus();
-        } else if (e.key === 'Enter') {
-          e.preventDefault();
-          unlockDossier();
+      // Handle mobile / keypad input
+      input.addEventListener('input', (e) => {
+        const val = input.value.replace(/\D/g, '');
+        if (val.length > 1) {
+          const digits = val.split('');
+          digits.forEach((d, i) => {
+            if (idx + i < pinInputs.length) {
+              pinInputs[idx + i].value = d;
+            }
+          });
+          const nextIdx = Math.min(pinInputs.length - 1, idx + digits.length);
+          pinInputs[nextIdx].focus();
+        } else if (val.length === 1) {
+          input.value = val;
+          if (idx < pinInputs.length - 1) {
+            pinInputs[idx + 1].focus();
+            pinInputs[idx + 1].select();
+          }
+        }
+        checkAndUnlock();
+      });
+
+      // Handle copy-pasting full PIN
+      input.addEventListener('paste', (e) => {
+        e.preventDefault();
+        const pasteData = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+        if (pasteData) {
+          const digits = pasteData.split('');
+          digits.forEach((d, i) => {
+            if (i < pinInputs.length) {
+              pinInputs[i].value = d;
+            }
+          });
+          if (digits.length >= 4 || digits.length === pinInputs.length) {
+            unlockDossier();
+          } else {
+            pinInputs[Math.min(pinInputs.length - 1, digits.length)].focus();
+          }
         }
       });
     });
