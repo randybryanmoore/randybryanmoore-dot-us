@@ -3,7 +3,7 @@
    Refined Brand System: Deep Navy, Cabernet Maroon, Antique Cream & Paper
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap');
 
 :root {
   /* Strict Palette: Deep Atlantic Navy, Cabernet Maroon, Warm Cream & Paper */
@@ -57,7 +57,7 @@
 
   /* Typography Stack */
   --sans:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --serif: "Playfair Display", "Iowan Old Style", Georgia, serif;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
   --mono:  "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
 
   /* Layout Measurements */
@@ -83,7 +83,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background-color: var(--cream);
+  background-color: var(--navy-deep);
   color: var(--ink);
   font-family: var(--sans);
   font-size: 16.5px;
@@ -680,7 +680,10 @@ img {
 .hero-qr-info {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 3px;
+  flex: 1 1 auto;
 }
 
 .hero-qr-badge-label {
@@ -875,12 +878,16 @@ img {
 
 .candidate-quick-contact {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 22px;
   border-top: 1px solid var(--line-light);
   padding-top: 14px;
   font-family: var(--mono);
   font-size: 10.5px;
   color: rgba(242, 234, 223, 0.75);
+  text-align: center;
 }
 
 /* Grids & Cards */
@@ -1007,13 +1014,12 @@ img {
   font-weight: 800;
   color: rgba(242, 234, 223, 0.7);
   background: transparent;
-  border: none;
+  border: 1px solid var(--red-1);
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 8px;
   white-space: nowrap;
-  border-bottom: 3px solid transparent;
   transition: all 160ms ease;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -1021,15 +1027,20 @@ img {
 
 .tab-btn:hover {
   color: var(--cream);
-  background: rgba(76, 14, 28, 0.5);
-  border-bottom-color: rgba(223, 202, 116, 0.5);
+  background: var(--blue-top);
+  border-color: var(--red-1);
 }
 
 .tab-btn.active {
-  color: #ffffff;
-  background: var(--blue-top);
-  border-bottom-color: var(--gold-light);
-  box-shadow: inset 0 2px 0 var(--gold-light);
+  color: var(--cream);
+  background: var(--red-1);
+  border-color: var(--red-1);
+  box-shadow: inset 0 0 0 1px rgba(242, 234, 223, 0.32), 0 4px 12px rgba(0, 0, 0, 0.28);
+}
+
+.tab-btn:focus-visible {
+  outline: 3px solid var(--gold-light);
+  outline-offset: -3px;
 }
 
 .tab-pane {
@@ -1299,8 +1310,9 @@ img {
 /* TikTok 3-Up Grid */
 .home-tiktok-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 320px));
+  justify-content: center;
+  gap: 16px;
   margin-top: 32px;
 }
 
@@ -1320,7 +1332,7 @@ img {
 }
 
 .home-tiktok-card > div {
-  padding: 18px 20px;
+  padding: 12px 14px;
 }
 
 .home-tiktok-card span {
@@ -1332,9 +1344,10 @@ img {
   text-transform: uppercase;
 }
 
-.home-tiktok-card h3 {
-  margin: 6px 0 12px;
-  font-size: clamp(20px, 2vw, 26px);
+.card-editorial--maroon .home-tiktok-card h3 {
+  margin: 4px 0 8px;
+  font-size: clamp(18px, 1.7vw, 22px);
+  color: var(--ink) !important;
 }
 
 .home-tiktok-card a {
@@ -1517,8 +1530,7 @@ img {
 }
 
 .footer-contact-box {
-  /* Same red as the footer behind it, so it separates by rule, not by fill. */
-  background: transparent;
+  background: var(--blue-l2);
   border: 1px solid rgba(242, 234, 223, 0.45);
   padding: 20px;
   margin-bottom: 28px;
@@ -1725,6 +1737,15 @@ html.dossier-locked {
    ========================================================================== */
 body.annotation-active {
   cursor: default !important;
+}
+
+/* Embedded cross-origin players capture pointer events inside their own
+   browsing context. In annotation mode, pass the pointer through to the
+   surrounding card so embedded media can still receive a comment. */
+body.annotation-active iframe,
+body.annotation-active embed,
+body.annotation-active object {
+  pointer-events: none !important;
 }
 
 /* Hover Inspector Box */
@@ -2319,10 +2340,15 @@ body[data-review-tools="on"] {
   .grid-3,
   .tab-grid,
   .lifecycle-grid,
-  .section-heading,
-  .home-tiktok-grid {
+  .section-heading {
     grid-template-columns: 1fr;
     gap: 28px;
+  }
+
+  .home-tiktok-grid {
+    grid-template-columns: minmax(0, 320px);
+    gap: 28px;
+    justify-content: center;
   }
 
   .home-hero-grid {
@@ -2557,7 +2583,7 @@ body[data-review-tools="on"] {
    letter, version and date in index.html.
    ======================================================================= */
 /* =======================================================================
-   Build Watermark & System Telemetry -- 100/100 Provenance Suite
+   Build Watermark & System Telemetry -- Provenance Suite
    Interactive glassmorphic telemetry badge & agent handoff inspector.
    ======================================================================= */
 .build-badge {
@@ -2580,6 +2606,9 @@ body[data-review-tools="on"] {
   cursor: pointer;
   pointer-events: auto;
   transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  appearance: none;
+  color: inherit;
+  text-align: left;
 }
 
 .build-badge:hover {
@@ -2587,6 +2616,13 @@ body[data-review-tools="on"] {
   border-color: var(--gold-light);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55), 0 0 18px rgba(223, 202, 116, 0.35);
   background: rgba(24, 43, 77, 0.98);
+}
+
+.build-badge:focus-visible,
+.version-item-row:focus-visible,
+#provenance-close-btn:focus-visible {
+  outline: 3px solid var(--gold-light);
+  outline-offset: 3px;
 }
 
 .build-badge-agent {
@@ -2652,9 +2688,9 @@ body[data-review-tools="on"] {
 .build-provenance-modal {
   position: fixed;
   top: 54px;
-  right: 18px;
-  width: 340px;
-  max-width: calc(100vw - 32px);
+  right: clamp(24px, 4vw, 64px);
+  width: 380px;
+  max-width: calc(100vw - 48px);
   max-height: calc(100vh - 80px);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -2672,6 +2708,19 @@ body[data-review-tools="on"] {
 
 .build-provenance-modal.open {
   display: block;
+}
+
+.build-provenance-modal:focus-visible {
+  outline: 3px solid var(--gold-light);
+  outline-offset: 3px;
+}
+
+#provenance-close-btn {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .provenance-header {
@@ -2722,9 +2771,66 @@ body[data-review-tools="on"] {
   font-size: 11px;
   font-weight: 700;
   color: var(--ink);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.lifecycle-status-box {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+}
+
+.lifecycle-status-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.lifecycle-status-grid > div {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 5px 7px;
+}
+
+.lifecycle-status-grid .lifecycle-status-grid__wide {
+  grid-column: 1 / -1;
+}
+
+.lifecycle-status-grid dt {
+  color: var(--maroon);
+  font-family: var(--mono);
+  font-size: 8.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.lifecycle-status-grid dd {
+  color: var(--ink);
+  font-size: 10.5px;
+  line-height: 1.35;
+  margin: 2px 0 0;
+}
+
+.lifecycle-glossary {
+  margin-top: 7px;
+  color: var(--ink);
+  font-size: 10.5px;
+}
+
+.lifecycle-glossary summary {
+  cursor: pointer;
+  color: var(--maroon);
+  font-family: var(--mono);
+  font-weight: 800;
+}
+
+.lifecycle-glossary ul {
+  margin: 7px 0 0 18px;
+  line-height: 1.45;
 }
 
 .provenance-version-box {
@@ -2779,6 +2885,15 @@ body[data-review-tools="on"] {
   transition: all 140ms ease;
   font-family: var(--mono);
   font-size: 10.5px;
+}
+
+.gate-error {
+  min-height: 1.4em;
+  margin: 8px 0;
+  color: var(--cream);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
 }
 
 .version-item-row:hover,
@@ -2848,7 +2963,6 @@ body[data-review-tools="on"] {
   animation: universalPopIn 0.16s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.version-item-wrap:hover .version-hover-card,
 .version-item-wrap.active .version-hover-card {
   display: block;
 }
@@ -2906,9 +3020,10 @@ body[data-review-tools="on"] {
   }
   .build-provenance-modal {
     top: 48px;
-    right: 12px;
-    width: 320px;
-    max-width: calc(100vw - 24px);
+    left: 16px;
+    right: 16px;
+    width: auto;
+    max-width: none;
     max-height: calc(100vh - 65px);
   }
   .version-hover-card {

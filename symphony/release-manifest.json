@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-20T17:11:24-04:00",
+  "service_name": "richmond-symphony-candidate-dossier",
+  "service_version": "1.6.5-rc",
+  "source": {
+    "repository": "randybryanmoore/randybryanmoore-dot-us",
+    "branch": "main",
+    "base_commit": "7c0763e683ccc684e3c29f435b3776768849654e",
+    "working_tree": "modified"
+  },
+  "lifecycle": {
+    "committed": false,
+    "pushed": false,
+    "deployed": false,
+    "production_verified": false
+  },
+  "artifacts": [
+    {
+      "path": "index.html",
+      "sha256": "296f2a20aae5759eddffdd925daf11e05680eb00cbabf3627f7eba9cc6386c2e"
+    },
+    {
+      "path": "styles.css",
+      "sha256": "35001e9e42225889e235dc9bbc7fb4e4912597f91629d98d38bc728da7b1931a"
+    },
+    {
+      "path": "script.js",
+      "sha256": "64f21269b69b66243e0c8d0555019514762f0e6a9064567e3a9ab5f084e83427"
+    },
+    {
+      "path": "one_pager.html",
+      "sha256": "25ae4fda5b678459bb645560af8721afc694ed15f6254f65a4768b6de2894517"
+    },
+    {
+      "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",
+      "sha256": "e82a3d81dd7cb95dee6fe1a6a6e9c7ee530a85702c2d363218aeddb69858224b"
+    }
+  ],
+  "validation": {
+    "javascript_syntax": "pass",
+    "diff_whitespace": "pass",
+    "offline_archive_source_readback": "pass",
+    "browser_interaction": "not_run_file_url_blocked_by_automation_policy",
+    "production_readback": "not_run"
+  },
+  "blockers": [
+    {
+      "id": "DEPLOY-APPROVAL-001",
+      "severity": "high",
+      "status": "open",
+      "description": "Explicit approval required before publishing the dossier payload."
+    }
+  ]
+}

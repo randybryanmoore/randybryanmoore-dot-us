@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d1a32'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='27' font-weight='700' fill='%23f2eadf'%3ERM%3C/text%3E%3C/svg%3E">
   <title>Randy Bryan Moore, MSW | Advancement Systems & Operations | Richmond Symphony Dossier</title>
   
   <!-- Strict Confidentiality & Privacy: Hidden from Search Engines -->
@@ -49,11 +50,11 @@
       "knowsAbout": [
         "Advancement Systems & Operations",
         "Constituent Relationship Management (CRM) Data Governance",
-        "Bloomerang CRM Administration",
-        "EveryAction Database Architecture",
-        "Advancement & Finance Revenue Reconciliation",
-        "Donor Stewardship Lifecycle Automation",
-        "Concert Hall Operations & VIP Patron Cultivation",
+        "Bloomerang CRM Readiness",
+        "EveryAction Constituent Engagement",
+        "Reporting and Process Design",
+        "Cross-Functional Nonprofit Operations",
+        "Event Operations and Performing Arts",
         "Public Service & Stakeholder Mobilization",
         "Classical & Contemporary Piano Performance"
       ],
@@ -71,8 +72,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1787198701">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=1787258935">
 </head>
 <!-- Review tooling switch: set data-review-tools="off" before going live to
      strip the pin-feedback dock, live edit, inspector and notes drawer. -->
@@ -82,46 +83,74 @@
        the date. Claude sets CL; AG sets Antigravity. Bump the
        version and date on each substantive pass. Always visible -- it is
        independent of the review-tools switch. -->
-  <div class="build-badge" id="build-badge" title="Click to view System Build Telemetry & Agent Handoff (Shift+V)">
-    <span class="build-badge-agent" title="Active AI Agent: Antigravity (AG)">AG</span>
-    <span class="build-badge-live-dot" title="Live & Synchronized"></span>
-    <span class="build-badge-version">v1.6.2</span>
-    <span class="build-badge-sha">#c3bf1ec</span>
-    <span class="build-badge-date">Aug 19, 2026</span>
-  </div>
+  <button type="button" class="build-badge" id="build-badge" aria-expanded="false" aria-controls="build-provenance-modal" title="View System Build Telemetry & Agent Handoff (Shift+V)">
+    <span class="build-badge-agent" title="Active AI Agent: Codex (CDX)">CDX</span>
+    <span class="build-badge-live-dot" title="Local Release Candidate — Deployment Awaiting Approval" style="background:var(--gold-light);"></span>
+    <span class="build-badge-version">v1.6.5-rc</span>
+    <span class="build-badge-sha">LOCAL</span>
+    <span class="build-badge-date">Aug 20, 2026</span>
+  </button>
 
   <!-- Build Provenance & Telemetry Modal -->
-  <div class="build-provenance-modal" id="build-provenance-modal">
+  <div class="build-provenance-modal" id="build-provenance-modal" role="dialog" aria-modal="true" aria-labelledby="provenance-title" aria-hidden="true" tabindex="-1">
     <div class="provenance-header">
-      <span class="provenance-title">⚡ Build &amp; Agent Telemetry</span>
-      <button id="provenance-close-btn" style="background:none; border:none; cursor:pointer; font-weight:800; color:var(--maroon); font-size:12px;">✕</button>
+      <span class="provenance-title" id="provenance-title">⚡ Build &amp; Agent Telemetry</span>
+      <button id="provenance-close-btn" aria-label="Close build telemetry" style="background:none; border:none; cursor:pointer; font-weight:800; color:var(--maroon); font-size:12px;">✕</button>
     </div>
     <div class="provenance-grid">
       <div class="provenance-card">
         <div class="provenance-card-label">Active Agent</div>
-        <div class="provenance-card-value">Antigravity (AG)</div>
+        <div class="provenance-card-value">Codex (CDX)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Build Version</div>
-        <div class="provenance-card-value">v1.6.2 (Release)</div>
+        <div class="provenance-card-value">v1.6.5-rc (Local Candidate)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Total Time Logged</div>
-        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">⏱️ 7.0 Hours (44+ Commits)</div>
+        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">⏱️ 8.0 Hours (manually logged)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Git Commit SHA</div>
-        <div class="provenance-card-value" id="prov-commit-sha">#c3bf1ec</div>
+        <div class="provenance-card-value" id="prov-commit-sha">#7c0763e + local release changes</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Sync Branch</div>
-        <div class="provenance-card-value">main &bull; gh-pages</div>
+        <div class="provenance-card-value">main (local) &bull; live remains previous release</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Deployment</div>
-        <div class="provenance-card-value" style="color:#15803d; font-weight:800;">● Live &amp; Built</div>
+        <div class="provenance-card-value" style="color:#92400e; font-weight:800;">● Not Deployed &bull; Approval Required</div>
       </div>
     </div>
+
+    <section class="lifecycle-status-box" aria-labelledby="lifecycle-status-title">
+      <div class="provenance-version-title" id="lifecycle-status-title">
+        <span>Code Lifecycle State</span>
+        <span style="color:#92400e; font-size:9px;">LOCAL RELEASE CANDIDATE</span>
+      </div>
+      <dl class="lifecycle-status-grid">
+        <div><dt>Local</dt><dd>v1.6.5-rc source-validated; browser readback pending</dd></div>
+        <div><dt>Committed</dt><dd>No</dd></div>
+        <div><dt>Pushed</dt><dd>No</dd></div>
+        <div><dt>Merged / PR</dt><dd>No new PR or merge</dd></div>
+        <div><dt>Deployed</dt><dd>No &bull; authorization guard stopped upload</dd></div>
+        <div><dt>Staging</dt><dd>Not used</dd></div>
+        <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>Previous release remains live; v1.6.5-rc is not public</dd></div>
+      </dl>
+      <details class="lifecycle-glossary">
+        <summary>Lifecycle definitions used by all agents</summary>
+        <ul>
+          <li><strong>Local:</strong> running only on the personal computer; not internet-accessible.</li>
+          <li><strong>Committed:</strong> saved as a permanent checkpoint in local Git.</li>
+          <li><strong>Pushed:</strong> uploaded from local Git to a shared remote such as GitHub.</li>
+          <li><strong>Merged / PR:</strong> reviewed changes combined into the primary shared branch.</li>
+          <li><strong>Deployed:</strong> sent to and configured on a web server or cloud provider.</li>
+          <li><strong>Staging:</strong> a hosted test environment separate from production.</li>
+          <li><strong>Live / Production:</strong> the active public version visitors actually receive.</li>
+        </ul>
+      </details>
+    </section>
 
     <!-- Version Explanation & Interactive Semantic Changelog -->
     <div class="provenance-version-box">
@@ -135,22 +164,65 @@
 
       <!-- Time Summary Pill -->
       <div style="display:flex; justify-content:space-between; align-items:center; background:#ffffff; border:1px solid var(--line); border-radius:4px; padding:5px 8px; margin-bottom:8px; font-size:10.5px;">
-        <span style="color:var(--navy); font-weight:800;">⏱️ Total Engineering: 7.0h</span>
-        <span style="font-family:var(--mono); font-size:9px; color:var(--muted); font-weight:700;">AG: 3.75h &bull; CL: 3.25h</span>
+        <span style="color:var(--navy); font-weight:800;">⏱️ Total Engineering: 8.0h</span>
+        <span style="font-family:var(--mono); font-size:9px; color:var(--muted); font-weight:700;">AG: 3.75h &bull; CL: 3.25h &bull; CDX: 1.0h</span>
       </div>
 
       <div class="provenance-changelog-list">
-        <!-- v1.6.2 -->
+        <!-- v1.6.5-rc -->
         <div class="version-item-wrap active">
-          <div class="version-item-row">
-            <span><span class="agent-chip agent-chip--ag">AG</span> <strong>v1.6.2</strong> (Current)</span>
+          <div class="version-item-row" role="button" tabindex="0" aria-expanded="true">
+            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.6.5-rc</strong> (Current Local)</span>
+            <span class="version-row-tag" style="background:#fef3c7; color:#92400e; border-color:#fcd34d;">● 1.0h &bull; Aug 20</span>
+          </div>
+          <div class="version-hover-card">
+            <div class="version-hover-header">
+              <div class="version-hover-title">
+                <span>v1.6.5-rc · Structured Telemetry &amp; Safe Handoff Candidate</span>
+                <span style="color:#92400e; font-size:9px;">● LOCAL &bull; NOT DEPLOYED</span>
+              </div>
+              <div class="version-hover-meta">
+                <div><strong>Authoring &amp; Audit Agent:</strong> Codex (CDX)</div>
+                <div><strong>Deployment:</strong> Not deployed &bull; explicit sensitive-payload approval required</div>
+                <div><strong>Time Logged:</strong> 1.0 Hour</div>
+                <div><strong>Audit Started:</strong> Aug 20, 2026 · 3:49 PM EDT</div>
+                <div><strong>Candidate Updated:</strong> Aug 20, 2026 · 5:07 PM EDT</div>
+                <div><strong>Source Baseline:</strong> #7c0763e + preserved local changes</div>
+                <div><strong>Production:</strong> Previous release unchanged</div>
+              </div>
+            </div>
+            <ul class="version-hover-bullets">
+              <li><strong>[3:51 PM]</strong> Confirmed source baseline, dirty-tree state, and preserved pre-existing cache-busting edits.</li>
+              <li><strong>[3:54 PM]</strong> Reproduced gate acceptance of an incorrect four-digit PIN in headless Chrome.</li>
+              <li><strong>[3:55 PM]</strong> Verified live custom-domain source parity and serving-repository commit.</li>
+              <li><strong>[3:55 PM]</strong> Updated telemetry to an explicit local audit candidate without claiming deployment.</li>
+              <li><strong>[4:10 PM]</strong> Removed or qualified unsupported claims against the submitted résumé and cover letter.</li>
+              <li><strong>[4:16 PM]</strong> Added explicit lifecycle states, repaired the passcode check, and completed telemetry accessibility and responsive containment fixes.</li>
+              <li><strong>[4:20 PM]</strong> Changed active case-study tabs to canonical red with cream contrast and keyboard focus styling.</li>
+              <li><strong>[4:27 PM]</strong> Regenerated and inspected the executive briefing PDF, then rebuilt and integrity-tested the offline dossier archive.</li>
+              <li><strong>[4:33 PM]</strong> Centered hero/contact details, added four-sided red accents, moved Musical Artistry to section 03, and removed the redundant callout.</li>
+              <li><strong>[4:34 PM]</strong> Recolored the contact and artistic-quote surfaces blue and enabled annotations over embedded media.</li>
+              <li><strong>[4:35 PM]</strong> Made telemetry notes click-to-collapse and completed the local release candidate.</li>
+              <li><strong>[4:36 PM]</strong> Deployment guard stopped the upload before execution pending explicit approval of the sensitive dossier payload and force-updated serving branches.</li>
+              <li><strong>[4:43 PM]</strong> Reduced and centered all three embedded TikTok cards with tighter, high-contrast captions for a lighter visual footprint.</li>
+              <li><strong>[4:46 PM]</strong> Isolated the compact TikTok rule from the shared mobile grid breakpoint, restoring the full site layout.</li>
+              <li><strong>[4:49 PM]</strong> Increased only the TikTok cards from 280px to a centered 320px intermediate size.</li>
+              <li><strong>[5:07 PM]</strong> Refactored the handoff into current state, policy, safe release checkpoints, and archived history; added a separate machine-readable telemetry export.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v1.6.2 -->
+        <div class="version-item-wrap">
+          <div class="version-item-row" role="button" tabindex="0" aria-expanded="false">
+            <span><span class="agent-chip agent-chip--ag">AG</span> <strong>v1.6.2</strong> Release</span>
             <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 1.0h &bull; Aug 19</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-header">
               <div class="version-hover-title">
                 <span>v1.6.2 · Telemetry, iPadOS &amp; Annotation</span>
-                <span style="color:#15803d; font-size:9px;">● CURRENT</span>
+                <span style="color:#15803d; font-size:9px;">● RELEASED</span>
               </div>
               <div class="version-hover-meta">
                 <div><strong>Authoring &amp; Edit Agent:</strong> Antigravity (AG)</div>
@@ -187,7 +259,7 @@
 
         <!-- v1.6.0 -->
         <div class="version-item-wrap">
-          <div class="version-item-row">
+          <div class="version-item-row" role="button" tabindex="0" aria-expanded="false">
             <span><span class="agent-chip agent-chip--ag">AG</span> <strong>v1.6.0</strong> Feature</span>
             <span class="version-row-tag">2.75h &bull; Aug 19</span>
           </div>
@@ -220,7 +292,7 @@
 
         <!-- v1.5.1 -->
         <div class="version-item-wrap">
-          <div class="version-item-row">
+          <div class="version-item-row" role="button" tabindex="0" aria-expanded="false">
             <span><span class="agent-chip agent-chip--cl">CL</span> <strong>v1.5.1</strong> Baseline</span>
             <span class="version-row-tag">2.5h &bull; Aug 18-19</span>
           </div>
@@ -253,7 +325,7 @@
 
         <!-- v1.0.0 -->
         <div class="version-item-wrap">
-          <div class="version-item-row">
+          <div class="version-item-row" role="button" tabindex="0" aria-expanded="false">
             <span><span class="agent-chip agent-chip--cl">CL</span> <strong>v1.0.0</strong> Initial</span>
             <span class="version-row-tag">0.75h &bull; Aug 17</span>
           </div>
@@ -284,7 +356,10 @@
 
     <div class="provenance-actions">
       <button id="provenance-copy-handoff-btn" class="button button-maroon" style="width:100%; justify-content:center; font-size:11.5px; padding:7px 10px;">
-        📋 Copy Complete Agent Handoff
+        📋 Copy Current Agent Handoff
+      </button>
+      <button id="provenance-copy-telemetry-btn" class="button button-navy" style="width:100%; justify-content:center; font-size:11px; padding:6px 10px;">
+        ⚙ Copy Machine Telemetry (.YAML)
       </button>
       <button id="provenance-relock-btn" class="button button-navy" style="width:100%; justify-content:center; font-size:11px; padding:6px 10px;">
         🔒 Re-Lock Dossier (Test Gate)
@@ -292,14 +367,15 @@
     </div>
   </div>
 
-  <!-- Confidential Passcode Gate (PIN: 0000) -->
-  <div id="passcode-gate" class="passcode-gate-overlay">
+  <!-- Shared selection-committee access gate (PIN: 0000). This is a
+       presentation convenience, not server-side authentication. -->
+  <div id="passcode-gate" class="passcode-gate-overlay" role="dialog" aria-modal="true" aria-labelledby="gate-title" aria-describedby="gate-description gate-hint gate-error">
     <div class="passcode-card">
       <div class="gate-monogram">RM</div>
-      <h2 class="gate-title">Richmond Symphony</h2>
+      <h2 class="gate-title" id="gate-title">Richmond Symphony</h2>
       <div class="gate-sub">Advancement Candidacy Dossier</div>
-      <p class="gate-desc">
-        Welcome. This confidential executive dossier presents systems architecture, operational case studies, and musical artistry for the <strong>Assistant Director, Advancement Systems &amp; Operations</strong> position.
+      <p class="gate-desc" id="gate-description">
+        Welcome. This selection-committee briefing presents operational scenarios, verified professional experience, and musical artistry for the <strong>Assistant Director, Advancement Systems &amp; Operations</strong> position.
       </p>
       
       <div class="pin-input-group" id="pin-input-group">
@@ -312,7 +388,8 @@
           maxlength="4" 
           autocomplete="one-time-code" 
           autofocus 
-          aria-label="Selection Committee Passcode"
+          aria-label="Selection Committee Access Code"
+          aria-describedby="gate-hint gate-error"
         >
         <div class="pin-visual-boxes">
           <div class="pin-digit-box active" id="digit-box-1"></div>
@@ -322,9 +399,11 @@
         </div>
       </div>
 
-      <div class="gate-hint">
-        Selection Committee Access PIN: <strong>0000</strong>
+      <div class="gate-hint" id="gate-hint">
+        Shared selection-committee access code: <strong>0000</strong>
       </div>
+
+      <div class="gate-error" id="gate-error" role="alert" aria-live="polite"></div>
 
       <button id="gate-unlock-btn" class="button button-maroon" style="width: 100%; justify-content: center; font-size: 13px;">
         Unlock Dossier
@@ -351,10 +430,10 @@
           <li><a href="#overview" class="active">Overview</a></li>
           <li><a href="#systems">Advancement Systems</a></li>
           <li><a href="#case-studies">Case Studies</a></li>
+          <li><a href="#music">Musical Artistry</a></li>
           <li><a href="#alignment">Alignment</a></li>
           <li><a href="#roadmap">Roadmap</a></li>
           <li><a href="#experience">Track Record</a></li>
-          <li><a href="#music">Musical Artistry</a></li>
         </ul>
       </nav>
 
@@ -377,7 +456,7 @@
           <span><em>Bryan</em> <i class="hero-name-divider" aria-hidden="true">//</i> Moore, <span class="hero-msw">MSW</span></span>
         </h1>
         <p class="hero-deck">
-          A Master of Social Work (MSW) systems practitioner and operations leader with 10+ years across advocacy, constituent CRM administration, and public service. Contract pianist (4-year resident performer at The Jefferson Hotel in Richmond), bridging donor analytics with authentic patron cultivation for the Richmond Symphony.
+          A Master of Social Work (MSW) systems practitioner and nonprofit operations leader with 10+ years across advocacy, government, housing, CRM-supported outreach, reporting, and process design. Richmond-based contract pianist at The Jefferson Hotel since 2022.
         </p>
 
         <div class="hero-paths">
@@ -428,12 +507,12 @@
 
           <div class="pillar-list">
             <div class="pillar-item">
-              <strong>Bloomerang CRM &amp; Advancement Systems Governance</strong>
-              <span>Primary Bloomerang CRM administration, Moves Management tracking, EveryAction experience, automated gift workflows &amp; Finance alignment.</span>
+              <strong>CRM-Supported Operations &amp; Bloomerang Readiness</strong>
+              <span>Hands-on EveryAction constituent data, outreach lists, follow-up workflows, reporting, and a transparent plan to learn Bloomerang administration.</span>
             </div>
             <div class="pillar-item">
               <strong>Richmond Cultural &amp; Arts Immersion</strong>
-              <span>Songwriter, producer, multi-instrumentalist &amp; contract pianist (4-year resident performer at The Jefferson Hotel), music educator, and active patron steward.</span>
+              <span>Songwriter, producer, multi-instrumentalist, contract pianist at The Jefferson Hotel since 2022, and music educator.</span>
             </div>
             <div class="pillar-item">
               <strong>Public-Service Leadership &amp; Operations</strong>
@@ -454,9 +533,9 @@
   <!-- Chapter Ribbon Strip -->
   <div class="chapter-strip" aria-label="Strategic competencies">
     <div class="chapter-strip-inner">
-      <span>Bloomerang CRM Governance</span><span>&lt;48h Gift Acknowledgments</span><span>Advancement &amp; Finance Reconciliation</span>
-      <span>Contract Pianist (Resident Performer) · The Jefferson Hotel</span><span>55 Legislative Districts Managed</span><span>Executive Board Dashboards</span>
-      <span>Bloomerang CRM Governance</span><span>&lt;48h Gift Acknowledgments</span><span>Advancement &amp; Finance Reconciliation</span>
+      <span>EveryAction Constituent Data</span><span>Reporting &amp; Process Design</span><span>Cross-Functional Operations</span>
+      <span>Contract Pianist · The Jefferson Hotel</span><span>55 General Assembly Meetings</span><span>Leadership Briefing Materials</span>
+      <span>Bloomerang Readiness</span><span>Proposed Acknowledgment Target</span><span>Finance Partnership Readiness</span>
     </div>
   </div>
 
@@ -466,9 +545,9 @@
       <div class="section-heading">
         <p class="kicker kicker-light">01 · Core Competencies</p>
         <div>
-          <h2>Advancement Systems <em>& Strategic Operations.</em></h2>
+          <h2>Transferable Systems Experience <em>& Role Readiness.</em></h2>
           <p class="lead">
-            Translating constituent data into operational velocity, executive clarity, and cross-functional financial integrity.
+            Evidence from advocacy, government, and housing, paired with a candid plan to learn advancement-specific systems and workflows.
           </p>
         </div>
       </div>
@@ -477,39 +556,39 @@
         <!-- Capability Card 1 -->
         <div class="card-editorial card-editorial--maroon">
           <div>
-            <h3>Bloomerang CRM Administration & Moves Management</h3>
-            <p>Primary administration of Bloomerang CRM and advanced constituent systems (EveryAction). Architecting clean tagging, gift acknowledgements (&lt;48h SLA), Moves Management portfolio tracking, and Finance alignment to hit the $6.9M contributed-income goal.</p>
+            <h3>EveryAction Experience &amp; Bloomerang Readiness</h3>
+            <p>Used EveryAction at Save the Children Action Network to capture and tag constituent engagement, build outreach lists and follow-up workflows, and support event reporting. Bloomerang is new; the transferable data and workflow discipline is established.</p>
           </div>
           <ul class="check-feature-list">
-            <li>Primary Bloomerang CRM administration &amp; schema design</li>
-            <li>Automated gift acknowledgements (&lt;48h SLA)</li>
-            <li>Moves Management &amp; major donor portfolio tracking</li>
+            <li>Constituent tagging, outreach lists &amp; follow-up workflows</li>
+            <li>Event, turnout, media &amp; organizing reports</li>
+            <li>Prepared to learn Bloomerang and Moves Management workflows</li>
           </ul>
         </div>
 
         <!-- Capability Card 2 -->
         <div class="card-editorial card-editorial--maroon">
           <div>
-            <h3>Executive Dashboards & Reporting</h3>
-            <p>Translating complex donor data into visual KPIs, pipeline tracking, fund forecasting, and clear decision briefs for the Chief Advancement Officer and Board leadership.</p>
+            <h3>Reporting &amp; Decision Support</h3>
+            <p>Developed tracking, reporting, training, and briefing materials that translated complex policy and stakeholder information into clear recommendations for leadership and external partners.</p>
           </div>
           <ul class="check-feature-list">
-            <li>Major donor pipeline tracking & velocity</li>
-            <li>Campaign turnout & patron retention cohorts</li>
-            <li>Board-ready executive decision briefs</li>
+            <li>Campaign turnout and engagement tracking</li>
+            <li>Senior-level briefs and follow-up records</li>
+            <li>Clear reporting for leadership and partners</li>
           </ul>
         </div>
 
         <!-- Capability Card 3 -->
         <div class="card-editorial card-editorial--maroon">
           <div>
-            <h3>Advancement & Finance Partnership</h3>
-            <p>Deep experience managing revenue reconciliation, fund allocation integrity, audit trails, and seamless cross-departmental collaboration with Finance.</p>
+            <h3>Budget Discipline &amp; Finance Partnership Readiness</h3>
+            <p>Developed housing budget and policy strategy involving the Virginia Housing Trust Fund and coordinated complex cross-functional work. Has not yet owned end-to-end gift processing or Advancement-Finance reconciliation.</p>
           </div>
           <ul class="check-feature-list">
-            <li>Weekly batch revenue reconciliation</li>
-            <li>Restricted fund compliance (Endowment / Annual)</li>
-            <li>Audit-ready records with zero unallocated variance</li>
+            <li>Budget and policy analysis</li>
+            <li>Detailed records, deadlines &amp; cross-team coordination</li>
+            <li>Prepared to learn Finance's existing reconciliation controls</li>
           </ul>
         </div>
       </div>
@@ -524,7 +603,7 @@
         <div>
           <h2>Interactive Systems <em>Case Studies.</em></h2>
           <p class="lead">
-            Explore real-world operational workflows tailored directly to the Richmond Symphony's Advancement team.
+            Illustrative operating scenarios—not claims of prior advancement execution—paired with verified transferable experience.
           </p>
         </div>
       </div>
@@ -533,7 +612,7 @@
         <div class="tab-nav">
           <button class="tab-btn active" data-tab="crm">1. Bloomerang & EveryAction CRM</button>
           <button class="tab-btn" data-tab="muster">2. Muster Platform Evaluation</button>
-          <button class="tab-btn" data-tab="evokate">3. Evokate Strategy & Media</button>
+          <button class="tab-btn" data-tab="evokate">3. Creative Media Approach</button>
           <button class="tab-btn" data-tab="reconciliation">4. Advancement & Finance Alignment</button>
           <button class="tab-btn" data-tab="galas">5. Donor Galas & Concert Ops</button>
         </div>
@@ -544,14 +623,14 @@
             <div class="tab-content">
               <h3>Donor Lifecycle & Data Architecture</h3>
               <p>
-                Applying a service-oriented approach to Bloomerang administration: establishing systematic tagging taxonomies, automated gift acknowledgement triggers within 48 hours, and clean portfolio transitions for gift officers.
+                Proposed approach to Bloomerang administration: learn the existing schema and controls, document shared tagging standards, review acknowledgement timing, and support clean portfolio transitions for gift officers.
               </p>
               <p>
-                Drawing on deep EveryAction experience at Save the Children Action Network, every constituent touchpoint—from ticket purchase to annual fund gift—is captured, verified, and contextualized.
+                The transferable evidence is hands-on EveryAction use at Save the Children Action Network: capturing and tagging constituent engagement, building outreach lists and follow-up workflows, and supporting event reporting.
               </p>
               <div class="button-row">
                 <a href="Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip" download class="button button-navy" style="font-size: 11px;">
-                  Download EveryAction Taxonomy Blueprint (.PDF) ↓
+                  Download Full Candidate Dossier (.ZIP) ↓
                 </a>
               </div>
             </div>
@@ -561,12 +640,12 @@
                 <div class="stat-label">Acknowledgement Target</div>
               </div>
               <div class="stat-item">
-                <div class="stat-num">100%</div>
-                <div class="stat-label">Audit Trail Integrity</div>
+                <div class="stat-num">Proposed</div>
+                <div class="stat-label">Data Standards Review</div>
               </div>
               <div class="stat-item">
-                <div class="stat-num">55+</div>
-                <div class="stat-label">Legislative Offices Managed</div>
+                <div class="stat-num">55</div>
+                <div class="stat-label">General Assembly Meetings</div>
               </div>
               <div class="stat-item">
                 <div class="stat-num">40+</div>
@@ -589,7 +668,7 @@
               </p>
               <div class="button-row">
                 <a href="Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip" download class="button button-navy" style="font-size: 11px;">
-                  Download Advocacy Amplified (.PDF) ↓
+                  Download Full Candidate Dossier (.ZIP) ↓
                 </a>
               </div>
             </div>
@@ -614,39 +693,39 @@
           </div>
         </div>
 
-        <!-- Tab 3: Evokate Strategy & Creative Media -->
+        <!-- Tab 3: Creative Media Approach -->
         <div id="tab-evokate" class="tab-pane">
           <div class="tab-grid">
             <div class="tab-content">
-              <h3>Evokate Strategic Storytelling & Creative Direction</h3>
+              <h3>Creative Media &amp; Storytelling Approach</h3>
               <p>
-                Bridged institutional messaging with compelling multimedia narratives, patron engagement campaigns, and audio-visual production.
+                Brings music production, performance, teaching, and public-service communications experience to the challenge of explaining complex work clearly.
               </p>
               <p>
-                Translates complex artistic and operational initiatives into resonant digital experiences that captivate modern concertgoers and major cultural benefactors.
+                This portfolio concept demonstrates an approach to digital storytelling; it does not claim prior Richmond Symphony patron-campaign or major-gifts experience.
               </p>
               <div class="button-row">
                 <a href="Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip" download class="button button-navy" style="font-size: 11px;">
-                  Download Evokate Creative Case Study (.PDF) ↓
+                  Download Full Candidate Dossier (.ZIP) ↓
                 </a>
               </div>
             </div>
             <div class="tab-stats-box">
               <div class="stat-item">
-                <div class="stat-num">Multichannel</div>
-                <div class="stat-label">Media Campaigns</div>
+                <div class="stat-num">Music</div>
+                <div class="stat-label">Production &amp; Performance</div>
               </div>
               <div class="stat-item">
-                <div class="stat-num">4 Yrs</div>
-                <div class="stat-label">Performing Arts Media</div>
+                <div class="stat-num">2022–Present</div>
+                <div class="stat-label">Jefferson Hotel Pianist</div>
               </div>
               <div class="stat-item">
-                <div class="stat-num">High-Res</div>
-                <div class="stat-label">Audio-Visual Production</div>
+                <div class="stat-num">40+</div>
+                <div class="stat-label">Public Engagements Organized</div>
               </div>
               <div class="stat-item">
-                <div class="stat-num">Donor</div>
-                <div class="stat-label">Stewardship Focus</div>
+                <div class="stat-num">Verified</div>
+                <div class="stat-label">Transferable Experience</div>
               </div>
             </div>
           </div>
@@ -656,27 +735,27 @@
         <div id="tab-reconciliation" class="tab-pane">
           <div class="tab-grid">
             <div class="tab-content">
-              <h3>Seamless Advancement & Finance Alignment</h3>
+              <h3>Proposed Advancement &amp; Finance Alignment</h3>
               <p>
-                Eliminating discrepancies between Advancement pledges and Finance general ledger receipts through weekly reconciliation cadence, standardized gift batching, and clear restriction categorization (Endowment, Annual Fund, Education Outreach).
+                Proposed first step: learn Finance's existing gift-processing controls, document handoffs and ownership, and establish a reconciliation rhythm with the Advancement and Finance teams.
               </p>
               <p>
-                Maintains transparent, verifiable records that satisfy both auditors and institutional benefactors.
+                The nearest demonstrated precedent is budget and policy strategy involving the Virginia Housing Trust Fund, along with detailed records and cross-functional coordination. Randy has not yet owned end-to-end gift reconciliation.
               </p>
               <div class="button-row">
                 <a href="Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip" download class="button button-navy" style="font-size: 11px;">
-                  Download Finance Reconciliation SOP (.PDF) ↓
+                  Download Full Candidate Dossier (.ZIP) ↓
                 </a>
               </div>
             </div>
             <div class="tab-stats-box">
               <div class="stat-item">
-                <div class="stat-num">Weekly</div>
-                <div class="stat-label">Reconciliation Cadence</div>
+                <div class="stat-num">Discover</div>
+                <div class="stat-label">Existing Finance Controls</div>
               </div>
               <div class="stat-item">
-                <div class="stat-num">0%</div>
-                <div class="stat-label">Unallocated Variance</div>
+                <div class="stat-num">Document</div>
+                <div class="stat-label">Handoffs &amp; Ownership</div>
               </div>
               <div class="stat-item">
                 <div class="stat-num">$14.1M</div>
@@ -694,16 +773,16 @@
         <div id="tab-galas" class="tab-pane">
           <div class="tab-grid">
             <div class="tab-content">
-              <h3>Concert Operations, Galas & VIP Reception Logistics</h3>
+              <h3>Concert Operations &amp; Event Readiness</h3>
               <p>
-                Symphony advancement thrives in the concert hall. Energized by the evening and weekend performance schedule, coordinating VIP reception rosters, welcoming major patrons, and syncing real-time attendee records directly back into Bloomerang.
+                The cover letter confirms availability for evening and weekend concerts, donor events, and Symphony activities. Proposed responsibilities would be learned within the team's established event and data procedures.
               </p>
               <p>
-                Combines 40+ public event coordination experience with natural hospitality as a contract pianist (4-year resident performer) at The Jefferson Hotel.
+                Transferable evidence includes organizing 40+ public engagements for Senator Warner's office and client-facing contract piano work at The Jefferson Hotel since 2022.
               </p>
               <div class="button-row">
                 <a href="Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip" download class="button button-navy" style="font-size: 11px;">
-                  Download VIP Gala Operations Roster (.PDF) ↓
+                  Download Full Candidate Dossier (.ZIP) ↓
                 </a>
               </div>
             </div>
@@ -717,8 +796,8 @@
                 <div class="stat-label">Jefferson Hotel Musician</div>
               </div>
               <div class="stat-item">
-                <div class="stat-num">100%</div>
-                <div class="stat-label">Concert/Gala Availability</div>
+                <div class="stat-num">Confirmed</div>
+                <div class="stat-label">Evening/Weekend Availability</div>
               </div>
               <div class="stat-item">
                 <div class="stat-num">Richmond</div>
@@ -734,45 +813,45 @@
         <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
           <div>
             <p class="kicker kicker-light" style="margin-bottom: 4px;">Constituent Experience</p>
-            <h3>Donor Stewardship & Operations Lifecycle</h3>
+            <h3>Illustrative Donor Stewardship &amp; Operations Workflow</h3>
           </div>
-          <span style="font-family: var(--mono); font-size: 11px; color: var(--cream); opacity: 0.85;">Bloomerang CRM · 48h SLA · Finance Handoff</span>
+          <span style="font-family: var(--mono); font-size: 11px; color: var(--cream); opacity: 0.85;">Proposed workflow · Validate with Advancement &amp; Finance</span>
         </div>
 
         <div class="lifecycle-grid">
           <div class="lifecycle-stage">
             <div class="lifecycle-stage__tag">Stage 1 · Acquisition</div>
             <h4>First Ticket to Annual Donor</h4>
-            <p>Patron attends masterworks concert. Box office syncs record to Bloomerang; automated welcome sequence with artistic greeting initiates within 24h.</p>
+            <p>Patron attends a Symphony Series concert. Confirm the existing box-office-to-CRM flow before proposing any welcome sequence or timing standard.</p>
           </div>
 
           <div class="lifecycle-stage">
             <div class="lifecycle-stage__tag">Stage 2 · Processing</div>
-            <h4>&lt;48h Gift Acknowledgment</h4>
-            <p>Gift logged with fund restriction. Personalized tax receipt + handwritten board thank-you card triggered under strict 48-hour SLA.</p>
+            <h4>Timely Gift Acknowledgment</h4>
+            <p>Document the current receipt and acknowledgment workflow, then validate an appropriate service target with Advancement and Finance.</p>
           </div>
 
           <div class="lifecycle-stage">
             <div class="lifecycle-stage__tag">Stage 3 · Reconciliation</div>
             <h4>Advancement–Finance Sync</h4>
-            <p>Weekly batch reconciliation matches Bloomerang pledges against General Ledger cash receipts, resolving restricted fund variances to 0%.</p>
+            <p>Learn the existing cadence for comparing Advancement records with Finance records and document how discrepancies are researched and resolved.</p>
           </div>
 
           <div class="lifecycle-stage">
             <div class="lifecycle-stage__tag">Stage 4 · Retention</div>
-            <h4>VIP Gala & Major Gift Move</h4>
-            <p>Donor reaches $5k+ cumulative giving tier; system notifies Major Gifts Officer and generates personalized concert hall VIP lounge credentials.</p>
+            <h4>Stewardship &amp; Next Action</h4>
+            <p>Use the team's approved portfolio stages and giving criteria to surface the next relationship action without inventing thresholds or benefits.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Section 3: Richmond Symphony Alignment Matrix -->
+  <!-- Section 4: Richmond Symphony Alignment Matrix -->
   <section id="alignment" class="section section-navy">
     <div class="page-shell">
       <div class="section-heading">
-        <p class="kicker kicker-light">03 · Strategic Fit</p>
+        <p class="kicker kicker-light">04 · Strategic Fit</p>
         <div>
           <h2>Role Alignment <em>& Qualifications Matrix.</em></h2>
           <p class="lead">
@@ -796,7 +875,7 @@
                 <span style="color: var(--muted); font-size: 12px;">Database architecture, tagging, hygiene & SLA</span>
               </td>
               <td style="line-height: 1.6;">
-                Advanced EveryAction CRM governance at Save the Children Action Network. Architected statewide tagging taxonomies, gift acknowledgment triggers (&lt;48h), constituent deduplication, and pipeline health reporting.
+                Used EveryAction at Save the Children Action Network to capture and tag constituent engagement, build outreach lists and follow-up workflows, and support event reporting. Has not yet administered Bloomerang.
               </td>
             </tr>
             <tr>
@@ -805,7 +884,7 @@
                 <span style="color: var(--muted); font-size: 12px;">General Ledger sync, gift restriction integrity</span>
               </td>
               <td style="line-height: 1.6;">
-                Established rigorous cross-functional reconciliation protocols between fundraising pledges and general ledger accounting. Managed fiscal tracking for multi-million dollar public/private allocations with zero-variance audit trails.
+                Developed budget and policy strategy involving the Virginia Housing Trust Fund and maintained detailed records across complex, cross-functional work. Has not yet owned end-to-end gift processing or Advancement-Finance reconciliation.
               </td>
             </tr>
             <tr>
@@ -814,13 +893,13 @@
                 <span style="color: var(--muted); font-size: 12px;">Evening/weekend commitment & donor hosting</span>
               </td>
               <td style="line-height: 1.6;">
-                Managed 40+ high-profile public and dignitary events across Central Virginia for U.S. Senator Mark Warner. 100% committed to evening/weekend concert schedules and managing VIP guest rosters.
+                Organized 40+ public engagements for U.S. Senator Mark Warner's office. The cover letter confirms availability for evening and weekend concerts, donor events, and Symphony activities; VIP roster procedures would be learned on the job.
               </td>
             </tr>
             <tr>
               <td>
                 <strong style="color: var(--maroon); display: block; margin-bottom: 4px;">Grassroots & Stakeholder Mobilization</strong>
-                <span style="color: var(--muted); font-size: 12px;">Muster CRM & community turnout</span>
+                <span style="color: var(--muted); font-size: 12px;">Advocacy technology &amp; community turnout</span>
               </td>
               <td style="line-height: 1.6;">
                 Coordinated 55 General Assembly meetings across Virginia for Save the Children Action Network, using <strong>EveryAction</strong> to capture and organize constituent engagement. Separately authored the <strong>Muster</strong> platform evaluation and Salesforce integration design at Active Minds, leading a ten-organization coalition across 50+ legislative offices.
@@ -832,7 +911,7 @@
                 <span style="color: var(--muted); font-size: 12px;">Musical literacy & Richmond cultural roots</span>
               </td>
               <td style="line-height: 1.6;">
-                Contract pianist (4-year resident performer at The Jefferson Hotel in Richmond), School of Rock instructor, and creator of the <em>1,000 Songs</em> series. Brings authentic musical literacy and genuine patron rapport.
+                Contract pianist at The Jefferson Hotel since 2022, School of Rock instructor, and creator of the <em>1,000 Songs</em> series. Brings performance, teaching, and client-facing experience.
               </td>
             </tr>
             <tr>
@@ -850,11 +929,11 @@
     </div>
   </section>
 
-  <!-- Section 4: 30-60-90 Day Blueprint -->
+  <!-- Section 5: 30-60-90 Day Blueprint -->
   <section id="roadmap" class="section section-navy">
     <div class="page-shell">
       <div class="section-heading">
-        <p class="kicker kicker-light">04 · Execution Roadmap</p>
+        <p class="kicker kicker-light">05 · Execution Roadmap</p>
         <div>
           <h2>30-60-90 Day <em>Advancement Plan.</em></h2>
           <p class="lead">
@@ -864,7 +943,7 @@
       </div>
 
       <!-- Operating Philosophy & North Star Lockup -->
-      <div class="roadmap-philosophy-box" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(242, 234, 223, 0.2); border-left: 4px solid var(--maroon); border-radius: 8px; padding: 24px; margin-bottom: 32px; color: var(--cream);">
+      <div class="roadmap-philosophy-box" style="background: rgba(255, 255, 255, 0.05); border: 2px solid var(--maroon); border-radius: 8px; padding: 24px; margin-bottom: 32px; color: var(--cream);">
         <div style="margin-bottom: 16px;">
           <span style="font-family: var(--mono); font-size: 11px; font-weight: 800; color: var(--cream); opacity: 0.85; text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 4px;">North Star</span>
           <p style="font-family: var(--serif); font-size: 1.15rem; font-weight: 600; line-height: 1.4; color: var(--cream); margin: 0;">
@@ -937,15 +1016,15 @@
     </div>
   </section>
 
-  <!-- Section 5: Career Track Record & Timeline -->
+  <!-- Section 6: Career Track Record & Timeline -->
   <section id="experience" class="section section-navy">
     <div class="page-shell">
       <div class="section-heading">
-        <p class="kicker kicker-light">05 · Career Record</p>
+        <p class="kicker kicker-light">06 · Career Record</p>
         <div>
           <h2>10+ Years of Systems <em>& Public Service.</em></h2>
           <p class="lead">
-            A proven track record of managing high-stakes statewide operations, constituent systems, and coalitions across Virginia.
+            Experience managing statewide advocacy operations, constituent systems, and coalitions across Virginia.
           </p>
         </div>
       </div>
@@ -957,7 +1036,7 @@
             <h3>Save the Children Action Network</h3>
             <p class="timeline-orgs">Virginia State Manager</p>
             <p class="home-advocacy-description">
-              Led statewide operations and coordinated 55 General Assembly meetings with lawmakers, donors, and partners. Administered EveryAction CRM to track constituent engagement, built segmented outreach workflows, and prepared data-driven turnout reports.
+              Led statewide advocacy operations and coordinated 55 General Assembly meetings with parents, providers, volunteers, lawmakers, and partners. Used EveryAction to capture and tag constituent engagement, build outreach lists and follow-up workflows, and support event reporting.
             </p>
           </div>
         </div>
@@ -979,7 +1058,7 @@
             <h3>Office of U.S. Senator Mark R. Warner</h3>
             <p class="timeline-orgs">Outreach Representative — Richmond, VA</p>
             <p class="home-advocacy-description">
-              Managed stakeholder communications across 40+ Central Virginia counties with civic leaders, agencies, and press. Prepared senior-level briefs, maintained detailed records, and organized 40+ high-profile public engagements.
+              Managed stakeholder communications across 40+ Central Virginia counties with officials, agencies, businesses, advocates, press, and constituents. Prepared senior-level briefs, maintained detailed records, and organized 40+ public engagements.
             </p>
           </div>
         </div>
@@ -998,11 +1077,11 @@
     </div>
   </section>
 
-  <!-- Section 6: Musical Artistry & Web Audio Suite -->
+  <!-- Section 3: Musical Artistry & Web Audio Suite (moved after case studies by script.js) -->
   <section id="music" class="section section-navy">
     <div class="page-shell">
       <div class="section-heading">
-        <p class="kicker kicker-light">06 · Performing Arts Background</p>
+        <p class="kicker kicker-light">03 · Performing Arts Background</p>
         <div>
           <h2>Musical Artistry <em>& Community Connection.</em></h2>
           <p class="lead">
@@ -1018,7 +1097,7 @@
         </figure>
         <h3 style="margin-bottom: 10px; text-align: center;">Songwriter, Producer, Multi-Instrumentalist &amp; Arts Advocate</h3>
         <p style="max-width: 780px; margin: 0 auto 20px; text-align: center; font-size: 15px; opacity: 0.92; line-height: 1.65;">
-          "As a songwriter, producer, and multi-instrumentalist—singing, playing piano, guitar, and harp, and composing full orchestral arrangements for productions including Kate Bush’s <em>Hounds of Love</em>, alongside four years as a resident pianist at Richmond’s historic Jefferson Hotel—I bring an intuitive, lived understanding of classical orchestration, performance production, and artist-patron connection. Joining the Richmond Symphony unites my 10+ years of nonprofit systems operations with my lifelong dedication to our regional cultural and musical community."
+          "As a songwriter, producer, and multi-instrumentalist—singing, playing piano, guitar, and harp, and composing full orchestral arrangements for productions including Kate Bush’s <em>Hounds of Love</em>, alongside contract piano work at Richmond’s historic Jefferson Hotel since 2022—I bring a lived understanding of orchestration, performance production, and client-facing musical work. Joining the Richmond Symphony would unite my nonprofit operations experience with my dedication to Richmond’s musical community."
         </p>
         <div class="button-row" style="justify-content: center; margin-top: 0; gap: 8px; flex-wrap: wrap;">
           <span class="button button-maroon" style="padding: 7px 14px; font-size: 11px; pointer-events: none;">Songwriter &amp; Producer</span>
@@ -1039,7 +1118,7 @@
           <a href="https://randybryanmoore.us" target="_blank" rel="noopener" style="color: var(--cream); font-family: var(--mono); font-size: 12px; border-bottom: 1px solid rgba(242, 234, 223, 0.4); padding-bottom: 2px;">Visit randybryanmoore.us ↗</a>
         </div>
 
-        <blockquote style="font-family: var(--serif); font-size: clamp(19px, 2.2vw, 26px); font-style: italic; color: #ffffff; margin: 0 0 28px 0; border-left: 3px solid var(--gold-light); padding: 16px 20px; background: rgba(0, 0, 0, 0.2); border-radius: 0 4px 4px 0; line-height: 1.5;">
+        <blockquote class="artistic-journey-quote" style="font-family: var(--serif); font-size: clamp(19px, 2.2vw, 26px); font-style: italic; color: #ffffff; margin: 0 0 28px 0; border: 1px solid rgba(242, 234, 223, 0.3); padding: 16px 20px; background: var(--blue-l2); border-radius: 4px; line-height: 1.5;">
           “The purpose is to hear what music has to teach me—as an artist, as a beast, and as a ghost. Not a countdown, but a record of sustained attention: sitting with a song, leaving the growth visible, and being changed by music at the end.
           <span style="display: block; margin-top: 14px; font-size: 0.9em; opacity: 0.9;">Like sticking your hand in a stream.”</span>
         </blockquote>
@@ -1090,14 +1169,6 @@
     </div>
   </section>
 
-  <!-- Callout Band -->
-  <section class="callout-band">
-    <div class="page-shell">
-      <h2>Have questions about systems architecture <em>or concert operations?</em></h2>
-      <a href="#contact" class="button button-navy">Get in touch →</a>
-    </div>
-  </section>
-
   <!-- Site Footer -->
   <footer id="contact" class="site-footer">
     <div class="page-shell">
@@ -1125,9 +1196,9 @@
 
         <div class="footer-links">
           <a href="mailto:randybryanmoore@gmail.com" class="button button-navy">Email Candidate</a>
-          <a href="Randy_Bryan_Moore.vcf" download class="button button-outline-light">Save Contact (.VCF)</a>
+          <a href="Randy_Bryan_Moore.vcf" download class="button button-navy">Save Contact (.VCF)</a>
           <a href="https://richmond-symphony-advancement-demo.randybryanmoore.chatgpt.site" target="_blank" rel="noopener" class="button button-navy">Dashboard Demo (0000)</a>
-          <a href="Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip" download class="button button-outline-light">Download Dossier (.ZIP)</a>
+          <a href="Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip" download class="button button-navy">Download Dossier (.ZIP)</a>
           <a href="one_pager.html" class="button button-navy">Printable Handout (PDF)</a>
         </div>
 
@@ -1229,6 +1300,6 @@
   </div>
 
   <!-- Suite Script (external only — no inline duplication) -->
-  <script src="script.js"></script>
+  <script src="script.js?v=1787258935"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
-import urllib.request, json, base64, ssl, zipfile, os, re, time
+import urllib.request, json, base64, ssl, zipfile, os, re, time, hashlib, subprocess
+from datetime import datetime
 
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
@@ -44,6 +45,77 @@ with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zf:
 
 print(f'Rebuilt Zip: {os.path.getsize(zip_path)} bytes')
 
+# Regenerate the release manifest after cache busting and ZIP creation so its
+# digests describe the exact candidate that this script is preparing to send.
+def sha256_file(path):
+    digest = hashlib.sha256()
+    with open(path, 'rb') as artifact:
+        for chunk in iter(lambda: artifact.read(1024 * 1024), b''):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+try:
+    source_commit = subprocess.check_output(
+        ['git', '-C', src_dir, 'rev-parse', 'HEAD'], text=True
+    ).strip()
+    source_branch = subprocess.check_output(
+        ['git', '-C', src_dir, 'branch', '--show-current'], text=True
+    ).strip() or 'detached'
+    working_tree = 'modified' if subprocess.check_output(
+        ['git', '-C', src_dir, 'status', '--porcelain'], text=True
+    ).strip() else 'clean'
+except (OSError, subprocess.CalledProcessError):
+    source_commit = 'unavailable'
+    source_branch = 'unavailable'
+    working_tree = 'unavailable'
+
+release_artifact_names = [
+    'index.html', 'styles.css', 'script.js', 'one_pager.html',
+    'Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip'
+]
+release_manifest = {
+    'schema_version': 1,
+    'generated_at': datetime.now().astimezone().isoformat(timespec='seconds'),
+    'service_name': 'richmond-symphony-candidate-dossier',
+    'service_version': '1.6.5-rc',
+    'source': {
+        'repository': 'randybryanmoore/randybryanmoore-dot-us',
+        'branch': source_branch,
+        'base_commit': source_commit,
+        'working_tree': working_tree
+    },
+    'lifecycle': {
+        'committed': False,
+        'pushed': False,
+        'deployed': False,
+        'production_verified': False
+    },
+    'artifacts': [
+        {
+            'path': name,
+            'sha256': sha256_file(os.path.join(src_dir, name))
+        }
+        for name in release_artifact_names
+    ],
+    'validation': {
+        'production_readback': 'not_run'
+    },
+    'blockers': [
+        {
+            'id': 'DEPLOY-APPROVAL-001',
+            'severity': 'high',
+            'status': 'open',
+            'description': 'Explicit approval required before publishing the dossier payload.'
+        }
+    ]
+}
+manifest_path = os.path.join(src_dir, 'release-manifest.json')
+with open(manifest_path, 'w') as manifest_file:
+    json.dump(release_manifest, manifest_file, indent=2)
+    manifest_file.write('\n')
+
+print(f'Regenerated release manifest: {manifest_path}')
+
 # Helper for API requests
 def api_req(url, data=None, method='GET'):
     req = urllib.request.Request(
@@ -67,7 +139,8 @@ files_to_push = [
     ('script.js', open(os.path.join(src_dir, 'script.js'), 'rb').read()),
     ('index.html', open(os.path.join(src_dir, 'index.html'), 'rb').read()),
     ('Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip', open(zip_path, 'rb').read()),
-    ('one_pager.html', open(os.path.join(src_dir, 'one_pager.html'), 'rb').read())
+    ('one_pager.html', open(os.path.join(src_dir, 'one_pager.html'), 'rb').read()),
+    ('release-manifest.json', open(os.path.join(src_dir, 'release-manifest.json'), 'rb').read())
 ]
 
 tree_items = []
@@ -97,7 +170,7 @@ new_tree = api_req(
 new_commit = api_req(
     f'https://api.github.com/repos/{owner}/{repo}/git/commits',
     data={
-        'message': 'Refine Section 06: Vocalist, multi-instrumentalist, orchestral arranger for Hounds of Love; scale title & QR code',
+        'message': 'Release v1.6.5: structured telemetry and safe handoff workflow',
         'tree': new_tree['sha'],
         'parents': [latest_commit_sha]
     },

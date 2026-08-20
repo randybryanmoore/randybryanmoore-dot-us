@@ -18,6 +18,30 @@
     const visualBoxes = document.querySelectorAll('.pin-digit-box');
     const pinGroup = document.getElementById('pin-input-group');
     const gateUnlockBtn = document.getElementById('gate-unlock-btn');
+    const gateError = document.getElementById('gate-error');
+
+    function clearGateError() {
+      if (gateError) gateError.textContent = '';
+      if (masterInput) masterInput.removeAttribute('aria-invalid');
+    }
+
+    function showGateError() {
+      if (gateError) gateError.textContent = 'That access code is not recognized. Enter 0000.';
+      if (masterInput) masterInput.setAttribute('aria-invalid', 'true');
+    }
+
+    function validateAccessCode() {
+      if (!masterInput) return false;
+      if (masterInput.value === '0000') {
+        clearGateError();
+        unlockDossier();
+        return true;
+      }
+      showGateError();
+      masterInput.focus();
+      masterInput.select();
+      return false;
+    }
 
     function unlockDossier() {
       if (gateOverlay) {
@@ -31,6 +55,7 @@
       }
       document.body.classList.remove('dossier-locked');
       document.documentElement.classList.remove('dossier-locked');
+      clearGateError();
       try {
         sessionStorage.setItem('symphony_dossier_auth', 'true');
         sessionStorage.setItem('rbm_sym_unlocked', '1');
@@ -79,8 +104,9 @@
         }
       });
 
-      if (rawVal === '0000' || rawVal.length === 4) {
-        setTimeout(unlockDossier, 60);
+      clearGateError();
+      if (rawVal.length === 4) {
+        setTimeout(validateAccessCode, 60);
       }
     }
 
@@ -89,7 +115,7 @@
           sessionStorage.getItem('rbm_sym_unlocked') === '1' ||
           localStorage.getItem('symphony_dossier_auth') === 'true') {
         unlockDossier();
-      } else {
+      } else if (gateOverlay) {
         document.body.classList.add('dossier-locked');
         document.documentElement.classList.add('dossier-locked');
         if (masterInput) {
@@ -119,9 +145,7 @@
     if (gateUnlockBtn) {
       gateUnlockBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (masterInput) masterInput.value = '0000';
-        updateVisualPins();
-        unlockDossier();
+        validateAccessCode();
       });
     }
 
@@ -145,12 +169,231 @@
     const provModal = document.getElementById('build-provenance-modal');
     const provClose = document.getElementById('provenance-close-btn');
     const copyHandoffBtn = document.getElementById('provenance-copy-handoff-btn');
+    const copyTelemetryBtn = document.getElementById('provenance-copy-telemetry-btn');
     const relockBtn = document.getElementById('provenance-relock-btn');
+    let provenanceReturnFocus = null;
+
+    const currentTelemetry = Object.freeze({
+      schemaVersion: 1,
+      serviceName: 'richmond-symphony-candidate-dossier',
+      serviceVersion: '1.6.5-rc',
+      agent: 'CDX',
+      agentProduct: 'Codex',
+      repository: 'randybryanmoore/randybryanmoore-dot-us',
+      branch: 'main',
+      baseCommit: '7c0763e683ccc684e3c29f435b3776768849654e',
+      publicUrl: 'https://symphony.randybryanmoore.us',
+      releaseManifest: './release-manifest.json'
+    });
+
+    function getTelemetryTimestamps() {
+      const now = new Date();
+      return {
+        iso: now.toISOString(),
+        local: new Intl.DateTimeFormat('en-US', {
+          timeZone: 'America/New_York',
+          dateStyle: 'medium',
+          timeStyle: 'long'
+        }).format(now)
+      };
+    }
+
+    function buildMachineTelemetry() {
+      const generated = getTelemetryTimestamps();
+      return `schema_version: ${currentTelemetry.schemaVersion}
+generated_at: "${generated.iso}"
+generated_at_local: "${generated.local}"
+timezone: "America/New_York"
+generator:
+  agent: "${currentTelemetry.agent}"
+  product: "${currentTelemetry.agentProduct}"
+service:
+  name: "${currentTelemetry.serviceName}"
+  version: "${currentTelemetry.serviceVersion}"
+source:
+  repository: "${currentTelemetry.repository}"
+  branch: "${currentTelemetry.branch}"
+  base_commit: "${currentTelemetry.baseCommit}"
+  working_tree: "modified"
+lifecycle:
+  local: true
+  committed: false
+  pushed: false
+  pull_request_or_merged: false
+  deployed: false
+  staging: false
+  production_verified: false
+production:
+  url: "${currentTelemetry.publicUrl}"
+  state: "previous release remains public"
+release_artifacts:
+  manifest: "${currentTelemetry.releaseManifest}"
+  manifest_policy: "regenerate hashes after final source change and before deployment"
+validation:
+  prior_release_candidate_gate: "pass"
+  structured_telemetry_export: "source_checks_pass"
+  browser_interaction: "not_run; file URL blocked by automation policy"
+  production_readback: "not_run"
+security:
+  access_gate: "client-side presentation convenience; not authentication"
+  sensitive_values_in_export: false
+blockers:
+  - id: "DEPLOY-APPROVAL-001"
+    severity: "high"
+    status: "open"
+    description: "Explicit approval required before publishing the dossier payload."
+notes:
+  - "Self-reported engineering time is historical context, not measured observability data."
+  - "A commit is not a push; a push is not a deployment; deployment is not live verification."`;
+    }
+
+    function buildCurrentHandoff() {
+      const generated = getTelemetryTimestamps();
+      return `# Current Agent Handoff — Richmond Symphony Candidate Dossier
+Generated: ${generated.iso} (${generated.local}; America/New_York)
+Schema: handoff-v1
+
+This is the current operational snapshot. Reverify every changeable fact before acting. Historical detail belongs in the on-page version archive, not in this current-state handoff.
+
+## 1. Current state
+- Version: \`v${currentTelemetry.serviceVersion}\`
+- Agent: Codex (\`CDX\`)
+- Repository: \`${currentTelemetry.repository}\`, branch \`${currentTelemetry.branch}\`
+- Base commit: \`${currentTelemetry.baseCommit}\` plus preserved, uncommitted local changes
+- Working area: \`symphony/\`
+- Public URL: ${currentTelemetry.publicUrl}
+- Release manifest: \`${currentTelemetry.releaseManifest}\` — hashes must be regenerated after the final source edit and before deployment
+
+### Lifecycle — report each state separately
+- Local: Yes — \`v${currentTelemetry.serviceVersion}\` is under local validation.
+- Committed: No.
+- Pushed: No.
+- Merged / Pull Request: No new PR or merge.
+- Deployed: No.
+- Staging: Not used.
+- Live / Production: The previous release remains public; this candidate is not live.
+
+A commit is not a push. A push is not a deployment. A deployment is not confirmed live until production readback succeeds.
+
+## 2. Privacy and access classification
+- Distribution: Internal engineering handoff. Remove personal contact details and machine-specific paths before broader sharing.
+- The four-digit overlay is a client-side presentation convenience, not authentication or confidentiality protection.
+- Do not put passcodes, tokens, private-note contents, or credential-file paths in generated handoffs.
+- Do not publish the dossier ZIP without explicit approval of its complete manifest.
+
+## 3. Project invariants
+- Purpose: source-grounded candidate dossier for Assistant Director, Advancement Systems & Operations at Richmond Symphony.
+- Brand blue levels: \`#0d1a32\`, \`#182b4d\`, \`#243d6b\`.
+- Canonical red: \`#2b0710\`; do not introduce a lighter red without explicit instruction.
+- Preserve Newsreader, Inter, and JetBrains Mono typography roles.
+- Preserve private notes. Transient review notes may reset only through their documented export flow.
+
+## 4. Claim policy
+- Bloomerang: learning priority and role requirement, not prior administration experience.
+- EveryAction: constituent engagement tagging, outreach lists, follow-up workflows, and event reporting; do not invent duration.
+- Muster: requirements definition and Salesforce integration design for Active Minds across Congressional targets.
+- Leadership: supervised graduate MSW interns and trained 40 partner organizations; do not imply prior supervision of Richmond Symphony staff.
+- Musical Artistry is currently Section 03. Preserve the supplied sourced credentials and do not add unsupported fundraising software or experience.
+
+## 5. Current release changes
+- Corrected unsupported or overstated claims.
+- Repaired incorrect-PIN acceptance and improved gate behavior while retaining the client-side-security disclaimer.
+- Added explicit lifecycle states and telemetry accessibility/containment fixes.
+- Updated case-study active states, layout accents, contact surfaces, Musical Artistry order, embedded-media annotation, and telemetry collapse behavior.
+- Set the three TikTok cards to a centered 320px intermediate width without affecting unrelated responsive grids.
+- Replaced the oversized default handoff with this current-state document and added a separate YAML telemetry export.
+
+## 6. Safe release protocol
+1. Explain the intended source changes in 3–7 bullets.
+2. Inspect \`git status --short\` and the complete diff. Preserve unrelated local work.
+3. Run the verified local build and the relevant interaction, responsive, accessibility, archive-integrity, and incorrect-PIN tests.
+4. Regenerate \`release-manifest.json\` after the final edit. Confirm every artifact path and SHA-256 digest.
+5. Inspect the dossier ZIP manifest for personal or sensitive payloads. Obtain explicit publication approval.
+6. Stage only the named release files; never use \`git add -A\` as the default release instruction.
+7. Commit with a release-specific message, then report Committed separately.
+8. Push without force after verifying the upstream branch state, then report Pushed separately.
+9. Use a protected deployment environment or an explicit approval checkpoint before changing serving branches.
+10. After deployment, read back the GitHub Pages build, custom domain, version marker, and representative artifact hashes. Only then report Live / Production.
+
+## 7. Deployment safety rules
+- The Git Tree API may reduce partial-file update risk; it does not eliminate concurrent updates, caching, Pages build delays, or stale production responses.
+- Do not force-update \`main\` or \`gh-pages\` unless the exact target commits are resolved and Randy explicitly authorizes that destructive branch operation.
+- Do not combine build, stage, commit, push, deployment, and live verification into one unconditional shell chain.
+- A failed or timed-out build, upload, or readback is not success.
+
+## 8. Open blocker
+- \`DEPLOY-APPROVAL-001\` — High — Explicit approval is required before publishing the dossier payload. Owner: Randy. Completion evidence: approved artifact manifest plus successful production readback.
+
+## 9. Machine-readable companion
+Use “Copy Machine Telemetry (.YAML)” in the telemetry modal. Treat browser-generated state as a handoff snapshot, not as an independently verified Git or hosting measurement.`;
+    }
+
+    async function copyProvenanceText(text, button, successLabel, restingLabel) {
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (error) {
+        const fallback = document.createElement('textarea');
+        fallback.value = text;
+        fallback.setAttribute('readonly', '');
+        fallback.style.position = 'fixed';
+        fallback.style.opacity = '0';
+        document.body.appendChild(fallback);
+        fallback.select();
+        const copied = document.execCommand('copy');
+        fallback.remove();
+        if (!copied) throw error;
+      }
+      button.innerText = successLabel;
+      setTimeout(() => { button.innerText = restingLabel; }, 2400);
+    }
+
+    // Capture phase intentionally supersedes the legacy exhaustive handoff
+    // listener retained below as historical source reference.
+    if (copyHandoffBtn) {
+      copyHandoffBtn.addEventListener('click', (event) => {
+        event.stopImmediatePropagation();
+        copyProvenanceText(
+          buildCurrentHandoff(),
+          copyHandoffBtn,
+          'Copied Current Agent Handoff! ✓',
+          '📋 Copy Current Agent Handoff'
+        );
+      }, { capture: true });
+    }
+
+    if (copyTelemetryBtn) {
+      copyTelemetryBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        copyProvenanceText(
+          buildMachineTelemetry(),
+          copyTelemetryBtn,
+          'Copied Machine Telemetry! ✓',
+          '⚙ Copy Machine Telemetry (.YAML)'
+        );
+      });
+    }
+
+    function getProvenanceFocusable() {
+      if (!provModal) return [];
+      return [...provModal.querySelectorAll('button, [href], input, textarea, select, [tabindex]:not([tabindex="-1"])')]
+        .filter(el => !el.disabled && el.offsetParent !== null);
+    }
+
+    function setProvenanceOpen(open) {
+      if (!provModal || !buildBadge) return;
+      provModal.classList.toggle('open', open);
+      provModal.setAttribute('aria-hidden', String(!open));
+      buildBadge.setAttribute('aria-expanded', String(open));
+      if (open) {
+        provenanceReturnFocus = document.activeElement;
+        requestAnimationFrame(() => provModal.focus());
+      } else if (provenanceReturnFocus && typeof provenanceReturnFocus.focus === 'function') {
+        provenanceReturnFocus.focus();
+      }
+    }
 
     function toggleProvModal() {
-      if (provModal) {
-        provModal.classList.toggle('open');
-      }
+      setProvenanceOpen(!provModal?.classList.contains('open'));
     }
 
     if (buildBadge) {
@@ -163,21 +406,21 @@
     if (provClose) {
       provClose.addEventListener('click', (e) => {
         e.stopPropagation();
-        if (provModal) provModal.classList.remove('open');
+        setProvenanceOpen(false);
       });
     }
 
     if (relockBtn) {
       relockBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        if (provModal) provModal.classList.remove('open');
+        setProvenanceOpen(false);
         lockDossier();
       });
     }
 
     document.addEventListener('click', (e) => {
       if (provModal && provModal.classList.contains('open') && !e.target.closest('#build-provenance-modal') && !e.target.closest('#build-badge')) {
-        provModal.classList.remove('open');
+        setProvenanceOpen(false);
       }
     });
 
@@ -189,220 +432,47 @@
         row.addEventListener('click', (e) => {
           e.stopPropagation();
           const wasActive = item.classList.contains('active');
-          versionItems.forEach(vi => vi.classList.remove('active'));
-          if (!wasActive) item.classList.add('active');
+          versionItems.forEach(vi => {
+            vi.classList.remove('active');
+            vi.querySelector('.version-item-row')?.setAttribute('aria-expanded', 'false');
+          });
+          if (!wasActive) {
+            item.classList.add('active');
+            row.setAttribute('aria-expanded', 'true');
+          }
+        });
+        row.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            row.click();
+          }
         });
       }
     });
 
-    if (copyHandoffBtn) {
-      copyHandoffBtn.addEventListener('click', () => {
-        const handoffText = `# Master Agent Handoff Context — Richmond Symphony Candidate Dossier (100/100 Benchmark)
-*Generated on ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} at ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} EDT*
-
-Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigravity (AG) to resume work with 100% technical fidelity, exact timestamped provenance, verified claims, and zero context drift.
-
----
-
-## ⏱️ 1. Cumulative Engineering Time & Telemetry Overview
-- **Total Development Time Across All Edits**: **7.0 Hours (6h 58m)**
-  - **Antigravity (\`AG\`)**: **3.75 Hours** (28 granular commits across 2 intensive sessions)
-  - **Claude Code (\`CL\`)**: **3.25 Hours** (15 foundational commits across 2 baseline sessions)
-- **Total Historical Commits**: 44+ atomic production commits
-- **Active Release Version**: \`v1.6.2\` (Commit SHA: \`#c3bf1ec\`)
-- **Universal Selection Committee Passcode**: \`0000\`
-
----
-
-## 🏷️ 2. Standardized AI Agent Identification & Provenance Enshrinement
-- **\`AG\`** = **Antigravity** (Google DeepMind)
-- **\`CL\`** = **Claude Code** (Anthropic)
-- **\`CDX\`** = **Codex** (OpenAI)
-
----
-
-## 🎯 3. Project Overview & Selection Committee Mission
-- **Candidate**: Randy Bryan Moore, MSW
-- **Target Position**: Assistant Director, Advancement Systems & Operations
-- **Organization**: Richmond Symphony (Richmond, Virginia)
-- **Purpose**: High-stakes confidential executive candidate dossier and operational systems demonstration evaluated by the hiring selection committee. Accuracy of claims, source-grounded integrity, and strict alignment with the job description take precedence over all else.
-- **Candidate Contact**: Richmond, VA · (803) 486-4007 · randybryanmoore@gmail.com
-
----
-
-## 🌐 4. Live URL & Dual-Repository Architecture
-- **Canonical Custom Domain URL**: https://symphony.randybryanmoore.us
-- **Primary Website & Master Portfolio**: https://randybryanmoore.us
-- **Live Operations Dashboard (ChatGPT App)**: https://richmond-symphony-advancement-demo.randybryanmoore.chatgpt.site
-- **GitHub Pages Host**: https://randybryanmoore.github.io/randy-symphony-portfolio/
-- **Primary Working Git Repo**: \`randybryanmoore/randybryanmoore-dot-us\` (Branch: \`main\`, working files in \`symphony/\`)
-- **Serving GitHub Pages Repo**: \`randybryanmoore/randy-symphony-portfolio\` (Branches: \`gh-pages\` and \`main\`, served from root)
-- **Atomic Single-Commit Deploy Pipeline**: \`push_script.py\` utilizes the GitHub Git Data Tree API to push \`index.html\`, \`styles.css\`, \`script.js\`, \`one_pager.html\`, and the compressed dossier \`ZIP\` archive in a single atomic tree commit to both \`gh-pages\` and \`main\`, eliminating race conditions and stale builds.
-
----
-
-## 📂 5. Codebase File Map & Absolute System Paths
-- \`/Users/randybryanmoore/GITHUB/randybryanmoore-dot-us/symphony/\`
-  - \`index.html\`: Semantic HTML5 dossier with 6 core narrative sections, passcode gate, audio synthesizer, telemetry modal, and dual-stream annotation dock.
-  - \`styles.css\`: Design token system, 3-tier blue elevation scale, canonical single red (\`#2b0710\`), typography pairing, and responsive layout.
-  - \`script.js\`: Core client engine (iPadOS master passcode input, telemetry modal, Web Audio synthesizers, and dual-stream annotation engine).
-  - \`one_pager.html\`: Executive summary printable handout with hardcoded SVG QR code.
-  - \`push_script.py\`: Automated GitHub Git Data Tree API atomic synchronization pipeline.
-  - \`build_script.py\`: Master build and synchronization script.
-  - \`Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip\`: Complete offline distribution archive.
-
----
-
-## 🎨 6. Strict Brand Design Tokens & Hierarchy Rules
-*CRITICAL: Do not alter these color tokens without explicit instructions from Randy.*
-- **Dominant Blue System (3-Tier Elevation)**:
-  - \`--blue-l1\`: \`#0d1a32\` (Page grounds, header, and section backgrounds — dominant navy)
-  - \`--blue-l2\`: \`#182b4d\` (Mid-layer panels, cards, and metric containers)
-  - \`--blue-l3\`: \`#243d6b\` (Top-layer insets, active tabs, and highlighted controls)
-- **Canonical Brand Red Palette (Single Strict Red)**:
-  - \`--red-1\`, \`--maroon\`, \`--maroon-deep\`, \`--red-accent\`: \`#2b0710\` (Canonical deep footer red — the only red across the site).
-  - *Contrast Rule*: Never place unbordered dark text directly on red without a high-contrast cream rule or tag chip (\`#f2eadf\`).
-- **Cream, Paper & Telemetry Accents**:
-  - \`--cream\`: \`#f2eadf\` (Text on navy, tag chips, and borders)
-  - \`--paper\`: \`#fbf6ed\` (Light cards and flyout modal grounds)
-  - \`--gold-light\`: \`#dfca74\` (Telemetry SHA and element spotlight highlights)
-- **Typography Pairing**:
-  - Headings & Wordmarks: \`Newsreader\`, serif
-  - Body & UI: \`Inter\`, sans-serif
-  - Monograms, Telemetry & Tags: \`JetBrains Mono\`, monospace
-
----
-
-## 📚 7. Verified Sourced Claims (Do NOT Alter or Hallucinate)
-1. **Bloomerang CRM**: Primary administration, Moves Management workflows, donor retention lifecycle, and gift processing reconciliation with Finance to govern the **$6.9M** contributed-income goal.
-2. **EveryAction CRM**: 50+ General Assembly legislative meetings for Save the Children Action Network across Virginia districts.
-3. **Muster Platform**: Requirements definition and Salesforce integration design for Active Minds across Congressional targets.
-4. **People Leadership**: Supervised graduate MSW interns at Virginia Housing Alliance and trained 40 partner organizations at Virginia Civic Engagement Table (fulfills JD requirement to supervise Annual Fund Manager and Advancement Assistant).
-5. **Musical Artistry & Credentials (Section 06)**:
-   - Songwriter, producer, multi-instrumentalist (vocalist, piano, guitar, and harp).
-   - Composed full orchestral arrangements for production cover of Kate Bush's *Hounds of Love*.
-   - 4-year contract pianist with regular resident lobby performances at Richmond's historic Jefferson Hotel (2022–Present).
-   - Instructor at School of Rock and creator of the 1,000 Songs songwriting marathon.
-
-### 🚫 Forbidden Hallucinations Checklist:
-- ❌ **Never** re-introduce the unsourced \`98.4%\` metric for Muster.
-- ❌ **Never** introduce ungrounded fundraising software not mentioned in candidate records.
-- ❌ **Never** change the canonical red from \`#2b0710\` to lighter shades without explicit instructions.
-
----
-
-## ⚙️ 8. Interactive Architecture & Storage Schemas
-- **Passcode Authentication Storage**:
-  - \`sessionStorage.getItem('symphony_dossier_auth') === 'true'\`
-  - \`localStorage.getItem('symphony_dossier_auth') === 'true'\`
-- **Dual-Stream Annotation Storage**:
-  - \`localStorage.getItem('rbm_symphony_notes')\`: Array of transient AI review objects. Reset upon prompt export.
-  - \`localStorage.getItem('rbm_symphony_private_notes')\`: Array of persistent private notes. **NEVER** automatically deleted or reset.
-- **Passcode Isolation Engine**:
-  - Locked state applies \`body.dossier-locked\` and \`html.dossier-locked\` (\`overflow: hidden !important; overscroll-behavior: none;\`) to eliminate background bleed and rubber-band scrolling.
-
----
-
-## 📜 9. Complete Chronological Work Log & Provenance Enshrinement
-
-### 🚀 Milestone v1.6.2 · System Telemetry, iPadOS Passcode & Non-Destructive Annotation
-- **Authoring & Edit Agent**: Antigravity (\`AG\`)
-- **Deployed & Pushed Live By**: Antigravity (\`AG\`)
-- **Logged Engineering Time**: **1.0 Hour** (58 minutes)
-- **Edit Session Started**: Aug 19, 2026 · 11:00 PM EDT
-- **Officially Pushed Live**: Aug 20, 2026 · 12:02 AM EDT (GitHub Pages \`gh-pages\` + \`main\`)
-- **Verified Commit SHA**: \`#c3bf1ec\`
-- **Granular Timestamped Edits**:
-  - \`[11:06 PM EDT]\`: Restored clean passcode title and unlock button layout to canonical single red theme.
-  - \`[11:13 PM EDT]\`: Reverted all red CSS variables back to canonical \`#2b0710\` footer red across all site surfaces.
-  - \`[11:17 PM EDT]\`: Embedded multi-session agent handoff context generator in \`#build-provenance-modal\`.
-  - \`[11:18 PM EDT]\`: Formatted build watermark date with 3-letter month abbreviation (\`Aug 19, 2026\`).
-  - \`[11:21 PM EDT]\`: Created interactive version hover cards with executive release outlines.
-  - \`[11:22 PM EDT]\`: Added explicit \`● Pushed Live: [timestamp]\` metadata badges to all version cards.
-  - \`[11:24 PM EDT]\`: Added direct \`[ 🔒 Private Note ]\` button to floating dock with click event delegation.
-  - \`[11:26 PM EDT]\`: Built dedicated non-destructive \`[ 🔒 Copy All Private Notes ]\` feature preserving 100% of notes locally with zero deletions.
-  - \`[11:30 PM EDT]\`: Implemented auto-advance numeric keydown handling for PIN inputs.
-  - \`[11:33 PM EDT]\`: Built \`[ 🔒 Re-Lock Dossier (Test Gate) ]\` testing tool and container auto-focus.
-  - \`[11:36 PM EDT]\`: Updated all Private Note active states (dock button, popover tab, popover border, save button, tags) to turn canonical red (\`#2b0710\`).
-  - \`[11:38 PM EDT]\`: Exhaustively expanded master agent handoff prompt with all project changes.
-  - \`[11:41 PM EDT]\`: Implemented native iPadOS/iOS single master overlay input with 4 visual digit boxes (\`.pin-digit-box\`), eliminating iPad Safari focus-blocking restrictions.
-  - \`[11:47 PM EDT]\`: Standardized Agent Telemetry Abbreviations to \`AG\` (Antigravity), \`CL\` (Claude Code), and \`CDX\` (Codex) across all badges and documentation.
-  - \`[11:49 PM EDT]\`: Enshrined authoring and deployment app provenance attribution directly onto all version selectors and export handoff dossiers.
-  - \`[11:51 PM EDT]\`: Resolved iPad Chrome overlay nesting and centered layout geometry for zero mobile layout shift.
-  - \`[11:54 PM EDT]\`: Moved QR code below the continuous ticker note in left hero column, themed matrix pixels in canonical red (\`#2b0710\`), and targeted \`https://randybryanmoore.us\`.
-  - \`[11:56 PM EDT]\`: Converted passcode overlay to 100% solid opaque ground (#0d1a32) and added body.dossier-locked scroll isolation to eliminate background bleed.
-  - \`[11:57 PM EDT]\`: Styled Operations Dashboard button in canonical red (button-maroon) and centered all hero action buttons and copy.
-  - \`[11:58 PM EDT]\`: Integrated total hours logged metric into Telemetry Modal and Handoff suite (7.0h cumulative / AG: 3.75h • CL: 3.25h).
-  - \`[12:01 AM EDT]\`: Debugged telemetry widget positioning, eliminated dock collision media query, added vertical max-height scroll containment, and touch accordion toggle.
-
-### 🌟 Milestone v1.6.0 · Advancement Systems, Bio Expansion & Dual-Stream Annotation
-- **Authoring & Edit Agent**: Antigravity (\`AG\`)
-- **Deployed & Pushed Live By**: Antigravity (\`AG\`)
-- **Logged Engineering Time**: **2.75 Hours** (2 hours 45 minutes)
-- **Edit Session Started**: Aug 19, 2026 · 6:45 PM EDT
-- **Officially Pushed Live**: Aug 19, 2026 · 9:29 PM EDT (GitHub Pages \`gh-pages\` + \`main\`)
-- **Verified Commit SHA**: \`#233b07c\`
-- **Granular Timestamped Edits**:
-  - \`[6:50 PM EDT]\`: Elevated hero copy top-padding for optimal visual balance.
-  - \`[7:10 PM EDT]\`: Enlarged candidate headshot portrait to 420px with crisp responsive borders.
-  - \`[7:30 PM EDT]\`: Added dynamic 150px SVG QR code generator to hero presentation card.
-  - \`[7:55 PM EDT]\`: Expanded Section 06 music bio: Songwriter, Producer, Vocalist, Piano, Guitar, Harp, and Kate Bush *Hounds of Love* orchestral arrangement.
-  - \`[8:25 PM EDT]\`: Integrated Bloomerang CRM as primary administration pillar and Moves Management lifecycle for $6.9M goal.
-  - \`[8:50 PM EDT]\`: Replaced generic roadmap with Randy's authentic *Listen, Standardize, Build Forward* 90-day plan.
-  - \`[9:15 PM EDT]\`: Built 100/100 dual-stream annotation engine with batch element selection, category chips, and drawer suite.
-  - \`[9:28 PM EDT]\`: Built single-commit atomic deploy automation pipeline (\`push_script.py\`) via GitHub Git Data Tree API.
-
-### 🛠️ Milestone v1.5.1 · Baseline Alignment & Sourced Fact Verification
-- **Authoring & Edit Agent**: Claude Code (\`CL\`)
-- **Deployed & Pushed Live By**: Claude Code (\`CL\`)
-- **Logged Engineering Time**: **2.5 Hours** (2 hours 28 minutes)
-- **Edit Session Started**: Aug 18, 2026 · 8:30 PM EDT
-- **Officially Pushed Live**: Aug 18, 2026 · 9:40 PM EDT (GitHub Pages) (Final Handoff: Aug 19 · 11:58 AM EDT)
-- **Verified Commit SHA**: \`#a602086\`
-- **Granular Timestamped Edits**:
-  - \`[8:35 PM EDT]\`: Decoupled development repo from serving repo (\`randy-symphony-portfolio\` on \`gh-pages\`).
-  - \`[8:48 PM EDT]\`: Fixed dead fallback URLs on QR codes to \`https://symphony.randybryanmoore.us/\`.
-  - \`[9:00 PM EDT]\`: Regenerated hardcoded inline SVG QR code on \`one_pager.html\`.
-  - \`[9:10 PM EDT]\`: Corrected candidate vCard (\`Randy_Bryan_Moore.vcf\`) URL and phone payload.
-  - \`[9:18 PM EDT]\`: Re-framed Muster CRM claims around Active Minds Salesforce integration (removed unsourced 98.4% metric).
-  - \`[9:24 PM EDT]\`: Added People Leadership row to Qualification Matrix for Annual Fund Manager & Advancement Assistant supervision.
-  - \`[9:29 PM EDT]\`: Fixed header wordmark wrap to 2-line lockup and hid subtitle below 1250px.
-  - \`[9:32 PM EDT]\`: Converted candidate portrait from letterboxed 2.5:1 to 4:3 top-anchored framing.
-  - \`[9:35 PM EDT]\`: Expanded TikTok review links to 44px tap targets and added Spotify artist embed (\`0zaqvfVeDQZJ1q70foOsRs\`).
-  - \`[9:38 PM EDT]\`: Configured \`noindex, nofollow\` search directives and baseline \`v1.5.1\` watermark.
-
-### 🏛️ Milestone v1.0.0 · Candidate Dossier Foundation
-- **Authoring & Edit Agent**: Claude Code (\`CL\`)
-- **Deployed & Pushed Live By**: Claude Code (\`CL\`)
-- **Logged Engineering Time**: **0.75 Hours** (45 minutes)
-- **Edit Session Started**: Aug 17, 2026 · 1:15 PM EDT
-- **Officially Pushed Live**: Aug 17, 2026 · 2:00 PM EDT (GitHub Pages)
-- **Verified Commit SHA**: \`#b12e094\`
-- **Granular Timestamped Edits**:
-  - \`[1:15 PM EDT]\`: Initialized executive candidate dossier foundation and semantic HTML structure.
-  - \`[1:30 PM EDT]\`: Implemented interactive 5-tab case studies explorer.
-  - \`[1:45 PM EDT]\`: Built Repertoire audio synthesizer engine.
-  - \`[1:55 PM EDT]\`: Implemented security gate passcode protection overlay (PIN: 0000).
-
----
-
-## 🛠️ 10. Successor AI Agent Execution Protocol
-1. **Pre-Edit Transparency**: Always explain intended changes in 3-7 bullets before modifying source code.
-2. **Build & Deploy Command**:
-   \`\`\`bash
-   python3 /Users/randybryanmoore/.gemini/antigravity/brain/08fa8fc4-477a-43de-96bc-e65050585686/scratch/build_script.py && git add -A && git commit -m "feat/fix: description" && git push origin main && python3 /Users/randybryanmoore/GITHUB/randybryanmoore-dot-us/symphony/push_script.py
-   \`\`\`
-3. **Never Touch Unrelated Files**: Preserve design tokens, color hierarchy, and source-grounded claims.`;
-
-        navigator.clipboard.writeText(handoffText).then(() => {
-          copyHandoffBtn.innerText = 'Copied 100/100 Master Agent Handoff! ✓';
-          setTimeout(() => { copyHandoffBtn.innerText = '📋 Copy Complete Agent Handoff'; }, 2400);
-        });
-      });
-    }
-
+    // Historical releases remain available in the on-page version archive.
     // Keyboard shortcut Shift + V to toggle provenance modal
     document.addEventListener('keydown', (e) => {
+      if (provModal?.classList.contains('open') && e.key === 'Tab') {
+        const focusable = getProvenanceFocusable();
+        if (focusable.length === 0) {
+          e.preventDefault();
+          provModal.focus();
+        } else {
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (document.activeElement === provModal) {
+            e.preventDefault();
+            (e.shiftKey ? last : first).focus();
+          } else if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
       if (e.shiftKey && (e.key === 'V' || e.key === 'v')) {
         if (!e.target.closest('input') && !e.target.closest('textarea')) {
           toggleProvModal();
@@ -431,6 +501,14 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
 
+    // Keep the performing-arts evidence near the case studies, before the
+    // résumé-derived alignment, roadmap, and career-history sections.
+    const caseStudiesSection = document.getElementById('case-studies');
+    const musicSection = document.getElementById('music');
+    if (caseStudiesSection && musicSection) {
+      caseStudiesSection.insertAdjacentElement('afterend', musicSection);
+    }
+
     tabBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
         if (editActive) return;
@@ -448,7 +526,7 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
     });
 
     // =========================================================================
-    // 6. Dual-Stream Pinpoint Annotation & Private Notes Engine (100/100)
+    // 6. Dual-Stream Pinpoint Annotation & Private Notes Engine
     // =========================================================================
     let selectedElements = []; // Array of { el, tag, text }
     let selectedCategory = 'Copy';
@@ -942,7 +1020,7 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         if (popover && popover.style.display === 'block') closePopover();
-        if (provModal && provModal.classList.contains('open')) provModal.classList.remove('open');
+        if (provModal && provModal.classList.contains('open')) setProvenanceOpen(false);
         if (pinActive) {
           pinActive = false;
           if (pinAiToggle) pinAiToggle.classList.remove('active');
