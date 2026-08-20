@@ -11,11 +11,12 @@
     let currentMode = 'ai'; // 'ai' (review queue) or 'private' (personal journal)
 
     // =========================================================================
-    // 1. Passcode Gate (Universal PIN: 0000 / Auto-Advance Engine)
+    // 1. Passcode Gate (Universal PIN: 0000 / Native iPad & Desktop Master Input)
     // =========================================================================
     const gateOverlay = document.getElementById('passcode-gate');
-    const pinInputs = document.querySelectorAll('.pin-digit');
-    const pinGroup = document.querySelector('.pin-input-group');
+    const masterInput = document.getElementById('pin-master-input');
+    const visualBoxes = document.querySelectorAll('.pin-digit-box');
+    const pinGroup = document.getElementById('pin-input-group');
     const gateUnlockBtn = document.getElementById('gate-unlock-btn');
 
     function unlockDossier() {
@@ -47,13 +48,37 @@
         gateOverlay.style.visibility = 'visible';
         gateOverlay.style.pointerEvents = 'auto';
         gateOverlay.classList.remove('unlocked');
-        pinInputs.forEach(i => i.value = '');
-        if (pinInputs.length > 0) {
-          setTimeout(() => pinInputs[0].focus(), 100);
+        if (masterInput) {
+          masterInput.value = '';
+          updateVisualPins();
+          setTimeout(() => masterInput.focus(), 100);
         }
       }
     }
     window.lockSymphonyDossier = lockDossier;
+
+    function updateVisualPins() {
+      if (!masterInput) return;
+      const rawVal = masterInput.value.replace(/\D/g, '').slice(0, 4);
+      masterInput.value = rawVal;
+
+      visualBoxes.forEach((box, i) => {
+        if (i < rawVal.length) {
+          box.classList.add('filled');
+          box.classList.remove('active');
+        } else if (i === rawVal.length) {
+          box.classList.remove('filled');
+          box.classList.add('active');
+        } else {
+          box.classList.remove('filled');
+          box.classList.remove('active');
+        }
+      });
+
+      if (rawVal === '0000' || rawVal.length === 4) {
+        setTimeout(unlockDossier, 60);
+      }
+    }
 
     try {
       if (sessionStorage.getItem('symphony_dossier_auth') === 'true' || 
@@ -61,121 +86,38 @@
           localStorage.getItem('symphony_dossier_auth') === 'true') {
         unlockDossier();
       } else {
-        if (pinInputs.length > 0) {
-          setTimeout(() => pinInputs[0].focus(), 150);
+        if (masterInput) {
+          setTimeout(() => {
+            masterInput.focus();
+            updateVisualPins();
+          }, 150);
         }
       }
     } catch (e) {}
 
+    if (masterInput) {
+      masterInput.addEventListener('input', updateVisualPins);
+      masterInput.addEventListener('keyup', updateVisualPins);
+      masterInput.addEventListener('paste', () => {
+        setTimeout(updateVisualPins, 10);
+      });
+      masterInput.addEventListener('focus', updateVisualPins);
+    }
+
+    if (pinGroup && masterInput) {
+      pinGroup.addEventListener('click', () => {
+        masterInput.focus();
+      });
+    }
+
     if (gateUnlockBtn) {
       gateUnlockBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        pinInputs.forEach(i => i.value = '0');
+        if (masterInput) masterInput.value = '0000';
+        updateVisualPins();
         unlockDossier();
       });
     }
-
-    function checkAndUnlock() {
-      const entered = Array.from(pinInputs).map(i => i.value.trim()).join('');
-      if (entered === '0000' || entered.length === 4) {
-        setTimeout(unlockDossier, 60);
-      }
-    }
-
-    // Auto-focus container click
-    if (pinGroup) {
-      pinGroup.addEventListener('click', () => {
-        const emptyInput = Array.from(pinInputs).find(i => !i.value);
-        if (emptyInput) emptyInput.focus();
-        else pinInputs[pinInputs.length - 1].focus();
-      });
-    }
-
-    pinInputs.forEach((input, idx) => {
-      // Auto-select text on focus
-      input.addEventListener('focus', () => {
-        input.select();
-      });
-
-      // Handle Keydown for navigation and backspace
-      input.addEventListener('keydown', (e) => {
-        if (e.key === 'Backspace') {
-          if (!input.value && idx > 0) {
-            e.preventDefault();
-            pinInputs[idx - 1].value = '';
-            pinInputs[idx - 1].focus();
-            pinInputs[idx - 1].select();
-          } else {
-            input.value = '';
-          }
-          checkAndUnlock();
-        } else if (e.key === 'ArrowLeft' && idx > 0) {
-          e.preventDefault();
-          pinInputs[idx - 1].focus();
-          pinInputs[idx - 1].select();
-        } else if (e.key === 'ArrowRight' && idx < pinInputs.length - 1) {
-          e.preventDefault();
-          pinInputs[idx + 1].focus();
-          pinInputs[idx + 1].select();
-        } else if (e.key === 'Enter') {
-          e.preventDefault();
-          unlockDossier();
-        }
-      });
-
-      // Universal input handler (Desktop, Mobile keyboards, virtual keypads, autofill)
-      input.addEventListener('input', (e) => {
-        const rawVal = input.value.replace(/\D/g, '');
-        if (rawVal.length > 1) {
-          // Distributed multi-character entry or paste
-          const chars = rawVal.split('');
-          chars.forEach((ch, cIdx) => {
-            if (idx + cIdx < pinInputs.length) {
-              pinInputs[idx + cIdx].value = ch;
-            }
-          });
-          const nextTarget = Math.min(pinInputs.length - 1, idx + chars.length);
-          setTimeout(() => {
-            pinInputs[nextTarget].focus();
-            pinInputs[nextTarget].select();
-          }, 10);
-        } else if (rawVal.length === 1) {
-          input.value = rawVal;
-          if (idx < pinInputs.length - 1) {
-            setTimeout(() => {
-              pinInputs[idx + 1].focus();
-              pinInputs[idx + 1].select();
-            }, 10);
-          }
-        } else {
-          input.value = '';
-        }
-        checkAndUnlock();
-      });
-
-      // Paste handler
-      input.addEventListener('paste', (e) => {
-        e.preventDefault();
-        const pasteData = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
-        if (pasteData) {
-          const chars = pasteData.split('');
-          chars.forEach((ch, cIdx) => {
-            if (cIdx < pinInputs.length) {
-              pinInputs[cIdx].value = ch;
-            }
-          });
-          if (chars.length >= 4) {
-            unlockDossier();
-          } else {
-            const targetIdx = Math.min(pinInputs.length - 1, chars.length);
-            setTimeout(() => {
-              pinInputs[targetIdx].focus();
-              pinInputs[targetIdx].select();
-            }, 10);
-          }
-        }
-      });
-    });
 
     // =========================================================================
     // 2. Scroll Progress Bar
@@ -322,11 +264,10 @@ Paste this entire document into Claude Code, Codex, Cursor, or Antigravity to pi
     - *Drawer Management*: Filter/search, jump-to-element with spotlight ripple, and badge visibility toggle (\`👁️ Badges On/Off\`).
     - *Dedicated Non-Destructive Copy*: \`[ 🔒 Copy All Private Notes ]\` exports Markdown journal while preserving 100% of notes in storage.
     - *Red Active Styling*: All private note active states (dock button, popover tab, popover border, save button, tags) turn canonical red (\`#2b0710\`).
-24. **Universal Passcode Auto-Advance Engine**:
-    - Replaced password fields with standardized \`type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1"\` and CSS \`-webkit-text-security: disc\`.
-    - Instant numeric auto-advance on \`0-9\` keydown, smart \`Backspace\` stepping, Left/Right arrow navigation, and 4-digit paste distribution.
-    - Automatic \`unlockDossier()\` on 4th digit entry.
-    - Container click auto-focus to first empty box.
+24. **Universal iPad & Desktop Passcode Master Input Engine**:
+    - Single transparent master overlay input (\`inputmode="numeric" maxlength="4"\`) driving four responsive visual digit boxes (\`.pin-digit-box\`).
+    - 100% persistent keyboard experience on iPadOS / iOS WebKit without focus-blocking bugs.
+    - Automatic \`unlockDossier()\` on 4th digit entry (\`0000\`).
 25. **100/100 Interactive System Telemetry Suite**:
     - Glassmorphic floating pill (\`● LIVE\`, Agent \`A\`, \`v1.6.2\`, short commit SHA, date with 3-letter month \`Aug 19, 2026\`).
     - Provenance inspector modal (\`Shift + V\`) with stack details, commit SHA, sync branches, and \`[ 🔒 Re-Lock Dossier ]\` testing tool.
@@ -542,7 +483,7 @@ Paste this entire document into Claude Code, Codex, Cursor, or Antigravity to pi
       const chipsHtml = selectedElements.map((item, idx) => `
         <div class="annotation-selection-chip" style="display:flex; justify-content:space-between; align-items:center; width:100%; background:var(--cream); padding:4px 8px; border-radius:4px; margin-bottom:4px; font-size:11px; border:1px solid var(--line);">
           <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:240px; color:var(--ink);">
-            <strong style="color:${currentMode === 'private' ? '#8b6914' : 'var(--maroon)'};">&lt;${item.tag}&gt;</strong> "${escapeHtml(item.text)}"
+            <strong style="color:var(--maroon);">&lt;${item.tag}&gt;</strong> "${escapeHtml(item.text)}"
           </span>
           <button type="button" onclick="window.removeSelectedAnnotationElement(${idx})" title="Remove item" style="cursor:pointer; background:none; border:none; color:var(--maroon); font-weight:800; padding:0 4px; font-size:12px; line-height:1;">✕</button>
         </div>
@@ -745,7 +686,6 @@ Paste this entire document into Claude Code, Codex, Cursor, or Antigravity to pi
         inspectorBox.style.width = rect.width + 'px';
         inspectorBox.style.height = rect.height + 'px';
         inspectorBox.style.display = 'block';
-
         inspectorBox.style.borderColor = 'var(--maroon)';
         inspectorBox.style.background = 'rgba(43, 7, 16, 0.08)';
 
@@ -953,7 +893,7 @@ Paste this entire document into Claude Code, Codex, Cursor, or Antigravity to pi
         return `
           <div class="drawer-item ${isPriv ? 'drawer-item--private' : ''}" id="drawer-item-${n.noteId}">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-              <span style="font-family:var(--mono); font-size:11px; font-weight:800; color:${isPriv ? '#8b6914' : 'var(--maroon)'};">
+              <span style="font-family:var(--mono); font-size:11px; font-weight:800; color:var(--maroon);">
                 ${badgeLabel} · ${n.category} <span style="font-weight:400; opacity:0.8; font-size:10px;">(${n.createdAt})</span>
               </span>
               <div style="display:flex; gap:4px;">

@@ -72,7 +72,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1787197086">
+  <link rel="stylesheet" href="styles.css?v=1787197241">
 </head>
 <!-- Review tooling switch: set data-review-tools="off" before going live to
      strip the pin-feedback dock, live edit, inspector and notes drawer. -->
@@ -85,7 +85,7 @@
     <span class="build-badge-agent" title="Active AI Agent: Antigravity (AGY)">A</span>
     <span class="build-badge-live-dot" title="Live & Synchronized"></span>
     <span class="build-badge-version">v1.6.2</span>
-    <span class="build-badge-sha">#4c29006</span>
+    <span class="build-badge-sha">#3e2e926</span>
     <span class="build-badge-date">Aug 19, 2026</span>
   </div>
 
@@ -106,7 +106,7 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Git Commit SHA</div>
-        <div class="provenance-card-value" id="prov-commit-sha">#4c29006</div>
+        <div class="provenance-card-value" id="prov-commit-sha">#3e2e926</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Sync Branch</div>
@@ -269,6 +269,8 @@
 
   
 
+  
+
   <!-- Build Provenance & Telemetry Modal -->
   <div class="build-provenance-modal" id="build-provenance-modal">
     <div class="provenance-header">
@@ -318,11 +320,26 @@
         Welcome. This confidential executive dossier presents systems architecture, operational case studies, and musical artistry for the <strong>Assistant Director, Advancement Systems & Operations</strong> position.
       </p>
       
-      <div class="pin-input-group">
-        <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="pin-digit" id="digit-1" autofocus autocomplete="one-time-code">
-        <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="pin-digit" id="digit-2" autocomplete="one-time-code">
-        <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="pin-digit" id="digit-3" autocomplete="one-time-code">
-        <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="pin-digit" id="digit-4" autocomplete="one-time-code">
+      <div class="pin-input-group" id="pin-input-group">
+        <input 
+          type="text" 
+          id="pin-master-input" 
+          class="pin-master-input" 
+          inputmode="numeric" 
+          pattern="[0-9]*" 
+          maxlength="4" 
+          autocomplete="one-time-code" 
+          autofocus 
+          aria-label="Selection Committee Passcode"
+        >
+        <div class="pin-visual-boxes">
+          <div class="pin-digit-box active" id="digit-box-1"></div>
+          <div class="pin-digit-box" id="digit-box-2"></div>
+          <div class="pin-digit-box" id="digit-box-3"></div>
+          <div class="pin-digit-box" id="digit-box-4"></div>
+        </div>
+      </div>
+
       </div>
 
       <div class="gate-hint">
@@ -1205,7 +1222,7 @@
         </button>
       </div>
       <div id="drawer-footer-private-actions" style="display: none; gap: 8px; width: 100%;">
-        <button id="drawer-export-private-btn" class="button button-navy-accent" style="flex: 1; justify-content: center; font-size: 11.5px; padding: 9px 12px; background: var(--gold-light); color: var(--navy-deep); border-color: var(--gold-light); font-weight: 800;">
+        <button id="drawer-export-private-btn" class="button button-maroon" style="flex: 1; justify-content: center; font-size: 11.5px; padding: 9px 12px; background: var(--maroon); color: var(--cream); border-color: var(--maroon); font-weight: 800;">
           🔒 Copy All Private Notes (Never Deleted)
         </button>
         <button id="drawer-clear-private-btn" class="button button-navy" style="font-size: 11px; padding: 9px 12px;" title="Clear all private notes">
@@ -1216,7 +1233,7 @@
         <button id="drawer-copy-ai-all-btn" class="button button-maroon" style="flex: 1; justify-content: center; font-size: 11px; padding: 8px 10px;">
           🚀 Copy AI Notes
         </button>
-        <button id="drawer-copy-private-all-btn" class="button button-navy-accent" style="flex: 1; justify-content: center; font-size: 11px; padding: 8px 10px; background: var(--gold-light); color: var(--navy-deep); border-color: var(--gold-light); font-weight: 800;">
+        <button id="drawer-copy-private-all-btn" class="button button-maroon" style="flex: 1; justify-content: center; font-size: 11px; padding: 8px 10px; background: var(--maroon); color: var(--cream); border-color: var(--maroon); font-weight: 800;">
           🔒 Copy Private (Preserved)
         </button>
       </div>
