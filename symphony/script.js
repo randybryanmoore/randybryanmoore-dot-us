@@ -11,10 +11,11 @@
     let currentMode = 'ai'; // 'ai' (review queue) or 'private' (personal journal)
 
     // =========================================================================
-    // 1. Passcode Gate (Universal PIN: 0000 / 1-Click Unlock)
+    // 1. Passcode Gate (Universal PIN: 0000 / Auto-Advance Engine)
     // =========================================================================
     const gateOverlay = document.getElementById('passcode-gate');
     const pinInputs = document.querySelectorAll('.pin-digit');
+    const pinGroup = document.querySelector('.pin-input-group');
     const gateUnlockBtn = document.getElementById('gate-unlock-btn');
 
     function unlockDossier() {
@@ -34,11 +35,35 @@
       } catch (e) {}
     }
 
+    function lockDossier() {
+      try {
+        sessionStorage.removeItem('symphony_dossier_auth');
+        sessionStorage.removeItem('rbm_sym_unlocked');
+        localStorage.removeItem('symphony_dossier_auth');
+      } catch (e) {}
+      if (gateOverlay) {
+        gateOverlay.style.display = 'flex';
+        gateOverlay.style.opacity = '1';
+        gateOverlay.style.visibility = 'visible';
+        gateOverlay.style.pointerEvents = 'auto';
+        gateOverlay.classList.remove('unlocked');
+        pinInputs.forEach(i => i.value = '');
+        if (pinInputs.length > 0) {
+          setTimeout(() => pinInputs[0].focus(), 100);
+        }
+      }
+    }
+    window.lockSymphonyDossier = lockDossier;
+
     try {
       if (sessionStorage.getItem('symphony_dossier_auth') === 'true' || 
           sessionStorage.getItem('rbm_sym_unlocked') === '1' ||
           localStorage.getItem('symphony_dossier_auth') === 'true') {
         unlockDossier();
+      } else {
+        if (pinInputs.length > 0) {
+          setTimeout(() => pinInputs[0].focus(), 150);
+        }
       }
     } catch (e) {}
 
@@ -51,23 +76,32 @@
     }
 
     function checkAndUnlock() {
-      const entered = Array.from(pinInputs).map(i => i.value).join('');
+      const entered = Array.from(pinInputs).map(i => i.value.trim()).join('');
       if (entered === '0000' || entered.length === 4) {
-        setTimeout(unlockDossier, 60);
+        setTimeout(unlockDossier, 80);
       }
     }
 
+    // Auto-focus container click
+    if (pinGroup) {
+      pinGroup.addEventListener('click', () => {
+        const emptyInput = Array.from(pinInputs).find(i => !i.value);
+        if (emptyInput) emptyInput.focus();
+        else pinInputs[pinInputs.length - 1].focus();
+      });
+    }
+
     pinInputs.forEach((input, idx) => {
-      // Auto-select on focus
+      // Auto-select text on focus
       input.addEventListener('focus', () => {
         input.select();
       });
 
-      // Instant auto-advance on 0-9 keypress
+      // Handle Keydown for instant advance on 0-9 and smart backspace
       input.addEventListener('keydown', (e) => {
         if (e.key >= '0' && e.key <= '9') {
-          e.preventDefault();
           input.value = e.key;
+          e.preventDefault();
           if (idx < pinInputs.length - 1) {
             pinInputs[idx + 1].focus();
             pinInputs[idx + 1].select();
@@ -80,57 +114,64 @@
           } else if (idx > 0) {
             pinInputs[idx - 1].value = '';
             pinInputs[idx - 1].focus();
+            pinInputs[idx - 1].select();
           }
           checkAndUnlock();
         } else if (e.key === 'ArrowLeft' && idx > 0) {
           e.preventDefault();
           pinInputs[idx - 1].focus();
+          pinInputs[idx - 1].select();
         } else if (e.key === 'ArrowRight' && idx < pinInputs.length - 1) {
           e.preventDefault();
           pinInputs[idx + 1].focus();
+          pinInputs[idx + 1].select();
         } else if (e.key === 'Enter') {
           e.preventDefault();
           unlockDossier();
         }
       });
 
-      // Handle mobile / keypad input
-      input.addEventListener('input', (e) => {
-        const val = input.value.replace(/\D/g, '');
-        if (val.length > 1) {
-          const digits = val.split('');
-          digits.forEach((d, i) => {
-            if (idx + i < pinInputs.length) {
-              pinInputs[idx + i].value = d;
+      // Universal input handler (mobile keyboards, virtual keypads, autofill)
+      input.addEventListener('input', () => {
+        const rawVal = input.value.replace(/\D/g, '');
+        if (rawVal.length > 1) {
+          // Distributed multi-character entry or paste
+          const chars = rawVal.split('');
+          chars.forEach((ch, cIdx) => {
+            if (idx + cIdx < pinInputs.length) {
+              pinInputs[idx + cIdx].value = ch;
             }
           });
-          const nextIdx = Math.min(pinInputs.length - 1, idx + digits.length);
-          pinInputs[nextIdx].focus();
-        } else if (val.length === 1) {
-          input.value = val;
+          const nextTarget = Math.min(pinInputs.length - 1, idx + chars.length);
+          pinInputs[nextTarget].focus();
+          pinInputs[nextTarget].select();
+        } else if (rawVal.length === 1) {
+          input.value = rawVal;
           if (idx < pinInputs.length - 1) {
             pinInputs[idx + 1].focus();
             pinInputs[idx + 1].select();
           }
+        } else {
+          input.value = '';
         }
         checkAndUnlock();
       });
 
-      // Handle copy-pasting full PIN
+      // Paste handler
       input.addEventListener('paste', (e) => {
         e.preventDefault();
         const pasteData = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
         if (pasteData) {
-          const digits = pasteData.split('');
-          digits.forEach((d, i) => {
-            if (i < pinInputs.length) {
-              pinInputs[i].value = d;
+          const chars = pasteData.split('');
+          chars.forEach((ch, cIdx) => {
+            if (cIdx < pinInputs.length) {
+              pinInputs[cIdx].value = ch;
             }
           });
-          if (digits.length >= 4 || digits.length === pinInputs.length) {
+          if (chars.length >= 4) {
             unlockDossier();
           } else {
-            pinInputs[Math.min(pinInputs.length - 1, digits.length)].focus();
+            pinInputs[Math.min(pinInputs.length - 1, chars.length)].focus();
           }
         }
       });
@@ -156,6 +197,7 @@
     const provModal = document.getElementById('build-provenance-modal');
     const provClose = document.getElementById('provenance-close-btn');
     const copyHandoffBtn = document.getElementById('provenance-copy-handoff-btn');
+    const relockBtn = document.getElementById('provenance-relock-btn');
 
     function toggleProvModal() {
       if (provModal) {
@@ -174,6 +216,14 @@
       provClose.addEventListener('click', (e) => {
         e.stopPropagation();
         if (provModal) provModal.classList.remove('open');
+      });
+    }
+
+    if (relockBtn) {
+      relockBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (provModal) provModal.classList.remove('open');
+        lockDossier();
       });
     }
 
@@ -619,8 +669,6 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
           footerAllActions.style.display = 'none';
         }
       }
-      updateDrawer();
-    }
       updateDrawer();
     }
 
