@@ -1768,6 +1768,12 @@ body[data-review-tools="on"] {
   box-shadow: 0 0 12px rgba(76, 14, 28, 0.4);
 }
 
+.dock-btn.dock-btn--private.active {
+  background: var(--gold-light);
+  color: var(--navy-deep);
+  box-shadow: 0 0 14px rgba(223, 202, 116, 0.5);
+}
+
 .dock-badge {
   background: var(--cream);
   color: var(--navy-deep);

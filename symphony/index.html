@@ -72,7 +72,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1787196111">
+  <link rel="stylesheet" href="styles.css?v=1787196154">
 </head>
 <!-- Review tooling switch: set data-review-tools="off" before going live to
      strip the pin-feedback dock, live edit, inspector and notes drawer. -->
@@ -85,7 +85,7 @@
     <span class="build-badge-agent" title="Active AI Agent: Antigravity (AGY)">A</span>
     <span class="build-badge-live-dot" title="Live & Synchronized"></span>
     <span class="build-badge-version">v1.6.2</span>
-    <span class="build-badge-sha">#3950088</span>
+    <span class="build-badge-sha">#5afa195</span>
     <span class="build-badge-date">Aug 19, 2026</span>
   </div>
 
@@ -106,7 +106,7 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Git Commit SHA</div>
-        <div class="provenance-card-value" id="prov-commit-sha">#52fbf42</div>
+        <div class="provenance-card-value" id="prov-commit-sha">#5afa195</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Sync Branch</div>
@@ -243,6 +243,8 @@
       </button>
     </div>
   </div>
+
+  
 
   
 
@@ -1123,14 +1125,17 @@
 
   <!-- Pinpoint Annotation & Feedback Suite -->
   <div class="annotation-dock" id="annotation-dock">
-    <button class="dock-btn" id="dock-pin-mode-btn" title="Click any element on the page to add feedback">
-      <span>Pin Feedback</span>
+    <button class="dock-btn" id="dock-pin-mode-btn" title="Pin AI Review feedback on elements">
+      <span>🚀 Pin AI</span>
+    </button>
+    <button class="dock-btn dock-btn--private" id="dock-private-mode-btn" title="Pin Private Working Notes & Personal Journal">
+      <span>🔒 Private Note</span>
     </button>
     <button class="dock-btn" id="dock-live-edit-btn" title="Edit copy directly in place">
-      <span>Live Edit</span>
+      <span>✏️ Live Edit</span>
     </button>
     <button class="dock-btn" id="dock-view-drawer-btn" title="View all pinned notes">
-      <span>Notes</span> <span class="dock-badge" id="dock-notes-count">0</span>
+      <span>📁 Notes</span> <span class="dock-badge" id="dock-notes-count">0</span>
     </button>
   </div>
 

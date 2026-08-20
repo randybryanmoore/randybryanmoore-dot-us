@@ -8,6 +8,7 @@
   function initSuite() {
     let pinActive = false;
     let editActive = false;
+    let currentMode = 'ai'; // 'ai' (review queue) or 'private' (personal journal)
 
     // =========================================================================
     // 1. Passcode Gate (Universal PIN: 0000 / 1-Click Unlock)
@@ -256,7 +257,6 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
     // 6. Dual-Stream Pinpoint Annotation & Private Notes Engine (100/100)
     // =========================================================================
     let selectedElements = []; // Array of { el, tag, text }
-    let currentMode = 'ai';    // 'ai' (review queue) or 'private' (personal journal)
     let selectedCategory = 'Copy';
     let aiNotesList = [];
     let privateNotesList = [];
@@ -268,18 +268,16 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
     try {
       const savedAi = localStorage.getItem('rbm_symphony_notes');
       if (savedAi) aiNotesList = JSON.parse(savedAi);
-    } catch (e) {
-      aiNotesList = [];
-    }
+    } catch (e) { aiNotesList = []; }
 
     try {
       const savedPriv = localStorage.getItem('rbm_symphony_private_notes');
       if (savedPriv) privateNotesList = JSON.parse(savedPriv);
-    } catch (e) {
-      privateNotesList = [];
-    }
+    } catch (e) { privateNotesList = []; }
 
-    const pinToggle = document.getElementById('dock-pin-mode-btn');
+    // Floating Dock Controls
+    const pinAiToggle = document.getElementById('dock-pin-mode-btn');
+    const pinPrivToggle = document.getElementById('dock-private-mode-btn');
     const editToggle = document.getElementById('dock-live-edit-btn');
     const drawerToggle = document.getElementById('dock-view-drawer-btn');
     const dockCount = document.getElementById('dock-notes-count');
@@ -322,7 +320,7 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
 
     function renderTags() {
       if (!popoverTagsContainer) return;
-      const tags = (currentMode === 'ai') ? aiTags : privateTags;
+      const tags = (currentMode === 'private') ? privateTags : aiTags;
       if (!tags.includes(selectedCategory)) {
         selectedCategory = tags[0];
       }
@@ -331,22 +329,16 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
       `).join('');
 
       popoverTagsContainer.querySelectorAll('.tag-chip').forEach(chip => {
-        chip.addEventListener('click', () => {
+        chip.addEventListener('click', (e) => {
+          e.stopPropagation();
           popoverTagsContainer.querySelectorAll('.tag-chip').forEach(c => c.classList.remove('selected'));
           chip.classList.add('selected');
-          selectedCategory = chip.getAttribute('data-tag') || (currentMode === 'ai' ? 'Copy' : 'Memo');
+          selectedCategory = chip.getAttribute('data-tag') || (currentMode === 'private' ? 'Memo' : 'Copy');
         });
       });
     }
 
-    // Switch Popover Mode
-    popoverModeTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const mode = tab.getAttribute('data-mode');
-        setPopoverMode(mode);
-      });
-    });
-
+    // Switch Popover Mode (AI Review vs Private Note)
     function setPopoverMode(mode) {
       currentMode = mode;
       popoverModeTabs.forEach(t => {
@@ -355,21 +347,38 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
       });
 
       if (mode === 'private') {
-        popover.classList.add('popover--private');
+        if (popover) popover.classList.add('popover--private');
         if (popoverSave) popoverSave.innerText = 'Save Private Note ↵';
+        if (pinPrivToggle) pinPrivToggle.classList.add('active');
+        if (pinAiToggle) pinAiToggle.classList.remove('active');
       } else {
-        popover.classList.remove('popover--private');
+        if (popover) popover.classList.remove('popover--private');
         if (popoverSave) popoverSave.innerText = 'Pin for AI ↵';
+        if (pinAiToggle) pinAiToggle.classList.add('active');
+        if (pinPrivToggle) pinPrivToggle.classList.remove('active');
       }
       renderTags();
       renderSelectedElementsSnippet();
+    }
+
+    // Direct event delegation for popover tabs so it NEVER fails
+    if (popover) {
+      popover.addEventListener('click', (e) => {
+        const tabBtn = e.target.closest('.popover-mode-tab');
+        if (tabBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          const mode = tabBtn.getAttribute('data-mode') || 'ai';
+          setPopoverMode(mode);
+        }
+      });
     }
 
     function renderSelectedElementsSnippet() {
       if (!popoverText) return;
       if (selectedElements.length === 0) {
         popoverText.innerHTML = '<span style="color:var(--muted); font-style:italic;">No elements selected</span>';
-        if (popoverTitle) popoverTitle.innerText = currentMode === 'private' ? '🔒 Private Note' : 'Comment on Element';
+        if (popoverTitle) popoverTitle.innerText = currentMode === 'private' ? '🔒 Private Note on Element' : 'Comment on Element';
         return;
       }
       
@@ -383,7 +392,7 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
       const chipsHtml = selectedElements.map((item, idx) => `
         <div class="annotation-selection-chip" style="display:flex; justify-content:space-between; align-items:center; width:100%; background:var(--cream); padding:4px 8px; border-radius:4px; margin-bottom:4px; font-size:11px; border:1px solid var(--line);">
           <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:240px; color:var(--ink);">
-            <strong style="color:var(--maroon);">&lt;${item.tag}&gt;</strong> "${escapeHtml(item.text)}"
+            <strong style="color:${currentMode === 'private' ? '#8b6914' : 'var(--maroon)'};">&lt;${item.tag}&gt;</strong> "${escapeHtml(item.text)}"
           </span>
           <button type="button" onclick="window.removeSelectedAnnotationElement(${idx})" title="Remove item" style="cursor:pointer; background:none; border:none; color:var(--maroon); font-weight:800; padding:0 4px; font-size:12px; line-height:1;">✕</button>
         </div>
@@ -409,23 +418,54 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
       }
     };
 
-    // Toggle Pin Mode
-    if (pinToggle) {
-      pinToggle.addEventListener('click', () => {
-        pinActive = !pinActive;
-        if (pinActive) {
+    // Toggle Pin AI Mode from Dock
+    if (pinAiToggle) {
+      pinAiToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (pinActive && currentMode === 'ai') {
+          // deactivate
+          pinActive = false;
+          pinAiToggle.classList.remove('active');
+          document.body.classList.remove('annotation-active');
+          if (inspectorBox) inspectorBox.style.display = 'none';
+          closePopover();
+        } else {
+          pinActive = true;
+          currentMode = 'ai';
           if (editActive) {
             editActive = false;
             if (editToggle) editToggle.classList.remove('active');
             toggleEditableElements(false);
           }
-          pinToggle.classList.add('active');
+          pinAiToggle.classList.add('active');
+          if (pinPrivToggle) pinPrivToggle.classList.remove('active');
           document.body.classList.add('annotation-active');
-        } else {
-          pinToggle.classList.remove('active');
+        }
+      });
+    }
+
+    // Toggle Private Note Mode from Dock
+    if (pinPrivToggle) {
+      pinPrivToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (pinActive && currentMode === 'private') {
+          // deactivate
+          pinActive = false;
+          pinPrivToggle.classList.remove('active');
           document.body.classList.remove('annotation-active');
           if (inspectorBox) inspectorBox.style.display = 'none';
           closePopover();
+        } else {
+          pinActive = true;
+          currentMode = 'private';
+          if (editActive) {
+            editActive = false;
+            if (editToggle) editToggle.classList.remove('active');
+            toggleEditableElements(false);
+          }
+          pinPrivToggle.classList.add('active');
+          if (pinAiToggle) pinAiToggle.classList.remove('active');
+          document.body.classList.add('annotation-active');
         }
       });
     }
@@ -437,7 +477,8 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
         if (editActive) {
           if (pinActive) {
             pinActive = false;
-            if (pinToggle) pinToggle.classList.remove('active');
+            if (pinAiToggle) pinAiToggle.classList.remove('active');
+            if (pinPrivToggle) pinPrivToggle.classList.remove('active');
             document.body.classList.remove('annotation-active');
             if (inspectorBox) inspectorBox.style.display = 'none';
             closePopover();
@@ -551,10 +592,21 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
         inspectorBox.style.height = rect.height + 'px';
         inspectorBox.style.display = 'block';
 
+        if (currentMode === 'private') {
+          inspectorBox.style.borderColor = 'var(--gold-light)';
+          inspectorBox.style.background = 'rgba(223, 202, 116, 0.12)';
+        } else {
+          inspectorBox.style.borderColor = 'var(--maroon)';
+          inspectorBox.style.background = 'rgba(43, 7, 16, 0.08)';
+        }
+
         const tag = target.tagName.toLowerCase();
         const snippet = target.innerText ? target.innerText.trim().substring(0, 24) : '';
         if (inspectorBadge) {
-          inspectorBadge.innerText = `<${tag}> ${snippet ? `"${snippet}..."` : ''}`;
+          const modeLabel = (currentMode === 'private') ? '🔒 Private' : '🚀 AI';
+          inspectorBadge.innerText = `[${modeLabel}] <${tag}> ${snippet ? `"${snippet}..."` : ''}`;
+          inspectorBadge.style.background = (currentMode === 'private') ? 'var(--gold-light)' : 'var(--maroon)';
+          inspectorBadge.style.color = (currentMode === 'private') ? 'var(--navy-deep)' : 'var(--cream)';
         }
       }
     });
@@ -594,7 +646,7 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
         });
       }
 
-      renderSelectedElementsSnippet();
+      setPopoverMode(currentMode);
 
       const rect = clickedEl.getBoundingClientRect();
       if (popover) {
@@ -621,7 +673,15 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
     // Save Annotation Note (Dual-Stream Batch Support)
     function saveNote() {
       const comment = popoverInput ? popoverInput.value.trim() : '';
-      if (!comment || selectedElements.length === 0) return;
+      if (!comment) {
+        if (popoverInput) {
+          popoverInput.style.borderColor = 'red';
+          popoverInput.focus();
+          setTimeout(() => { popoverInput.style.borderColor = ''; }, 1200);
+        }
+        return;
+      }
+      if (selectedElements.length === 0) return;
 
       const isPrivate = (currentMode === 'private');
       const targetList = isPrivate ? privateNotesList : aiNotesList;
@@ -690,7 +750,8 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
         if (provModal && provModal.classList.contains('open')) provModal.classList.remove('open');
         if (pinActive) {
           pinActive = false;
-          if (pinToggle) pinToggle.classList.remove('active');
+          if (pinAiToggle) pinAiToggle.classList.remove('active');
+          if (pinPrivToggle) pinPrivToggle.classList.remove('active');
           document.body.classList.remove('annotation-active');
           if (inspectorBox) inspectorBox.style.display = 'none';
         }
@@ -729,9 +790,9 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
 
       if (displayNotes.length === 0) {
         const emptyMsg = activeDrawerTab === 'private'
-          ? 'No private notes yet. Turn on "Pin Feedback", select "🔒 Private Note", and pin thoughts for your own records.'
+          ? 'No private notes yet. Click "🔒 Private Note" on the bottom dock or toggle to "🔒 Private Note" in the popover to pin your personal thoughts.'
           : (activeDrawerTab === 'ai' 
-              ? 'No AI review notes queued. Turn on "Pin Feedback", select "🚀 AI Review", and pin changes to send to Antigravity/Claude.'
+              ? 'No AI review notes queued. Click "🚀 Pin AI" on the dock and pin changes to send to Antigravity/Claude.'
               : 'No notes match your filter.');
         drawerList.innerHTML = `<p style="color:var(--muted);font-size:12px;font-style:italic;padding:12px;text-align:center;">${emptyMsg}</p>`;
         return;
@@ -787,7 +848,7 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
     if (copyAiBtn) {
       copyAiBtn.addEventListener('click', () => {
         if (aiNotesList.length === 0) {
-          alert('No AI review notes queued! Click "Pin Feedback" to add critique.');
+          alert('No AI review notes queued! Click "🚀 Pin AI" to add critique.');
           return;
         }
         let prompt = "### Review Notes for Richmond Symphony Portfolio Refinements\n\n";
