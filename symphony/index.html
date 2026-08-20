@@ -72,7 +72,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1787196154">
+  <link rel="stylesheet" href="styles.css?v=1787196287">
 </head>
 <!-- Review tooling switch: set data-review-tools="off" before going live to
      strip the pin-feedback dock, live edit, inspector and notes drawer. -->
@@ -243,6 +243,8 @@
       </button>
     </div>
   </div>
+
+  
 
   
 
@@ -1183,7 +1185,7 @@
     <div class="drawer-footer">
       <div id="drawer-footer-ai-actions" style="display: flex; gap: 8px; width: 100%;">
         <button id="drawer-copy-ai-btn" class="button button-maroon" style="flex: 1; justify-content: center; font-size: 11.5px; padding: 9px 12px;">
-          Copy Prompt for AI
+          🚀 Copy AI Prompt (Resets Queue)
         </button>
         <button id="drawer-clear-ai-btn" class="button button-navy" style="font-size: 11px; padding: 9px 12px;" title="Clear AI review queue">
           Clear
@@ -1191,10 +1193,18 @@
       </div>
       <div id="drawer-footer-private-actions" style="display: none; gap: 8px; width: 100%;">
         <button id="drawer-export-private-btn" class="button button-navy-accent" style="flex: 1; justify-content: center; font-size: 11.5px; padding: 9px 12px; background: var(--gold-light); color: var(--navy-deep); border-color: var(--gold-light); font-weight: 800;">
-          Export Markdown Journal
+          🔒 Copy All Private Notes (Never Deleted)
         </button>
         <button id="drawer-clear-private-btn" class="button button-navy" style="font-size: 11px; padding: 9px 12px;" title="Clear all private notes">
           Clear
+        </button>
+      </div>
+      <div id="drawer-footer-all-actions" style="display: none; gap: 8px; width: 100%;">
+        <button id="drawer-copy-ai-all-btn" class="button button-maroon" style="flex: 1; justify-content: center; font-size: 11px; padding: 8px 10px;">
+          🚀 Copy AI Notes
+        </button>
+        <button id="drawer-copy-private-all-btn" class="button button-navy-accent" style="flex: 1; justify-content: center; font-size: 11px; padding: 8px 10px; background: var(--gold-light); color: var(--navy-deep); border-color: var(--gold-light); font-weight: 800;">
+          🔒 Copy Private (Preserved)
         </button>
       </div>
     </div>

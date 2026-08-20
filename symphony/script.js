@@ -310,6 +310,9 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
     const clearPrivateBtn = document.getElementById('drawer-clear-private-btn');
     const footerAiActions = document.getElementById('drawer-footer-ai-actions');
     const footerPrivateActions = document.getElementById('drawer-footer-private-actions');
+    const footerAllActions = document.getElementById('drawer-footer-all-actions');
+    const copyAiAllBtn = document.getElementById('drawer-copy-ai-all-btn');
+    const copyPrivateAllBtn = document.getElementById('drawer-copy-private-all-btn');
 
     const aiTags = ['Copy', 'Design', 'Data', 'Layout', 'Logic', 'Action Item'];
     const privateTags = ['Memo', 'Idea', 'Talking Point', 'Research', 'Follow-Up', 'Question'];
@@ -423,7 +426,6 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
       pinAiToggle.addEventListener('click', (e) => {
         e.stopPropagation();
         if (pinActive && currentMode === 'ai') {
-          // deactivate
           pinActive = false;
           pinAiToggle.classList.remove('active');
           document.body.classList.remove('annotation-active');
@@ -449,7 +451,6 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
       pinPrivToggle.addEventListener('click', (e) => {
         e.stopPropagation();
         if (pinActive && currentMode === 'private') {
-          // deactivate
           pinActive = false;
           pinPrivToggle.classList.remove('active');
           document.body.classList.remove('annotation-active');
@@ -538,15 +539,23 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
         else t.classList.remove('active');
       });
 
-      if (footerAiActions && footerPrivateActions) {
+      if (footerAiActions && footerPrivateActions && footerAllActions) {
         if (tabName === 'private') {
           footerAiActions.style.display = 'none';
           footerPrivateActions.style.display = 'flex';
+          footerAllActions.style.display = 'none';
+        } else if (tabName === 'all') {
+          footerAiActions.style.display = 'none';
+          footerPrivateActions.style.display = 'none';
+          footerAllActions.style.display = 'flex';
         } else {
           footerAiActions.style.display = 'flex';
           footerPrivateActions.style.display = 'none';
+          footerAllActions.style.display = 'none';
         }
       }
+      updateDrawer();
+    }
       updateDrawer();
     }
 
@@ -887,25 +896,36 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
       });
     }
 
-    // Export Private Notes as Markdown Journal (Never Deletes)
-    if (exportPrivateBtn) {
-      exportPrivateBtn.addEventListener('click', () => {
-        if (privateNotesList.length === 0) {
-          alert('No private notes recorded yet.');
-          return;
-        }
-        let doc = "# 🔒 Richmond Symphony Portfolio — Personal Notes & Working Memos\n";
-        doc += `*Exported on ${new Date().toLocaleDateString()} at ${new Date().toLocaleTimeString()}*\n\n---\n\n`;
-        privateNotesList.forEach(n => {
-          doc += `### [🔒#${n.id}] [${n.category}] on <${n.tag}> "${n.targetText}"\n`;
-          doc += `- **Note**: ${n.comment}\n`;
-          doc += `- *Created*: ${n.createdAt}\n\n`;
-        });
+    // Copy All Private Notes Formatted as Markdown Journal (Explicitly Preserves 100% of Notes with ZERO Deletions)
+    function copyAllPrivateNotes() {
+      if (privateNotesList.length === 0) {
+        alert('No private notes recorded yet! Click "🔒 Private Note" on the dock to add your personal notes.');
+        return;
+      }
+      let doc = "# 🔒 Richmond Symphony Portfolio — Personal Notes & Working Memos\n";
+      doc += `*Exported on ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} at ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} — All notes preserved locally*\n\n---\n\n`;
+      privateNotesList.forEach(n => {
+        doc += `### [🔒#${n.id}] [${n.category}] on <${n.tag}> "${n.targetText}"\n`;
+        doc += `- **Note**: ${n.comment}\n`;
+        doc += `- *Created*: ${n.createdAt}\n\n`;
+      });
 
-        navigator.clipboard.writeText(doc).then(() => {
-          exportPrivateBtn.innerText = 'Copied Markdown Journal! ✓';
-          setTimeout(() => { exportPrivateBtn.innerText = 'Export Markdown Journal'; }, 2400);
-        });
+      navigator.clipboard.writeText(doc).then(() => {
+        if (exportPrivateBtn) exportPrivateBtn.innerText = 'Copied All Private Notes (Preserved)! ✓';
+        if (copyPrivateAllBtn) copyPrivateAllBtn.innerText = 'Copied Private (Preserved)! ✓';
+        setTimeout(() => {
+          if (exportPrivateBtn) exportPrivateBtn.innerText = '🔒 Copy All Private Notes (Never Deleted)';
+          if (copyPrivateAllBtn) copyPrivateAllBtn.innerText = '🔒 Copy Private (Preserved)';
+        }, 2500);
+      });
+    }
+
+    if (exportPrivateBtn) exportPrivateBtn.addEventListener('click', copyAllPrivateNotes);
+    if (copyPrivateAllBtn) copyPrivateAllBtn.addEventListener('click', copyAllPrivateNotes);
+
+    if (copyAiAllBtn && copyAiBtn) {
+      copyAiAllBtn.addEventListener('click', () => {
+        copyAiBtn.click();
       });
     }
 
