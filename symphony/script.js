@@ -245,7 +245,7 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
 - **Deployed & Pushed Live By**: Antigravity (\`AG\`)
 - **Edit Session Started**: Aug 19, 2026 · 11:00 PM EDT
 - **Officially Pushed Live**: Aug 19, 2026 · 11:42 PM EDT (GitHub Pages \`gh-pages\` + \`main\`)
-- **Verified Commit SHA**: \`#f85519a\`
+- **Verified Commit SHA**: \`#006b841\`
 - **Granular Timestamped Edits**:
   - \`[11:06 PM EDT]\`: Restored clean passcode title and unlock button layout to canonical single red theme.
   - \`[11:13 PM EDT]\`: Reverted all red CSS variables back to canonical \`#2b0710\` footer red across all site surfaces.
@@ -262,6 +262,7 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
   - \`[11:41 PM EDT]\`: Implemented native iPadOS/iOS single master overlay input with 4 visual digit boxes (\`.pin-digit-box\`), eliminating iPad Safari focus-blocking restrictions.
   - \`[11:47 PM EDT]\`: Standardized Agent Telemetry Abbreviations to \`AG\` (Antigravity), \`CL\` (Claude Code), and \`CDX\` (Codex) across all badges and documentation.
   - \`[11:49 PM EDT]\`: Enshrined authoring and deployment app provenance attribution directly onto all version selectors and export handoff dossiers.
+  - \`[11:51 PM EDT]\`: Resolved iPad Chrome overlay nesting and centered layout geometry for zero mobile layout shift.
 
 ### 🌟 Milestone v1.6.0 · Advancement Systems, Bio Expansion & Dual-Stream Annotation
 - **Authoring & Edit Agent**: Antigravity (\`AG\`)
