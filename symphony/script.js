@@ -714,21 +714,16 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
         inspectorBox.style.height = rect.height + 'px';
         inspectorBox.style.display = 'block';
 
-        if (currentMode === 'private') {
-          inspectorBox.style.borderColor = 'var(--gold-light)';
-          inspectorBox.style.background = 'rgba(223, 202, 116, 0.12)';
-        } else {
-          inspectorBox.style.borderColor = 'var(--maroon)';
-          inspectorBox.style.background = 'rgba(43, 7, 16, 0.08)';
-        }
+        inspectorBox.style.borderColor = 'var(--maroon)';
+        inspectorBox.style.background = 'rgba(43, 7, 16, 0.08)';
 
         const tag = target.tagName.toLowerCase();
         const snippet = target.innerText ? target.innerText.trim().substring(0, 24) : '';
         if (inspectorBadge) {
           const modeLabel = (currentMode === 'private') ? '🔒 Private' : '🚀 AI';
           inspectorBadge.innerText = `[${modeLabel}] <${tag}> ${snippet ? `"${snippet}..."` : ''}`;
-          inspectorBadge.style.background = (currentMode === 'private') ? 'var(--gold-light)' : 'var(--maroon)';
-          inspectorBadge.style.color = (currentMode === 'private') ? 'var(--navy-deep)' : 'var(--cream)';
+          inspectorBadge.style.background = 'var(--maroon)';
+          inspectorBadge.style.color = 'var(--cream)';
         }
       }
     });

@@ -1771,9 +1771,9 @@ body[data-review-tools="on"] {
 }
 
 .dock-btn.dock-btn--private.active {
-  background: var(--gold-light);
-  color: var(--navy-deep);
-  box-shadow: 0 0 14px rgba(223, 202, 116, 0.5);
+  background: var(--maroon);
+  color: var(--cream);
+  box-shadow: 0 0 12px rgba(43, 7, 16, 0.4);
 }
 
 .dock-badge {
@@ -1801,8 +1801,8 @@ body[data-review-tools="on"] {
 }
 
 .annotation-popover.popover--private {
-  border-color: var(--gold-light) !important;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(223, 202, 116, 0.25) !important;
+  border-color: var(--maroon) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(43, 7, 16, 0.25) !important;
 }
 
 .popover-mode-tabs {
@@ -1837,13 +1837,13 @@ body[data-review-tools="on"] {
 .popover-mode-tab.active[data-mode="ai"] {
   background: var(--maroon);
   color: var(--cream);
-  box-shadow: 0 2px 6px rgba(76, 14, 28, 0.3);
+  box-shadow: 0 2px 6px rgba(43, 7, 16, 0.3);
 }
 
 .popover-mode-tab.active[data-mode="private"] {
-  background: var(--gold-light);
-  color: var(--navy-deep);
-  box-shadow: 0 2px 6px rgba(223, 202, 116, 0.4);
+  background: var(--maroon);
+  color: var(--cream);
+  box-shadow: 0 2px 6px rgba(43, 7, 16, 0.3);
 }
 
 .popover-header {
@@ -1865,7 +1865,7 @@ body[data-review-tools="on"] {
 }
 
 .popover--private .popover-title {
-  color: var(--navy);
+  color: var(--maroon);
 }
 
 .popover-target-snippet {
@@ -1908,9 +1908,9 @@ body[data-review-tools="on"] {
 }
 
 .popover--private .tag-chip.selected {
-  background: var(--gold-light);
-  color: var(--navy-deep);
-  border-color: var(--gold-light);
+  background: var(--maroon);
+  color: var(--cream);
+  border-color: var(--maroon);
 }
 
 .popover-textarea {
@@ -1933,7 +1933,7 @@ body[data-review-tools="on"] {
 }
 
 .popover--private .popover-textarea:focus {
-  border-color: var(--gold-light);
+  border-color: var(--maroon);
 }
 
 .popover-actions {
@@ -1960,12 +1960,12 @@ body[data-review-tools="on"] {
 }
 
 .popover--private .popover-pin-btn {
-  background: var(--gold-light);
-  color: var(--navy-deep);
+  background: var(--maroon);
+  color: var(--cream);
 }
 
 .popover--private .popover-pin-btn:hover {
-  background: #cbb45f;
+  background: var(--maroon-deep);
 }
 
 .popover-cancel-btn {
