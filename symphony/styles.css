@@ -3,7 +3,7 @@
    Refined Brand System: Deep Navy, Cabernet Maroon, Antique Cream & Paper
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap');
 
 :root {
   /* Strict Palette: Deep Atlantic Navy, Cabernet Maroon, Warm Cream & Paper */
@@ -57,7 +57,7 @@
 
   /* Typography Stack */
   --sans:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --serif: "Playfair Display", "Iowan Old Style", Georgia, serif;
   --mono:  "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
 
   /* Layout Measurements */
@@ -438,6 +438,29 @@ img {
   justify-content: center;
   gap: clamp(10px, 1.4vw, 22px);
   list-style: none;
+}
+
+.desktop-nav li {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(8px, 0.9vw, 14px);
+}
+
+.desktop-nav li + li::before {
+  color: var(--cream);
+  content: "//";
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 800;
+  opacity: 0.48;
+}
+
+.kicker::before {
+  content: "(( ";
+}
+
+.kicker::after {
+  content: " ))";
 }
 
 .desktop-nav a {
@@ -2948,6 +2971,226 @@ body[data-review-tools="on"] {
   padding: 2px 6px;
   border-radius: 4px;
   border: 1px solid var(--line);
+}
+
+.version-item-row .version-row-tag--released {
+  background: var(--blue-l3);
+  border-color: var(--cream);
+  color: var(--cream);
+}
+
+.telemetry-color-key {
+  margin-bottom: 10px;
+  padding: 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.telemetry-color-key__title {
+  cursor: pointer;
+  color: var(--navy);
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.telemetry-color-key__title::marker {
+  color: var(--maroon);
+}
+
+.telemetry-color-key__title:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 3px;
+}
+
+.telemetry-color-key[open] .telemetry-color-key__title {
+  margin-bottom: 7px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.telemetry-color-key__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin: 0;
+}
+
+.telemetry-color-key__grid > div {
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--paper);
+}
+
+.telemetry-color-key__grid .telemetry-color-key__wide {
+  grid-column: 1 / -1;
+}
+
+.telemetry-color-key dt {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 3px;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 8.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.telemetry-color-key dd {
+  margin: 0;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.version-number-key__formula {
+  margin: 0 0 4px;
+  color: var(--navy);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+.version-number-key__intro {
+  margin: 0 0 7px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.version-number-key__grid dd strong {
+  color: var(--navy);
+  font-family: var(--mono);
+  font-size: 8.5px;
+}
+
+.engineering-time-breakdown {
+  position: relative;
+  z-index: 3;
+  margin-bottom: 8px;
+}
+
+.engineering-time-breakdown__summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #ffffff;
+  color: var(--navy);
+  cursor: help;
+  font-size: 10.5px;
+  font-weight: 800;
+  list-style: none;
+}
+
+.engineering-time-breakdown__summary::-webkit-details-marker {
+  display: none;
+}
+
+.engineering-time-breakdown__summary::after {
+  content: "?";
+  display: inline-grid;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  place-items: center;
+  border: 1px solid var(--navy);
+  border-radius: 50%;
+  font-family: var(--mono);
+  font-size: 9px;
+}
+
+.engineering-time-breakdown__summary:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 2px;
+}
+
+.engineering-time-breakdown__agents {
+  margin-left: auto;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.engineering-time-breakdown__panel {
+  position: absolute;
+  right: 0;
+  left: 0;
+  display: none;
+  gap: 4px;
+  margin-top: 4px;
+  padding: 8px;
+  border: 1px solid var(--navy);
+  border-radius: 5px;
+  background: var(--paper);
+  box-shadow: 0 8px 20px rgba(13, 26, 50, 0.18);
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.engineering-time-breakdown__panel strong {
+  color: var(--navy);
+  font-family: var(--mono);
+  font-size: 9px;
+}
+
+.engineering-time-breakdown:hover .engineering-time-breakdown__panel,
+.engineering-time-breakdown:focus-within .engineering-time-breakdown__panel,
+.engineering-time-breakdown[open] .engineering-time-breakdown__panel {
+  display: grid;
+}
+
+@media (max-width: 560px) {
+  .engineering-time-breakdown__summary {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .engineering-time-breakdown__agents {
+    width: calc(100% - 26px);
+    margin-left: 0;
+  }
+}
+
+.telemetry-swatch {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
+  border: 1px solid rgba(21, 28, 34, 0.35);
+  border-radius: 50%;
+}
+
+.telemetry-swatch--local { background: var(--gold-light); }
+.telemetry-swatch--live { background: #15803d; }
+.telemetry-swatch--released { background: var(--blue-l3); }
+.telemetry-swatch--attention { background: var(--maroon); }
+.telemetry-swatch--neutral { background: var(--cream); }
+
+@media (max-width: 480px) {
+  .telemetry-color-key__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .telemetry-color-key__grid .telemetry-color-key__wide {
+    grid-column: auto;
+  }
+}
+
+.version-status--released {
+  color: var(--blue-l3);
+  font-size: 9px;
+  font-weight: 800;
 }
 
 .version-hover-card {

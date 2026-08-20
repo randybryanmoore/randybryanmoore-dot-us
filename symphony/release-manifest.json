@@ -1,57 +1,59 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-20T17:15:36-04:00",
+  "generated_at": "2026-08-20T17:45:03-04:00",
   "service_name": "richmond-symphony-candidate-dossier",
-  "service_version": "1.6.5",
+  "service_version": "1.6.6-rc",
   "source": {
     "repository": "randybryanmoore/randybryanmoore-dot-us",
     "branch": "main",
-    "base_commit": "31f12ed",
-    "working_tree": "release telemetry update"
+    "base_commit": "0161d08",
+    "working_tree": "modified"
   },
   "lifecycle": {
-    "committed": true,
-    "pushed": true,
-    "deployed": true,
-    "production_verified": true
+    "committed": false,
+    "pushed": false,
+    "deployed": false,
+    "production_verified": false
+  },
+  "production_baseline": {
+    "service_version": "1.6.5",
+    "status": "live_and_previously_verified"
   },
   "artifacts": [
     {
       "path": "index.html",
-      "sha256": "6e60ddbf0ba3b13394f63b57062295a418632e5184faf7ad59daf96ce000cddd"
+      "sha256": "131b39ceb778f23c86c789aba8ef86951abd74beab0f2e420628d6d7cc604375"
     },
     {
       "path": "styles.css",
-      "sha256": "35001e9e42225889e235dc9bbc7fb4e4912597f91629d98d38bc728da7b1931a"
+      "sha256": "f0b1a57612eed51200f75226e03b6918f57a2ba48901666f53e04702e05d2a20"
     },
     {
       "path": "script.js",
-      "sha256": "2140c8de10a58cce52637ca821cd8a31743f7d1a5dbf7d4f069fa2c28785805c"
+      "sha256": "e504165d27e6e676da2f792281e5e1031f36337a1812e00c210446d4879ab677"
     },
     {
       "path": "one_pager.html",
-      "sha256": "25ae4fda5b678459bb645560af8721afc694ed15f6254f65a4768b6de2894517"
+      "sha256": "493d5bc283132cb425c7db16ab5b1ed911a64afb5fc747e007ffade1ba333b24"
     },
     {
       "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",
-      "sha256": "e160d8dc11250d5b82e840e7d423c08a414cd683e8857d8cb9c6379b8c531b6a"
+      "sha256": "00f283a4a63f4dd557e9f84d479d82ff2e9b56b14192f1c6494c6d0380745e79"
     }
   ],
   "validation": {
     "javascript_syntax": "pass",
     "diff_whitespace": "pass",
     "offline_archive_source_readback": "pass",
-    "browser_interaction": "file_url_automation_unavailable_production_http_readback_used",
-    "production_readback": "pass",
-    "production_verified_at": "2026-08-20T17:15:36-04:00",
-    "first_verified_serving_candidate": "874e48f"
+    "browser_interaction": "not_run_file_url_blocked_by_automation_policy",
+    "production_readback": "not_run_for_local_candidate"
   },
   "blockers": [
     {
       "id": "DEPLOY-APPROVAL-001",
       "severity": "high",
-      "status": "closed",
-      "description": "Randy explicitly authorized commit, push, deployment, and live publication."
+      "status": "open",
+      "description": "The v1.6.6 release candidate has not been authorized for commit, push, or deployment."
     }
   ]
 }

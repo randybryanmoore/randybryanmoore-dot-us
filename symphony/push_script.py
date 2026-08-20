@@ -77,7 +77,7 @@ release_manifest = {
     'schema_version': 1,
     'generated_at': datetime.now().astimezone().isoformat(timespec='seconds'),
     'service_name': 'richmond-symphony-candidate-dossier',
-    'service_version': '1.6.5',
+    'service_version': '1.6.6',
     'source': {
         'repository': 'randybryanmoore/randybryanmoore-dot-us',
         'branch': source_branch,
@@ -170,7 +170,7 @@ new_tree = api_req(
 new_commit = api_req(
     f'https://api.github.com/repos/{owner}/{repo}/git/commits',
     data={
-        'message': 'Release v1.6.5: structured telemetry and safe handoff workflow',
+        'message': 'Release v1.6.6: refine Music and Artistry navigation copy',
         'tree': new_tree['sha'],
         'parents': [latest_commit_sha]
     },

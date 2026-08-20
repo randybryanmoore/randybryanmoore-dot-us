@@ -5,7 +5,61 @@
 // =========================================================================
 
 (function() {
+  const editorialAndPattern = /\band\b/gi;
+  const editorialCopyAttributes = ['aria-label', 'placeholder', 'title'];
+
+  function applyEditorialSeparators(root = document.body) {
+    if (!root) return;
+
+    const replaceText = (textNode) => {
+      const parent = textNode.parentElement;
+      if (!parent || parent.closest('script, style, code, pre, textarea')) return;
+      if (editorialAndPattern.test(textNode.nodeValue)) {
+        textNode.nodeValue = textNode.nodeValue.replace(editorialAndPattern, '&');
+      }
+      editorialAndPattern.lastIndex = 0;
+    };
+
+    if (root.nodeType === Node.TEXT_NODE) {
+      replaceText(root);
+      return;
+    }
+
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    let textNode;
+    while ((textNode = walker.nextNode())) replaceText(textNode);
+
+    if (root.nodeType === Node.ELEMENT_NODE) {
+      const elements = [root, ...root.querySelectorAll('*')];
+      elements.forEach((element) => {
+        editorialCopyAttributes.forEach((attribute) => {
+          const value = element.getAttribute(attribute);
+          if (value && editorialAndPattern.test(value)) {
+            element.setAttribute(attribute, value.replace(editorialAndPattern, '&'));
+          }
+          editorialAndPattern.lastIndex = 0;
+        });
+      });
+    }
+  }
+
   function initSuite() {
+    applyEditorialSeparators();
+    const editorialObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'characterData') applyEditorialSeparators(mutation.target);
+        if (mutation.type === 'attributes') applyEditorialSeparators(mutation.target);
+        mutation.addedNodes.forEach((node) => applyEditorialSeparators(node));
+      });
+    });
+    editorialObserver.observe(document.body, {
+      attributes: true,
+      attributeFilter: editorialCopyAttributes,
+      childList: true,
+      characterData: true,
+      subtree: true
+    });
+
     let pinActive = false;
     let editActive = false;
     let currentMode = 'ai'; // 'ai' (review queue) or 'private' (personal journal)
@@ -176,12 +230,12 @@
     const currentTelemetry = Object.freeze({
       schemaVersion: 1,
       serviceName: 'richmond-symphony-candidate-dossier',
-      serviceVersion: '1.6.5',
+      serviceVersion: '1.6.6-rc',
       agent: 'CDX',
       agentProduct: 'Codex',
       repository: 'randybryanmoore/randybryanmoore-dot-us',
       branch: 'main',
-      baseCommit: '31f12ed',
+      baseCommit: '0161d08',
       publicUrl: 'https://symphony.randybryanmoore.us',
       releaseManifest: './release-manifest.json'
     });
@@ -214,18 +268,18 @@ source:
   repository: "${currentTelemetry.repository}"
   branch: "${currentTelemetry.branch}"
   base_commit: "${currentTelemetry.baseCommit}"
-  working_tree: "clean at release commit"
+  working_tree: "modified"
 lifecycle:
   local: true
-  committed: true
-  pushed: true
+  committed: false
+  pushed: false
   pull_request_or_merged: false
-  deployed: true
+  deployed: false
   staging: false
-  production_verified: true
+  production_verified: false
 production:
   url: "${currentTelemetry.publicUrl}"
-  state: "v1.6.5 live and verified"
+  state: "v1.6.5 remains live; v1.6.6-rc is local only"
   verified_at: "2026-08-20T17:15:36-04:00"
   first_verified_serving_candidate: "874e48f"
 release_artifacts:
@@ -267,13 +321,13 @@ This is the current operational snapshot. Reverify every changeable fact before 
 - Release manifest: \`${currentTelemetry.releaseManifest}\` — hashes must be regenerated after the final source edit and before deployment
 
 ### Lifecycle — report each state separately
-- Local: Yes — \`v${currentTelemetry.serviceVersion}\` release source validated.
-- Committed: Yes — development repository \`main\`; use Git readback for the current commit.
-- Pushed: Yes — development repository \`main\`.
-- Merged / Pull Request: Direct-to-main release; no PR.
-- Deployed: Yes — serving \`gh-pages\` and \`main\`; use Git readback for the current commit.
+- Local: Yes — \`v${currentTelemetry.serviceVersion}\` copy refinement.
+- Committed: No.
+- Pushed: No.
+- Merged / Pull Request: No new PR or merge.
+- Deployed: No.
 - Staging: Not used.
-- Live / Production: \`v${currentTelemetry.serviceVersion}\` verified at the custom domain on Aug 20, 2026 at 5:15 PM EDT.
+- Live / Production: \`v1.6.5\` remains live; \`v${currentTelemetry.serviceVersion}\` is local only.
 
 A commit is not a push. A push is not a deployment. A deployment is not confirmed live until production readback succeeds.
 
@@ -287,7 +341,7 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 - Purpose: source-grounded candidate dossier for Assistant Director, Advancement Systems & Operations at Richmond Symphony.
 - Brand blue levels: \`#0d1a32\`, \`#182b4d\`, \`#243d6b\`.
 - Canonical red: \`#2b0710\`; do not introduce a lighter red without explicit instruction.
-- Preserve Newsreader, Inter, and JetBrains Mono typography roles.
+- Preserve Playfair Display, Inter, and JetBrains Mono typography roles.
 - Preserve private notes. Transient review notes may reset only through their documented export flow.
 
 ## 4. Claim policy
@@ -304,6 +358,14 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 - Updated case-study active states, layout accents, contact surfaces, Musical Artistry order, embedded-media annotation, and telemetry collapse behavior.
 - Set the three TikTok cards to a centered 320px intermediate width without affecting unrelated responsive grids.
 - Replaced the oversized default handoff with this current-state document and added a separate YAML telemetry export.
+- Renamed the “Piano Repertoire” navigation link to “Music & Artistry.”
+- Separated telemetry status colors: local candidates are gold, live production is green, and released history is blue.
+- Adopted the main-site Playfair Display and Inter font system, retained JetBrains Mono for telemetry, and added the (( section label )) / // divider signature.
+- Added a visible telemetry key explaining gold Local, green Live, blue Released, red Attention, and cream Information states with accompanying text labels.
+- Made the telemetry color key keyboard-accessible, collapsible, and closed by default.
+- Added a collapsed version-number key defining MAJOR.MINOR.PATCH thresholds, reset rules, example readings, and the pre-release meaning of -rc.
+- Applied the dossier's editorial convention globally: visible standalone “and” becomes “&”, while existing “//” remains the structural divider.
+- Added an engineering-time disclosure that previews on hover or focus, persists on click or tap, and documents the exact agent-hour arithmetic, active-block method, 10-minute break rule, exclusions, and historical precision limits.
 
 ## 6. Safe release protocol
 1. Explain the intended source changes in 3–7 bullets.
