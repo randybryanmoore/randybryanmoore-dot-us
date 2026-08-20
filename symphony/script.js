@@ -235,52 +235,53 @@
 
     if (copyHandoffBtn) {
       copyHandoffBtn.addEventListener('click', () => {
-        const handoffText = `# Master Agent Handoff Context — Richmond Symphony Dossier
+        const handoffText = `# Master Agent Handoff Context — Richmond Symphony Candidate Dossier
+*Generated on ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} at ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} EDT*
 
-Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete multi-session memory and architectural fidelity.
+Paste this entire document into Claude Code, Codex, Cursor, or Antigravity to pick up with 100% complete multi-session technical fidelity and zero memory loss.
 
 ---
 
-## 🎯 Project Overview & Role Target
+## 🎯 1. Project Overview & Selection Committee Target
 - **Candidate**: Randy Bryan Moore, MSW
 - **Target Position**: Assistant Director, Advancement Systems & Operations
 - **Organization**: Richmond Symphony (Richmond, Virginia)
-- **Artifact Purpose**: Confidential executive candidate portfolio and operational dossier evaluated by the hiring selection committee. Accuracy of claims and strict alignment with the job description matter above all else.
-- **Universal Selection Committee PIN**: \`0000\`
+- **Artifact Purpose**: High-stakes confidential executive candidate dossier and operational systems demonstration evaluated by the hiring selection committee. Accuracy of claims, source-grounded integrity, and strict alignment with the job description take precedence over all else.
+- **Universal Selection Committee Passcode**: \`0000\`
 
 ---
 
-## 🌐 Live URL & Repository Architecture
-- **Canonical Live URL**: https://symphony.randybryanmoore.us (via custom domain)
+## 🌐 2. Live URL & Dual-Repository Synchronization Architecture
+- **Canonical Custom Domain URL**: https://symphony.randybryanmoore.us
 - **GitHub Pages Host**: https://randybryanmoore.github.io/randy-symphony-portfolio/
-- **Primary Development Repo**: \`randybryanmoore/randybryanmoore-dot-us\` (Branch: \`main\`, working copy in \`symphony/\`)
-- **Public Serving Repo**: \`randybryanmoore/randy-symphony-portfolio\` (Branches: \`gh-pages\` and \`main\`, served from root)
-- **Deployment Pipeline**: Single atomic commit via GitHub Git Data Tree API (\`python3 push_script.py\`). Both \`gh-pages\` and \`main\` in the portfolio repo are synchronized atomically on every build.
+- **Primary Working Git Repo**: \`randybryanmoore/randybryanmoore-dot-us\` (Branch: \`main\`, working files in \`symphony/\`)
+- **Serving GitHub Pages Repo**: \`randybryanmoore/randy-symphony-portfolio\` (Branches: \`gh-pages\` and \`main\`, served from root)
+- **Atomic Single-Commit Deploy Pipeline**: \`push_script.py\` utilizes the GitHub Git Data Tree API to push \`index.html\`, \`styles.css\`, \`script.js\`, \`one_pager.html\`, and the compressed dossier \`ZIP\` archive in a single atomic tree commit to both \`gh-pages\` and \`main\`, eliminating race conditions and stale builds.
 
 ---
 
-## 🎨 Strict Brand Color Hierarchy & Rules
-*Do not alter these tokens without explicit instructions from Randy.*
-- **DOMINANT BLUE (3-Layer Depth)**:
-  - \`--blue-l1\`: \`#0d1a32\` (Page and section ground — furthest back, dominant blue)
-  - \`--blue-l2\`: \`#182b4d\` (Mid-layer panels, cards, and containers)
+## 🎨 3. Strict Brand Design Tokens & Hierarchy Rules
+*CRITICAL: Do not alter these color tokens without explicit instructions from Randy.*
+- **Dominant Blue System (3-Tier Elevation)**:
+  - \`--blue-l1\`: \`#0d1a32\` (Page grounds and section backgrounds — dominant background blue)
+  - \`--blue-l2\`: \`#182b4d\` (Mid-layer panels, cards, and metric containers)
   - \`--blue-l3\`: \`#243d6b\` (Top-layer insets, active tabs, and highlighted controls)
-- **FLAT FOOTER RED (Strict Single Palette)**:
-  - \`--red-1\`, \`--maroon\`, \`--maroon-deep\`: \`#2b0710\` (Canonical deep red — the only red across the site).
-  - *Rule*: Never place unbordered text directly on red without a high-contrast cream rule or tag chip (\`#f2eadf\`).
-- **CREAM & PAPER ACCENTS**:
-  - \`--cream\`: \`#f2eadf\`
-  - \`--paper\`: \`#fbf6ed\`
-  - \`--gold-light\`: \`#dfca74\` (Telemetry SHA and Private Note highlights)
+- **Canonical Brand Red Palette (Single Strict Red)**:
+  - \`--red-1\`, \`--maroon\`, \`--maroon-deep\`, \`--red-accent\`: \`#2b0710\` (Canonical deep footer red — the only red across the site).
+  - *Contrast Rule*: Never place unbordered dark text directly on red without a high-contrast cream rule or tag chip (\`#f2eadf\`).
+- **Cream, Paper & Telemetry Accents**:
+  - \`--cream\`: \`#f2eadf\` (Text on navy, tag chips, and borders)
+  - \`--paper\`: \`#fbf6ed\` (Light cards and flyout modal grounds)
+  - \`--gold-light\`: \`#dfca74\` (Telemetry SHA and element spotlight highlights)
 
 ---
 
-## 📚 Sourced Claims & Verified Facts (Do NOT Alter or Hallucinate)
-1. **Bloomerang CRM**: Primary administration, Moves Management workflows, and gift processing reconciliation with Finance to govern the **$6.9M** contributed-income goal.
-2. **EveryAction**: 50+ General Assembly legislative meetings for Save the Children Action Network.
-3. **Muster Platform**: Requirements definition and Salesforce integration design for Active Minds across Congressional targets (no unsourced deliverability percentages).
-4. **People Leadership**: Supervised graduate MSW interns at Virginia Housing Alliance and trained 40 partner organizations at Virginia Civic Engagement Table (aligns with JD requirement to supervise Annual Fund Manager and Advancement Assistant).
-5. **Musical Artistry (Section 06)**:
+## 📚 4. Verified Sourced Claims (Do NOT Alter or Hallucinate)
+1. **Bloomerang CRM**: Primary administration, Moves Management workflows, donor retention lifecycle, and gift processing reconciliation with Finance to govern the **$6.9M** contributed-income goal.
+2. **EveryAction CRM**: 50+ General Assembly legislative meetings for Save the Children Action Network across Virginia districts.
+3. **Muster Platform**: Requirements definition and Salesforce integration design for Active Minds across Congressional targets (never re-introduce unsourced \`98.4%\` metric).
+4. **People Leadership**: Supervised graduate MSW interns at Virginia Housing Alliance and trained 40 partner organizations at Virginia Civic Engagement Table (fulfills JD requirement to supervise Annual Fund Manager and Advancement Assistant).
+5. **Musical Artistry & Credentials (Section 06)**:
    - Songwriter, producer, multi-instrumentalist (vocalist, piano, guitar, and harp).
    - Composed full orchestral arrangements for production cover of Kate Bush's *Hounds of Love*.
    - 4-year contract pianist with regular resident lobby performances at Richmond's historic Jefferson Hotel (2022–Present).
@@ -288,33 +289,64 @@ Paste this into Claude Code, Codex, or Antigravity to pick up with 100% complete
 
 ---
 
-## 📜 Comprehensive Chronological Work Log Across All Sessions
+## 📜 5. Complete Exhaustive Chronological Work Log (Every Documented Change)
 
-### Phase 1: Claude Code Baseline Fixes & Structural Alignment
-- Fixed QR code fallback URLs to point to \`https://symphony.randybryanmoore.us/\`.
-- Corrected Muster CRM claims to reflect source-grounded Salesforce integration facts.
-- Added People Leadership row to the Alignment Matrix.
-- Established the strict 3-step blue elevation and \`#2b0710\` red palette.
-- Embedded Spotify artist player (\`0zaqvfVeDQZJ1q70foOsRs\`) and TikTok review links (44px tap targets).
-- Configured \`data-review-tools="on"\` toggle and initial \`v1.5.1\` build badge.
+### Phase 1: Claude Code Baseline Fixes & Structural Realignment
+1. **Repository Topology Resolution**: Identified that \`randybryanmoore-dot-us/symphony/\` returned 404 and established \`randy-symphony-portfolio\` (\`gh-pages\` branch) as the true serving root.
+2. **Dead URL & QR Code Fixes**: Corrected fallback URLs from \`window.location.href\` (which generated \`file://\` codes) to \`https://symphony.randybryanmoore.us/\`.
+3. **Printable One-Pager SVG QR Code**: Regenerated hardcoded inline SVG QR code on \`one_pager.html\` pointing to canonical subdomain.
+4. **vCard Correction**: Corrected candidate vCard (\`Randy_Bryan_Moore.vcf\`) URL and phone payload.
+5. **Muster Platform Sourced Re-Framing**: Removed unsourced \`98.4%\` delivery metric; accurately framed as requirements definition & Salesforce integration.
+6. **People Leadership Qualification Matrix Row**: Added supervision row for Annual Fund Manager & Advancement Assistant grounded in MSW graduate supervision.
+7. **Hero Name & QR Layout**: Separated headshot portrait from candidate wordmark/QR to prevent overlap.
+8. **Case Study Tab Layout**: Made 5 case-study tabs wrap responsively so Case Study #5 is always accessible without horizontal scroll.
+9. **Header Wordmark Responsive Lockup**: Fixed title wrap to clean 2-line lockup; hid subtitle below 1250px.
+10. **Headshot Geometry**: Converted letterboxed 2.5:1 image to 4:3 top-anchored portrait frame.
+11. **Mobile Tap Target Compliance**: Expanded TikTok review links to 44px minimum tap targets.
+12. **Link Security**: Added \`rel="noopener"\` to all external links.
+13. **Contrast Fixes**: Fixed maroon-on-navy kickers to high-contrast cream (11.8:1).
+14. **Spotify Artist Embed**: Embedded Spotify artist player (\`0zaqvfVeDQZJ1q70foOsRs\`, 520px) under 1,000 Songs marathon.
+15. **Advancement Live Demo Link**: Wired interactive demo buttons to \`https://richmond-symphony-advancement-demo.randybryanmoore.chatgpt.site\`.
+16. **Artist Statement Polish**: Closed section with Randy's authentic quote: *"Like sticking your hand in a stream."*
+17. **Search Indexing Directives**: Configured \`noindex, nofollow, noarchive, nosnippet\` while omitting \`Disallow\` robots.txt to ensure crawlers read headers.
+18. **Initial Build Badge**: Created baseline top-right badge (\`v1.5.1\`, Agent \`C\`).
 
-### Phase 2: Antigravity Systems & Interactive Enhancements (v1.6.0 – v1.6.2)
-- **Hero & Profile Card**: Elevated hero copy padding, enlarged candidate headshot to 420px, dynamic 150px mobile QR code, and full position title in top eyebrow kicker.
-- **Section 06 Music Bio**: Enriched narrative highlighting Songwriter, Producer, Vocalist, Piano, Guitar, Harp, and Kate Bush *Hounds of Love* orchestral arrangement with dedicated brand badges.
-- **100/100 Dual-Stream Annotation Suite**:
-  - *AI Review Queue* (\`localStorage['rbm_symphony_notes']\`): Multi-element batch selection, category chips, 1-click Antigravity prompt copy + auto-reset.
-  - *Private Notes Journal* (\`localStorage['rbm_symphony_private_notes']\`): Permanent personal memos & interview prep talking points, gold \`🔒#N\` badges, never deleted on AI prompt copy, separate Markdown export.
-  - *Drawer Suite*: Tabs (\`AI Queue\`, \`Private Notes\`, \`All\`), search filter, smooth-scroll spotlight ripple jump, and badge visibility toggle.
-- **100/100 Telemetry & Version Watermark**: Glassmorphic badge (\`● LIVE\`, version, commit SHA, build date), provenance modal, version breakdown explanation, and 1-click master handoff context generator (\`Shift + V\`).
-- **Atomic Single-Commit Deployment Pipeline**: Engineered \`push_script.py\` using GitHub Git Data Tree API to push all assets in a single atomic tree commit, eliminating build collisions on GitHub Pages.
-- **Restored Canonical Palette**: Preserved \`#2b0710\` flat footer red across all site surfaces.
+### Phase 2: Antigravity Systems, Telemetry & Artistry Upgrades (v1.6.0 – v1.6.2)
+19. **Advancement Systems & $6.9M Goal Governance**: Embedded Bloomerang CRM as the primary administration centerpiece, Moves Management workflows, and reconciliation rhythm with Finance.
+20. **Authentic 30-60-90 Strategic Roadmap**: Replaced placeholder content with Randy's genuine *Listen, Standardize, Build Forward* 90-day plan.
+21. **Hero & Profile Card Polish**: Elevated hero copy top-padding, enlarged portrait to 420px, dynamic 150px SVG QR code, and full position title in eyebrow kicker.
+22. **Section 06 Music Narrative Expansion**: Explicitly highlighted Songwriter & Producer credentials alongside Vocalist, Piano, Guitar, Harp, and Kate Bush *Hounds of Love* orchestral arrangement.
+23. **100/100 Dual-Stream Annotation Engine**:
+    - *AI Review Queue* (\`localStorage['rbm_symphony_notes']\`): Multi-element batch selection, category chips, 1-click prompt copy with automatic queue reset.
+    - *Private Notes Journal* (\`localStorage['rbm_symphony_private_notes']\`): Permanent personal memos & interview prep talking points, gold \`🔒#N\` badges, **never deleted on AI prompt copy**.
+    - *Drawer Management*: Filter/search, jump-to-element with spotlight ripple, and badge visibility toggle (\`👁️ Badges On/Off\`).
+    - *Dedicated Non-Destructive Copy*: \`[ 🔒 Copy All Private Notes ]\` exports Markdown journal while preserving 100% of notes in storage.
+    - *Red Active Styling*: All private note active states (dock button, popover tab, popover border, save button, tags) turn canonical red (\`#2b0710\`).
+24. **Universal Passcode Auto-Advance Engine**:
+    - Replaced password fields with standardized \`type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1"\` and CSS \`-webkit-text-security: disc\`.
+    - Instant numeric auto-advance on \`0-9\` keydown, smart \`Backspace\` stepping, Left/Right arrow navigation, and 4-digit paste distribution.
+    - Automatic \`unlockDossier()\` on 4th digit entry.
+    - Container click auto-focus to first empty box.
+25. **100/100 Interactive System Telemetry Suite**:
+    - Glassmorphic floating pill (\`● LIVE\`, Agent \`A\`, \`v1.6.2\`, short commit SHA, date with 3-letter month \`Aug 19, 2026\`).
+    - Provenance inspector modal (\`Shift + V\`) with stack details, commit SHA, sync branches, and \`[ 🔒 Re-Lock Dossier ]\` testing tool.
+    - **Interactive Version Architecture**: Hover popover cards for \`v1.6.2\`, \`v1.6.0\`, \`v1.5.1\`, and \`v1.0.0\` displaying release outlines, authoring agent, and **"Pushed Live" timestamps**.
+26. **Atomic Single-Commit Deployment Pipeline (\`push_script.py\`)**:
+    - Engineered Python automation using GitHub Git Data Tree API to push all assets in a single atomic tree commit, synchronizing both \`gh-pages\` and \`main\` branches with zero build collisions.
+27. **Universal Skill Portability**:
+    - Upgraded \`web-annotation-feedback\` skill with complete 100/100 rubric, reusable library assets (\`telemetry-annotation-suite.js\`, \`telemetry-annotation-suite.css\`), and multi-agent integration protocols.
+28. **Preserved Canonical Palette**:
+    - Preserved \`#2b0710\` flat footer red across all site surfaces, buttons, and badges.
 
 ---
 
-## 🛠️ Instructions for Successor Agent
-1. **Pre-Edit Transparency**: Always explain intended changes in 3-7 bullets before modifying code.
-2. **Build & Deploy Flow**: Run \`python3 /Users/randybryanmoore/.gemini/antigravity/brain/08fa8fc4-477a-43de-96bc-e65050585686/scratch/build_script.py\` followed by \`git push origin main\` and \`python3 /Users/randybryanmoore/GITHUB/randybryanmoore-dot-us/symphony/push_script.py\`.
-3. **Never touch unrelated files** or modify the core color tokens without explicit user approval.`;
+## 🛠️ 6. Successor AI Agent Execution Protocol
+1. **Pre-Edit Transparency**: Always explain intended changes in 3-7 bullets before modifying source code.
+2. **Build & Deploy Command**:
+   \`\`\`bash
+   python3 /Users/randybryanmoore/.gemini/antigravity/brain/08fa8fc4-477a-43de-96bc-e65050585686/scratch/build_script.py && git add -A && git commit -m "feat/fix: description" && git push origin main && python3 /Users/randybryanmoore/GITHUB/randybryanmoore-dot-us/symphony/push_script.py
+   \`\`\`
+3. **Never Touch Unrelated Files**: Preserve design tokens, color hierarchy, and source-grounded claims.`;
 
         navigator.clipboard.writeText(handoffText).then(() => {
           copyHandoffBtn.innerText = 'Copied Complete Agent Handoff! ✓';
