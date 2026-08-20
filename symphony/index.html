@@ -72,7 +72,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1787195211">
+  <link rel="stylesheet" href="styles.css?v=1787195342">
 </head>
 <!-- Review tooling switch: set data-review-tools="off" before going live to
      strip the pin-feedback dock, live edit, inspector and notes drawer. -->
@@ -932,38 +932,62 @@
 
   <!-- Precision Pinned Popover -->
   <div class="annotation-popover" id="annotation-popover">
+    <!-- Stream Mode Selector -->
+    <div class="popover-mode-tabs">
+      <button type="button" class="popover-mode-tab active" data-mode="ai">🚀 AI Review</button>
+      <button type="button" class="popover-mode-tab" data-mode="private">🔒 Private Note</button>
+    </div>
+
     <div class="popover-header">
       <span class="popover-title">Comment on Element</span>
       <button class="popover-cancel-btn" id="popover-close-btn" aria-label="Close Popover">✕</button>
     </div>
     <div class="popover-target-snippet" id="popover-target-text"></div>
-    <div class="popover-tags">
-      <span class="tag-chip selected" data-tag="Copy">Copy</span>
-      <span class="tag-chip" data-tag="Design">Design</span>
-      <span class="tag-chip" data-tag="Data">Data</span>
-      <span class="tag-chip" data-tag="Layout">Layout</span>
-      <span class="tag-chip" data-tag="Note">Note</span>
-    </div>
+    <div class="popover-tags" id="popover-tags-container"></div>
     <textarea class="popover-textarea" id="popover-comment-input" placeholder="Type your note or revision... (Press Enter to save)"></textarea>
     <div class="popover-actions">
       <button class="popover-cancel-btn" id="popover-dismiss-btn">Cancel (Esc)</button>
-      <button class="popover-pin-btn" id="popover-save-btn">Pin Note ↵</button>
+      <button class="popover-pin-btn" id="popover-save-btn">Pin for AI ↵</button>
     </div>
   </div>
 
   <!-- Feedback Drawer -->
   <div class="feedback-drawer" id="feedback-drawer">
     <div class="drawer-header">
-      <h4>Review Notes (<span id="drawer-count">0</span>)</h4>
+      <div class="drawer-header-tabs">
+        <button class="drawer-tab active" data-tab="ai">🚀 AI Queue (<span id="drawer-ai-count">0</span>)</button>
+        <button class="drawer-tab" data-tab="private">🔒 Private (<span id="drawer-private-count">0</span>)</button>
+        <button class="drawer-tab" data-tab="all">📁 All (<span id="drawer-all-count">0</span>)</button>
+      </div>
       <button id="drawer-close-btn" style="background: transparent; border: none; color: var(--cream); cursor: pointer; font-size: 1.1rem; padding: 2px 6px;">✕</button>
     </div>
+
+    <div class="drawer-toolbar">
+      <input type="text" id="drawer-search-input" placeholder="🔍 Filter notes or tags..." class="drawer-search-box">
+      <button id="drawer-toggle-badges-btn" class="drawer-tool-btn" title="Show or hide pin badges on the page">👁️ Badges On</button>
+    </div>
+
     <div class="drawer-body" id="drawer-items-list">
       <p style="color: var(--muted); font-size: 13px; font-style: italic;">No feedback pinned yet. Turn on 'Pin Feedback' and click any headline, paragraph, card, or button.</p>
     </div>
+
     <div class="drawer-footer">
-      <button id="drawer-copy-ai-btn" class="button button-navy" style="width: 100%; justify-content: center; font-size: 12px; padding: 10px;">
-        Copy All Notes for Antigravity
-      </button>
+      <div id="drawer-footer-ai-actions" style="display: flex; gap: 8px; width: 100%;">
+        <button id="drawer-copy-ai-btn" class="button button-maroon" style="flex: 1; justify-content: center; font-size: 11.5px; padding: 9px 12px;">
+          Copy Prompt for AI
+        </button>
+        <button id="drawer-clear-ai-btn" class="button button-navy" style="font-size: 11px; padding: 9px 12px;" title="Clear AI review queue">
+          Clear
+        </button>
+      </div>
+      <div id="drawer-footer-private-actions" style="display: none; gap: 8px; width: 100%;">
+        <button id="drawer-export-private-btn" class="button button-navy-accent" style="flex: 1; justify-content: center; font-size: 11.5px; padding: 9px 12px; background: var(--gold-light); color: var(--navy-deep); border-color: var(--gold-light); font-weight: 800;">
+          Export Markdown Journal
+        </button>
+        <button id="drawer-clear-private-btn" class="button button-navy" style="font-size: 11px; padding: 9px 12px;" title="Clear all private notes">
+          Clear
+        </button>
+      </div>
     </div>
   </div>
 

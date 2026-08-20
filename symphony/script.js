@@ -1,13 +1,14 @@
 // =========================================================================
 // Richmond Symphony Advancement Systems & Operations Portfolio Suite
 // Candidate: Randy Bryan Moore, MSW
-// Complete Integrated Interactive Engine & Pinpoint Annotation Suite
+// Complete Integrated Interactive Engine & Dual-Stream Annotation Suite
 // =========================================================================
 
 (function() {
   function initSuite() {
     let pinActive = false;
     let editActive = false;
+
     // =========================================================================
     // 1. Passcode Gate (Universal PIN: 0000 / 1-Click Unlock)
     // =========================================================================
@@ -104,7 +105,7 @@
 
     tabBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
-        if (editActive) return; // Allow editing without switching tabs
+        if (editActive) return;
         e.preventDefault();
         const tabId = btn.getAttribute('data-tab');
         tabBtns.forEach(b => b.classList.remove('active'));
@@ -119,153 +120,30 @@
     });
 
     // =========================================================================
-    // 5. Repertoire Synthesis Engine & Live Canvas Waveform
-    // =========================================================================
-    const playBtn = document.getElementById('play-trigger-btn');
-    const trackOptions = document.querySelectorAll('.track-option');
-    const canvas = document.getElementById('waveform-canvas');
-    let audioCtx = null;
-    let isPlaying = false;
-    let synthTimer = null;
-    let selectedTrack = 'jefferson';
-
-    const notes = {
-      'C3': 130.81, 'E3': 164.81, 'G3': 196.00, 'B3': 246.94,
-      'C4': 261.63, 'D4': 293.66, 'Eb4': 311.13, 'E4': 329.63,
-      'F4': 349.23, 'G4': 392.00, 'Ab4': 415.30, 'A4': 440.00,
-      'Bb4': 466.16, 'B4': 493.88, 'C5': 523.25, 'D5': 587.33,
-      'Eb5': 622.25, 'E5': 659.25, 'G5': 783.99
-    };
-
-    const trackSequences = {
-      jefferson: [
-        ['C3', 'G3', 'C4', 'E4'],
-        ['A3', 'E4', 'A4', 'C5'],
-        ['F3', 'C4', 'F4', 'A4'],
-        ['G3', 'D4', 'G4', 'B4']
-      ],
-      debussy: [
-        ['Eb4', 'G4', 'Bb4', 'Eb5'],
-        ['Ab4', 'C5', 'Eb5', 'G5'],
-        ['F4', 'Ab4', 'C5', 'Eb5'],
-        ['Bb3', 'F4', 'Bb4', 'D5']
-      ],
-      chopin: [
-        ['C4', 'Eb4', 'G4', 'C5'],
-        ['Ab3', 'Eb4', 'Ab4', 'C5'],
-        ['F3', 'C4', 'F4', 'Ab4'],
-        ['G3', 'D4', 'G4', 'B4']
-      ]
-    };
-
-    trackOptions.forEach(opt => {
-      opt.addEventListener('click', () => {
-        trackOptions.forEach(o => o.classList.remove('active'));
-        opt.classList.add('active');
-        selectedTrack = opt.getAttribute('data-track') || 'jefferson';
-      });
-    });
-
-    function playChord(chord) {
-      if (!audioCtx) return;
-      chord.forEach(n => {
-        if (!notes[n]) return;
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(notes[n], audioCtx.currentTime);
-
-        gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.12, audioCtx.currentTime + 0.08);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.8);
-
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 1.8);
-      });
-    }
-
-    function drawWaveform() {
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      const w = canvas.width;
-      const h = canvas.height;
-      let phase = 0;
-
-      function render() {
-        if (!isPlaying) {
-          ctx.clearRect(0, 0, w, h);
-          ctx.strokeStyle = 'rgba(242, 234, 223, 0.4)';
-          ctx.lineWidth = 1.5;
-          ctx.beginPath();
-          ctx.moveTo(0, h / 2);
-          ctx.lineTo(w, h / 2);
-          ctx.stroke();
-          return;
-        }
-
-        ctx.clearRect(0, 0, w, h);
-        ctx.strokeStyle = '#F2EADF';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        phase += 0.08;
-
-        for (let x = 0; x < w; x++) {
-          const y = (h / 2) + Math.sin(x * 0.05 + phase) * 14 * Math.sin(phase * 0.4);
-          if (x === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
-        }
-        ctx.stroke();
-        requestAnimationFrame(render);
-      }
-      render();
-    }
-
-    if (playBtn) {
-      playBtn.addEventListener('click', () => {
-        if (!isPlaying) {
-          if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-          }
-          if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-          }
-          isPlaying = true;
-          playBtn.innerText = 'Pause';
-          playBtn.classList.add('playing');
-          drawWaveform();
-
-          const seq = trackSequences[selectedTrack] || trackSequences.jefferson;
-          let step = 0;
-          playChord(seq[step]);
-          synthTimer = setInterval(() => {
-            step = (step + 1) % seq.length;
-            playChord(seq[step]);
-          }, 1400);
-        } else {
-          isPlaying = false;
-          playBtn.innerText = 'Play';
-          playBtn.classList.remove('playing');
-          if (synthTimer) clearInterval(synthTimer);
-          drawWaveform();
-        }
-      });
-    }
-    drawWaveform();
-
-    // =========================================================================
-    // 6. Pinpoint Annotation & Direct Feedback Suite (Multi-Element Batch Support)
+    // 5. Dual-Stream Pinpoint Annotation & Private Notes Engine (100/100)
     // =========================================================================
     let selectedElements = []; // Array of { el, tag, text }
+    let currentMode = 'ai';    // 'ai' (review queue) or 'private' (personal journal)
     let selectedCategory = 'Copy';
-    let notesList = [];
+    let aiNotesList = [];
+    let privateNotesList = [];
+    let activeDrawerTab = 'ai'; // 'ai', 'private', 'all'
+    let badgesVisible = true;
+    let searchQuery = '';
+
+    // Load from localStorage
+    try {
+      const savedAi = localStorage.getItem('rbm_symphony_notes');
+      if (savedAi) aiNotesList = JSON.parse(savedAi);
+    } catch (e) {
+      aiNotesList = [];
+    }
 
     try {
-      const saved = localStorage.getItem('rbm_symphony_notes');
-      if (saved) notesList = JSON.parse(saved);
+      const savedPriv = localStorage.getItem('rbm_symphony_private_notes');
+      if (savedPriv) privateNotesList = JSON.parse(savedPriv);
     } catch (e) {
-      notesList = [];
+      privateNotesList = [];
     }
 
     const pinToggle = document.getElementById('dock-pin-mode-btn');
@@ -283,30 +161,90 @@
     const popoverSave = document.getElementById('popover-save-btn');
     const popoverDismiss = document.getElementById('popover-dismiss-btn');
     const popoverClose = document.getElementById('popover-close-btn');
-    const tagChips = document.querySelectorAll('.annotation-popover .tag-chip');
+    const popoverModeTabs = document.querySelectorAll('.popover-mode-tab');
+    const popoverTagsContainer = document.getElementById('popover-tags-container');
 
     const drawer = document.getElementById('feedback-drawer');
     const drawerClose = document.getElementById('drawer-close-btn');
-    const drawerCount = document.getElementById('drawer-count');
+    const drawerAiCount = document.getElementById('drawer-ai-count');
+    const drawerPrivateCount = document.getElementById('drawer-private-count');
+    const drawerAllCount = document.getElementById('drawer-all-count');
+    const drawerTabs = document.querySelectorAll('.drawer-tab');
+    const drawerSearch = document.getElementById('drawer-search-input');
+    const drawerToggleBadgesBtn = document.getElementById('drawer-toggle-badges-btn');
     const drawerList = document.getElementById('drawer-items-list');
     const copyAiBtn = document.getElementById('drawer-copy-ai-btn');
+    const clearAiBtn = document.getElementById('drawer-clear-ai-btn');
+    const exportPrivateBtn = document.getElementById('drawer-export-private-btn');
+    const clearPrivateBtn = document.getElementById('drawer-clear-private-btn');
+    const footerAiActions = document.getElementById('drawer-footer-ai-actions');
+    const footerPrivateActions = document.getElementById('drawer-footer-private-actions');
+
+    const aiTags = ['Copy', 'Design', 'Data', 'Layout', 'Logic', 'Action Item'];
+    const privateTags = ['Memo', 'Idea', 'Talking Point', 'Research', 'Follow-Up', 'Question'];
 
     function escapeHtml(str) {
       return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function renderTags() {
+      if (!popoverTagsContainer) return;
+      const tags = (currentMode === 'ai') ? aiTags : privateTags;
+      if (!tags.includes(selectedCategory)) {
+        selectedCategory = tags[0];
+      }
+      popoverTagsContainer.innerHTML = tags.map(tag => `
+        <span class="tag-chip ${selectedCategory === tag ? 'selected' : ''}" data-tag="${tag}">${tag}</span>
+      `).join('');
+
+      popoverTagsContainer.querySelectorAll('.tag-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          popoverTagsContainer.querySelectorAll('.tag-chip').forEach(c => c.classList.remove('selected'));
+          chip.classList.add('selected');
+          selectedCategory = chip.getAttribute('data-tag') || (currentMode === 'ai' ? 'Copy' : 'Memo');
+        });
+      });
+    }
+
+    // Switch Popover Mode
+    popoverModeTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const mode = tab.getAttribute('data-mode');
+        setPopoverMode(mode);
+      });
+    });
+
+    function setPopoverMode(mode) {
+      currentMode = mode;
+      popoverModeTabs.forEach(t => {
+        if (t.getAttribute('data-mode') === mode) t.classList.add('active');
+        else t.classList.remove('active');
+      });
+
+      if (mode === 'private') {
+        popover.classList.add('popover--private');
+        if (popoverSave) popoverSave.innerText = 'Save Private Note ↵';
+      } else {
+        popover.classList.remove('popover--private');
+        if (popoverSave) popoverSave.innerText = 'Pin for AI ↵';
+      }
+      renderTags();
+      renderSelectedElementsSnippet();
     }
 
     function renderSelectedElementsSnippet() {
       if (!popoverText) return;
       if (selectedElements.length === 0) {
         popoverText.innerHTML = '<span style="color:var(--muted); font-style:italic;">No elements selected</span>';
-        if (popoverTitle) popoverTitle.innerText = 'Comment on Element';
+        if (popoverTitle) popoverTitle.innerText = currentMode === 'private' ? '🔒 Private Note' : 'Comment on Element';
         return;
       }
       
+      const modePrefix = currentMode === 'private' ? '🔒 Private Note' : 'Comment';
       if (popoverTitle) {
         popoverTitle.innerText = selectedElements.length === 1 
-          ? 'Comment on Element' 
-          : `Comment on ${selectedElements.length} Elements`;
+          ? `${modePrefix} on Element` 
+          : `${modePrefix} on ${selectedElements.length} Elements`;
       }
 
       const chipsHtml = selectedElements.map((item, idx) => `
@@ -319,8 +257,8 @@
       `).join('');
 
       popoverText.innerHTML = `
-        <div style="max-height:100px; overflow-y:auto; margin-bottom:4px;">${chipsHtml}</div>
-        <div style="font-size:10px; color:var(--muted); font-family:var(--mono);">💡 Click any other element to add/remove it from this note</div>
+        <div style="max-height:80px; overflow-y:auto; margin-bottom:4px;">${chipsHtml}</div>
+        <div style="font-size:10px; color:var(--muted); font-family:var(--mono);">💡 Click any element on page to add/remove from this batch</div>
       `;
     }
 
@@ -396,6 +334,7 @@
       drawerToggle.addEventListener('click', () => {
         if (drawer) {
           drawer.style.display = (drawer.style.display === 'flex') ? 'none' : 'flex';
+          if (drawer.style.display === 'flex') updateDrawer();
         }
       });
     }
@@ -405,14 +344,56 @@
       });
     }
 
-    // Tag Selection
-    tagChips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        tagChips.forEach(c => c.classList.remove('selected'));
-        chip.classList.add('selected');
-        selectedCategory = chip.getAttribute('data-tag') || 'Copy';
+    function openDrawerToTab(tabName) {
+      if (drawer) drawer.style.display = 'flex';
+      setDrawerTab(tabName);
+    }
+
+    // Drawer Tabs
+    drawerTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabName = tab.getAttribute('data-tab');
+        setDrawerTab(tabName);
       });
     });
+
+    function setDrawerTab(tabName) {
+      activeDrawerTab = tabName;
+      drawerTabs.forEach(t => {
+        if (t.getAttribute('data-tab') === tabName) t.classList.add('active');
+        else t.classList.remove('active');
+      });
+
+      if (footerAiActions && footerPrivateActions) {
+        if (tabName === 'private') {
+          footerAiActions.style.display = 'none';
+          footerPrivateActions.style.display = 'flex';
+        } else {
+          footerAiActions.style.display = 'flex';
+          footerPrivateActions.style.display = 'none';
+        }
+      }
+      updateDrawer();
+    }
+
+    // Drawer Search Filter
+    if (drawerSearch) {
+      drawerSearch.addEventListener('input', (e) => {
+        searchQuery = e.target.value.toLowerCase().trim();
+        updateDrawer();
+      });
+    }
+
+    // Toggle Badge Visibility
+    if (drawerToggleBadgesBtn) {
+      drawerToggleBadgesBtn.addEventListener('click', () => {
+        badgesVisible = !badgesVisible;
+        document.querySelectorAll('.annotation-element-badge').forEach(b => {
+          b.style.display = badgesVisible ? 'flex' : 'none';
+        });
+        drawerToggleBadgesBtn.innerText = badgesVisible ? '👁️ Badges On' : '🙈 Badges Hidden';
+      });
+    }
 
     // Inspector Hover Box Tracking
     document.addEventListener('mousemove', (e) => {
@@ -448,7 +429,7 @@
     // Click to Target and Open Popover (with Multi-Element Selection)
     document.addEventListener('click', (e) => {
       if (editActive && e.target.closest('a')) {
-        e.preventDefault(); // Prevent navigating away while editing links
+        e.preventDefault();
         return;
       }
       if (!pinActive || editActive) return;
@@ -461,7 +442,6 @@
       const existingIdx = selectedElements.findIndex(item => item.el === clickedEl);
 
       if (existingIdx !== -1) {
-        // Toggle OFF if clicked again
         selectedElements.splice(existingIdx, 1);
         clickedEl.classList.remove('annotation-target-selected');
         if (selectedElements.length === 0) {
@@ -469,7 +449,6 @@
           return;
         }
       } else {
-        // Add to multi-selection
         const rawText = clickedEl.innerText ? clickedEl.innerText.trim() : (clickedEl.getAttribute('alt') || clickedEl.getAttribute('title') || '');
         const tag = clickedEl.tagName.toLowerCase();
         const snippet = rawText.length > 75 ? rawText.substring(0, 72) + '...' : (rawText || `<${tag}> element`);
@@ -486,8 +465,8 @@
 
       const rect = clickedEl.getBoundingClientRect();
       if (popover) {
-        const popoverWidth = 340;
-        const popoverHeight = 270;
+        const popoverWidth = 350;
+        const popoverHeight = 280;
         let topPos = rect.bottom + 8;
         let leftPos = Math.max(16, Math.min(window.innerWidth - popoverWidth - 16, rect.left));
 
@@ -500,33 +479,38 @@
         popover.style.display = 'block';
 
         if (selectedElements.length === 1) {
+          renderTags();
           setTimeout(() => { if (popoverInput) popoverInput.focus(); }, 50);
         }
       }
     });
 
-    // Save Annotation Note (Batch Multi-Element Support)
+    // Save Annotation Note (Dual-Stream Batch Support)
     function saveNote() {
       const comment = popoverInput ? popoverInput.value.trim() : '';
       if (!comment || selectedElements.length === 0) return;
 
+      const isPrivate = (currentMode === 'private');
+      const targetList = isPrivate ? privateNotesList : aiNotesList;
+      const storageKey = isPrivate ? 'rbm_symphony_private_notes' : 'rbm_symphony_notes';
+
       selectedElements.forEach((item, idx) => {
-        const num = notesList.length + 1;
-        const noteId = 'note-' + Date.now() + '-' + idx;
+        const num = targetList.length + 1;
+        const noteId = (isPrivate ? 'priv-' : 'note-') + Date.now() + '-' + idx;
 
         if (item.el) {
           item.el.classList.remove('annotation-target-selected');
-          item.el.classList.add('annotation-target-active');
+          item.el.classList.add(isPrivate ? 'annotation-target-active--private' : 'annotation-target-active');
           item.el.setAttribute('data-annotation-id', noteId);
 
           const badge = document.createElement('span');
-          badge.className = 'annotation-element-badge';
-          badge.innerText = num;
-          badge.title = `[${selectedCategory}] ${comment}`;
+          badge.className = isPrivate ? 'annotation-element-badge annotation-element-badge--private' : 'annotation-element-badge';
+          badge.innerText = isPrivate ? `🔒${num}` : num;
+          badge.title = `[${isPrivate ? '🔒 Private' : '🚀 AI'}: ${selectedCategory}] ${comment}`;
           badge.setAttribute('data-badge-id', noteId);
           badge.addEventListener('click', (ev) => {
             ev.stopPropagation();
-            if (drawer) drawer.style.display = 'flex';
+            openDrawerToTab(isPrivate ? 'private' : 'ai');
           });
           item.el.appendChild(badge);
         }
@@ -535,17 +519,18 @@
           id: num,
           noteId: noteId,
           tag: item.tag,
+          type: isPrivate ? 'private' : 'ai',
           category: selectedCategory,
           targetText: item.text,
           comment: comment,
           createdAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         };
 
-        notesList.push(newNote);
+        targetList.push(newNote);
       });
 
       try {
-        localStorage.setItem('rbm_symphony_notes', JSON.stringify(notesList));
+        localStorage.setItem(storageKey, JSON.stringify(targetList));
       } catch (e) {}
 
       closePopover();
@@ -586,31 +571,60 @@
 
     // Update Drawer UI
     function updateDrawer() {
-      if (dockCount) dockCount.innerText = notesList.length;
-      if (drawerCount) drawerCount.innerText = notesList.length;
+      const totalCount = aiNotesList.length + privateNotesList.length;
+      if (dockCount) dockCount.innerText = totalCount;
+      if (drawerAiCount) drawerAiCount.innerText = aiNotesList.length;
+      if (drawerPrivateCount) drawerPrivateCount.innerText = privateNotesList.length;
+      if (drawerAllCount) drawerAllCount.innerText = totalCount;
 
       if (!drawerList) return;
-      if (notesList.length === 0) {
-        drawerList.innerHTML = '<p style="color:var(--muted);font-size:13px;font-style:italic;">No feedback pinned yet. Turn on "Pin Feedback" and click any headline, paragraph, card, or button.</p>';
+
+      let displayNotes = [];
+      if (activeDrawerTab === 'ai') displayNotes = [...aiNotesList];
+      else if (activeDrawerTab === 'private') displayNotes = [...privateNotesList];
+      else displayNotes = [...aiNotesList, ...privateNotesList];
+
+      if (searchQuery) {
+        displayNotes = displayNotes.filter(n => 
+          n.comment.toLowerCase().includes(searchQuery) ||
+          n.category.toLowerCase().includes(searchQuery) ||
+          n.targetText.toLowerCase().includes(searchQuery) ||
+          n.tag.toLowerCase().includes(searchQuery)
+        );
+      }
+
+      if (displayNotes.length === 0) {
+        const emptyMsg = activeDrawerTab === 'private'
+          ? 'No private notes yet. Turn on "Pin Feedback", select "🔒 Private Note", and pin thoughts for your own records.'
+          : (activeDrawerTab === 'ai' 
+              ? 'No AI review notes queued. Turn on "Pin Feedback", select "🚀 AI Review", and pin changes to send to Antigravity/Claude.'
+              : 'No notes match your filter.');
+        drawerList.innerHTML = `<p style="color:var(--muted);font-size:12px;font-style:italic;padding:12px;text-align:center;">${emptyMsg}</p>`;
         return;
       }
 
-      drawerList.innerHTML = notesList.map(n => `
-        <div class="drawer-item" id="drawer-item-${n.noteId}" style="margin-bottom:12px; padding:12px; border:1px solid var(--line); border-radius:6px; background:var(--paper); color:var(--ink);">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-            <span style="font-family:var(--mono); font-size:11px; font-weight:800; color:var(--maroon);">#${n.id} · ${n.category} (${n.createdAt})</span>
-            <div style="display:flex; gap:6px;">
-              <button onclick="window.jumpToAnnotatedElement('${n.noteId}')" style="background:var(--navy); color:white; border:none; border-radius:4px; padding:3px 8px; font-size:10px; cursor:pointer; font-weight:700;">Jump</button>
-              <button onclick="window.deleteAnnotationNote('${n.noteId}')" style="background:var(--cream); color:var(--maroon); border:1px solid var(--line); border-radius:4px; padding:3px 8px; font-size:10px; cursor:pointer; font-weight:700;">✕</button>
+      drawerList.innerHTML = displayNotes.map(n => {
+        const isPriv = (n.type === 'private');
+        const badgeLabel = isPriv ? `🔒#${n.id}` : `#${n.id}`;
+        return `
+          <div class="drawer-item ${isPriv ? 'drawer-item--private' : ''}" id="drawer-item-${n.noteId}">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+              <span style="font-family:var(--mono); font-size:11px; font-weight:800; color:${isPriv ? '#8b6914' : 'var(--maroon)'};">
+                ${badgeLabel} · ${n.category} <span style="font-weight:400; opacity:0.8; font-size:10px;">(${n.createdAt})</span>
+              </span>
+              <div style="display:flex; gap:4px;">
+                <button onclick="window.jumpToAnnotatedElement('${n.noteId}')" style="background:var(--navy); color:white; border:none; border-radius:3px; padding:2px 6px; font-size:9.5px; cursor:pointer; font-weight:700;">Jump</button>
+                <button onclick="window.deleteAnnotationNote('${n.noteId}', '${n.type}')" style="background:var(--cream); color:var(--maroon); border:1px solid var(--line); border-radius:3px; padding:2px 6px; font-size:9.5px; cursor:pointer; font-weight:700;" title="Delete note">✕</button>
+              </div>
             </div>
+            <div style="font-size:10.5px; color:var(--muted); margin-bottom:4px;">Target: <em>&lt;${n.tag}&gt; "${escapeHtml(n.targetText)}"</em></div>
+            <p style="font-size:12px; line-height:1.45; margin:0; color:var(--ink);">${escapeHtml(n.comment)}</p>
           </div>
-          <div style="font-size:11px; color:var(--muted); margin-bottom:6px;">Target: <em>&lt;${n.tag}&gt; "${n.targetText}"</em></div>
-          <p style="font-size:12.5px; line-height:1.45; margin:0;">${n.comment}</p>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
-    // Global helper for jumping to element
+    // Global helper for jumping to element with spotlight ripple
     window.jumpToAnnotatedElement = function(noteId) {
       const el = document.querySelector(`[data-annotation-id="${noteId}"]`);
       if (el) {
@@ -622,48 +636,99 @@
     };
 
     // Global helper for deleting note
-    window.deleteAnnotationNote = function(noteId) {
-      notesList = notesList.filter(n => n.noteId !== noteId);
-      try {
-        localStorage.setItem('rbm_symphony_notes', JSON.stringify(notesList));
-      } catch (e) {}
+    window.deleteAnnotationNote = function(noteId, type) {
+      if (type === 'private') {
+        privateNotesList = privateNotesList.filter(n => n.noteId !== noteId);
+        try { localStorage.setItem('rbm_symphony_private_notes', JSON.stringify(privateNotesList)); } catch (e) {}
+      } else {
+        aiNotesList = aiNotesList.filter(n => n.noteId !== noteId);
+        try { localStorage.setItem('rbm_symphony_notes', JSON.stringify(aiNotesList)); } catch (e) {}
+      }
       const badge = document.querySelector(`[data-badge-id="${noteId}"]`);
       if (badge) badge.remove();
       updateDrawer();
     };
 
-    updateDrawer();
-
-    // Copy All Notes Formatted for AI
+    // Copy All AI Notes Formatted for AI
     if (copyAiBtn) {
       copyAiBtn.addEventListener('click', () => {
-        if (notesList.length === 0) {
-          alert('No notes pinned yet! Click "Pin Feedback" to add critique.');
+        if (aiNotesList.length === 0) {
+          alert('No AI review notes queued! Click "Pin Feedback" to add critique.');
           return;
         }
         let prompt = "### Review Notes for Richmond Symphony Portfolio Refinements\n\n";
-        notesList.forEach(n => {
+        aiNotesList.forEach(n => {
           prompt += `**[#${n.id}] [${n.category}] on <${n.tag}> "${n.targetText}"**\n`;
           prompt += `- **Feedback/Revision**: ${n.comment}\n\n`;
         });
         navigator.clipboard.writeText(prompt).then(() => {
           copyAiBtn.innerText = 'Copied to Clipboard! ✓';
           
-          // Reset the notes list
-          notesList = [];
+          // Clear ONLY the AI review notes list (private notes are NEVER touched!)
+          aiNotesList = [];
           try {
-            localStorage.setItem('rbm_symphony_notes', JSON.stringify(notesList));
+            localStorage.setItem('rbm_symphony_notes', JSON.stringify(aiNotesList));
           } catch (e) {}
           
-          // Remove all badges from the DOM
-          document.querySelectorAll('.annotation-element-badge').forEach(b => b.remove());
+          // Remove ONLY the AI badges (private badges are preserved!)
+          document.querySelectorAll('.annotation-element-badge:not(.annotation-element-badge--private)').forEach(b => b.remove());
           
           updateDrawer();
-
-          setTimeout(() => { copyAiBtn.innerText = 'Copy All Notes for Antigravity'; }, 2400);
+          setTimeout(() => { copyAiBtn.innerText = 'Copy Prompt for AI'; }, 2400);
         });
       });
     }
+
+    // Clear AI Notes Queue
+    if (clearAiBtn) {
+      clearAiBtn.addEventListener('click', () => {
+        if (aiNotesList.length === 0) return;
+        if (confirm('Clear the AI Review Queue?')) {
+          aiNotesList = [];
+          try { localStorage.setItem('rbm_symphony_notes', JSON.stringify(aiNotesList)); } catch (e) {}
+          document.querySelectorAll('.annotation-element-badge:not(.annotation-element-badge--private)').forEach(b => b.remove());
+          updateDrawer();
+        }
+      });
+    }
+
+    // Export Private Notes as Markdown Journal (Never Deletes)
+    if (exportPrivateBtn) {
+      exportPrivateBtn.addEventListener('click', () => {
+        if (privateNotesList.length === 0) {
+          alert('No private notes recorded yet.');
+          return;
+        }
+        let doc = "# 🔒 Richmond Symphony Portfolio — Personal Notes & Working Memos\n";
+        doc += `*Exported on ${new Date().toLocaleDateString()} at ${new Date().toLocaleTimeString()}*\n\n---\n\n`;
+        privateNotesList.forEach(n => {
+          doc += `### [🔒#${n.id}] [${n.category}] on <${n.tag}> "${n.targetText}"\n`;
+          doc += `- **Note**: ${n.comment}\n`;
+          doc += `- *Created*: ${n.createdAt}\n\n`;
+        });
+
+        navigator.clipboard.writeText(doc).then(() => {
+          exportPrivateBtn.innerText = 'Copied Markdown Journal! ✓';
+          setTimeout(() => { exportPrivateBtn.innerText = 'Export Markdown Journal'; }, 2400);
+        });
+      });
+    }
+
+    // Clear Private Notes with Confirmation
+    if (clearPrivateBtn) {
+      clearPrivateBtn.addEventListener('click', () => {
+        if (privateNotesList.length === 0) return;
+        if (confirm('Are you sure you want to permanently clear all your Private Notes?')) {
+          privateNotesList = [];
+          try { localStorage.setItem('rbm_symphony_private_notes', JSON.stringify(privateNotesList)); } catch (e) {}
+          document.querySelectorAll('.annotation-element-badge--private').forEach(b => b.remove());
+          updateDrawer();
+        }
+      });
+    }
+
+    renderTags();
+    updateDrawer();
   }
 
   if (document.readyState === 'loading') {
