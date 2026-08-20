@@ -1535,6 +1535,7 @@ img {
 .gate-title {
   font-size: 1.6rem;
   margin-bottom: 4px;
+  color: var(--maroon);
 }
 
 .gate-sub {
