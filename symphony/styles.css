@@ -2615,16 +2615,116 @@ body[data-review-tools="on"] {
 .provenance-changelog-list {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 6px;
+  border-top: 1px dashed var(--line);
+  padding-top: 6px;
+}
+
+.version-item-wrap {
+  position: relative;
+  display: block;
+}
+
+.version-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: all 140ms ease;
+  font-family: var(--mono);
+  font-size: 10px;
+}
+
+.version-item-row:hover {
+  background: var(--paper);
+  border-color: var(--maroon);
+  transform: translateX(2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.version-item-row strong {
+  color: var(--navy);
+}
+
+.version-item-row .version-row-tag {
+  font-size: 8.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--maroon);
+  background: var(--cream);
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid var(--line);
+}
+
+.version-hover-card {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: -20px;
+  width: 295px;
+  background: var(--paper);
+  border: 2px solid var(--maroon);
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 0 16px rgba(223, 202, 116, 0.2);
+  z-index: 10000;
+  display: none;
+  pointer-events: none;
+  font-family: var(--sans);
+  text-align: left;
+  animation: universalPopIn 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.version-item-wrap:hover .version-hover-card {
+  display: block;
+  pointer-events: auto;
+}
+
+.version-hover-header {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+}
+
+.version-hover-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--maroon);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.version-hover-meta {
   font-family: var(--mono);
   font-size: 9.5px;
   color: var(--muted);
-  border-top: 1px dashed var(--line);
-  padding-top: 5px;
+  margin-top: 2px;
 }
 
-.provenance-changelog-list span strong {
-  color: var(--navy);
+.version-hover-bullets {
+  margin: 0;
+  padding-left: 14px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+@media (max-width: 768px) {
+  .version-hover-card {
+    right: auto;
+    left: 0;
+    top: calc(100% + 6px);
+    width: 100%;
+  }
 }
 
 .provenance-actions {
