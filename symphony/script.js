@@ -1,7 +1,7 @@
 // =========================================================================
 // Richmond Symphony Advancement Systems & Operations Portfolio Suite
 // Candidate: Randy Bryan Moore, MSW
-// Complete Integrated Interactive Engine & Dual-Stream Annotation Suite
+// Complete Integrated Interactive Engine, Dual-Stream Annotation & Telemetry
 // =========================================================================
 
 (function() {
@@ -84,7 +84,71 @@
     }
 
     // =========================================================================
-    // 3. QR Code Generator SVG
+    // 3. Build Telemetry & Agent Provenance Inspector (100/100 Suite)
+    // =========================================================================
+    const buildBadge = document.getElementById('build-badge');
+    const provModal = document.getElementById('build-provenance-modal');
+    const provClose = document.getElementById('provenance-close-btn');
+    const copyHandoffBtn = document.getElementById('provenance-copy-handoff-btn');
+
+    function toggleProvModal() {
+      if (provModal) {
+        provModal.classList.toggle('open');
+      }
+    }
+
+    if (buildBadge) {
+      buildBadge.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleProvModal();
+      });
+    }
+
+    if (provClose) {
+      provClose.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (provModal) provModal.classList.remove('open');
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (provModal && provModal.classList.contains('open') && !e.target.closest('#build-provenance-modal') && !e.target.closest('#build-badge')) {
+        provModal.classList.remove('open');
+      }
+    });
+
+    if (copyHandoffBtn) {
+      copyHandoffBtn.addEventListener('click', () => {
+        const handoffText = `### Agent Handoff Telemetry Context
+- **Candidate Dossier**: Randy Bryan Moore, MSW — Assistant Director, Advancement Systems & Operations
+- **Live Portfolio URL**: https://randybryanmoore.github.io/randy-symphony-portfolio/ (symphony.randybryanmoore.us)
+- **Active Release Version**: v1.6.2
+- **Last Active Agent**: Antigravity (Google DeepMind)
+- **Target Git Repositories**: 
+  - Primary: randybryanmoore-dot-us (branch: main)
+  - Portfolio: randy-symphony-portfolio (branches: main, gh-pages)
+- **Latest Verified Commit**: a13e640
+- **Architecture**: Single-page executive dossier + dual-stream annotation engine + atomic Git Data tree deploy pipeline.
+- **Passcode Gate PIN**: 0000`;
+
+        navigator.clipboard.writeText(handoffText).then(() => {
+          copyHandoffBtn.innerText = 'Copied Agent Handoff! ✓';
+          setTimeout(() => { copyHandoffBtn.innerText = '📋 Copy Agent Handoff Context'; }, 2400);
+        });
+      });
+    }
+
+    // Keyboard shortcut Shift + V to toggle provenance modal
+    document.addEventListener('keydown', (e) => {
+      if (e.shiftKey && (e.key === 'V' || e.key === 'v')) {
+        if (!e.target.closest('input') && !e.target.closest('textarea')) {
+          toggleProvModal();
+        }
+      }
+    });
+
+    // =========================================================================
+    // 4. QR Code Generator SVG
     // =========================================================================
     function generateQRCodeSVG(text, size = 120) {
       const encoded = encodeURIComponent(text);
@@ -98,7 +162,7 @@
     });
 
     // =========================================================================
-    // 4. Case Studies Interactive Tab Switcher
+    // 5. Case Studies Interactive Tab Switcher
     // =========================================================================
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
@@ -120,7 +184,7 @@
     });
 
     // =========================================================================
-    // 5. Dual-Stream Pinpoint Annotation & Private Notes Engine (100/100)
+    // 6. Dual-Stream Pinpoint Annotation & Private Notes Engine (100/100)
     // =========================================================================
     let selectedElements = []; // Array of { el, tag, text }
     let currentMode = 'ai';    // 'ai' (review queue) or 'private' (personal journal)
@@ -321,7 +385,7 @@
     function toggleEditableElements(enable) {
       const candidates = document.querySelectorAll('h1, h2, h3, h4, p, li, strong, blockquote, .stat-num, .stat-label, .wordmark-title, button, .button, .tab-btn, span');
       candidates.forEach(el => {
-        if (!el.closest('#annotation-dock') && !el.closest('#annotation-popover') && !el.closest('#feedback-drawer') && !el.closest('#passcode-gate')) {
+        if (!el.closest('#annotation-dock') && !el.closest('#annotation-popover') && !el.closest('#feedback-drawer') && !el.closest('#passcode-gate') && !el.closest('#build-provenance-modal')) {
           el.contentEditable = enable ? 'true' : 'false';
           el.style.outline = enable ? '1.5px dashed rgba(76, 14, 28, 0.4)' : '';
           el.style.outlineOffset = enable ? '2px' : '';
@@ -403,7 +467,7 @@
       }
 
       const target = document.elementFromPoint(e.clientX, e.clientY);
-      if (!target || target.closest('#annotation-dock') || target.closest('#annotation-popover') || target.closest('#feedback-drawer') || target.closest('#inspector-box') || target.closest('#passcode-gate') || target.closest('.annotation-element-badge')) {
+      if (!target || target.closest('#annotation-dock') || target.closest('#annotation-popover') || target.closest('#feedback-drawer') || target.closest('#inspector-box') || target.closest('#passcode-gate') || target.closest('#build-provenance-modal') || target.closest('#build-badge') || target.closest('.annotation-element-badge')) {
         if (inspectorBox) inspectorBox.style.display = 'none';
         return;
       }
@@ -433,7 +497,7 @@
         return;
       }
       if (!pinActive || editActive) return;
-      if (e.target.closest('#annotation-dock') || e.target.closest('#annotation-popover') || e.target.closest('#feedback-drawer') || e.target.closest('.annotation-element-badge') || e.target.closest('#passcode-gate')) return;
+      if (e.target.closest('#annotation-dock') || e.target.closest('#annotation-popover') || e.target.closest('#feedback-drawer') || e.target.closest('.annotation-element-badge') || e.target.closest('#passcode-gate') || e.target.closest('#build-provenance-modal') || e.target.closest('#build-badge')) return;
 
       e.preventDefault();
       e.stopPropagation();
@@ -554,6 +618,7 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         if (popover && popover.style.display === 'block') closePopover();
+        if (provModal && provModal.classList.contains('open')) provModal.classList.remove('open');
         if (pinActive) {
           pinActive = false;
           if (pinToggle) pinToggle.classList.remove('active');

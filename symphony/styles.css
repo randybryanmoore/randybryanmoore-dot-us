@@ -2423,61 +2423,185 @@ body[data-review-tools="on"] {
    the date. Always visible, including on the published dossier. Edit the
    letter, version and date in index.html.
    ======================================================================= */
+/* =======================================================================
+   Build Watermark & System Telemetry -- 100/100 Provenance Suite
+   Interactive glassmorphic telemetry badge & agent handoff inspector.
+   ======================================================================= */
 .build-badge {
   position: fixed;
-  top: calc(var(--nav-h) + 10px);
-  right: 14px;
+  top: calc(var(--nav-h) + 12px);
+  right: 18px;
   z-index: 9998;
   display: flex;
   align-items: center;
   gap: 7px;
-  padding: 5px 10px 5px 5px;
+  padding: 4px 10px 4px 5px;
   border-radius: 999px;
-  background: var(--blue-l1);
-  border: 1px solid rgba(242, 234, 223, 0.28);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(6px);
+  background: rgba(13, 26, 50, 0.88);
+  border: 1.5px solid rgba(242, 234, 223, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 12px rgba(223, 202, 116, 0.15);
+  backdrop-filter: blur(12px);
   font-family: var(--mono);
-  pointer-events: none;
   user-select: none;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.build-badge:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold-light);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55), 0 0 18px rgba(223, 202, 116, 0.35);
+  background: rgba(24, 43, 77, 0.95);
 }
 
 .build-badge-agent {
   display: grid;
   place-items: center;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: var(--cream);
   color: var(--navy);
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 900;
   line-height: 1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.build-badge-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+  animation: liveDotPulse 2s infinite;
+}
+
+@keyframes liveDotPulse {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px #22c55e; }
+  100% { transform: scale(0.9); opacity: 0.7; }
 }
 
 .build-badge-version {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
   color: var(--cream);
+}
+
+.build-badge-sha {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--gold-light);
   opacity: 0.9;
+  letter-spacing: 0.04em;
 }
 
 .build-badge-date {
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   color: var(--cream);
-  opacity: 0.62;
-  padding-left: 7px;
-  border-left: 1px solid rgba(242, 234, 223, 0.28);
+  opacity: 0.65;
+  padding-left: 6px;
+  border-left: 1px solid rgba(242, 234, 223, 0.25);
+}
+
+/* Provenance Inspector Modal */
+.build-provenance-modal {
+  position: fixed;
+  top: calc(var(--nav-h) + 52px);
+  right: 18px;
+  width: 320px;
+  max-width: calc(100vw - 36px);
+  background: var(--paper);
+  border: 2px solid var(--maroon);
+  border-radius: 12px;
+  padding: 16px 18px;
+  color: var(--ink);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: none;
+  font-family: var(--sans);
+  animation: popIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.build-provenance-modal.open {
+  display: block;
+}
+
+.provenance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 8px;
+}
+
+.provenance-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--maroon);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.provenance-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.provenance-card {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+
+.provenance-card-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+.provenance-card-value {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.provenance-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 @media (max-width: 768px) {
   .build-badge {
     top: auto;
-    bottom: 12px;
-    left: 12px;
+    bottom: 14px;
+    left: 14px;
+    right: auto;
+  }
+  .build-provenance-modal {
+    top: auto;
+    bottom: 64px;
+    left: 14px;
     right: auto;
   }
 }
