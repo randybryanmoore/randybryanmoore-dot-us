@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
   <title>Executive Candidate Briefing — Richmond Symphony | Randy Bryan Moore, MSW</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=1787189251">
   <style>
     /* ------------------------------------------------------------------
        SELF-CONTAINED HANDOUT STYLES
@@ -108,22 +108,27 @@
     .dgrid > .dcard:nth-child(-n+2) { border-top: 1px solid var(--border-subtle); }
     .dgrid > .dcard:nth-child(even) { border-right: 1px solid var(--border-subtle); }
     .dcard:nth-child(1), .dcard:nth-child(4) { background: var(--cobalt); color: #fff; }
-    .dcard:nth-child(2) { background: var(--wine); color: #fff; }
-    .dcard:nth-child(3) { background: #fff; color: var(--charcoal); }
+    .dcard:nth-child(2), .dcard:nth-child(3) { background: var(--wine); color: #fff; }
     .dcard .dcard-num { position: relative; z-index: 1; display: block; font-family: var(--font-mono); font-size: 9px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; margin-bottom: 0.35rem; }
-    .dcard:nth-child(3) .dcard-num { color: var(--wine); opacity: 1; }
+    .dcard:nth-child(3) .dcard-num { color: #fff; opacity: 0.85; }
     .dcard h3 { position: relative; z-index: 1; font-size: 0.94rem; color: inherit; margin-bottom: 0.3rem; }
     .dcard p { position: relative; z-index: 1; font-size: 0.79rem; line-height: 1.4; color: inherit; opacity: 0.92; margin: 0; }
     .dcard::after { content: attr(data-mark); position: absolute; z-index: 0; right: -6px; bottom: -20px; font-family: var(--font-serif); font-weight: 500; font-size: 4.4rem; line-height: 1; color: currentColor; opacity: 0.1; pointer-events: none; }
-    .dcard:nth-child(3)::after { color: var(--charcoal); opacity: 0.07; }
+    .dcard:nth-child(3)::after { color: #fff; opacity: 0.1; }
     @media print {
       .dcard { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
 
+    @page {
+      size: letter portrait;
+      margin: 0.4in;
+    }
+
     @media print {
-      body { background: #fff; color: #000; font-size: 10.5pt; line-height: 1.4; }
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      body { background: #fff; color: #000; font-size: 10pt; line-height: 1.4; }
       .top-nav, .annotation-dock, .annotation-popover, .feedback-drawer, .passcode-gate-overlay, .print-btn-bar { display: none !important; }
-      .page-break { page-break-before: always; }
+      .page-break { page-break-before: always; break-before: page; }
       .handout-sheet { box-shadow: none; border: none; padding: 0; margin: 0; max-width: 100%; }
     }
     .print-btn-bar {
@@ -149,28 +154,38 @@
     .handout-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
-      border-bottom: 2px solid var(--cobalt-mid);
-      padding-bottom: 1rem;
+      align-items: center;
+      background: var(--wine);
+      color: #ffffff;
+      padding: 1.6rem 2rem;
+      border-radius: var(--radius-sm);
       margin-bottom: 1.5rem;
+      border: 1px solid var(--wine-dark);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
     .handout-title h1 {
-      font-size: 2.1rem;
-      color: var(--cobalt);
-      margin-bottom: 0.2rem;
+      font-size: 2.45rem;
+      color: #ffffff !important;
+      margin-bottom: 0.3rem;
+      line-height: 1.1;
     }
     .handout-title p {
-      font-size: 0.9rem;
-      color: var(--wine);
-      font-weight: 600;
+      font-size: 0.96rem;
+      color: var(--gold-light) !important;
+      font-weight: 700;
       margin-bottom: 0;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
     }
     .handout-meta {
       text-align: right;
-      font-size: 0.85rem;
-      color: var(--muted-olive);
+      font-size: 0.92rem;
+      color: rgba(255, 255, 255, 0.95) !important;
+      line-height: 1.55;
+    }
+    .handout-meta div {
+      color: rgba(255, 255, 255, 0.95) !important;
     }
     .handout-section {
       margin-bottom: 1.5rem;
@@ -204,22 +219,82 @@
       margin-bottom: 0;
     }
 
+    .handout-card--navy {
+      background: var(--cobalt) !important;
+      color: #ffffff !important;
+      border-left: 3px solid var(--wine) !important;
+    }
+    .handout-card--navy h3,
+    .handout-card--navy p {
+      color: #ffffff !important;
+    }
+    .handout-card--navy span {
+      color: var(--gold-light) !important;
+    }
+
+    .handout-card--wine {
+      background: var(--wine) !important;
+      color: #ffffff !important;
+      border-left: 3px solid var(--gold) !important;
+    }
+    .handout-card--wine h3,
+    .handout-card--wine p {
+      color: #ffffff !important;
+    }
+    .handout-card--wine span {
+      color: var(--gold-light) !important;
+    }
+
+    .handout-footer {
+      background: var(--cobalt);
+      color: #ffffff;
+      padding: 0.9rem 1.4rem;
+      border-radius: var(--radius-sm);
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      border: 1px solid var(--wine-dark);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .handout-footer a {
+      color: var(--gold-light);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
+    .handout-footer strong {
+      color: #ffffff;
+    }
+    .handout-footer .footer-pin {
+      background: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      margin-left: 6px;
+      font-weight: 600;
+    }
+
     .portfolio-block {
       display: grid;
-      grid-template-columns: 104px 1fr;
-      gap: 1.25rem;
+      grid-template-columns: 120px 1fr;
+      gap: 1.4rem;
       align-items: center;
       background: var(--cobalt);
       border-radius: var(--radius-sm);
-      padding: 1.1rem 1.4rem;
+      padding: 1.35rem 1.75rem;
     }
-    .portfolio-block .qr-wrap { background: #fff; padding: 6px; border-radius: 4px; width: 92px; height: 92px; }
+    .portfolio-block .qr-wrap { background: #fff; padding: 6px; border-radius: 4px; width: 108px; height: 108px; }
     .portfolio-block .qr-wrap svg { display: block; width: 100%; height: 100%; }
-    .portfolio-block h3 { color: #fff; font-size: 1rem; margin-bottom: 0.25rem; }
-    .portfolio-block p { color: rgba(255,255,255,0.80); font-size: 0.83rem; line-height: 1.45; margin-bottom: 0.3rem; }
+    .portfolio-block h3 { color: #fff; font-size: 1.12rem; margin-bottom: 0.3rem; }
+    .portfolio-block p { color: rgba(255,255,255,0.88); font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.4rem; }
     .portfolio-block a.portfolio-link {
-      color: var(--gold-light); font-family: var(--font-mono); font-size: 0.76rem;
-      text-decoration: none; border-bottom: 1px solid rgba(223,202,116,0.45);
+      color: var(--gold-light); font-family: var(--font-mono); font-size: 0.84rem; font-weight: 700;
+      text-decoration: none; border-bottom: 1px solid rgba(223,202,116,0.6);
     }
     @media print {
       .portfolio-block { background: #fff; border: 1px solid #000; }
@@ -233,6 +308,7 @@
     <div><strong>Executive Candidate Briefing</strong> • Randy Bryan Moore, MSW</div>
     <div>
       <a href="index.html" class="btn btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.4); padding:4px 12px; font-size:0.8rem;">Return to Full Dossier</a>
+      <a href="Randy_Bryan_Moore_Executive_Briefing.pdf" download class="btn btn-outline" style="color:#dfca74; border-color:rgba(223,202,116,0.6); padding:4px 12px; font-size:0.8rem; margin-left:8px; text-decoration:none;">Download PDF 📥</a>
       <button onclick="window.print()" class="btn btn-wine" style="padding:4px 14px; font-size:0.8rem; margin-left:8px;">Print / Save PDF</button>
     </div>
   </div>
@@ -251,6 +327,20 @@
       </div>
     </div>
 
+
+    <!-- Entrance Portal: Interactive Digital Portfolio QR Block -->
+    <div class="portfolio-block" style="margin-bottom: 1.5rem;">
+      <div class="qr-wrap"><svg role="img" aria-label="QR code linking to https://symphony.randybryanmoore.us/" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31"><path fill="#fff" d="M0 0h31v31h-31z"/><path stroke="#4c0e1c" d="M1 1.5h7m1 0h1m2 0h1m1 0h2m3 0h1m3 0h7m-29 1h1m5 0h1m2 0h6m1 0h4m2 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m2 0h1m4 0h1m4 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h2m4 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h2m6 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h3m1 0h1m3 0h5m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h1m1 0h2m1 0h1m2 0h2m2 0h1m-21 1h1m3 0h1m1 0h8m2 0h2m1 0h7m2 0h1m-29 1h1m1 0h2m6 0h1m1 0h6m4 0h7m-29 1h1m2 0h4m1 0h1m6 0h1m1 0h1m3 0h1m1 0h1m4 0h1m-29 1h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h7m1 0h1m1 0h2m-29 1h4m1 0h2m1 0h1m1 0h1m1 0h3m1 0h2m2 0h2m1 0h1m3 0h1m-28 1h1m2 0h3m1 0h2m1 0h3m2 0h2m1 0h1m3 0h7m-29 1h5m1 0h1m3 0h2m1 0h5m2 0h1m4 0h2m1 0h1m-28 1h1m3 0h1m2 0h1m1 0h2m1 0h1m3 0h2m5 0h1m2 0h2m-29 1h3m2 0h6m1 0h2m1 0h1m1 0h1m1 0h3m5 0h1m-28 1h1m1 0h4m1 0h2m3 0h4m1 0h2m3 0h4m1 0h2m-25 1h3m1 0h1m2 0h1m3 0h1m2 0h1m7 0h1m1 0h1m-27 1h3m2 0h2m3 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h2m2 0h2m-29 1h2m1 0h9m1 0h2m2 0h1m1 0h7m2 0h1m-21 1h1m2 0h2m2 0h4m1 0h1m3 0h1m3 0h1m-29 1h7m1 0h3m1 0h9m1 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m5 0h2m2 0h5m3 0h1m2 0h2m-29 1h1m1 0h3m1 0h1m1 0h2m2 0h2m2 0h2m1 0h7m1 0h1m-28 1h1m1 0h3m1 0h1m2 0h2m2 0h7m1 0h1m1 0h1m4 0h1m-29 1h1m1 0h3m1 0h1m4 0h2m1 0h2m2 0h3m4 0h4m-29 1h1m5 0h1m3 0h1m1 0h1m4 0h2m1 0h2m2 0h2m1 0h2m-29 1h7m1 0h2m3 0h3m1 0h1m1 0h3m2 0h1m2 0h1"/></svg></div>
+      <div>
+        <h3 style="color: #fff; font-size: 1.12rem; margin-bottom: 0.3rem;">Scan for the Full Interactive Dossier</h3>
+        <p style="color: rgba(255,255,255,0.88); font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.4rem;">Explore the live Advancement Operations Dashboard, CRM case studies, 1,000 Songs music suite, and candidate track record.</p>
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <a class="portfolio-link" href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener" style="color: var(--gold-light); font-family: var(--font-mono); font-size: 0.84rem; font-weight: 700; text-decoration: none; border-bottom: 1px solid rgba(223,202,116,0.6);">symphony.randybryanmoore.us ↗</a>
+          <span style="font-family: var(--font-mono); font-size: 0.76rem; background: rgba(255,255,255,0.18); color: #fff; padding: 2px 8px; border-radius: 4px; font-weight: 600;">PIN: 0000</span>
+        </div>
+      </div>
+    </div>
+
     <div class="handout-section">
       <h2>How I Think</h2>
       <p style="font-size: 1.02rem; line-height: 1.45; color: var(--cobalt); margin-bottom: 0.6rem; font-family: var(--font-serif); letter-spacing: -0.015em;">
@@ -263,7 +353,7 @@
         <strong style="color: var(--wine);">Archaeology before architecture</strong> &nbsp;·&nbsp; <strong style="color: var(--wine);">Three focal lengths</strong> &nbsp;·&nbsp; <strong style="color: var(--wine);">Friction is data</strong> &nbsp;·&nbsp; <strong style="color: var(--wine);">Built, not borrowed</strong>
       </p>
       <p style="font-size: 0.88rem; line-height: 1.5; color: var(--charcoal); margin-bottom: 0.5rem;">
-        A Master of Social Work (MSW) systems practitioner and nonprofit operations leader with ten-plus years across advocacy, government, and housing. Resident pianist at The Jefferson Hotel since 2022.
+        A Master of Social Work (MSW) systems practitioner and nonprofit operations leader with ten-plus years across advocacy, government, and housing. Contract pianist (4-year resident performer at The Jefferson Hotel since 2022).
       </p>
       <blockquote style="font-size: 0.88rem; font-style: italic; color: var(--cobalt); border-left: 3px solid var(--wine); padding-left: 12px; margin: 0.75rem 0;">
         “My background is broader than traditional advancement operations, and I have not yet administered Bloomerang. I do bring hands-on experience with EveryAction, Microsoft Office, reporting, process design, and cross-functional nonprofit operations.” — <em>From cover letter, August 7, 2026</em>
@@ -291,7 +381,7 @@
         <div class="dcard" data-mark="04">
           <span class="dcard-num">04</span>
           <h3>Community & Artistic Resonance</h3>
-          <p>Resident grand pianist at The Jefferson Hotel and music instructor at School of Rock Midlothian, connecting authentically with patrons, musicians, and donors.</p>
+          <p>Contract pianist (4-year resident performer at The Jefferson Hotel) and music instructor at School of Rock Midlothian, connecting authentically with patrons, musicians, and donors.</p>
         </div>
       </div>
     </div>
@@ -315,6 +405,10 @@
             <td style="padding: 6px 10px;">Nearest precedent: budget strategy tied to state trust fund allocations at VHA. Ready to learn Finance's existing gift reconciliation steps.</td>
           </tr>
           <tr>
+            <td style="padding: 6px 10px;"><strong>People Leadership &amp; Staff Development</strong></td>
+            <td style="padding: 6px 10px;">Supervised graduate interns as MSW field instructor at VHA; trained 40 partner orgs at VCET. Ready to lead Annual Fund Manager &amp; Advancement Assistant.</td>
+          </tr>
+          <tr>
             <td style="padding: 6px 10px;"><strong>Event Operations & Logistics</strong></td>
             <td style="padding: 6px 10px;">Organized 40+ public engagements for Senator Warner and coordinated statewide conferences at VHA.</td>
           </tr>
@@ -324,6 +418,15 @@
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <!-- Executive Handout Footer (Page 1) -->
+    <div class="handout-footer">
+      <div>Online Dossier: <a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us</a> <span class="footer-pin">PIN: 0000</span></div>
+      <div style="text-align: right; line-height: 1.45;">
+        <div>Direct Contact: <strong>randybryanmoore@gmail.com</strong></div>
+        <div><strong>(803) 486-4007</strong></div>
+      </div>
     </div>
   </div>
 
@@ -341,23 +444,26 @@
     </div>
 
     <div class="handout-section">
-      <h2>30-60-90 Day Onboarding Plan</h2>
+      <h2>30-60-90 Day Advancement Execution Roadmap</h2>
+      <p style="font-size: 0.85rem; font-style: italic; color: var(--wine); margin-bottom: 0.6rem;">
+        <strong>North Star:</strong> “Build trustworthy systems that protect donor intent, reduce staff friction, and turn relationship data into decisions.”
+      </p>
       <div class="handout-grid-2">
-        <div class="handout-card">
-          <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--wine);">DAYS 01 – 30</span>
-          <h3>Discovery & Systems Review</h3>
-          <p>Review current Bloomerang configuration, custom fields, and household rules. Meet with Finance staff to review monthly reconciliation steps and shadow gift processing routines.</p>
+        <div class="handout-card handout-card--navy">
+          <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--gold-light);">DAYS 01 – 30 • UNDERSTAND + VERIFY</span>
+          <h3>Define $6.9M Goal &amp; Map Bloomerang</h3>
+          <p>Audit Bloomerang CRM schema, custom fields &amp; integrations. Trace gift lifecycles &amp; Finance SLAs, interview Advancement/Finance teams, and identify quick wins.</p>
         </div>
-        <div class="handout-card">
-          <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--cobalt-mid);">DAYS 31 – 60</span>
-          <h3>Workflow Refinement & Training</h3>
-          <p>Establish standard weekly data hygiene routines and deduplication checks. Coordinate with event staff on ticketing data imports and document gift entry standard operating procedures.</p>
+        <div class="handout-card handout-card--navy">
+          <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--gold-light);">DAYS 31 – 60 • STANDARDIZE + STRENGTHEN</span>
+          <h3>Workflows, Acknowledgments &amp; Coaching</h3>
+          <p>Codify shared data entry standards, automate gift &amp; acknowledgment workflows (&lt;48h SLA), launch Advancement-Finance dashboard, and coach team.</p>
         </div>
       </div>
-      <div class="handout-card" style="margin-top: 1rem;">
-        <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--gold-ink);">DAYS 61 – 90+</span>
-        <h3>Reporting & Ongoing Support</h3>
-        <p>Build standard monthly reporting templates for Advancement leadership, support Annual Fund segmentation lists for seasonal appeals, and maintain monthly reconciliation coordination with Finance.</p>
+      <div class="handout-card handout-card--wine" style="margin-top: 0.75rem;">
+        <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--gold-light);">DAYS 61 – 90+ • ANALYZE + BUILD FORWARD</span>
+        <h3>Retention, Reporting Cadence &amp; Systems Roadmap</h3>
+        <p>Review donor retention rates &amp; major gift pipeline velocity, finalize Board/Executive reporting cadence, launch automated data quality checks, and evaluate low-risk pilot.</p>
       </div>
     </div>
 
@@ -387,27 +493,71 @@
       </div>
     </div>
 
-
-    <div class="handout-section">
-      <h2>Extended Digital Portfolio</h2>
-      <div class="portfolio-block">
-        <div class="qr-wrap"><svg role="img" aria-label="QR code linking to https://symphony.randybryanmoore.us/" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31"><path fill="#fff" d="M0 0h31v31h-31z"/><path stroke="#182b4d" d="M1 1.5h7m1 0h1m2 0h1m1 0h2m3 0h1m3 0h7m-29 1h1m5 0h1m2 0h6m1 0h4m2 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m2 0h1m4 0h1m4 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h2m4 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h2m6 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h3m1 0h1m3 0h5m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h1m1 0h2m1 0h1m2 0h2m2 0h1m-21 1h1m3 0h1m1 0h8m2 0h2m1 0h7m2 0h1m-29 1h1m1 0h2m6 0h1m1 0h6m4 0h7m-29 1h1m2 0h4m1 0h1m6 0h1m1 0h1m3 0h1m1 0h1m4 0h1m-29 1h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h7m1 0h1m1 0h2m-29 1h4m1 0h2m1 0h1m1 0h1m1 0h3m1 0h2m2 0h2m1 0h1m3 0h1m-28 1h1m2 0h3m1 0h2m1 0h3m2 0h2m1 0h1m3 0h7m-29 1h5m1 0h1m3 0h2m1 0h5m2 0h1m4 0h2m1 0h1m-28 1h1m3 0h1m2 0h1m1 0h2m1 0h1m3 0h2m5 0h1m2 0h2m-29 1h3m2 0h6m1 0h2m1 0h1m1 0h1m1 0h3m5 0h1m-28 1h1m1 0h4m1 0h2m3 0h4m1 0h2m3 0h4m1 0h2m-25 1h3m1 0h1m2 0h1m3 0h1m2 0h1m7 0h1m1 0h1m-27 1h3m2 0h2m3 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h2m2 0h2m-29 1h2m1 0h9m1 0h2m2 0h1m1 0h7m2 0h1m-21 1h1m2 0h2m2 0h4m1 0h1m3 0h1m3 0h1m-29 1h7m1 0h3m1 0h9m1 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m5 0h2m2 0h5m3 0h1m2 0h2m-29 1h1m1 0h3m1 0h1m1 0h2m2 0h2m2 0h2m1 0h7m1 0h1m-28 1h1m1 0h3m1 0h1m2 0h2m2 0h7m1 0h1m1 0h1m4 0h1m-29 1h1m1 0h3m1 0h1m4 0h2m1 0h2m2 0h3m4 0h4m-29 1h1m5 0h1m3 0h1m1 0h1m4 0h2m1 0h2m2 0h2m1 0h2m-29 1h7m1 0h2m3 0h3m1 0h1m1 0h3m2 0h1m2 0h1"/></svg></div>
-        <div>
-          <h3>Scan for the Full Interactive Dossier</h3>
-          <p>Explore the live Advancement Operations Dashboard, CRM case studies, 1,000 Songs music suite, and candidate track record.</p>
-          <div style="display: flex; gap: 12px; align-items: center; margin-top: 6px;">
-            <a class="portfolio-link" href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener" style="color: #dfca74; font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700; text-decoration: none; border-bottom: 1px solid rgba(223,202,116,0.6);">symphony.randybryanmoore.us ↗</a>
-            <span style="font-family: var(--font-mono); font-size: 0.76rem; background: rgba(255,255,255,0.15); color: #fff; padding: 2px 8px; border-radius: 4px;">PIN: 0000</span>
-          </div>
-        </div>
+    <!-- Executive Handout Footer (Page 2) -->
+    <div class="handout-footer">
+      <div>Online Dossier: <a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us</a> <span class="footer-pin">PIN: 0000</span></div>
+      <div style="text-align: right; line-height: 1.45;">
+        <div>Direct Contact: <strong>randybryanmoore@gmail.com</strong></div>
+        <div><strong>(803) 486-4007</strong></div>
       </div>
-    </div>
-
-    <div style="border-top: 1px solid var(--border-subtle); padding-top: 1.25rem; margin-top: 1.5rem; display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--muted-olive);">
-      <div>Online Dossier: <strong>symphony.randybryanmoore.us</strong> (PIN: 0000)</div>
-      <div>Direct Contact: <strong>randybryanmoore@gmail.com</strong></div>
     </div>
   </div>
 
+  <!-- Precision Element Hover Inspector Box -->
+  <div id="inspector-box" class="inspector-highlight-box">
+    <span id="inspector-badge" class="inspector-highlight-badge">Element</span>
+  </div>
+
+  <!-- Pinpoint Annotation & Feedback Suite -->
+  <div class="annotation-dock" id="annotation-dock" aria-label="Review & Annotation Tools">
+    <button class="dock-btn" id="dock-pin-mode-btn" title="Click any element on the page to add feedback">
+      <span>Pin Feedback</span>
+    </button>
+    <button class="dock-btn" id="dock-live-edit-btn" title="Edit copy directly in place">
+      <span>Live Edit</span>
+    </button>
+    <button class="dock-btn" id="dock-view-drawer-btn" onclick="window.toggleFeedbackDrawer(event)" title="View all pinned notes">
+      <span>Notes</span> <span class="dock-badge" id="dock-notes-count">0</span>
+    </button>
+  </div>
+
+  <!-- Precision Pinned Popover -->
+  <div class="annotation-popover" id="annotation-popover">
+    <div class="popover-header">
+      <span class="popover-title">Comment on Element</span>
+      <button class="popover-cancel-btn" id="popover-close-btn" aria-label="Close Popover">✕</button>
+    </div>
+    <div class="popover-target-snippet" id="popover-target-text"></div>
+    <div class="popover-tags">
+      <span class="tag-chip selected" data-tag="Copy">Copy</span>
+      <span class="tag-chip" data-tag="Design">Design</span>
+      <span class="tag-chip" data-tag="Data">Data</span>
+      <span class="tag-chip" data-tag="Layout">Layout</span>
+      <span class="tag-chip" data-tag="Note">Note</span>
+    </div>
+    <textarea class="popover-textarea" id="popover-comment-input" placeholder="Type your note or revision... (Press Enter to save)"></textarea>
+    <div class="popover-actions">
+      <button class="popover-cancel-btn" id="popover-dismiss-btn">Cancel (Esc)</button>
+      <button class="popover-pin-btn" id="popover-save-btn">Pin Note ↵</button>
+    </div>
+  </div>
+
+  <!-- Feedback Drawer -->
+  <div class="feedback-drawer" id="feedback-drawer">
+    <div class="drawer-header">
+      <h4>Review Notes (<span id="drawer-count">0</span>)</h4>
+      <button id="drawer-close-btn" onclick="window.closeFeedbackDrawer(event)" style="background: transparent; border: none; color: var(--cream); cursor: pointer; font-size: 1.1rem; padding: 2px 6px;">✕</button>
+    </div>
+    <div class="drawer-body" id="drawer-items-list">
+      <p style="color: var(--muted); font-size: 13px; font-style: italic;">No feedback pinned yet. Turn on 'Pin Feedback' and click any headline, paragraph, card, or button.</p>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawer-copy-ai-btn" onclick="window.copyAllNotesAndReset(event)" class="button button-navy" style="width: 100%; justify-content: center; font-size: 12px; padding: 10px;">
+        Copy All Notes for Antigravity
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js?v=1787189251"></script>
 </body>
 </html>
