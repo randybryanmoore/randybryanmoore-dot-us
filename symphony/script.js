@@ -227,7 +227,7 @@ production:
   url: "${currentTelemetry.publicUrl}"
   state: "v1.6.5 live and verified"
   verified_at: "2026-08-20T17:15:36-04:00"
-  serving_commit: "874e48f"
+  first_verified_serving_candidate: "874e48f"
 release_artifacts:
   manifest: "${currentTelemetry.releaseManifest}"
   manifest_policy: "regenerate hashes after final source change and before deployment"
@@ -268,10 +268,10 @@ This is the current operational snapshot. Reverify every changeable fact before 
 
 ### Lifecycle — report each state separately
 - Local: Yes — \`v${currentTelemetry.serviceVersion}\` release source validated.
-- Committed: Yes — source candidate \`31f12ed\` plus final lifecycle telemetry commit.
+- Committed: Yes — development repository \`main\`; use Git readback for the current commit.
 - Pushed: Yes — development repository \`main\`.
 - Merged / Pull Request: Direct-to-main release; no PR.
-- Deployed: Yes — serving commit \`874e48f\` plus final lifecycle telemetry deployment.
+- Deployed: Yes — serving \`gh-pages\` and \`main\`; use Git readback for the current commit.
 - Staging: Not used.
 - Live / Production: \`v${currentTelemetry.serviceVersion}\` verified at the custom domain on Aug 20, 2026 at 5:15 PM EDT.
 
@@ -325,8 +325,8 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 
 ## 8. Release evidence
 - \`DEPLOY-APPROVAL-001\` — Closed. Randy explicitly authorized publication.
-- Source candidate: \`31f12ed\` on development \`main\`.
-- Serving candidate: \`874e48f\` on \`gh-pages\` and \`main\`, advanced without force.
+- Release lineage begins with source candidate \`31f12ed\` on development \`main\`.
+- First verified serving candidate: \`874e48f\`; later lifecycle-only commits must be resolved through Git instead of embedded self-referential SHAs.
 - Production readback: passed at the custom domain on Aug 20, 2026 at 5:15 PM EDT.
 
 ## 9. Machine-readable companion

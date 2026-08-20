@@ -18,7 +18,7 @@
   "artifacts": [
     {
       "path": "index.html",
-      "sha256": "1f627d25a011aa85a403d2a8e4fdba3cc36bf2a36ddedafc6335461cf8d9f63a"
+      "sha256": "6e60ddbf0ba3b13394f63b57062295a418632e5184faf7ad59daf96ce000cddd"
     },
     {
       "path": "styles.css",
@@ -26,7 +26,7 @@
     },
     {
       "path": "script.js",
-      "sha256": "e5c13db8a9169a9b1452b0d2917bbb1d6a928ae82b4e67dd27fb9c15202171ae"
+      "sha256": "2140c8de10a58cce52637ca821cd8a31743f7d1a5dbf7d4f069fa2c28785805c"
     },
     {
       "path": "one_pager.html",
@@ -34,7 +34,7 @@
     },
     {
       "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",
-      "sha256": "3ee01b487d6d6a73dd7ba9dd561b397381d301655d9ff43727447cc8cb189d30"
+      "sha256": "e160d8dc11250d5b82e840e7d423c08a414cd683e8857d8cb9c6379b8c531b6a"
     }
   ],
   "validation": {
@@ -44,7 +44,7 @@
     "browser_interaction": "file_url_automation_unavailable_production_http_readback_used",
     "production_readback": "pass",
     "production_verified_at": "2026-08-20T17:15:36-04:00",
-    "serving_commit": "874e48f"
+    "first_verified_serving_candidate": "874e48f"
   },
   "blockers": [
     {
