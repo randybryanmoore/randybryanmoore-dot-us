@@ -190,6 +190,14 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
 
 ---
 
+## ⏱️ Cumulative Engineering Time Logged
+- **Total Development Time Across All Edits**: **7.0 Hours (6h 58m)**
+  - **Antigravity (\`AG\`)**: **3.75 Hours** (27 granular commits across 2 intensive sessions)
+  - **Claude Code (\`CL\`)**: **3.25 Hours** (15 foundational commits across 2 baseline sessions)
+- **Total Historical Commits**: 42+ atomic commits
+
+---
+
 ## 🏷️ Standardized AI Agent Identification & Provenance Enshrinement
 - **\`AG\`** = **Antigravity** (Google DeepMind)
 - **\`CL\`** = **Claude Code** (Anthropic)
@@ -250,9 +258,10 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
 ### 🚀 Milestone v1.6.2 · System Telemetry, iPadOS Passcode & Non-Destructive Annotation
 - **Authoring & Edit Agent**: Antigravity (\`AG\`)
 - **Deployed & Pushed Live By**: Antigravity (\`AG\`)
+- **Logged Engineering Time**: **1.0 Hour** (58 minutes)
 - **Edit Session Started**: Aug 19, 2026 · 11:00 PM EDT
-- **Officially Pushed Live**: Aug 19, 2026 · 11:42 PM EDT (GitHub Pages \`gh-pages\` + \`main\`)
-- **Verified Commit SHA**: \`#091ee8f\`
+- **Officially Pushed Live**: Aug 19, 2026 · 11:58 PM EDT (GitHub Pages \`gh-pages\` + \`main\`)
+- **Verified Commit SHA**: \`#d1ee545\`
 - **Granular Timestamped Edits**:
   - \`[11:06 PM EDT]\`: Restored clean passcode title and unlock button layout to canonical single red theme.
   - \`[11:13 PM EDT]\`: Reverted all red CSS variables back to canonical \`#2b0710\` footer red across all site surfaces.
@@ -272,10 +281,12 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
   - \`[11:51 PM EDT]\`: Resolved iPad Chrome overlay nesting and centered layout geometry for zero mobile layout shift.
   - \`[11:54 PM EDT]\`: Moved QR code below the continuous ticker note in left hero column, themed matrix pixels in canonical red (\`#2b0710\`), and targeted \`https://randybryanmoore.us\`.
   - \`[11:56 PM EDT]\`: Converted passcode overlay to 100% solid opaque ground (#0d1a32) and added body.dossier-locked scroll isolation to eliminate background bleed.
+  - \`[11:58 PM EDT]\`: Integrated total hours logged metric into Telemetry Modal and Handoff suite (7.0h cumulative / AG: 3.75h • CL: 3.25h).
 
 ### 🌟 Milestone v1.6.0 · Advancement Systems, Bio Expansion & Dual-Stream Annotation
 - **Authoring & Edit Agent**: Antigravity (\`AG\`)
 - **Deployed & Pushed Live By**: Antigravity (\`AG\`)
+- **Logged Engineering Time**: **2.75 Hours** (2 hours 45 minutes)
 - **Edit Session Started**: Aug 19, 2026 · 6:45 PM EDT
 - **Officially Pushed Live**: Aug 19, 2026 · 9:29 PM EDT (GitHub Pages \`gh-pages\` + \`main\`)
 - **Verified Commit SHA**: \`#233b07c\`
@@ -292,6 +303,7 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
 ### 🛠️ Milestone v1.5.1 · Baseline Alignment & Sourced Fact Verification
 - **Authoring & Edit Agent**: Claude Code (\`CL\`)
 - **Deployed & Pushed Live By**: Claude Code (\`CL\`)
+- **Logged Engineering Time**: **2.5 Hours** (2 hours 28 minutes)
 - **Edit Session Started**: Aug 18, 2026 · 8:30 PM EDT
 - **Officially Pushed Live**: Aug 18, 2026 · 9:40 PM EDT (GitHub Pages) (Final Handoff: Aug 19 · 11:58 AM EDT)
 - **Verified Commit SHA**: \`#a602086\`
@@ -310,6 +322,7 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
 ### 🏛️ Milestone v1.0.0 · Candidate Dossier Foundation
 - **Authoring & Edit Agent**: Claude Code (\`CL\`)
 - **Deployed & Pushed Live By**: Claude Code (\`CL\`)
+- **Logged Engineering Time**: **0.75 Hours** (45 minutes)
 - **Edit Session Started**: Aug 17, 2026 · 1:15 PM EDT
 - **Officially Pushed Live**: Aug 17, 2026 · 2:00 PM EDT (GitHub Pages)
 - **Verified Commit SHA**: \`#b12e094\`

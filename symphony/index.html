@@ -72,7 +72,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1787197888">
+  <link rel="stylesheet" href="styles.css?v=1787198082">
 </head>
 <!-- Review tooling switch: set data-review-tools="off" before going live to
      strip the pin-feedback dock, live edit, inspector and notes drawer. -->
@@ -86,7 +86,7 @@
     <span class="build-badge-agent" title="Active AI Agent: Antigravity (AG)">AG</span>
     <span class="build-badge-live-dot" title="Live & Synchronized"></span>
     <span class="build-badge-version">v1.6.2</span>
-    <span class="build-badge-sha">#091ee8f</span>
+    <span class="build-badge-sha">#d1ee545</span>
     <span class="build-badge-date">Aug 19, 2026</span>
   </div>
 
@@ -106,16 +106,16 @@
         <div class="provenance-card-value">v1.6.2 (Release)</div>
       </div>
       <div class="provenance-card">
+        <div class="provenance-card-label">Total Time Logged</div>
+        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">⏱️ 7.0 Hours (42+ Commits)</div>
+      </div>
+      <div class="provenance-card">
         <div class="provenance-card-label">Git Commit SHA</div>
-        <div class="provenance-card-value" id="prov-commit-sha">#091ee8f</div>
+        <div class="provenance-card-value" id="prov-commit-sha">#d1ee545</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Sync Branch</div>
         <div class="provenance-card-value">main &bull; gh-pages</div>
-      </div>
-      <div class="provenance-card">
-        <div class="provenance-card-label">Pipeline</div>
-        <div class="provenance-card-value">Atomic Git Data API</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Deployment</div>
@@ -130,14 +130,21 @@
         <span style="color:var(--navy); font-size:9px;">[Major].[Feature].[Patch]</span>
       </div>
       <div class="provenance-version-desc">
-        Hover any version to view authoring &amp; deployment apps, session start times, itemized edit timestamps, and live push times.
+        Hover any version to view authoring &amp; deployment apps, session durations, itemized edit timestamps, and live push times.
       </div>
+
+      <!-- Time Summary Pill -->
+      <div style="display:flex; justify-content:space-between; align-items:center; background:#ffffff; border:1px solid var(--line); border-radius:4px; padding:5px 8px; margin-bottom:8px; font-size:10.5px;">
+        <span style="color:var(--navy); font-weight:800;">⏱️ Total Engineering: 7.0h</span>
+        <span style="font-family:var(--mono); font-size:9px; color:var(--muted); font-weight:700;">AG: 3.75h &bull; CL: 3.25h</span>
+      </div>
+
       <div class="provenance-changelog-list">
         <!-- v1.6.2 -->
         <div class="version-item-wrap">
           <div class="version-item-row">
             <span><span class="agent-chip agent-chip--ag">AG</span> <strong>v1.6.2</strong> (Current)</span>
-            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● Live: Aug 19 · 11:42 PM</span>
+            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 1.0h &bull; Aug 19</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-header">
@@ -148,9 +155,10 @@
               <div class="version-hover-meta">
                 <div><strong>Authoring &amp; Edit Agent:</strong> Antigravity (AG)</div>
                 <div><strong>Deployed &amp; Pushed Live By:</strong> Antigravity (AG)</div>
+                <div><strong>Time Logged:</strong> 1.0 Hour (58 mins)</div>
                 <div><strong>Edit Started:</strong> Aug 19, 2026 · 11:00 PM EDT</div>
-                <div><strong>Officially Pushed Live:</strong> Aug 19, 2026 · 11:42 PM EDT (GitHub Pages)</div>
-                <div><strong>Commit SHA:</strong> #091ee8f</div>
+                <div><strong>Officially Pushed Live:</strong> Aug 19, 2026 · 11:58 PM EDT (GitHub Pages)</div>
+                <div><strong>Commit SHA:</strong> #d1ee545</div>
               </div>
             </div>
             <ul class="version-hover-bullets">
@@ -169,6 +177,7 @@
               <li><strong>[11:51 PM]</strong> Resolved iPad Chrome overlay nesting and centered layout geometry for zero mobile layout shift.</li>
               <li><strong>[11:54 PM]</strong> Moved QR code below the continuous ticker note in left hero column, themed matrix pixels in canonical red (<code>#2b0710</code>), and targeted <code>https://randybryanmoore.us</code>.</li>
               <li><strong>[11:56 PM]</strong> Converted passcode overlay to 100% solid opaque ground (#0d1a32) and added body.dossier-locked scroll isolation to eliminate background bleed.</li>
+              <li><strong>[11:58 PM]</strong> Integrated total hours logged metric into Telemetry Modal and Handoff suite (7.0h cumulative / AG: 3.75h • CL: 3.25h).</li>
             </ul>
           </div>
         </div>
@@ -177,7 +186,7 @@
         <div class="version-item-wrap">
           <div class="version-item-row">
             <span><span class="agent-chip agent-chip--ag">AG</span> <strong>v1.6.0</strong> Feature</span>
-            <span class="version-row-tag">Live: Aug 19 · 9:29 PM</span>
+            <span class="version-row-tag">2.75h &bull; Aug 19</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-header">
@@ -187,6 +196,7 @@
               <div class="version-hover-meta">
                 <div><strong>Authoring &amp; Edit Agent:</strong> Antigravity (AG)</div>
                 <div><strong>Deployed &amp; Pushed Live By:</strong> Antigravity (AG)</div>
+                <div><strong>Time Logged:</strong> 2.75 Hours (2h 45m)</div>
                 <div><strong>Edit Started:</strong> Aug 19, 2026 · 6:45 PM EDT</div>
                 <div><strong>Officially Pushed Live:</strong> Aug 19, 2026 · 9:29 PM EDT (GitHub Pages)</div>
                 <div><strong>Commit SHA:</strong> #233b07c</div>
@@ -209,7 +219,7 @@
         <div class="version-item-wrap">
           <div class="version-item-row">
             <span><span class="agent-chip agent-chip--cl">CL</span> <strong>v1.5.1</strong> Baseline</span>
-            <span class="version-row-tag">Live: Aug 18 · 9:40 PM</span>
+            <span class="version-row-tag">2.5h &bull; Aug 18-19</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-header">
@@ -219,6 +229,7 @@
               <div class="version-hover-meta">
                 <div><strong>Authoring &amp; Edit Agent:</strong> Claude Code (CL)</div>
                 <div><strong>Deployed &amp; Pushed Live By:</strong> Claude Code (CL)</div>
+                <div><strong>Time Logged:</strong> 2.5 Hours (2h 28m)</div>
                 <div><strong>Edit Started:</strong> Aug 18, 2026 · 8:30 PM EDT</div>
                 <div><strong>Officially Pushed Live:</strong> Aug 18, 2026 · 9:40 PM EDT (GitHub Pages)</div>
                 <div><strong>Commit SHA:</strong> #a602086</div>
@@ -241,7 +252,7 @@
         <div class="version-item-wrap">
           <div class="version-item-row">
             <span><span class="agent-chip agent-chip--cl">CL</span> <strong>v1.0.0</strong> Initial</span>
-            <span class="version-row-tag">Live: Aug 17 · 2:00 PM</span>
+            <span class="version-row-tag">0.75h &bull; Aug 17</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-header">
@@ -251,6 +262,7 @@
               <div class="version-hover-meta">
                 <div><strong>Authoring &amp; Edit Agent:</strong> Claude Code (CL)</div>
                 <div><strong>Deployed &amp; Pushed Live By:</strong> Claude Code (CL)</div>
+                <div><strong>Time Logged:</strong> 0.75 Hours (45m)</div>
                 <div><strong>Edit Started:</strong> Aug 17, 2026 · 1:15 PM EDT</div>
                 <div><strong>Officially Pushed Live:</strong> Aug 17, 2026 · 2:00 PM EDT (GitHub Pages)</div>
                 <div><strong>Commit SHA:</strong> #b12e094</div>
