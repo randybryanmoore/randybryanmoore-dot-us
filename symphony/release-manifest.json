@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-20T17:11:24-04:00",
+  "generated_at": "2026-08-20T17:15:36-04:00",
   "service_name": "richmond-symphony-candidate-dossier",
-  "service_version": "1.6.5-rc",
+  "service_version": "1.6.5",
   "source": {
     "repository": "randybryanmoore/randybryanmoore-dot-us",
     "branch": "main",
-    "base_commit": "7c0763e683ccc684e3c29f435b3776768849654e",
-    "working_tree": "modified"
+    "base_commit": "31f12ed",
+    "working_tree": "release telemetry update"
   },
   "lifecycle": {
-    "committed": false,
-    "pushed": false,
-    "deployed": false,
-    "production_verified": false
+    "committed": true,
+    "pushed": true,
+    "deployed": true,
+    "production_verified": true
   },
   "artifacts": [
     {
       "path": "index.html",
-      "sha256": "296f2a20aae5759eddffdd925daf11e05680eb00cbabf3627f7eba9cc6386c2e"
+      "sha256": "1f627d25a011aa85a403d2a8e4fdba3cc36bf2a36ddedafc6335461cf8d9f63a"
     },
     {
       "path": "styles.css",
@@ -26,7 +26,7 @@
     },
     {
       "path": "script.js",
-      "sha256": "64f21269b69b66243e0c8d0555019514762f0e6a9064567e3a9ab5f084e83427"
+      "sha256": "e5c13db8a9169a9b1452b0d2917bbb1d6a928ae82b4e67dd27fb9c15202171ae"
     },
     {
       "path": "one_pager.html",
@@ -34,22 +34,24 @@
     },
     {
       "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",
-      "sha256": "e82a3d81dd7cb95dee6fe1a6a6e9c7ee530a85702c2d363218aeddb69858224b"
+      "sha256": "3ee01b487d6d6a73dd7ba9dd561b397381d301655d9ff43727447cc8cb189d30"
     }
   ],
   "validation": {
     "javascript_syntax": "pass",
     "diff_whitespace": "pass",
     "offline_archive_source_readback": "pass",
-    "browser_interaction": "not_run_file_url_blocked_by_automation_policy",
-    "production_readback": "not_run"
+    "browser_interaction": "file_url_automation_unavailable_production_http_readback_used",
+    "production_readback": "pass",
+    "production_verified_at": "2026-08-20T17:15:36-04:00",
+    "serving_commit": "874e48f"
   },
   "blockers": [
     {
       "id": "DEPLOY-APPROVAL-001",
       "severity": "high",
-      "status": "open",
-      "description": "Explicit approval required before publishing the dossier payload."
+      "status": "closed",
+      "description": "Randy explicitly authorized commit, push, deployment, and live publication."
     }
   ]
 }

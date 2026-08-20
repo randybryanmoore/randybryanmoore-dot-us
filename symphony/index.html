@@ -85,9 +85,9 @@
        independent of the review-tools switch. -->
   <button type="button" class="build-badge" id="build-badge" aria-expanded="false" aria-controls="build-provenance-modal" title="View System Build Telemetry & Agent Handoff (Shift+V)">
     <span class="build-badge-agent" title="Active AI Agent: Codex (CDX)">CDX</span>
-    <span class="build-badge-live-dot" title="Local Release Candidate — Deployment Awaiting Approval" style="background:var(--gold-light);"></span>
-    <span class="build-badge-version">v1.6.5-rc</span>
-    <span class="build-badge-sha">LOCAL</span>
+    <span class="build-badge-live-dot" title="Live production release verified Aug 20, 2026 at 5:15 PM EDT"></span>
+    <span class="build-badge-version">v1.6.5</span>
+    <span class="build-badge-sha">#874e48f</span>
     <span class="build-badge-date">Aug 20, 2026</span>
   </button>
 
@@ -104,39 +104,39 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Build Version</div>
-        <div class="provenance-card-value">v1.6.5-rc (Local Candidate)</div>
+        <div class="provenance-card-value">v1.6.5 (Production Release)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Total Time Logged</div>
-        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">⏱️ 8.0 Hours (manually logged)</div>
+        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">⏱️ 8.1 Hours (manually logged)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Git Commit SHA</div>
-        <div class="provenance-card-value" id="prov-commit-sha">#7c0763e + local release changes</div>
+        <div class="provenance-card-value" id="prov-commit-sha">Source #31f12ed &bull; Serving #874e48f</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Sync Branch</div>
-        <div class="provenance-card-value">main (local) &bull; live remains previous release</div>
+        <div class="provenance-card-value">Source main &bull; Serving gh-pages + main</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Deployment</div>
-        <div class="provenance-card-value" style="color:#92400e; font-weight:800;">● Not Deployed &bull; Approval Required</div>
+        <div class="provenance-card-value" style="color:#15803d; font-weight:800;">● Live &bull; Production Verified</div>
       </div>
     </div>
 
     <section class="lifecycle-status-box" aria-labelledby="lifecycle-status-title">
       <div class="provenance-version-title" id="lifecycle-status-title">
         <span>Code Lifecycle State</span>
-        <span style="color:#92400e; font-size:9px;">LOCAL RELEASE CANDIDATE</span>
+        <span style="color:#15803d; font-size:9px;">LIVE PRODUCTION RELEASE</span>
       </div>
       <dl class="lifecycle-status-grid">
-        <div><dt>Local</dt><dd>v1.6.5-rc source-validated; browser readback pending</dd></div>
-        <div><dt>Committed</dt><dd>No</dd></div>
-        <div><dt>Pushed</dt><dd>No</dd></div>
-        <div><dt>Merged / PR</dt><dd>No new PR or merge</dd></div>
-        <div><dt>Deployed</dt><dd>No &bull; authorization guard stopped upload</dd></div>
+        <div><dt>Local</dt><dd>v1.6.5 release source validated</dd></div>
+        <div><dt>Committed</dt><dd>Yes &bull; source candidate #31f12ed</dd></div>
+        <div><dt>Pushed</dt><dd>Yes &bull; source main</dd></div>
+        <div><dt>Merged / PR</dt><dd>Direct-to-main release; no PR</dd></div>
+        <div><dt>Deployed</dt><dd>Yes &bull; serving #874e48f</dd></div>
         <div><dt>Staging</dt><dd>Not used</dd></div>
-        <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>Previous release remains live; v1.6.5-rc is not public</dd></div>
+        <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.6.5 verified at the custom domain Aug 20, 2026 &bull; 5:15 PM EDT</dd></div>
       </dl>
       <details class="lifecycle-glossary">
         <summary>Lifecycle definitions used by all agents</summary>
@@ -164,31 +164,32 @@
 
       <!-- Time Summary Pill -->
       <div style="display:flex; justify-content:space-between; align-items:center; background:#ffffff; border:1px solid var(--line); border-radius:4px; padding:5px 8px; margin-bottom:8px; font-size:10.5px;">
-        <span style="color:var(--navy); font-weight:800;">⏱️ Total Engineering: 8.0h</span>
-        <span style="font-family:var(--mono); font-size:9px; color:var(--muted); font-weight:700;">AG: 3.75h &bull; CL: 3.25h &bull; CDX: 1.0h</span>
+        <span style="color:var(--navy); font-weight:800;">⏱️ Total Engineering: 8.1h</span>
+        <span style="font-family:var(--mono); font-size:9px; color:var(--muted); font-weight:700;">AG: 3.75h &bull; CL: 3.25h &bull; CDX: 1.1h</span>
       </div>
 
       <div class="provenance-changelog-list">
-        <!-- v1.6.5-rc -->
+        <!-- v1.6.5 -->
         <div class="version-item-wrap active">
           <div class="version-item-row" role="button" tabindex="0" aria-expanded="true">
-            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.6.5-rc</strong> (Current Local)</span>
-            <span class="version-row-tag" style="background:#fef3c7; color:#92400e; border-color:#fcd34d;">● 1.0h &bull; Aug 20</span>
+            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.6.5</strong> (Current Live)</span>
+            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 1.1h &bull; Aug 20</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-header">
               <div class="version-hover-title">
-                <span>v1.6.5-rc · Structured Telemetry &amp; Safe Handoff Candidate</span>
-                <span style="color:#92400e; font-size:9px;">● LOCAL &bull; NOT DEPLOYED</span>
+                <span>v1.6.5 · Structured Telemetry &amp; Safe Handoff Release</span>
+                <span style="color:#15803d; font-size:9px;">● LIVE &bull; VERIFIED</span>
               </div>
               <div class="version-hover-meta">
                 <div><strong>Authoring &amp; Audit Agent:</strong> Codex (CDX)</div>
-                <div><strong>Deployment:</strong> Not deployed &bull; explicit sensitive-payload approval required</div>
-                <div><strong>Time Logged:</strong> 1.0 Hour</div>
+                <div><strong>Deployment:</strong> Authorized, deployed, and read back at the custom domain</div>
+                <div><strong>Time Logged:</strong> 1.1 Hours</div>
                 <div><strong>Audit Started:</strong> Aug 20, 2026 · 3:49 PM EDT</div>
-                <div><strong>Candidate Updated:</strong> Aug 20, 2026 · 5:07 PM EDT</div>
-                <div><strong>Source Baseline:</strong> #7c0763e + preserved local changes</div>
-                <div><strong>Production:</strong> Previous release unchanged</div>
+                <div><strong>Released:</strong> Aug 20, 2026 · 5:15 PM EDT</div>
+                <div><strong>Source Commit:</strong> #31f12ed</div>
+                <div><strong>Serving Commit:</strong> #874e48f</div>
+                <div><strong>Production:</strong> v1.6.5 verified at the custom domain</div>
               </div>
             </div>
             <ul class="version-hover-bullets">
@@ -208,6 +209,7 @@
               <li><strong>[4:46 PM]</strong> Isolated the compact TikTok rule from the shared mobile grid breakpoint, restoring the full site layout.</li>
               <li><strong>[4:49 PM]</strong> Increased only the TikTok cards from 280px to a centered 320px intermediate size.</li>
               <li><strong>[5:07 PM]</strong> Refactored the handoff into current state, policy, safe release checkpoints, and archived history; added a separate machine-readable telemetry export.</li>
+              <li><strong>[5:15 PM]</strong> Committed and pushed the source, advanced both serving branches without force, and verified the release candidate through custom-domain and manifest readback.</li>
             </ul>
           </div>
         </div>

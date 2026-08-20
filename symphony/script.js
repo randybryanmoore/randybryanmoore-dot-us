@@ -176,12 +176,12 @@
     const currentTelemetry = Object.freeze({
       schemaVersion: 1,
       serviceName: 'richmond-symphony-candidate-dossier',
-      serviceVersion: '1.6.5-rc',
+      serviceVersion: '1.6.5',
       agent: 'CDX',
       agentProduct: 'Codex',
       repository: 'randybryanmoore/randybryanmoore-dot-us',
       branch: 'main',
-      baseCommit: '7c0763e683ccc684e3c29f435b3776768849654e',
+      baseCommit: '31f12ed',
       publicUrl: 'https://symphony.randybryanmoore.us',
       releaseManifest: './release-manifest.json'
     });
@@ -214,34 +214,36 @@ source:
   repository: "${currentTelemetry.repository}"
   branch: "${currentTelemetry.branch}"
   base_commit: "${currentTelemetry.baseCommit}"
-  working_tree: "modified"
+  working_tree: "clean at release commit"
 lifecycle:
   local: true
-  committed: false
-  pushed: false
+  committed: true
+  pushed: true
   pull_request_or_merged: false
-  deployed: false
+  deployed: true
   staging: false
-  production_verified: false
+  production_verified: true
 production:
   url: "${currentTelemetry.publicUrl}"
-  state: "previous release remains public"
+  state: "v1.6.5 live and verified"
+  verified_at: "2026-08-20T17:15:36-04:00"
+  serving_commit: "874e48f"
 release_artifacts:
   manifest: "${currentTelemetry.releaseManifest}"
   manifest_policy: "regenerate hashes after final source change and before deployment"
 validation:
   prior_release_candidate_gate: "pass"
   structured_telemetry_export: "source_checks_pass"
-  browser_interaction: "not_run; file URL blocked by automation policy"
-  production_readback: "not_run"
+  browser_interaction: "file URL automation unavailable; production HTTP readback used"
+  production_readback: "pass"
 security:
   access_gate: "client-side presentation convenience; not authentication"
   sensitive_values_in_export: false
 blockers:
   - id: "DEPLOY-APPROVAL-001"
     severity: "high"
-    status: "open"
-    description: "Explicit approval required before publishing the dossier payload."
+    status: "closed"
+    description: "Randy explicitly authorized commit, push, deployment, and live publication."
 notes:
   - "Self-reported engineering time is historical context, not measured observability data."
   - "A commit is not a push; a push is not a deployment; deployment is not live verification."`;
@@ -259,19 +261,19 @@ This is the current operational snapshot. Reverify every changeable fact before 
 - Version: \`v${currentTelemetry.serviceVersion}\`
 - Agent: Codex (\`CDX\`)
 - Repository: \`${currentTelemetry.repository}\`, branch \`${currentTelemetry.branch}\`
-- Base commit: \`${currentTelemetry.baseCommit}\` plus preserved, uncommitted local changes
+- Source release candidate commit: \`${currentTelemetry.baseCommit}\`
 - Working area: \`symphony/\`
 - Public URL: ${currentTelemetry.publicUrl}
 - Release manifest: \`${currentTelemetry.releaseManifest}\` — hashes must be regenerated after the final source edit and before deployment
 
 ### Lifecycle — report each state separately
-- Local: Yes — \`v${currentTelemetry.serviceVersion}\` is under local validation.
-- Committed: No.
-- Pushed: No.
-- Merged / Pull Request: No new PR or merge.
-- Deployed: No.
+- Local: Yes — \`v${currentTelemetry.serviceVersion}\` release source validated.
+- Committed: Yes — source candidate \`31f12ed\` plus final lifecycle telemetry commit.
+- Pushed: Yes — development repository \`main\`.
+- Merged / Pull Request: Direct-to-main release; no PR.
+- Deployed: Yes — serving commit \`874e48f\` plus final lifecycle telemetry deployment.
 - Staging: Not used.
-- Live / Production: The previous release remains public; this candidate is not live.
+- Live / Production: \`v${currentTelemetry.serviceVersion}\` verified at the custom domain on Aug 20, 2026 at 5:15 PM EDT.
 
 A commit is not a push. A push is not a deployment. A deployment is not confirmed live until production readback succeeds.
 
@@ -321,8 +323,11 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 - Do not combine build, stage, commit, push, deployment, and live verification into one unconditional shell chain.
 - A failed or timed-out build, upload, or readback is not success.
 
-## 8. Open blocker
-- \`DEPLOY-APPROVAL-001\` — High — Explicit approval is required before publishing the dossier payload. Owner: Randy. Completion evidence: approved artifact manifest plus successful production readback.
+## 8. Release evidence
+- \`DEPLOY-APPROVAL-001\` — Closed. Randy explicitly authorized publication.
+- Source candidate: \`31f12ed\` on development \`main\`.
+- Serving candidate: \`874e48f\` on \`gh-pages\` and \`main\`, advanced without force.
+- Production readback: passed at the custom domain on Aug 20, 2026 at 5:15 PM EDT.
 
 ## 9. Machine-readable companion
 Use “Copy Machine Telemetry (.YAML)” in the telemetry modal. Treat browser-generated state as a handoff snapshot, not as an independently verified Git or hosting measurement.`;

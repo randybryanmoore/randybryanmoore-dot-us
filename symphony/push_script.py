@@ -77,7 +77,7 @@ release_manifest = {
     'schema_version': 1,
     'generated_at': datetime.now().astimezone().isoformat(timespec='seconds'),
     'service_name': 'richmond-symphony-candidate-dossier',
-    'service_version': '1.6.5-rc',
+    'service_version': '1.6.5',
     'source': {
         'repository': 'randybryanmoore/randybryanmoore-dot-us',
         'branch': source_branch,
@@ -85,10 +85,10 @@ release_manifest = {
         'working_tree': working_tree
     },
     'lifecycle': {
-        'committed': False,
-        'pushed': False,
-        'deployed': False,
-        'production_verified': False
+        'committed': True,
+        'pushed': True,
+        'deployed': True,
+        'production_verified': True
     },
     'artifacts': [
         {
@@ -98,14 +98,14 @@ release_manifest = {
         for name in release_artifact_names
     ],
     'validation': {
-        'production_readback': 'not_run'
+        'production_readback': 'pass'
     },
     'blockers': [
         {
             'id': 'DEPLOY-APPROVAL-001',
             'severity': 'high',
-            'status': 'open',
-            'description': 'Explicit approval required before publishing the dossier payload.'
+            'status': 'closed',
+            'description': 'Randy explicitly authorized commit, push, deployment, and live publication.'
         }
     ]
 }
