@@ -534,6 +534,8 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
+  text-align: center;
 }
 
 .home-hero h1 {
@@ -577,13 +579,18 @@ img {
   line-height: 1.55;
   color: rgba(242, 234, 223, 0.92);
   margin-bottom: 28px;
+  text-align: center;
+  margin-inline: auto;
 }
 
 .hero-paths {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .home-hero .hero-paths .button {
@@ -619,6 +626,8 @@ img {
   overflow: hidden;
   position: relative;
   max-width: 620px;
+  width: 100%;
+  margin-inline: auto;
 }
 
 .hero-note-track {
