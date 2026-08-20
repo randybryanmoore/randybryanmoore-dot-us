@@ -230,12 +230,12 @@
     const currentTelemetry = Object.freeze({
       schemaVersion: 1,
       serviceName: 'richmond-symphony-candidate-dossier',
-      serviceVersion: '1.6.6-rc',
+      serviceVersion: '1.6.6',
       agent: 'CDX',
       agentProduct: 'Codex',
       repository: 'randybryanmoore/randybryanmoore-dot-us',
       branch: 'main',
-      baseCommit: '0161d08',
+      baseCommit: 'f8b60a4',
       publicUrl: 'https://symphony.randybryanmoore.us',
       releaseManifest: './release-manifest.json'
     });
@@ -268,20 +268,20 @@ source:
   repository: "${currentTelemetry.repository}"
   branch: "${currentTelemetry.branch}"
   base_commit: "${currentTelemetry.baseCommit}"
-  working_tree: "modified"
+  working_tree: "release telemetry update"
 lifecycle:
   local: true
-  committed: false
-  pushed: false
+  committed: true
+  pushed: true
   pull_request_or_merged: false
-  deployed: false
+  deployed: true
   staging: false
-  production_verified: false
+  production_verified: true
 production:
   url: "${currentTelemetry.publicUrl}"
-  state: "v1.6.5 remains live; v1.6.6-rc is local only"
-  verified_at: "2026-08-20T17:15:36-04:00"
-  first_verified_serving_candidate: "874e48f"
+  state: "v1.6.6 live and verified"
+  verified_at: "2026-08-20T17:57:04-04:00"
+  first_verified_serving_candidate: "df5f99e"
 release_artifacts:
   manifest: "${currentTelemetry.releaseManifest}"
   manifest_policy: "regenerate hashes after final source change and before deployment"
@@ -315,19 +315,19 @@ This is the current operational snapshot. Reverify every changeable fact before 
 - Version: \`v${currentTelemetry.serviceVersion}\`
 - Agent: Codex (\`CDX\`)
 - Repository: \`${currentTelemetry.repository}\`, branch \`${currentTelemetry.branch}\`
-- Source release candidate commit: \`${currentTelemetry.baseCommit}\`
+- Source release lineage begins with: \`${currentTelemetry.baseCommit}\`
 - Working area: \`symphony/\`
 - Public URL: ${currentTelemetry.publicUrl}
 - Release manifest: \`${currentTelemetry.releaseManifest}\` — hashes must be regenerated after the final source edit and before deployment
 
 ### Lifecycle — report each state separately
-- Local: Yes — \`v${currentTelemetry.serviceVersion}\` copy refinement.
-- Committed: No.
-- Pushed: No.
-- Merged / Pull Request: No new PR or merge.
-- Deployed: No.
+- Local: Yes — \`v${currentTelemetry.serviceVersion}\` release source validated.
+- Committed: Yes — development repository \`main\`; use Git readback for the current commit.
+- Pushed: Yes — development repository \`main\`.
+- Merged / Pull Request: Direct-to-main release; no PR.
+- Deployed: Yes — serving \`gh-pages\` and \`main\`; use Git readback for the current commit.
 - Staging: Not used.
-- Live / Production: \`v1.6.5\` remains live; \`v${currentTelemetry.serviceVersion}\` is local only.
+- Live / Production: \`v${currentTelemetry.serviceVersion}\` verified at the custom domain on Aug 20, 2026 at 5:57 PM EDT.
 
 A commit is not a push. A push is not a deployment. A deployment is not confirmed live until production readback succeeds.
 
@@ -366,6 +366,7 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 - Added a collapsed version-number key defining MAJOR.MINOR.PATCH thresholds, reset rules, example readings, and the pre-release meaning of -rc.
 - Applied the dossier's editorial convention globally: visible standalone “and” becomes “&”, while existing “//” remains the structural divider.
 - Added an engineering-time disclosure that previews on hover or focus, persists on click or tap, and documents the exact agent-hour arithmetic, active-block method, 10-minute break rule, exclusions, and historical precision limits.
+- Relabeled every dashboard entry point as a fictional Advancement Intelligence concept prototype and added an adjacent no-live-systems / no-donor-data disclosure.
 
 ## 6. Safe release protocol
 1. Explain the intended source changes in 3–7 bullets.
@@ -387,9 +388,9 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 
 ## 8. Release evidence
 - \`DEPLOY-APPROVAL-001\` — Closed. Randy explicitly authorized publication.
-- Release lineage begins with source candidate \`31f12ed\` on development \`main\`.
-- First verified serving candidate: \`874e48f\`; later lifecycle-only commits must be resolved through Git instead of embedded self-referential SHAs.
-- Production readback: passed at the custom domain on Aug 20, 2026 at 5:15 PM EDT.
+- Release lineage begins with source candidate \`f8b60a4\` on development \`main\`.
+- First verified serving candidate: \`df5f99e\`; later lifecycle-only commits must be resolved through Git instead of embedded self-referential SHAs.
+- Production readback: passed at the custom domain on Aug 20, 2026 at 5:57 PM EDT.
 
 ## 9. Machine-readable companion
 Use “Copy Machine Telemetry (.YAML)” in the telemetry modal. Treat browser-generated state as a handoff snapshot, not as an independently verified Git or hosting measurement.`;

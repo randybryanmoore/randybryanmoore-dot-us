@@ -616,6 +616,17 @@ img {
   width: 100%;
 }
 
+.dashboard-concept-note {
+  flex-basis: 100%;
+  margin: -2px 0 0;
+  color: var(--cream);
+  font-family: var(--mono);
+  font-size: 9px;
+  line-height: 1.45;
+  opacity: 0.82;
+  text-align: center;
+}
+
 .home-hero .hero-paths .button {
   border-radius: 4px;
   font-size: 13px;

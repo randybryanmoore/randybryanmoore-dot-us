@@ -1,59 +1,51 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-20T17:45:03-04:00",
+  "generated_at": "2026-08-20T17:57:59-04:00",
   "service_name": "richmond-symphony-candidate-dossier",
-  "service_version": "1.6.6-rc",
+  "service_version": "1.6.6",
   "source": {
     "repository": "randybryanmoore/randybryanmoore-dot-us",
     "branch": "main",
-    "base_commit": "0161d08",
+    "base_commit": "97e003c3277cd03b64b35f4eac727832c7eb5773",
     "working_tree": "modified"
   },
   "lifecycle": {
-    "committed": false,
-    "pushed": false,
-    "deployed": false,
-    "production_verified": false
-  },
-  "production_baseline": {
-    "service_version": "1.6.5",
-    "status": "live_and_previously_verified"
+    "committed": true,
+    "pushed": true,
+    "deployed": true,
+    "production_verified": true
   },
   "artifacts": [
     {
       "path": "index.html",
-      "sha256": "131b39ceb778f23c86c789aba8ef86951abd74beab0f2e420628d6d7cc604375"
+      "sha256": "b59beb273f3afe0cb18096eb9aeb015273e46a5ad27802fa8c4a25135b5c434c"
     },
     {
       "path": "styles.css",
-      "sha256": "f0b1a57612eed51200f75226e03b6918f57a2ba48901666f53e04702e05d2a20"
+      "sha256": "afe26a58ebfe399eec62d199eb2f2ebb1027d7541060370d63246f76e53c2fac"
     },
     {
       "path": "script.js",
-      "sha256": "e504165d27e6e676da2f792281e5e1031f36337a1812e00c210446d4879ab677"
+      "sha256": "5ee28fd96c047542ea6179572ce92b12afcd2c6115bdea5dc88ffc470f333ed2"
     },
     {
       "path": "one_pager.html",
-      "sha256": "493d5bc283132cb425c7db16ab5b1ed911a64afb5fc747e007ffade1ba333b24"
+      "sha256": "aa0e91fcad6366720d2b5f06747eb0d5c38546a9aec526d079d624e03b68aacc"
     },
     {
       "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",
-      "sha256": "00f283a4a63f4dd557e9f84d479d82ff2e9b56b14192f1c6494c6d0380745e79"
+      "sha256": "a634337def1b2ba92603bff576a5d0852bccd57dcc7a814a7094dd036e8318ff"
     }
   ],
   "validation": {
-    "javascript_syntax": "pass",
-    "diff_whitespace": "pass",
-    "offline_archive_source_readback": "pass",
-    "browser_interaction": "not_run_file_url_blocked_by_automation_policy",
-    "production_readback": "not_run_for_local_candidate"
+    "production_readback": "pass"
   },
   "blockers": [
     {
       "id": "DEPLOY-APPROVAL-001",
       "severity": "high",
-      "status": "open",
-      "description": "The v1.6.6 release candidate has not been authorized for commit, push, or deployment."
+      "status": "closed",
+      "description": "Randy explicitly authorized commit, push, deployment, and live publication."
     }
   ]
 }

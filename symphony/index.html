@@ -73,7 +73,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1787258935">
+  <link rel="stylesheet" href="styles.css?v=1787263078">
 </head>
 <!-- Review tooling switch: set data-review-tools="off" before going live to
      strip the pin-feedback dock, live edit, inspector and notes drawer. -->
@@ -85,9 +85,9 @@
        independent of the review-tools switch. -->
   <button type="button" class="build-badge" id="build-badge" aria-expanded="false" aria-controls="build-provenance-modal" title="View System Build Telemetry & Agent Handoff (Shift+V)">
     <span class="build-badge-agent" title="Active AI Agent: Codex (CDX)">CDX</span>
-    <span class="build-badge-live-dot" title="Local release candidate — production remains v1.6.5" style="background:var(--gold-light);"></span>
-    <span class="build-badge-version">v1.6.6-rc</span>
-    <span class="build-badge-sha">LOCAL</span>
+    <span class="build-badge-live-dot" title="Live production release verified Aug 20, 2026 at 5:57 PM EDT"></span>
+    <span class="build-badge-version">v1.6.6</span>
+    <span class="build-badge-sha">LIVE</span>
     <span class="build-badge-date">Aug 20, 2026</span>
   </button>
 
@@ -104,39 +104,39 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Build Version</div>
-        <div class="provenance-card-value">v1.6.6-rc (Local Candidate)</div>
+        <div class="provenance-card-value">v1.6.6 (Production Release)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Total Time Logged</div>
-        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">⏱️ 8.4 Hours (manually logged)</div>
+        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">⏱️ 8.5 Hours (manually logged)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Git Commit SHA</div>
-        <div class="provenance-card-value" id="prov-commit-sha">#0161d08 + local copy refinement</div>
+        <div class="provenance-card-value" id="prov-commit-sha">Release lineage &bull; artifact manifest verified</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Sync Branch</div>
-        <div class="provenance-card-value">main (local) &bull; production remains v1.6.5</div>
+        <div class="provenance-card-value">source main &bull; serving gh-pages + main</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Deployment</div>
-        <div class="provenance-card-value" style="color:#92400e; font-weight:800;">● Candidate Not Deployed</div>
+        <div class="provenance-card-value" style="color:#15803d; font-weight:800;">● Live Production Verified</div>
       </div>
     </div>
 
     <section class="lifecycle-status-box" aria-labelledby="lifecycle-status-title">
       <div class="provenance-version-title" id="lifecycle-status-title">
         <span>Code Lifecycle State</span>
-        <span style="color:#92400e; font-size:9px;">LOCAL RELEASE CANDIDATE</span>
+        <span style="color:#15803d; font-size:9px;">LIVE PRODUCTION</span>
       </div>
       <dl class="lifecycle-status-grid">
-        <div><dt>Local</dt><dd>v1.6.6-rc copy refinement</dd></div>
-        <div><dt>Committed</dt><dd>No</dd></div>
-        <div><dt>Pushed</dt><dd>No</dd></div>
-        <div><dt>Merged / PR</dt><dd>No new PR or merge</dd></div>
-        <div><dt>Deployed</dt><dd>No</dd></div>
+        <div><dt>Local</dt><dd>v1.6.6 release source validated</dd></div>
+        <div><dt>Committed</dt><dd>Yes &bull; development main</dd></div>
+        <div><dt>Pushed</dt><dd>Yes &bull; source main</dd></div>
+        <div><dt>Merged / PR</dt><dd>Direct-to-main release; no PR</dd></div>
+        <div><dt>Deployed</dt><dd>Yes &bull; serving gh-pages + main</dd></div>
         <div><dt>Staging</dt><dd>Not used</dd></div>
-        <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.6.5 remains live; v1.6.6-rc is local only</dd></div>
+        <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.6.6 verified at the custom domain Aug 20, 2026 &bull; 5:57 PM EDT</dd></div>
       </dl>
       <details class="lifecycle-glossary">
         <summary>Lifecycle definitions used by all agents</summary>
@@ -204,34 +204,34 @@
       <!-- Time Summary Pill: hover/focus previews the arithmetic; click/tap keeps it open. -->
       <details class="engineering-time-breakdown">
         <summary class="engineering-time-breakdown__summary">
-          <span>⏱️ Total Engineering: 8.4h</span>
-          <span class="engineering-time-breakdown__agents">AG: 3.75h &bull; CL: 3.25h &bull; CDX: 1.40h</span>
+          <span>⏱️ Total Engineering: 8.6h</span>
+          <span class="engineering-time-breakdown__agents">AG: 3.75h &bull; CL: 3.25h &bull; CDX: 1.60h</span>
         </summary>
         <div class="engineering-time-breakdown__panel">
-          <strong>Calculation // 3.75 + 3.25 + 1.40 = 8.40 hours</strong>
+          <strong>Calculation // 3.75 + 3.25 + 1.60 = 8.60 hours</strong>
           <span><strong>Active time only:</strong> a work block runs from the first verified inspect, edit, or test action to the last action before an explicit break or a gap of 10+ minutes. Breaks, idle gaps, and time waiting for user input or approval are excluded. Active blocks are added, then the displayed project total is rounded to one decimal place.</span>
           <span><strong>Precision note:</strong> AG and CL hours are inherited historical manual estimates; their break-level records cannot be independently reconstructed. CDX time is reconciled from the available session action timestamps. This is not an automated wall-clock timer.</span>
         </div>
       </details>
 
       <div class="provenance-changelog-list">
-        <!-- v1.6.6-rc -->
+        <!-- v1.6.6 -->
         <div class="version-item-wrap active">
           <div class="version-item-row" role="button" tabindex="0" aria-expanded="true">
-            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.6.6-rc</strong> (Current Local)</span>
-            <span class="version-row-tag" style="background:#fef3c7; color:#92400e; border-color:#fcd34d;">● 0.2h &bull; Aug 20</span>
+            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.6.6</strong> (Live)</span>
+            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 0.4h &bull; Aug 20</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-header">
               <div class="version-hover-title">
-                <span>v1.6.6-rc · Navigation Copy Refinement</span>
-                <span style="color:#92400e; font-size:9px;">● LOCAL &bull; NOT DEPLOYED</span>
+                <span>v1.6.6 · Brand Language &amp; Telemetry Keys</span>
+                <span style="color:#15803d; font-size:9px;">● LIVE &bull; PRODUCTION VERIFIED</span>
               </div>
               <div class="version-hover-meta">
                 <div><strong>Authoring Agent:</strong> Codex (CDX)</div>
-                <div><strong>Updated:</strong> Aug 20, 2026 · 5:44 PM EDT</div>
-                <div><strong>Source Baseline:</strong> #0161d08</div>
-                <div><strong>Production:</strong> v1.6.5 remains live</div>
+                <div><strong>Released:</strong> Aug 20, 2026 · 5:57 PM EDT</div>
+                <div><strong>Release Lineage:</strong> source candidate #f8b60a4</div>
+                <div><strong>Production:</strong> v1.6.6 verified at the custom domain</div>
               </div>
             </div>
             <ul class="version-hover-bullets">
@@ -243,6 +243,7 @@
               <li><strong>[5:42 PM]</strong> Added a collapsed version-number key defining major, minor, patch, and release-candidate thresholds with concrete dossier examples.</li>
               <li><strong>[5:43 PM]</strong> Applied the house editorial rule across visitor-facing copy: standalone “and” renders as “&amp;,” while “//” remains the structural separator.</li>
               <li><strong>[5:44 PM]</strong> Added a hover, keyboard-focus, and tap-accessible engineering-time breakdown showing the agent totals, arithmetic, active-block method, break rule, exclusions, and precision limits.</li>
+              <li><strong>[5:54 PM]</strong> Relabeled all dashboard links as a fictional Advancement Intelligence concept prototype and added an adjacent no-live-systems / no-donor-data disclosure.</li>
             </ul>
           </div>
         </div>
@@ -518,7 +519,7 @@
       </nav>
 
       <div class="header-actions">
-        <a href="https://richmond-symphony-advancement-demo.randybryanmoore.chatgpt.site" target="_blank" rel="noopener" class="button button-navy" style="padding: 8px 16px; font-size: 11px;">Live Demo (0000)</a>
+        <a href="https://richmond-symphony-advancement-demo.randybryanmoore.chatgpt.site" target="_blank" rel="noopener" class="button button-navy" style="padding: 8px 16px; font-size: 11px;">Concept Demo (0000)</a>
         <a href="one_pager.html" class="button button-navy" style="padding: 8px 16px; font-size: 11px;">Handout</a>
         <a href="#contact" class="button button-navy" style="padding: 8px 16px; font-size: 11px;">Contact</a>
       </div>
@@ -541,8 +542,9 @@
 
         <div class="hero-paths">
           <a href="https://richmond-symphony-advancement-demo.randybryanmoore.chatgpt.site" target="_blank" rel="noopener" class="button button-maroon" style="font-weight: 800; font-size: 13px; padding: 12px 20px;">
-            Launch Operations Dashboard (PIN: 0000) <span aria-hidden="true">↗</span>
+            Explore Concept Dashboard (PIN: 0000) <span aria-hidden="true">↗</span>
           </a>
+          <p class="dashboard-concept-note">Fictional Advancement Intelligence prototype // no live systems or donor data.</p>
           <a href="#case-studies" class="button button-maroon" style="font-size: 13px; padding: 12px 20px;">
             Systems Case Studies
           </a>
@@ -1277,7 +1279,7 @@
         <div class="footer-links">
           <a href="mailto:randybryanmoore@gmail.com" class="button button-navy">Email Candidate</a>
           <a href="Randy_Bryan_Moore.vcf" download class="button button-navy">Save Contact (.VCF)</a>
-          <a href="https://richmond-symphony-advancement-demo.randybryanmoore.chatgpt.site" target="_blank" rel="noopener" class="button button-navy">Dashboard Demo (0000)</a>
+          <a href="https://richmond-symphony-advancement-demo.randybryanmoore.chatgpt.site" target="_blank" rel="noopener" class="button button-navy">Concept Dashboard (0000)</a>
           <a href="Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip" download class="button button-navy">Download Dossier (.ZIP)</a>
           <a href="one_pager.html" class="button button-navy">Printable Handout (PDF)</a>
         </div>
@@ -1380,6 +1382,6 @@
   </div>
 
   <!-- Suite Script (external only — no inline duplication) -->
-  <script src="script.js?v=1787258935"></script>
+  <script src="script.js?v=1787263078"></script>
 </body>
 </html>
