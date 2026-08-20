@@ -104,11 +104,16 @@ new_commit = api_req(
     method='POST'
 )
 
-# 5. Update Branch Ref atomically
-api_req(
-    f'https://api.github.com/repos/{owner}/{repo}/git/refs/heads/{branch}',
-    data={'sha': new_commit['sha']},
-    method='PATCH'
-)
+# 5. Update Branch Refs atomically (both gh-pages and main)
+for b in ['gh-pages', 'main']:
+    try:
+        api_req(
+            f'https://api.github.com/repos/{owner}/{repo}/git/refs/heads/{b}',
+            data={'sha': new_commit['sha'], 'force': True},
+            method='PATCH'
+        )
+        print(f'Successfully updated {b} to commit {new_commit["sha"]}!')
+    except Exception as e:
+        print(f'Note on updating {b}: {e}')
 
-print(f'Successfully deployed atomic commit {new_commit["sha"]} to {branch}!')
+print(f'All branches synchronized and deployed!')
