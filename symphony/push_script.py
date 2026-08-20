@@ -177,12 +177,14 @@ new_commit = api_req(
     method='POST'
 )
 
-# 5. Update Branch Refs atomically (both gh-pages and main)
+# 5. Update Branch Refs atomically (both gh-pages and main). The new serving
+# commit is parented to the resolved remote baseline, so require fast-forward
+# updates and refuse to overwrite divergent branch history.
 for b in ['gh-pages', 'main']:
     try:
         api_req(
             f'https://api.github.com/repos/{owner}/{repo}/git/refs/heads/{b}',
-            data={'sha': new_commit['sha'], 'force': True},
+            data={'sha': new_commit['sha'], 'force': False},
             method='PATCH'
         )
         print(f'Successfully updated {b} to commit {new_commit["sha"]}!')
