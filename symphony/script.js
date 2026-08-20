@@ -78,7 +78,7 @@
     function checkAndUnlock() {
       const entered = Array.from(pinInputs).map(i => i.value.trim()).join('');
       if (entered === '0000' || entered.length === 4) {
-        setTimeout(unlockDossier, 80);
+        setTimeout(unlockDossier, 60);
       }
     }
 
@@ -97,24 +97,16 @@
         input.select();
       });
 
-      // Handle Keydown for instant advance on 0-9 and smart backspace
+      // Handle Keydown for navigation and backspace
       input.addEventListener('keydown', (e) => {
-        if (e.key >= '0' && e.key <= '9') {
-          input.value = e.key;
-          e.preventDefault();
-          if (idx < pinInputs.length - 1) {
-            pinInputs[idx + 1].focus();
-            pinInputs[idx + 1].select();
-          }
-          checkAndUnlock();
-        } else if (e.key === 'Backspace') {
-          e.preventDefault();
-          if (input.value) {
-            input.value = '';
-          } else if (idx > 0) {
+        if (e.key === 'Backspace') {
+          if (!input.value && idx > 0) {
+            e.preventDefault();
             pinInputs[idx - 1].value = '';
             pinInputs[idx - 1].focus();
             pinInputs[idx - 1].select();
+          } else {
+            input.value = '';
           }
           checkAndUnlock();
         } else if (e.key === 'ArrowLeft' && idx > 0) {
@@ -131,8 +123,8 @@
         }
       });
 
-      // Universal input handler (mobile keyboards, virtual keypads, autofill)
-      input.addEventListener('input', () => {
+      // Universal input handler (Desktop, Mobile keyboards, virtual keypads, autofill)
+      input.addEventListener('input', (e) => {
         const rawVal = input.value.replace(/\D/g, '');
         if (rawVal.length > 1) {
           // Distributed multi-character entry or paste
@@ -143,13 +135,17 @@
             }
           });
           const nextTarget = Math.min(pinInputs.length - 1, idx + chars.length);
-          pinInputs[nextTarget].focus();
-          pinInputs[nextTarget].select();
+          setTimeout(() => {
+            pinInputs[nextTarget].focus();
+            pinInputs[nextTarget].select();
+          }, 10);
         } else if (rawVal.length === 1) {
           input.value = rawVal;
           if (idx < pinInputs.length - 1) {
-            pinInputs[idx + 1].focus();
-            pinInputs[idx + 1].select();
+            setTimeout(() => {
+              pinInputs[idx + 1].focus();
+              pinInputs[idx + 1].select();
+            }, 10);
           }
         } else {
           input.value = '';
@@ -171,7 +167,11 @@
           if (chars.length >= 4) {
             unlockDossier();
           } else {
-            pinInputs[Math.min(pinInputs.length - 1, chars.length)].focus();
+            const targetIdx = Math.min(pinInputs.length - 1, chars.length);
+            setTimeout(() => {
+              pinInputs[targetIdx].focus();
+              pinInputs[targetIdx].select();
+            }, 10);
           }
         }
       });
