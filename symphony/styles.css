@@ -2686,10 +2686,41 @@ body[data-review-tools="on"] {
 }
 
 .version-item-row:hover {
-  background: var(--paper);
-  border-color: var(--maroon);
+  background: #ffffff;
+  border-color: var(--gold-light);
   transform: translateX(2px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.agent-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  font-weight: 900;
+  padding: 1px 4px;
+  border-radius: 3px;
+  margin-right: 4px;
+  line-height: 1.2;
+}
+
+.agent-chip--ag {
+  background: var(--navy);
+  color: var(--gold-light);
+  border: 1px solid rgba(223, 202, 116, 0.5);
+}
+
+.agent-chip--cl {
+  background: #c2410c;
+  color: #ffffff;
+  border: 1px solid #9a3412;
+}
+
+.agent-chip--cdx {
+  background: #047857;
+  color: #ffffff;
+  border: 1px solid #065f46;
 }
 
 .version-item-row strong {

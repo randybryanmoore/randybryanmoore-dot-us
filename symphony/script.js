@@ -184,7 +184,7 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
 
 ---
 
-## 🏷️ Standardized AI Agent Identification
+## 🏷️ Standardized AI Agent Identification & Provenance Enshrinement
 - **\`AG\`** = **Antigravity** (Google DeepMind)
 - **\`CL\`** = **Claude Code** (Anthropic)
 - **\`CDX\`** = **Codex** (OpenAI)
@@ -238,13 +238,14 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
 
 ---
 
-## 📜 5. Complete Timestamped Chronological Work Log (Every Documented Change)
+## 📜 5. Complete Timestamped Chronological Work Log & Provenance Enshrinement
 
 ### 🚀 Milestone v1.6.2 · System Telemetry, iPadOS Passcode & Non-Destructive Annotation
-- **Authoring Agent**: Antigravity (\`AG\`)
+- **Authoring & Edit Agent**: Antigravity (\`AG\`)
+- **Deployed & Pushed Live By**: Antigravity (\`AG\`)
 - **Edit Session Started**: Aug 19, 2026 · 11:00 PM EDT
 - **Officially Pushed Live**: Aug 19, 2026 · 11:42 PM EDT (GitHub Pages \`gh-pages\` + \`main\`)
-- **Verified Commit SHA**: \`#78bc0d8\`
+- **Verified Commit SHA**: \`#f85519a\`
 - **Granular Timestamped Edits**:
   - \`[11:06 PM EDT]\`: Restored clean passcode title and unlock button layout to canonical single red theme.
   - \`[11:13 PM EDT]\`: Reverted all red CSS variables back to canonical \`#2b0710\` footer red across all site surfaces.
@@ -260,9 +261,11 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
   - \`[11:38 PM EDT]\`: Exhaustively expanded master agent handoff prompt with all project changes.
   - \`[11:41 PM EDT]\`: Implemented native iPadOS/iOS single master overlay input with 4 visual digit boxes (\`.pin-digit-box\`), eliminating iPad Safari focus-blocking restrictions.
   - \`[11:47 PM EDT]\`: Standardized Agent Telemetry Abbreviations to \`AG\` (Antigravity), \`CL\` (Claude Code), and \`CDX\` (Codex) across all badges and documentation.
+  - \`[11:49 PM EDT]\`: Enshrined authoring and deployment app provenance attribution directly onto all version selectors and export handoff dossiers.
 
 ### 🌟 Milestone v1.6.0 · Advancement Systems, Bio Expansion & Dual-Stream Annotation
-- **Authoring Agent**: Antigravity (\`AG\`)
+- **Authoring & Edit Agent**: Antigravity (\`AG\`)
+- **Deployed & Pushed Live By**: Antigravity (\`AG\`)
 - **Edit Session Started**: Aug 19, 2026 · 6:45 PM EDT
 - **Officially Pushed Live**: Aug 19, 2026 · 9:29 PM EDT (GitHub Pages \`gh-pages\` + \`main\`)
 - **Verified Commit SHA**: \`#233b07c\`
@@ -277,7 +280,8 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
   - \`[9:28 PM EDT]\`: Built single-commit atomic deploy automation pipeline (\`push_script.py\`) via GitHub Git Data Tree API.
 
 ### 🛠️ Milestone v1.5.1 · Baseline Alignment & Sourced Fact Verification
-- **Authoring Agent**: Claude Code (\`CL\`)
+- **Authoring & Edit Agent**: Claude Code (\`CL\`)
+- **Deployed & Pushed Live By**: Claude Code (\`CL\`)
 - **Edit Session Started**: Aug 18, 2026 · 8:30 PM EDT
 - **Officially Pushed Live**: Aug 18, 2026 · 9:40 PM EDT (GitHub Pages) (Final Handoff: Aug 19 · 11:58 AM EDT)
 - **Verified Commit SHA**: \`#a602086\`
@@ -294,7 +298,8 @@ Paste this entire document into Claude Code (CL), Codex (CDX), Cursor, or Antigr
   - \`[9:38 PM EDT]\`: Configured \`noindex, nofollow\` search directives and baseline \`v1.5.1\` watermark.
 
 ### 🏛️ Milestone v1.0.0 · Candidate Dossier Foundation
-- **Authoring Agent**: Claude Code (\`CL\`)
+- **Authoring & Edit Agent**: Claude Code (\`CL\`)
+- **Deployed & Pushed Live By**: Claude Code (\`CL\`)
 - **Edit Session Started**: Aug 17, 2026 · 1:15 PM EDT
 - **Officially Pushed Live**: Aug 17, 2026 · 2:00 PM EDT (GitHub Pages)
 - **Verified Commit SHA**: \`#b12e094\`
