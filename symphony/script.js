@@ -248,7 +248,7 @@
     const currentTelemetry = Object.freeze({
       schemaVersion: 1,
       serviceName: 'richmond-symphony-candidate-dossier',
-      serviceVersion: '1.7.0-rc',
+      serviceVersion: '1.7.0',
       agent: 'CDX',
       agentProduct: 'Codex',
       modelFamily: 'GPT-5',
@@ -256,7 +256,7 @@
       reasoningEffort: 'not exposed to the static page',
       repository: 'randybryanmoore/randybryanmoore-dot-us',
       branch: 'main',
-      baseCommit: '8eab123',
+      baseCommit: '1d58442',
       publicUrl: 'https://symphony.randybryanmoore.us',
       releaseManifest: './release-manifest.json'
     });
@@ -526,20 +526,20 @@ source:
   repository: "${currentTelemetry.repository}"
   branch: "${currentTelemetry.branch}"
   base_commit: "${currentTelemetry.baseCommit}"
-  working_tree: "modified"
+  working_tree: "verified release telemetry finalization"
 lifecycle:
   local: true
-  committed: false
-  pushed: false
-  pull_request_or_merged: false
-  deployed: false
+  committed: true
+  pushed: true
+  pull_request_or_merged: true
+  deployed: true
   staging: false
-  production_verified: false
+  production_verified: true
 production:
   url: "${currentTelemetry.publicUrl}"
-  state: "v1.6.6 remains live; v1.7.0-rc is local only"
-  verified_at: "2026-08-20T17:57:04-04:00"
-  first_verified_serving_candidate: "df5f99e"
+  state: "v1.7.0 live and verified from the primary repository"
+  verified_at: "2026-08-20T20:35:30-04:00"
+  first_verified_one_repository_build: "1d58442"
 presentation:
   annotation_feature_live: true
   admin_controls: "${annotationToolsAreEnabled() ? 'unlocked' : 'locked'}"
@@ -555,7 +555,7 @@ validation:
   inline_owner_control: "source audit pass; transparent marker exposes only a compact code gate while locked; full telemetry remains closed until successful owner-code entry opens telemetry and turns annotation on; user file-page confirmation pending"
   grouped_annotation_export: "pass; one saved multi-element batch exports as one numbered AI comment with all targets listed"
   performing_arts_copy_constraints: "pass; 40-word opening, 123-word main narrative, 78-word roots-practice-community passage; requested stewardship pull quote removed"
-  production_readback: "not run for local v1.7.0-rc; prior v1.6.6 baseline remains verified"
+  production_readback: "pass; custom domain returned the v1.7.0 release source with manifest-matching CSS and JavaScript from the primary repository"
 security:
   access_gate: "client-side presentation convenience; not authentication"
   sensitive_values_in_export: false
@@ -588,16 +588,16 @@ This is the current operational snapshot. Reverify every changeable fact before 
 - Release manifest: \`${currentTelemetry.releaseManifest}\` — hashes must be regenerated after the final source edit and before deployment
 
 ### Lifecycle — report each state separately
-- Local: Yes — \`v${currentTelemetry.serviceVersion}\` presentation controls are implemented locally.
-- Committed: No.
-- Pushed: No.
-- Merged / Pull Request: No new PR or merge.
-- Deployed: No.
+- Local: Yes — \`v${currentTelemetry.serviceVersion}\` release source is present and validated.
+- Committed: Yes — release lineage begins with \`1d58442\`.
+- Pushed: Yes — primary GitHub repository.
+- Merged / Pull Request: Yes — PR #2 merged into \`main\`.
+- Deployed: Yes — primary-repository GitHub Actions Pages workflow.
 - Staging: Not used.
-- Live / Production: \`v1.6.6\` remains verified at the custom domain; \`v${currentTelemetry.serviceVersion}\` is local only.
+- Live / Production: \`v${currentTelemetry.serviceVersion}\` verified at the custom domain Aug 20, 2026 at 8:35 PM EDT.
 
 ### Presentation thresholds — report separately
-- Feature Live: Yes — the existing annotation capability is deployed in production v1.6.6 and available.
+- Feature Live: Yes — the owner-gated annotation capability is deployed in production v1.7.0 and available.
 - Admin Controls: ${annotationToolsAreEnabled() ? 'Unlocked — full telemetry, annotation, and owner actions are available.' : 'Locked — the transparent telemetry marker exposes only the owner-code gate; full telemetry and annotation are unavailable.'}
 - Ready to Present: ${annotationToolsAreEnabled() ? 'No — admin and annotation tools are currently active in this browser.' : 'Yes — annotation, editing, notes, and inspector overlays are hidden; the telemetry badge remains available for owner access.'}
 
@@ -663,16 +663,16 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 10. After deployment, read back the GitHub Pages build, custom domain, version marker, and representative artifact hashes. Only then report Live / Production.
 
 ## 7. Deployment safety rules
-- The Git Tree API may reduce partial-file update risk; it does not eliminate concurrent updates, caching, Pages build delays, or stale production responses.
-- Do not force-update \`main\` or \`gh-pages\` unless the exact target commits are resolved and Randy explicitly authorizes that destructive branch operation.
+- The primary repository workflow validates and uploads \`symphony/\` as one Pages artifact; it does not eliminate concurrent updates, caching, Pages build delays, or stale production responses.
+- Do not restore the legacy cross-repository deploy path or force-update \`main\`. The former serving repository is archival only.
 - Do not combine build, stage, commit, push, deployment, and live verification into one unconditional shell chain.
 - A failed or timed-out build, upload, or readback is not success.
 
 ## 8. Release evidence
 - \`DEPLOY-APPROVAL-001\` — Closed. Randy explicitly authorized publication.
-- Production baseline: v1.6.6 at source commit \`8eab123\`.
-- Current presentation-control candidate: v1.7.0-rc, local only.
-- Production readback for v1.6.6 passed at the custom domain on Aug 20, 2026 at 5:57 PM EDT.
+- First verified one-repository build: \`1d58442\` from merged PR #2.
+- Current production release: v1.7.0.
+- Production readback passed at the custom domain on Aug 20, 2026 at 8:35 PM EDT; CSS and JavaScript matched the release manifest.
 
 ## 9. Machine-readable companion
 Use “Copy Machine Telemetry (.YAML)” in the telemetry modal. Treat browser-generated state as a handoff snapshot, not as an independently verified Git or hosting measurement.`);

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-20T20:29:00-04:00",
+  "generated_at": "2026-08-20T20:35:30-04:00",
   "service_name": "richmond-symphony-candidate-dossier",
-  "service_version": "1.7.0-rc",
+  "service_version": "1.7.0",
   "generator": {
     "agent": "CDX",
     "product": "Codex",
@@ -13,9 +13,9 @@
   },
   "source": {
     "repository": "randybryanmoore/randybryanmoore-dot-us",
-    "branch": "codex/symphony-one-repo-v1.7.0",
-    "base_commit": "8eab123",
-    "working_tree": "modified"
+    "branch": "main",
+    "base_commit": "1d58442",
+    "working_tree": "verified release telemetry finalization"
   },
   "deployment_architecture": {
     "source_repository": "randybryanmoore/randybryanmoore-dot-us",
@@ -25,18 +25,20 @@
   },
   "lifecycle": {
     "local": true,
-    "committed": false,
-    "pushed": false,
-    "merged_or_pull_request": false,
-    "deployed": false,
+    "committed": true,
+    "pushed": true,
+    "merged_or_pull_request": true,
+    "deployed": true,
     "staging": false,
-    "production_verified": false,
-    "production_baseline": "v1.6.6"
+    "production_verified": true,
+    "production_version": "v1.7.0",
+    "verified_at": "2026-08-20T20:35:30-04:00",
+    "first_verified_one_repository_build": "1d58442"
   },
   "artifacts": [
     {
       "path": "index.html",
-      "sha256": "044b9a5510e0682a88e8ed938fb543db7a0f24b3be7f656f81a79669d5056450"
+      "sha256": "d0c907f17c99cdbc62b0d4f1ac9f2880bacdff720dd108ee319cd34f332006fc"
     },
     {
       "path": "styles.css",
@@ -44,15 +46,15 @@
     },
     {
       "path": "script.js",
-      "sha256": "54a43175f6620ed179aa2b78474bfbf40f8cedb7698c097e60b352a791128080"
+      "sha256": "463dd390f4009d47342e74f5b578ce5fa2c562306a1695cdbc4f519cf58ce791"
     },
     {
       "path": "one_pager.html",
-      "sha256": "2aec300d6177afdc7c1180c1bca96fbcf52d7e0d0128195765d73f6cba2e059d"
+      "sha256": "c83716ce592429d57196e423f6b29e618b03c62d7180b78fb77d18a6333a0737"
     },
     {
       "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",
-      "sha256": "e5cd2cc49233980533210d11f94c5cb7b7214b0f7bb0e4e42ef180b4f1c3a42b"
+      "sha256": "e66b2afb92664da8fafe49475d987bf47afa16a6b99fdbb68f0d133cc30da909"
     }
   ],
   "validation": {
@@ -66,7 +68,7 @@
     "performing_arts_copy_constraints": "pass: 40-word opening, 123-word main narrative, 78-word roots-practice-community passage; requested stewardship pull quote removed",
     "family_genealogy_language": "pass: Carter and Stanley connections are attributed to family accounts and presented as cultural context without an inherited-accomplishment claim",
     "section_order": "pass: 01 Systems, 02 Role Alignment, 03 Case Studies, 04 Performing Arts",
-    "production_readback": "not run for local release candidate"
+    "production_readback": "pass: custom domain returned the v1.7.0 release source and manifest-matching CSS and JavaScript from the primary repository"
   },
   "blockers": [
     {
