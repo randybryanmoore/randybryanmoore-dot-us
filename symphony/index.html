@@ -89,17 +89,7 @@
     <span class="build-badge-date">Aug 20, 2026</span>
   </button>
 
-  <!-- Locked-state owner gate. This compact panel is the only content exposed
-       before the owner code succeeds; full telemetry remains closed. -->
-  <div class="telemetry-unlock-popover" id="telemetry-unlock-popover" role="dialog" aria-labelledby="telemetry-unlock-title" hidden>
-    <div class="telemetry-unlock-title" id="telemetry-unlock-title">(( Owner Access Required ))</div>
-    <label class="annotation-owner-code-field" for="annotation-owner-code-input">
-      <span>Owner Code</span>
-      <input id="annotation-owner-code-input" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="off" aria-label="Owner verification code" aria-describedby="annotation-owner-control-note" placeholder="4 digits">
-    </label>
-    <p id="annotation-owner-control-note" aria-live="polite">Unlocking opens telemetry // turns annotation on.</p>
-    <button id="annotation-owner-unlock-btn" class="button button-navy" type="button">🔐 Unlock Telemetry // Annotation</button>
-  </div>
+
 
   <!-- Build Provenance & Telemetry Modal -->
   <div class="build-provenance-modal" id="build-provenance-modal" role="dialog" aria-modal="true" aria-labelledby="provenance-title" aria-hidden="true" tabindex="-1">

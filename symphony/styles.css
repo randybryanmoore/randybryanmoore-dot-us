@@ -2071,12 +2071,8 @@ body[data-review-tools="on"] {
   padding-bottom: 96px;
 }
 
-body[data-review-tools="off"] .annotation-dock,
-body[data-review-tools="off"] .annotation-popover,
-body[data-review-tools="off"] .feedback-drawer,
-body[data-review-tools="off"] .inspector-highlight-box,
-body[data-review-tools="off"] .annotation-element-badge {
-  display: none !important;
+.annotation-dock {
+  display: flex !important;
 }
 
 @media (max-width: 768px) {
