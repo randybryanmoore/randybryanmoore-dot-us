@@ -1,0 +1,48 @@
+name: Deploy Richmond Symphony dossier
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "symphony/**"
+      - ".github/workflows/symphony-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: symphony-pages
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the primary repository
+        uses: actions/checkout@v4
+
+      - name: Validate release source
+        run: |
+          node --check symphony/script.js
+          python3 -m py_compile symphony/push_script.py
+          python3 -m json.tool symphony/release-manifest.json >/dev/null
+          python3 symphony/push_script.py --verify
+
+      - name: Upload exact validated artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: symphony
+
+  deploy:
+    needs: validate
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy the validated dossier
+        id: deployment
+        uses: actions/deploy-pages@v4
