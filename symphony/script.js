@@ -5,8 +5,12 @@
 // =========================================================================
 
 (function() {
-  const editorialAndPattern = /\band\b/gi;
+  const editorialSeparatorPattern = /\s*(?:\band\b|&)\s*/gi;
   const editorialCopyAttributes = ['aria-label', 'placeholder', 'title'];
+
+  function formatEditorialCopy(value) {
+    return String(value).replace(editorialSeparatorPattern, ' // ');
+  }
 
   function applyEditorialSeparators(root = document.body) {
     if (!root) return;
@@ -14,10 +18,8 @@
     const replaceText = (textNode) => {
       const parent = textNode.parentElement;
       if (!parent || parent.closest('script, style, code, pre, textarea')) return;
-      if (editorialAndPattern.test(textNode.nodeValue)) {
-        textNode.nodeValue = textNode.nodeValue.replace(editorialAndPattern, '&');
-      }
-      editorialAndPattern.lastIndex = 0;
+      const formatted = formatEditorialCopy(textNode.nodeValue);
+      if (formatted !== textNode.nodeValue) textNode.nodeValue = formatted;
     };
 
     if (root.nodeType === Node.TEXT_NODE) {
@@ -34,10 +36,9 @@
       elements.forEach((element) => {
         editorialCopyAttributes.forEach((attribute) => {
           const value = element.getAttribute(attribute);
-          if (value && editorialAndPattern.test(value)) {
-            element.setAttribute(attribute, value.replace(editorialAndPattern, '&'));
-          }
-          editorialAndPattern.lastIndex = 0;
+          if (!value) return;
+          const formatted = formatEditorialCopy(value);
+          if (formatted !== value) element.setAttribute(attribute, formatted);
         });
       });
     }
@@ -225,20 +226,273 @@
     const copyHandoffBtn = document.getElementById('provenance-copy-handoff-btn');
     const copyTelemetryBtn = document.getElementById('provenance-copy-telemetry-btn');
     const relockBtn = document.getElementById('provenance-relock-btn');
+    const annotationOwnerToggleBtn = document.getElementById('annotation-owner-toggle-btn');
+    const annotationOwnerUnlockBtn = document.getElementById('annotation-owner-unlock-btn');
+    const annotationOwnerCodeInput = document.getElementById('annotation-owner-code-input');
+    const annotationOwnerCodeField = document.querySelector('.annotation-owner-code-field');
+    const telemetryUnlockPopover = document.getElementById('telemetry-unlock-popover');
+    const annotationPresentationTitle = document.getElementById('annotation-presentation-title');
+    const annotationFeatureLiveStatus = document.getElementById('annotation-feature-live-status');
+    const annotationPresentationReadyStatus = document.getElementById('annotation-presentation-ready-status');
+    const annotationOwnerControlNote = document.getElementById('annotation-owner-control-note');
     let provenanceReturnFocus = null;
+    let annotationOwnerFailedAttempts = 0;
+    let annotationOwnerLockedUntil = 0;
+
+    const annotationOwnerDigest = 'e438ac374ecf2449ef27a4a9e5dc1ef04d1094413b22f2529b472126493f5f48';
+    const annotationOwnerDigestNamespace = 'rbm-symphony-annotation-owner-v1:';
+    // Owner access always starts locked on a fresh page load. Earlier stored
+    // preferences are removed so telemetry never opens without a current code.
+    const annotationToolsPreferenceKey = 'rbm_symphony_annotation_tools_v3';
 
     const currentTelemetry = Object.freeze({
       schemaVersion: 1,
       serviceName: 'richmond-symphony-candidate-dossier',
-      serviceVersion: '1.6.6',
+      serviceVersion: '1.7.0-rc',
       agent: 'CDX',
       agentProduct: 'Codex',
+      modelFamily: 'GPT-5',
+      runtimeVariant: 'not exposed to the static page',
+      reasoningEffort: 'not exposed to the static page',
       repository: 'randybryanmoore/randybryanmoore-dot-us',
       branch: 'main',
-      baseCommit: 'f8b60a4',
+      baseCommit: '8eab123',
       publicUrl: 'https://symphony.randybryanmoore.us',
       releaseManifest: './release-manifest.json'
     });
+
+    function annotationToolsAreEnabled() {
+      return document.body.dataset.reviewTools !== 'off';
+    }
+
+    function setAnnotationOwnerMessage(message, state = '') {
+      if (!annotationOwnerControlNote) return;
+      annotationOwnerControlNote.textContent = message;
+      annotationOwnerControlNote.dataset.state = state;
+    }
+
+    function sha256HexFallback(value) {
+      const rightRotate = (number, amount) => (number >>> amount) | (number << (32 - amount));
+      const maxWord = 2 ** 32;
+      const words = [];
+      const hash = [];
+      const constants = [];
+      const composite = {};
+      let primeCounter = 0;
+
+      for (let candidate = 2; primeCounter < 64; candidate += 1) {
+        if (composite[candidate]) continue;
+        for (let multiple = candidate * candidate; multiple < 313; multiple += candidate) {
+          composite[multiple] = true;
+        }
+        hash[primeCounter] = (Math.sqrt(candidate) * maxWord) | 0;
+        constants[primeCounter] = (candidate ** (1 / 3) * maxWord) | 0;
+        primeCounter += 1;
+      }
+      hash.length = 8;
+
+      let ascii = value;
+      const bitLength = ascii.length * 8;
+      ascii += '\x80';
+      while (ascii.length % 64 !== 56) ascii += '\x00';
+      for (let index = 0; index < ascii.length; index += 1) {
+        words[index >> 2] |= ascii.charCodeAt(index) << ((3 - index) % 4) * 8;
+      }
+      words.push((bitLength / maxWord) | 0);
+      words.push(bitLength);
+
+      for (let blockStart = 0; blockStart < words.length; blockStart += 16) {
+        const schedule = words.slice(blockStart, blockStart + 16);
+        const previousHash = hash.slice(0);
+
+        for (let round = 0; round < 64; round += 1) {
+          const word15 = schedule[round - 15];
+          const word2 = schedule[round - 2];
+          const a = hash[0];
+          const e = hash[4];
+          const temp1 = hash[7]
+            + (rightRotate(e, 6) ^ rightRotate(e, 11) ^ rightRotate(e, 25))
+            + ((e & hash[5]) ^ ((~e) & hash[6]))
+            + constants[round]
+            + (schedule[round] = round < 16 ? schedule[round] : (
+              schedule[round - 16]
+              + (rightRotate(word15, 7) ^ rightRotate(word15, 18) ^ (word15 >>> 3))
+              + schedule[round - 7]
+              + (rightRotate(word2, 17) ^ rightRotate(word2, 19) ^ (word2 >>> 10))
+            ) | 0);
+          const temp2 = (rightRotate(a, 2) ^ rightRotate(a, 13) ^ rightRotate(a, 22))
+            + ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]));
+
+          hash.pop();
+          hash.unshift((temp1 + temp2) | 0);
+          hash[4] = (hash[4] + temp1) | 0;
+        }
+
+        for (let index = 0; index < 8; index += 1) {
+          hash[index] = (hash[index] + previousHash[index]) | 0;
+        }
+      }
+
+      return hash.map(word => Array.from({ length: 4 }, (_, byteIndex) => (
+        (word >> ((3 - byteIndex) * 8)) & 255
+      ).toString(16).padStart(2, '0')).join('')).join('');
+    }
+
+    async function digestAnnotationOwnerCode(code) {
+      const value = annotationOwnerDigestNamespace + code;
+      if (window.crypto?.subtle && typeof TextEncoder !== 'undefined') {
+        const bytes = new TextEncoder().encode(value);
+        const digest = await window.crypto.subtle.digest('SHA-256', bytes);
+        return [...new Uint8Array(digest)]
+          .map(byte => byte.toString(16).padStart(2, '0'))
+          .join('');
+      }
+      return sha256HexFallback(value);
+    }
+
+    function updateAnnotationPresentationTelemetry(enabled) {
+      if (annotationFeatureLiveStatus) {
+        annotationFeatureLiveStatus.textContent = 'Yes // annotation capability is available';
+        annotationFeatureLiveStatus.classList.add('is-live');
+      }
+      if (annotationPresentationReadyStatus) {
+        annotationPresentationReadyStatus.textContent = enabled
+          ? 'No // admin controls are unlocked'
+          : 'Yes // admin tools are locked';
+        annotationPresentationReadyStatus.classList.toggle('is-ready', !enabled);
+      }
+      if (annotationPresentationTitle) {
+        annotationPresentationTitle.textContent = enabled
+          ? '(( Admin Controls Unlocked ))'
+          : '(( Admin Controls Locked ))';
+      }
+      if (annotationOwnerToggleBtn) {
+        annotationOwnerToggleBtn.textContent = '🔒 Lock Admin';
+        annotationOwnerToggleBtn.setAttribute('aria-pressed', String(enabled));
+      }
+      [copyHandoffBtn, copyTelemetryBtn, relockBtn].forEach(button => {
+        if (button) button.disabled = !enabled;
+      });
+      if (annotationOwnerControlNote) {
+        setAnnotationOwnerMessage(enabled
+          ? 'Admin controls unlocked // annotation is on.'
+          : 'Unlocking opens telemetry // turns annotation on.',
+        enabled ? 'success' : '');
+      }
+      if (buildBadge) {
+        buildBadge.title = enabled
+          ? 'Admin controls unlocked // annotation on // open telemetry (Shift+V)'
+          : 'Owner telemetry locked // hover to reveal marker // code required (Shift+V)';
+      }
+    }
+
+    function applyAnnotationToolsState(enabled, persist = false) {
+      document.body.dataset.reviewTools = enabled ? 'on' : 'off';
+      pinActive = false;
+      editActive = false;
+      document.body.classList.remove('annotation-active');
+      document.querySelectorAll('[contenteditable="true"]').forEach(element => {
+        element.removeAttribute('contenteditable');
+      });
+      document.querySelectorAll('#dock-pin-mode-btn, #dock-private-mode-btn, #dock-live-edit-btn').forEach(button => {
+        button.classList.remove('active');
+      });
+      const inspector = document.getElementById('inspector-box');
+      const popover = document.getElementById('annotation-popover');
+      const drawer = document.getElementById('feedback-drawer');
+      if (inspector) inspector.style.display = 'none';
+      if (popover) popover.style.display = 'none';
+      if (drawer) drawer.style.display = 'none';
+      if (persist) {
+        try {
+          localStorage.removeItem(annotationToolsPreferenceKey);
+        } catch (error) {}
+      }
+      updateAnnotationPresentationTelemetry(enabled);
+    }
+
+    async function requestAnnotationOwnerToggle() {
+      if (annotationToolsAreEnabled()) {
+        if (annotationOwnerCodeInput) annotationOwnerCodeInput.value = '';
+        applyAnnotationToolsState(false, true);
+        setProvenanceOpen(false);
+        setOwnerUnlockOpen(false);
+        buildBadge?.focus();
+        return;
+      }
+
+      const now = Date.now();
+      if (now < annotationOwnerLockedUntil) {
+        const seconds = Math.ceil((annotationOwnerLockedUntil - now) / 1000);
+        setAnnotationOwnerMessage(`Owner control temporarily locked // try again in ${seconds} seconds.`, 'error');
+        return;
+      }
+
+      const ownerCode = annotationOwnerCodeInput?.value.trim() || '';
+
+      if (!/^\d{4}$/.test(ownerCode)) {
+        setAnnotationOwnerMessage('Enter the complete 4-digit owner code.', 'error');
+        annotationOwnerCodeInput?.focus();
+        return;
+      }
+
+      if (annotationOwnerUnlockBtn) annotationOwnerUnlockBtn.disabled = true;
+      try {
+        const suppliedDigest = await digestAnnotationOwnerCode(ownerCode);
+        if (suppliedDigest !== annotationOwnerDigest) {
+          annotationOwnerFailedAttempts += 1;
+          if (annotationOwnerFailedAttempts >= 5) {
+            annotationOwnerLockedUntil = Date.now() + 30000;
+            annotationOwnerFailedAttempts = 0;
+            setAnnotationOwnerMessage('Owner code not recognized // control locked for 30 seconds.', 'error');
+          } else {
+            setAnnotationOwnerMessage('Owner code not recognized.', 'error');
+          }
+          annotationOwnerCodeInput?.select();
+          return;
+        }
+      } catch (error) {
+        setAnnotationOwnerMessage('Owner-code verification is unavailable in this browser context.', 'error');
+        return;
+      } finally {
+        if (annotationOwnerUnlockBtn) annotationOwnerUnlockBtn.disabled = false;
+      }
+
+      annotationOwnerFailedAttempts = 0;
+      if (annotationOwnerCodeInput) annotationOwnerCodeInput.value = '';
+      applyAnnotationToolsState(true, true);
+      setOwnerUnlockOpen(false);
+      setProvenanceOpen(true);
+    }
+
+    try {
+      localStorage.removeItem(annotationToolsPreferenceKey);
+    } catch (error) {}
+    applyAnnotationToolsState(false);
+
+    if (annotationOwnerToggleBtn) {
+      annotationOwnerToggleBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        requestAnnotationOwnerToggle();
+      });
+    }
+    if (annotationOwnerUnlockBtn) {
+      annotationOwnerUnlockBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        requestAnnotationOwnerToggle();
+      });
+    }
+    if (annotationOwnerCodeInput) {
+      annotationOwnerCodeInput.addEventListener('input', () => {
+        annotationOwnerCodeInput.value = annotationOwnerCodeInput.value.replace(/\D/g, '').slice(0, 4);
+        setAnnotationOwnerMessage('Unlocking opens telemetry // turns annotation on.');
+      });
+      annotationOwnerCodeInput.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter') return;
+        event.preventDefault();
+        requestAnnotationOwnerToggle();
+      });
+    }
 
     function getTelemetryTimestamps() {
       const now = new Date();
@@ -254,13 +508,17 @@
 
     function buildMachineTelemetry() {
       const generated = getTelemetryTimestamps();
-      return `schema_version: ${currentTelemetry.schemaVersion}
+      return formatEditorialCopy(`schema_version: ${currentTelemetry.schemaVersion}
 generated_at: "${generated.iso}"
 generated_at_local: "${generated.local}"
 timezone: "America/New_York"
 generator:
   agent: "${currentTelemetry.agent}"
   product: "${currentTelemetry.agentProduct}"
+  model_family: "${currentTelemetry.modelFamily}"
+  runtime_variant: "${currentTelemetry.runtimeVariant}"
+  reasoning_effort: "${currentTelemetry.reasoningEffort}"
+  capture_status: "model family disclosed; exact variant and effort unavailable"
 service:
   name: "${currentTelemetry.serviceName}"
   version: "${currentTelemetry.serviceVersion}"
@@ -268,44 +526,52 @@ source:
   repository: "${currentTelemetry.repository}"
   branch: "${currentTelemetry.branch}"
   base_commit: "${currentTelemetry.baseCommit}"
-  working_tree: "release telemetry update"
+  working_tree: "modified"
 lifecycle:
   local: true
-  committed: true
-  pushed: true
+  committed: false
+  pushed: false
   pull_request_or_merged: false
-  deployed: true
+  deployed: false
   staging: false
-  production_verified: true
+  production_verified: false
 production:
   url: "${currentTelemetry.publicUrl}"
-  state: "v1.6.6 live and verified"
+  state: "v1.6.6 remains live; v1.7.0-rc is local only"
   verified_at: "2026-08-20T17:57:04-04:00"
   first_verified_serving_candidate: "df5f99e"
+presentation:
+  annotation_feature_live: true
+  admin_controls: "${annotationToolsAreEnabled() ? 'unlocked' : 'locked'}"
+  annotation_tools: "${annotationToolsAreEnabled() ? 'on' : 'off'}"
+  ready_to_present: ${!annotationToolsAreEnabled()}
 release_artifacts:
   manifest: "${currentTelemetry.releaseManifest}"
   manifest_policy: "regenerate hashes after final source change and before deployment"
 validation:
   prior_release_candidate_gate: "pass"
   structured_telemetry_export: "source_checks_pass"
-  browser_interaction: "file URL automation unavailable; production HTTP readback used"
-  production_readback: "pass"
+  browser_interaction: "pass on HTTP with forced no-WebCrypto fallback; exact in-app file URL automation is policy-blocked"
+  inline_owner_control: "source audit pass; transparent marker exposes only a compact code gate while locked; full telemetry remains closed until successful owner-code entry opens telemetry and turns annotation on; user file-page confirmation pending"
+  grouped_annotation_export: "pass; one saved multi-element batch exports as one numbered AI comment with all targets listed"
+  performing_arts_copy_constraints: "pass; 40-word opening, 123-word main narrative, 78-word roots-practice-community passage; requested stewardship pull quote removed"
+  production_readback: "not run for local v1.7.0-rc; prior v1.6.6 baseline remains verified"
 security:
   access_gate: "client-side presentation convenience; not authentication"
   sensitive_values_in_export: false
 blockers:
-  - id: "DEPLOY-APPROVAL-001"
+  - id: "RELEASE-AUTHORIZATION-1.7.0"
     severity: "high"
     status: "closed"
-    description: "Randy explicitly authorized commit, push, deployment, and live publication."
+    description: "Randy explicitly authorized commit, push, deployment, production publication, and repository consolidation."
 notes:
   - "Self-reported engineering time is historical context, not measured observability data."
-  - "A commit is not a push; a push is not a deployment; deployment is not live verification."`;
+  - "A commit is not a push; a push is not a deployment; deployment is not live verification."`);
     }
 
     function buildCurrentHandoff() {
       const generated = getTelemetryTimestamps();
-      return `# Current Agent Handoff — Richmond Symphony Candidate Dossier
+      return formatEditorialCopy(`# Current Agent Handoff — Richmond Symphony Candidate Dossier
 Generated: ${generated.iso} (${generated.local}; America/New_York)
 Schema: handoff-v1
 
@@ -314,6 +580,7 @@ This is the current operational snapshot. Reverify every changeable fact before 
 ## 1. Current state
 - Version: \`v${currentTelemetry.serviceVersion}\`
 - Agent: Codex (\`CDX\`)
+- Model family: \`${currentTelemetry.modelFamily}\`; exact runtime variant and reasoning effort are not exposed to the static page and must not be inferred.
 - Repository: \`${currentTelemetry.repository}\`, branch \`${currentTelemetry.branch}\`
 - Source release lineage begins with: \`${currentTelemetry.baseCommit}\`
 - Working area: \`symphony/\`
@@ -321,13 +588,18 @@ This is the current operational snapshot. Reverify every changeable fact before 
 - Release manifest: \`${currentTelemetry.releaseManifest}\` — hashes must be regenerated after the final source edit and before deployment
 
 ### Lifecycle — report each state separately
-- Local: Yes — \`v${currentTelemetry.serviceVersion}\` release source validated.
-- Committed: Yes — development repository \`main\`; use Git readback for the current commit.
-- Pushed: Yes — development repository \`main\`.
-- Merged / Pull Request: Direct-to-main release; no PR.
-- Deployed: Yes — serving \`gh-pages\` and \`main\`; use Git readback for the current commit.
+- Local: Yes — \`v${currentTelemetry.serviceVersion}\` presentation controls are implemented locally.
+- Committed: No.
+- Pushed: No.
+- Merged / Pull Request: No new PR or merge.
+- Deployed: No.
 - Staging: Not used.
-- Live / Production: \`v${currentTelemetry.serviceVersion}\` verified at the custom domain on Aug 20, 2026 at 5:57 PM EDT.
+- Live / Production: \`v1.6.6\` remains verified at the custom domain; \`v${currentTelemetry.serviceVersion}\` is local only.
+
+### Presentation thresholds — report separately
+- Feature Live: Yes — the existing annotation capability is deployed in production v1.6.6 and available.
+- Admin Controls: ${annotationToolsAreEnabled() ? 'Unlocked — full telemetry, annotation, and owner actions are available.' : 'Locked — the transparent telemetry marker exposes only the owner-code gate; full telemetry and annotation are unavailable.'}
+- Ready to Present: ${annotationToolsAreEnabled() ? 'No — admin and annotation tools are currently active in this browser.' : 'Yes — annotation, editing, notes, and inspector overlays are hidden; the telemetry badge remains available for owner access.'}
 
 A commit is not a push. A push is not a deployment. A deployment is not confirmed live until production readback succeeds.
 
@@ -349,7 +621,8 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 - EveryAction: constituent engagement tagging, outreach lists, follow-up workflows, and event reporting; do not invent duration.
 - Muster: requirements definition and Salesforce integration design for Active Minds across Congressional targets.
 - Leadership: supervised graduate MSW interns and trained 40 partner organizations; do not imply prior supervision of Richmond Symphony staff.
-- Musical Artistry is currently Section 03. Preserve the supplied sourced credentials and do not add unsupported fundraising software or experience.
+- Musical Artistry is currently Section 04. Preserve the supplied sourced credentials and do not add unsupported fundraising software or experience.
+- Attribute Carter / Stanley connections to family accounts, present them as cultural context, and do not convert the reported kinship into an inherited-accomplishment claim.
 
 ## 5. Current release changes
 - Corrected unsupported or overstated claims.
@@ -364,9 +637,18 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 - Added a visible telemetry key explaining gold Local, green Live, blue Released, red Attention, and cream Information states with accompanying text labels.
 - Made the telemetry color key keyboard-accessible, collapsible, and closed by default.
 - Added a collapsed version-number key defining MAJOR.MINOR.PATCH thresholds, reset rules, example readings, and the pre-release meaning of -rc.
-- Applied the dossier's editorial convention globally: visible standalone “and” becomes “&”, while existing “//” remains the structural divider.
+- Applied the dossier's editorial convention globally: visible “and” and ampersands become “//” while URLs, code, and operators remain unchanged.
 - Added an engineering-time disclosure that previews on hover or focus, persists on click or tap, and documents the exact agent-hour arithmetic, active-block method, 10-minute break rule, exclusions, and historical precision limits.
 - Relabeled every dashboard entry point as a fictional Advancement Intelligence concept prototype and added an adjacent no-live-systems / no-donor-data disclosure.
+- Made the below-header telemetry marker transparent at rest. While locked it exposes only a compact owner-code gate; successful unlock opens full telemetry and annotation together. The locked Ready to Present state is green, and the expanded panel remains between the header and annotation dock with hover translucency.
+- Grouped annotations now export one numbered AI comment per saved batch, with every selected element listed beneath that single comment.
+- Rebuilt Performing Arts Background around Roots, Practice, and Community; retained the photo, credentials, project links, and Spotify; shortened 1,000 Songs; and replaced three TikTok embeds with one compact listening-studies link group.
+- Attributed the Carter / Stanley relationships to family accounts, identified the families as Virginia music legends, and avoided any implication of inherited accomplishment.
+- Removed the Performing Arts stewardship pull quote at Randy’s request.
+- Changed CDX identity markers to gold so they remain distinct from the green production-verified lifecycle state.
+- Consolidated source and deployment authority in the primary repository with a validated GitHub Pages workflow that publishes only \`symphony/\`; the legacy serving repository is retained solely as a recoverable archive after cutover.
+- Reordered the core narrative to Systems, Role Alignment, Case Studies, then Performing Arts, with matching navigation and section numbers.
+- Centered Deployment at the top of telemetry, made Code Lifecycle State collapsible, replaced red annotation outlines with gold, and standardized visible monograms as RBM.
 
 ## 6. Safe release protocol
 1. Explain the intended source changes in 3–7 bullets.
@@ -388,12 +670,12 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 
 ## 8. Release evidence
 - \`DEPLOY-APPROVAL-001\` — Closed. Randy explicitly authorized publication.
-- Release lineage begins with source candidate \`f8b60a4\` on development \`main\`.
-- First verified serving candidate: \`df5f99e\`; later lifecycle-only commits must be resolved through Git instead of embedded self-referential SHAs.
-- Production readback: passed at the custom domain on Aug 20, 2026 at 5:57 PM EDT.
+- Production baseline: v1.6.6 at source commit \`8eab123\`.
+- Current presentation-control candidate: v1.7.0-rc, local only.
+- Production readback for v1.6.6 passed at the custom domain on Aug 20, 2026 at 5:57 PM EDT.
 
 ## 9. Machine-readable companion
-Use “Copy Machine Telemetry (.YAML)” in the telemetry modal. Treat browser-generated state as a handoff snapshot, not as an independently verified Git or hosting measurement.`;
+Use “Copy Machine Telemetry (.YAML)” in the telemetry modal. Treat browser-generated state as a handoff snapshot, not as an independently verified Git or hosting measurement.`);
     }
 
     async function copyProvenanceText(text, button, successLabel, restingLabel) {
@@ -447,8 +729,29 @@ Use “Copy Machine Telemetry (.YAML)” in the telemetry modal. Treat browser-g
         .filter(el => !el.disabled && el.offsetParent !== null);
     }
 
+    function setOwnerUnlockOpen(open) {
+      if (!telemetryUnlockPopover || !buildBadge) return;
+      const shouldOpen = Boolean(open && !annotationToolsAreEnabled());
+      telemetryUnlockPopover.hidden = !shouldOpen;
+      telemetryUnlockPopover.classList.toggle('open', shouldOpen);
+      buildBadge.setAttribute('aria-expanded', String(
+        shouldOpen || Boolean(provModal?.classList.contains('open'))
+      ));
+      if (shouldOpen) {
+        provenanceReturnFocus = document.activeElement;
+        requestAnimationFrame(() => annotationOwnerCodeInput?.focus());
+      } else if (annotationOwnerCodeInput) {
+        annotationOwnerCodeInput.value = '';
+      }
+    }
+
     function setProvenanceOpen(open) {
       if (!provModal || !buildBadge) return;
+      if (open && !annotationToolsAreEnabled()) {
+        setOwnerUnlockOpen(true);
+        return;
+      }
+      if (open) setOwnerUnlockOpen(false);
       provModal.classList.toggle('open', open);
       provModal.setAttribute('aria-hidden', String(!open));
       buildBadge.setAttribute('aria-expanded', String(open));
@@ -461,6 +764,10 @@ Use “Copy Machine Telemetry (.YAML)” in the telemetry modal. Treat browser-g
     }
 
     function toggleProvModal() {
+      if (!annotationToolsAreEnabled()) {
+        setOwnerUnlockOpen(Boolean(telemetryUnlockPopover?.hidden));
+        return;
+      }
       setProvenanceOpen(!provModal?.classList.contains('open'));
     }
 
@@ -481,7 +788,9 @@ Use “Copy Machine Telemetry (.YAML)” in the telemetry modal. Treat browser-g
     if (relockBtn) {
       relockBtn.addEventListener('click', (e) => {
         e.stopPropagation();
+        applyAnnotationToolsState(false, true);
         setProvenanceOpen(false);
+        setOwnerUnlockOpen(false);
         lockDossier();
       });
     }
@@ -489,6 +798,9 @@ Use “Copy Machine Telemetry (.YAML)” in the telemetry modal. Treat browser-g
     document.addEventListener('click', (e) => {
       if (provModal && provModal.classList.contains('open') && !e.target.closest('#build-provenance-modal') && !e.target.closest('#build-badge')) {
         setProvenanceOpen(false);
+      }
+      if (telemetryUnlockPopover && !telemetryUnlockPopover.hidden && !e.target.closest('#telemetry-unlock-popover') && !e.target.closest('#build-badge')) {
+        setOwnerUnlockOpen(false);
       }
     });
 
@@ -569,10 +881,18 @@ Use “Copy Machine Telemetry (.YAML)” in the telemetry modal. Treat browser-g
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
 
-    // Keep the performing-arts evidence near the case studies, before the
-    // résumé-derived alignment, roadmap, and career-history sections.
+    // Present role fit before proof scenarios, followed by the performing-arts
+    // narrative: 01 Systems, 02 Alignment, 03 Case Studies, 04 Music.
+    const systemsSection = document.getElementById('systems');
+    const alignmentSection = document.getElementById('alignment');
     const caseStudiesSection = document.getElementById('case-studies');
     const musicSection = document.getElementById('music');
+    if (systemsSection && alignmentSection) {
+      systemsSection.insertAdjacentElement('afterend', alignmentSection);
+    }
+    if (alignmentSection && caseStudiesSection) {
+      alignmentSection.insertAdjacentElement('afterend', caseStudiesSection);
+    }
     if (caseStudiesSection && musicSection) {
       caseStudiesSection.insertAdjacentElement('afterend', musicSection);
     }
@@ -1027,6 +1347,8 @@ Use “Copy Machine Telemetry (.YAML)” in the telemetry modal. Treat browser-g
       const isPrivate = (currentMode === 'private');
       const targetList = isPrivate ? privateNotesList : aiNotesList;
       const storageKey = isPrivate ? 'rbm_symphony_private_notes' : 'rbm_symphony_notes';
+      const batchId = `batch-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+      const batchSize = selectedElements.length;
 
       selectedElements.forEach((item, idx) => {
         const num = targetList.length + 1;
@@ -1054,6 +1376,9 @@ Use “Copy Machine Telemetry (.YAML)” in the telemetry modal. Treat browser-g
           noteId: noteId,
           tag: item.tag,
           type: isPrivate ? 'private' : 'ai',
+          batchId: batchId,
+          batchIndex: idx,
+          batchSize: batchSize,
           category: selectedCategory,
           targetText: item.text,
           comment: comment,
@@ -1089,6 +1414,7 @@ Use “Copy Machine Telemetry (.YAML)” in the telemetry modal. Treat browser-g
       if (e.key === 'Escape') {
         if (popover && popover.style.display === 'block') closePopover();
         if (provModal && provModal.classList.contains('open')) setProvenanceOpen(false);
+        if (telemetryUnlockPopover && !telemetryUnlockPopover.hidden) setOwnerUnlockOpen(false);
         if (pinActive) {
           pinActive = false;
           if (pinAiToggle) pinAiToggle.classList.remove('active');
@@ -1192,10 +1518,34 @@ Use “Copy Machine Telemetry (.YAML)” in the telemetry modal. Treat browser-g
           alert('No AI review notes queued! Click "🚀 Pin AI" to add critique.');
           return;
         }
+        const groupedNotes = [];
+        const groupedNoteMap = new Map();
+        aiNotesList.forEach(note => {
+          const groupKey = note.batchId || note.noteId;
+          if (!groupedNoteMap.has(groupKey)) {
+            const group = {
+              category: note.category,
+              comment: note.comment,
+              targets: []
+            };
+            groupedNoteMap.set(groupKey, group);
+            groupedNotes.push(group);
+          }
+          groupedNoteMap.get(groupKey).targets.push({ tag: note.tag, text: note.targetText });
+        });
+
         let prompt = "### Review Notes for Richmond Symphony Portfolio Refinements\n\n";
-        aiNotesList.forEach(n => {
-          prompt += `**[#${n.id}] [${n.category}] on <${n.tag}> "${n.targetText}"**\n`;
-          prompt += `- **Feedback/Revision**: ${n.comment}\n\n`;
+        groupedNotes.forEach((group, groupIndex) => {
+          if (group.targets.length === 1) {
+            const target = group.targets[0];
+            prompt += `**[#${groupIndex + 1}] [${group.category}] on <${target.tag}> "${target.text}"**\n`;
+          } else {
+            prompt += `**[#${groupIndex + 1}] [${group.category}] on ${group.targets.length} selected elements**\n`;
+            group.targets.forEach(target => {
+              prompt += `  - <${target.tag}> "${target.text}"\n`;
+            });
+          }
+          prompt += `- **Feedback/Revision**: ${group.comment}\n\n`;
         });
         navigator.clipboard.writeText(prompt).then(() => {
           copyAiBtn.innerText = 'Copied to Clipboard! ✓';

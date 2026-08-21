@@ -1,51 +1,79 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-20T17:57:59-04:00",
+  "generated_at": "2026-08-20T20:29:00-04:00",
   "service_name": "richmond-symphony-candidate-dossier",
-  "service_version": "1.6.6",
+  "service_version": "1.7.0-rc",
+  "generator": {
+    "agent": "CDX",
+    "product": "Codex",
+    "model_family": "GPT-5",
+    "runtime_variant": "not exposed to the static page",
+    "reasoning_effort": "not exposed to the static page",
+    "capture_status": "model family disclosed; exact variant and effort unavailable"
+  },
   "source": {
     "repository": "randybryanmoore/randybryanmoore-dot-us",
-    "branch": "main",
-    "base_commit": "97e003c3277cd03b64b35f4eac727832c7eb5773",
+    "branch": "codex/symphony-one-repo-v1.7.0",
+    "base_commit": "8eab123",
     "working_tree": "modified"
   },
+  "deployment_architecture": {
+    "source_repository": "randybryanmoore/randybryanmoore-dot-us",
+    "source_path": "symphony/",
+    "publisher": ".github/workflows/symphony-pages.yml",
+    "legacy_repository_role": "recoverable archive after custom-domain cutover"
+  },
   "lifecycle": {
-    "committed": true,
-    "pushed": true,
-    "deployed": true,
-    "production_verified": true
+    "local": true,
+    "committed": false,
+    "pushed": false,
+    "merged_or_pull_request": false,
+    "deployed": false,
+    "staging": false,
+    "production_verified": false,
+    "production_baseline": "v1.6.6"
   },
   "artifacts": [
     {
       "path": "index.html",
-      "sha256": "b59beb273f3afe0cb18096eb9aeb015273e46a5ad27802fa8c4a25135b5c434c"
+      "sha256": "044b9a5510e0682a88e8ed938fb543db7a0f24b3be7f656f81a79669d5056450"
     },
     {
       "path": "styles.css",
-      "sha256": "afe26a58ebfe399eec62d199eb2f2ebb1027d7541060370d63246f76e53c2fac"
+      "sha256": "3dce44d1e2c3a3987339acba328e0b3e735ed42e87170bbf6284a5121b693286"
     },
     {
       "path": "script.js",
-      "sha256": "5ee28fd96c047542ea6179572ce92b12afcd2c6115bdea5dc88ffc470f333ed2"
+      "sha256": "54a43175f6620ed179aa2b78474bfbf40f8cedb7698c097e60b352a791128080"
     },
     {
       "path": "one_pager.html",
-      "sha256": "aa0e91fcad6366720d2b5f06747eb0d5c38546a9aec526d079d624e03b68aacc"
+      "sha256": "2aec300d6177afdc7c1180c1bca96fbcf52d7e0d0128195765d73f6cba2e059d"
     },
     {
       "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",
-      "sha256": "a634337def1b2ba92603bff576a5d0852bccd57dcc7a814a7094dd036e8318ff"
+      "sha256": "e5cd2cc49233980533210d11f94c5cb7b7214b0f7bb0e4e42ef180b4f1c3a42b"
     }
   ],
   "validation": {
-    "production_readback": "pass"
+    "javascript_syntax": "pass",
+    "python_syntax": "pass",
+    "diff_whitespace": "pass",
+    "offline_archive": "pass",
+    "browser_interaction": "pass on HTTP with forced no-WebCrypto fallback; exact in-app file URL automation is policy-blocked",
+    "inline_owner_control": "source audit pass: transparent marker exposes only a compact code gate while locked; full telemetry remains closed until successful owner-code entry opens telemetry and turns annotation on; locked-ready status is green; user file-page confirmation pending",
+    "grouped_annotation_export": "pass: one saved multi-element batch exports as one numbered AI comment with all targets listed",
+    "performing_arts_copy_constraints": "pass: 40-word opening, 123-word main narrative, 78-word roots-practice-community passage; requested stewardship pull quote removed",
+    "family_genealogy_language": "pass: Carter and Stanley connections are attributed to family accounts and presented as cultural context without an inherited-accomplishment claim",
+    "section_order": "pass: 01 Systems, 02 Role Alignment, 03 Case Studies, 04 Performing Arts",
+    "production_readback": "not run for local release candidate"
   },
   "blockers": [
     {
-      "id": "DEPLOY-APPROVAL-001",
+      "id": "RELEASE-AUTHORIZATION-1.7.0",
       "severity": "high",
       "status": "closed",
-      "description": "Randy explicitly authorized commit, push, deployment, and live publication."
+      "description": "Randy explicitly authorized commit, push, deployment, production publication, and repository consolidation."
     }
   ]
 }
