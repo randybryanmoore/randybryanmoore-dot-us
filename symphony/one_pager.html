@@ -48,11 +48,11 @@
 
     body {
       font-family: var(--font-sans);
-      background-color: var(--cream);
+      background-color: var(--cobalt-deep);
       color: var(--charcoal);
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
-      padding-bottom: 60px;
+      padding-bottom: 90px;
     }
 
     h1, h2, h3 {
@@ -65,6 +65,56 @@
     p { margin-bottom: 0.75rem; }
     em { font-style: italic; }
 
+    /* Site Header Match */
+    .op-site-header {
+      background: var(--wine);
+      border-bottom: 1px solid var(--gold);
+      color: #fff;
+      padding: 12px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .op-wordmark {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+    .op-monogram {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--cobalt-deep);
+      border: 1.5px solid var(--gold);
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .op-wordmark-title {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #ffffff;
+    }
+    .op-wordmark-sub {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
     /* Buttons */
     .btn {
       display: inline-flex;
@@ -73,7 +123,7 @@
       font-family: var(--font-sans);
       font-size: 0.82rem;
       font-weight: 700;
-      padding: 0.6rem 1.25rem;
+      padding: 0.55rem 1.15rem;
       border-radius: var(--radius-sm);
       text-decoration: none;
       cursor: pointer;
@@ -83,9 +133,9 @@
       letter-spacing: 0.06em;
     }
     .btn-wine { background-color: var(--wine); color: #FFFFFF; border-color: var(--gold); }
-    .btn-wine:hover { background-color: #1a040a; color: #FFFFFF; }
-    .btn-outline { border-color: rgba(255,255,255,0.4); color: #fff; background: transparent; }
-    .btn-outline:hover { border-color: var(--gold-light); color: var(--gold-light); }
+    .btn-wine:hover { background-color: #1a040a; color: #FFFFFF; transform: translateY(-1px); }
+    .btn-outline { border-color: rgba(223, 202, 116, 0.4); color: var(--cream); background: rgba(13, 26, 50, 0.6); }
+    .btn-outline:hover { border-color: var(--gold-light); color: var(--gold-light); background: var(--cobalt-deep); transform: translateY(-1px); }
 
     body[data-telemetry-surface="one-pager"] .provenance-action-cluster {
       display: grid;
@@ -174,29 +224,16 @@
       margin: 0;
     }
 
-    /* Print sticky action bar */
-    .print-btn-bar {
-      background: var(--cobalt-deep);
-      color: #fff;
-      padding: 12px 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.3);
-    }
-
-    /* Handout Main Container */
+    /* Handout Main Container (Elevated Paper Sheet resting on Deep Navy) */
     .handout-sheet {
-      background: transparent;
+      background: var(--cream-surface);
       max-width: 900px;
-      width: 100%;
-      margin: 20px auto;
-      padding: 0 20px;
-      border: none;
-      box-shadow: none;
+      width: calc(100% - 32px);
+      margin: 32px auto;
+      padding: 40px 44px;
+      border-radius: 8px;
+      border: 1px solid rgba(223, 202, 116, 0.35);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
     }
 
     .handout-header {
@@ -387,31 +424,106 @@
 
     @page {
       size: letter portrait;
-      margin: 0.35in;
+      margin: 0.22in 0.28in;
     }
 
     @media print {
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-      html, body { background: #fff !important; padding: 0 !important; }
-      body { color: #000; font-size: 9.5pt; line-height: 1.35; }
-      .top-nav, .annotation-dock, .annotation-popover, .feedback-drawer, .passcode-gate-overlay, .print-btn-bar, .build-badge, .build-provenance-modal { display: none !important; }
+      html, body { background: #fff !important; padding: 0 !important; margin: 0 !important; }
+      body { color: var(--charcoal); font-size: 7.2pt; line-height: 1.24; }
+      .top-nav, .annotation-dock, .annotation-popover, .feedback-drawer, .passcode-gate-overlay, .print-btn-bar, .build-badge, .build-provenance-modal, #inspector-box { display: none !important; }
+      
       .page-break { page-break-before: always; break-before: page; margin-top: 0 !important; }
-      .handout-sheet { box-shadow: none !important; border: none !important; padding: 0 !important; margin: 0 !important; max-width: 100% !important; width: 100% !important; background: #fff !important; }
-      .portfolio-block { background: #fff !important; border: 1px solid #000 !important; color: #000 !important; }
-      .portfolio-block h3, .portfolio-block p, .portfolio-block a.portfolio-link { color: #000 !important; }
+      .handout-sheet {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        background: transparent !important;
+        page-break-inside: avoid;
+      }
+
+      .handout-header {
+        padding: 0.4rem 0.75rem !important;
+        margin-bottom: 0.35rem !important;
+        border-radius: 4px !important;
+        border: 1px solid var(--gold) !important;
+        box-shadow: none !important;
+      }
+      .handout-title h1 { font-size: 1.25rem !important; margin-bottom: 0.1rem !important; line-height: 1.1 !important; }
+      .handout-title p { font-size: 0.66rem !important; letter-spacing: 0.05em !important; }
+      .handout-meta { font-size: 0.68rem !important; line-height: 1.25 !important; }
+
+      .portfolio-block {
+        display: grid !important;
+        grid-template-columns: 56px 1fr !important;
+        gap: 0.6rem !important;
+        padding: 0.35rem 0.65rem !important;
+        margin-bottom: 0.35rem !important;
+        border-radius: 4px !important;
+        border: 1px solid var(--gold) !important;
+        box-shadow: none !important;
+        background: var(--cobalt) !important;
+      }
+      .portfolio-block .qr-wrap { width: 50px !important; height: 50px !important; padding: 2px !important; }
+      .portfolio-block h3 { font-size: 0.8rem !important; margin-bottom: 0.1rem !important; color: #fff !important; }
+      .portfolio-block p { font-size: 0.66rem !important; line-height: 1.2 !important; margin-bottom: 0.15rem !important; color: rgba(255,255,255,0.9) !important; }
+      .portfolio-block a.portfolio-link { font-size: 0.66rem !important; }
+
+      .handout-section { margin-bottom: 0.35rem !important; }
+      .handout-section h2 { font-size: 0.84rem !important; padding-bottom: 0.15rem !important; margin-bottom: 0.2rem !important; }
+      .handout-section p { font-size: 0.69rem !important; line-height: 1.22 !important; margin-bottom: 0.2rem !important; }
+      .handout-section blockquote { font-size: 0.67rem !important; margin: 0.25rem 0 !important; padding-left: 6px !important; line-height: 1.2 !important; }
+
+      .dgrid { gap: 4px !important; margin-top: 0.2rem !important; }
+      .dcard { padding: 0.35rem 0.5rem !important; border-radius: 4px !important; box-shadow: none !important; }
+      .dcard .dcard-num { font-size: 6.8px !important; margin-bottom: 0.1rem !important; }
+      .dcard h3 { font-size: 0.74rem !important; margin-bottom: 0.1rem !important; }
+      .dcard p { font-size: 0.65rem !important; line-height: 1.18 !important; }
+
+      .matrix-table { margin-top: 0.2rem !important; font-size: 0.66rem !important; }
+      .matrix-table th { padding: 2.5px 5px !important; font-size: 0.63rem !important; }
+      .matrix-table td { padding: 2.5px 5px !important; line-height: 1.18 !important; }
+
+      .handout-footer {
+        padding: 0.35rem 0.75rem !important;
+        margin-top: 0.35rem !important;
+        font-size: 0.67rem !important;
+        border-radius: 4px !important;
+        border: 1px solid var(--gold) !important;
+        box-shadow: none !important;
+      }
+      .handout-footer .footer-pin { font-size: 0.62rem !important; padding: 1px 4px !important; }
+
+      /* Page 2 Specific Containment */
+      .handout-grid-2 { gap: 4px !important; }
+      .handout-card { padding: 0.35rem 0.5rem !important; border-radius: 4px !important; }
+      .handout-card h3 { font-size: 0.74rem !important; margin-bottom: 0.1rem !important; }
+      .handout-card p { font-size: 0.65rem !important; line-height: 1.18 !important; }
+
+      .handout-section:last-of-type > div { gap: 0.25rem !important; font-size: 0.67rem !important; }
+      .handout-section:last-of-type span { font-size: 0.63rem !important; line-height: 1.15 !important; }
     }
   </style>
 </head>
 <body data-review-tools="on" data-telemetry-surface="one-pager" class="dossier-unlocked">
 
-  <div class="print-btn-bar">
-    <div><strong>Executive Candidate Briefing</strong> • Randy Bryan Moore, MSW</div>
-    <div style="display:flex; align-items:center; gap:6px;">
-      <a href="index.html" class="btn btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.4); padding:4px 12px; font-size:0.8rem;">Return to Full Dossier</a>
-      <a href="Randy_Bryan_Moore_Executive_Briefing.pdf" download class="btn btn-outline" style="color:#dfca74; border-color:rgba(223,202,116,0.6); padding:4px 12px; font-size:0.8rem; text-decoration:none;">Download PDF 📥</a>
-      <button onclick="window.print()" class="btn btn-wine" style="padding:4px 14px; font-size:0.8rem;">Print / Save PDF</button>
+  <header class="op-site-header">
+    <a href="index.html" class="op-wordmark">
+      <div class="op-monogram">RBM</div>
+      <div class="op-wordmark-text">
+        <div class="op-wordmark-title">Randy Bryan Moore, MSW</div>
+        <div class="op-wordmark-sub">Richmond Symphony · Executive Briefing</div>
+      </div>
+    </a>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <a href="index.html" class="btn btn-outline" style="font-size:0.76rem; padding:6px 14px;">Return to Full Dossier ↗</a>
+      <a href="Randy_Bryan_Moore_Executive_Briefing.pdf" download class="btn btn-outline" style="color:#dfca74; border-color:rgba(223,202,116,0.6); font-size:0.76rem; padding:6px 14px; text-decoration:none;">Download PDF 📥</a>
+      <button onclick="window.print()" class="btn btn-wine" style="font-size:0.76rem; padding:6px 16px;">Print / Save PDF</button>
     </div>
-  </div>
+  </header>
 
   <!-- Compact one-pager telemetry pill. The OP release line remains
        independent from the parent dossier version shown inside the panel. -->
@@ -427,8 +539,11 @@
   <div class="handout-sheet">
     <div class="handout-header">
       <div class="handout-title">
-        <h1>Randy Bryan Moore, MSW</h1>
-        <p>Assistant Director, Advancement Systems & Operations • Candidate Briefing</p>
+        <h1 style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+          <span>Randy <em>Bryan</em> Moore</span>
+          <span style="font-family:var(--font-sans); font-size:0.95rem; font-weight:800; background:var(--cobalt-deep); color:var(--gold-light); padding:2px 8px; border-radius:4px; border:1px solid var(--gold); letter-spacing:0.04em;">MSW</span>
+        </h1>
+        <p>Assistant Director, Advancement Systems &amp; Operations • Candidate Briefing</p>
       </div>
       <div class="handout-meta">
         <div>Richmond, Virginia</div>
