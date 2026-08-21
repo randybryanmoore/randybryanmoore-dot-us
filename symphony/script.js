@@ -248,7 +248,7 @@
     const currentTelemetry = Object.freeze({
       schemaVersion: 1,
       serviceName: 'richmond-symphony-candidate-dossier',
-      serviceVersion: '1.7.3-rc',
+      serviceVersion: '1.7.3',
       agent: 'CDX',
       agentProduct: 'Codex',
       modelFamily: 'GPT-5',
@@ -256,7 +256,7 @@
       reasoningEffort: 'not exposed to the static page',
       repository: 'randybryanmoore/randybryanmoore-dot-us',
       branch: 'main',
-      baseCommit: '8ea39cf',
+      baseCommit: '081f6f1',
       publicUrl: 'https://symphony.randybryanmoore.us',
       releaseManifest: './release-manifest.json'
     });
@@ -526,19 +526,21 @@ source:
   repository: "${currentTelemetry.repository}"
   branch: "${currentTelemetry.branch}"
   base_commit: "${currentTelemetry.baseCommit}"
-  working_tree: "local centered-hero release candidate verified in browser"
+  working_tree: "release source plus post-deployment telemetry finalization"
 lifecycle:
   local: true
-  committed: false
-  pushed: false
+  committed: true
+  pushed: true
   pull_request_or_merged: false
-  deployed: false
+  deployed: true
   staging: false
   production_verified: true
 production:
   url: "${currentTelemetry.publicUrl}"
-  state: "v1.7.2 live badge read back from the primary custom domain; v1.7.3-rc remains local"
-  verified_at: "2026-08-21T12:14:40-04:00"
+  state: "v1.7.3 and five release-artifact hashes verified at the primary custom domain"
+  verified_at: "2026-08-21T13:05:06-04:00"
+  release_checkpoint: "081f6f1"
+  deployment_workflow_run: "32506199014"
   first_verified_one_repository_build: "1d58442"
 presentation:
   annotation_feature_live: true
@@ -564,9 +566,9 @@ validation:
   inline_owner_control: "superseded in v1.7.2; telemetry and the dual-stream annotation dock are visible by default"
   grouped_annotation_export: "pass; one saved multi-element batch exports as one numbered AI comment with all targets listed"
   performing_arts_copy_constraints: "pass; 40-word opening, 123-word main narrative, 78-word roots-practice-community passage; requested stewardship pull quote removed"
-  production_readback: "partial pass; custom domain returned the v1.7.2 LIVE badge on Aug 21, 2026 at 12:14 PM EDT; artifact-hash readback not repeated for this local patch"
+  production_readback: "pass; custom-domain HTML, CSS, JavaScript, one-pager, and dossier ZIP hashes matched the release manifest Aug 21, 2026 at 1:05 PM EDT"
 security:
-  access_gate: "not active on the default v1.7.2 page load; client-side presentation controls are not authentication"
+  access_gate: "not active on the default v1.7.3 page load; client-side presentation controls are not authentication"
   sensitive_values_in_export: false
 blockers:
   - id: "RELEASE-AUTHORIZATION-1.7.0"
@@ -712,15 +714,15 @@ This is the current operational snapshot. Reverify every changeable fact before 
 
 ### Lifecycle — report each state separately
 - Local: Yes — \`v${currentTelemetry.serviceVersion}\` release source is present and validated.
-- Committed: No — the centered-action candidate changes are uncommitted.
-- Pushed: No — the candidate remains local.
-- Merged / Pull Request: No — no candidate PR or merge exists.
-- Deployed: No — the candidate has not entered the Pages workflow.
+- Committed: Yes — release checkpoint \`081f6f1\`.
+- Pushed: Yes — the release checkpoint was pushed directly to \`origin/main\`.
+- Merged / Pull Request: Not used — this authorized release was pushed directly to \`main\`.
+- Deployed: Yes — GitHub Actions Pages run \`32506199014\` completed successfully.
 - Staging: Not used.
-- Live / Production: \`v1.7.2\` remains live; its LIVE badge was read back at the custom domain Aug 21, 2026 at 12:14 PM EDT. \`v${currentTelemetry.serviceVersion}\` is not live.
+- Live / Production: \`v${currentTelemetry.serviceVersion}\` and all five release-artifact hashes were verified at the custom domain Aug 21, 2026 at 1:05 PM EDT.
 
 ### Presentation thresholds — report separately
-- Feature Live: Yes — production v1.7.2 exposes telemetry and the dual-stream annotation dock by default.
+- Feature Live: Yes — production v1.7.3 exposes telemetry and the dual-stream annotation dock by default.
 - Admin Controls: ${annotationToolsAreEnabled() ? 'Available — telemetry, annotation, and review actions are visible in this browser.' : 'Hidden — presentation mode is active in this browser.'}
 - Ready to Present: ${annotationToolsAreEnabled() ? 'No — annotation and review tools are currently visible.' : 'Yes — annotation and review tools are hidden.'}
 
@@ -728,7 +730,7 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 
 ## 2. Privacy and access classification
 - Distribution: Internal engineering handoff. Remove personal contact details and machine-specific paths before broader sharing.
-- Any client-side presentation gate is a convenience, not authentication or confidentiality protection; production v1.7.2 loads the review tools visibly by default.
+- Any client-side presentation gate is a convenience, not authentication or confidentiality protection; production v1.7.3 loads the review tools visibly by default.
 - Do not put passcodes, tokens, private-note contents, or credential-file paths in generated handoffs.
 - Do not publish the dossier ZIP without explicit approval of its complete manifest.
 
@@ -798,8 +800,9 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 - \`DEPLOY-APPROVAL-001\` — Closed. Randy explicitly authorized publication.
 - First verified one-repository build: \`1d58442\` from merged PR #2.
 - Complete-telemetry candidate: \`5fa8969\`, merged by PR #4 as \`689456d\`.
-- Current production release: v1.7.2.
-- Production badge readback passed at the custom domain on Aug 21, 2026 at 12:14 PM EDT; artifact hashes were not re-read for this local-only patch.
+- Current production release: v1.7.3.
+- Release checkpoint \`081f6f1\` deployed successfully through GitHub Actions Pages run \`32506199014\`.
+- Production HTML, CSS, JavaScript, one-pager, and dossier ZIP hashes matched the release manifest at the custom domain on Aug 21, 2026 at 1:05 PM EDT.
 
 ## 9. Machine-readable companion
 The complete YAML telemetry is embedded in Section 10.7 and is also available separately through “Copy Machine Telemetry (.YAML).” Treat browser-generated state as a handoff snapshot, not as an independently verified Git or hosting measurement.`);
