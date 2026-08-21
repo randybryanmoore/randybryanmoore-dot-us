@@ -613,17 +613,17 @@ img {
 }
 
 .hero-paths {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
-  margin-bottom: 32px;
-  justify-content: center;
-  align-items: center;
+  margin: 0 auto 32px;
+  align-items: stretch;
+  max-width: 574px;
   width: 100%;
 }
 
 .dashboard-concept-note {
-  flex-basis: 100%;
+  grid-column: 1 / -1;
   margin: -2px 0 0;
   color: var(--cream);
   font-family: var(--mono);
@@ -634,9 +634,15 @@ img {
 }
 
 .home-hero .hero-paths .button {
+  box-sizing: border-box;
   border-radius: 4px;
   font-size: 13px;
+  justify-content: center;
+  min-width: 0;
   padding: 12px 20px;
+  text-align: center;
+  white-space: normal;
+  width: 100%;
 }
 
 .home-hero .hero-paths .button:hover {
@@ -2684,6 +2690,14 @@ body[data-review-tools="on"] {
   .button-row {
     flex-direction: column;
     width: 100%;
+  }
+
+  .hero-paths {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-concept-note {
+    grid-column: auto;
   }
 
   .home-hero .hero-paths .button,

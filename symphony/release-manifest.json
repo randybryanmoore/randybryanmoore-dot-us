@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-20T21:07:01-04:00",
+  "generated_at": "2026-08-21T12:22:15-04:00",
   "service_name": "richmond-symphony-candidate-dossier",
-  "service_version": "1.7.1",
+  "service_version": "1.7.3-rc",
   "generator": {
     "agent": "CDX",
     "product": "Codex",
@@ -14,8 +14,8 @@
   "source": {
     "repository": "randybryanmoore/randybryanmoore-dot-us",
     "branch": "main",
-    "base_commit": "689456d",
-    "working_tree": "verified release telemetry finalization"
+    "base_commit": "8ea39cf",
+    "working_tree": "local centered-hero release candidate verified in browser"
   },
   "deployment_architecture": {
     "source_repository": "randybryanmoore/randybryanmoore-dot-us",
@@ -25,36 +25,36 @@
   },
   "lifecycle": {
     "local": true,
-    "committed": true,
-    "pushed": true,
-    "merged_or_pull_request": true,
-    "deployed": true,
+    "committed": false,
+    "pushed": false,
+    "merged_or_pull_request": false,
+    "deployed": false,
     "staging": false,
     "production_verified": true,
-    "production_version": "v1.7.1",
-    "verified_at": "2026-08-20T21:07:01-04:00",
+    "production_version": "v1.7.2",
+    "verified_at": "2026-08-21T12:14:40-04:00",
     "first_verified_one_repository_build": "1d58442"
   },
   "artifacts": [
     {
       "path": "index.html",
-      "sha256": "c8ba2a653c0a970ed85ba4269762b8f36a0c23f42e512a8303b5a1a6c74fc60e"
+      "sha256": "dcebbf08991190baa7ec3346c35ad4e60bd8ade7069ed4a002e356bfa731d7da"
     },
     {
       "path": "styles.css",
-      "sha256": "1f6a7705e281d2b079c430a3befd9a3c23703acbddb12f7f5317cab9c37edb02"
+      "sha256": "be59bb4d933f6450eaab9a2d67e928bb08d33921b11b4efcc234f753b4eb0bb5"
     },
     {
       "path": "script.js",
-      "sha256": "a12f58e968944792aaf601aa96d8bce66af25ab55a18fba9efe4aef915147795"
+      "sha256": "1133a2ad1775daafb5689acb76cb2daca8de312b7f2d3011db6a0f66c3b252ec"
     },
     {
       "path": "one_pager.html",
-      "sha256": "a9df936bba269c335217c7d3ac4ec82588087e8b84ecfa14c62eda79b374c0ad"
+      "sha256": "59a65afaf1a7f61570b5b21630efa76eb8f5ba3e67e00733fa9f3f0dfb645902"
     },
     {
       "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",
-      "sha256": "f611fac46cd9b90666881578517f3a3d36f9f9b82f1089be7cdb6e0b1231e8e7"
+      "sha256": "5af0cd1734345ad5a16a2608eeedec014db422e76148d52228f28b091b6cbd40"
     }
   ],
   "validation": {
@@ -63,13 +63,14 @@
     "diff_whitespace": "pass",
     "offline_archive": "pass",
     "browser_interaction": "pass on HTTP with forced no-WebCrypto fallback; exact in-app file URL automation is policy-blocked",
-    "inline_owner_control": "source audit pass: transparent marker exposes only a compact code gate while locked; full telemetry remains closed until successful owner-code entry opens telemetry and turns annotation on; locked-ready status is green; user file-page confirmation pending",
+    "inline_owner_control": "superseded in v1.7.2: telemetry and the dual-stream annotation dock are visible by default",
     "grouped_annotation_export": "pass: one saved multi-element batch exports as one numbered AI comment with all targets listed",
     "performing_arts_copy_constraints": "pass: 40-word opening, 123-word main narrative, 78-word roots-practice-community passage; requested stewardship pull quote removed",
     "family_genealogy_language": "pass: Carter and Stanley connections are attributed to family accounts and presented as cultural context without an inherited-accomplishment claim",
     "section_order": "pass: 01 Systems, 02 Role Alignment, 03 Case Studies, 04 Performing Arts",
-    "complete_handoff_export": "pass: browser-copied handoff contained Sections 10.1-10.9, all 8 version records, full-modal fallback, lifecycle definitions, telemetry keys, time method, machine YAML, and no private owner code",
-    "production_readback": "pass: custom domain returned the v1.7.1 candidate source and manifest-matching HTML, CSS, and JavaScript from the primary repository before final live-status reconciliation"
+    "complete_handoff_export": "pass: browser export contains Sections 10.1-10.9 and all 10 visible version records; private owner code absent",
+    "hero_action_alignment": "pass: equal-width centered two-column grid at 1440x1000 and centered single-column stack at 390x844 with zero horizontal overflow",
+    "production_readback": "partial pass: custom domain returned the v1.7.2 LIVE badge on Aug 21, 2026 at 12:14 PM EDT; artifact hashes were not re-read for this local patch"
   },
   "blockers": [
     {

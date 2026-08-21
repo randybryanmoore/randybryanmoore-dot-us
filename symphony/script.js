@@ -248,15 +248,15 @@
     const currentTelemetry = Object.freeze({
       schemaVersion: 1,
       serviceName: 'richmond-symphony-candidate-dossier',
-      serviceVersion: '1.7.2',
-      agent: 'AG',
-      agentProduct: 'Antigravity',
-      modelFamily: 'Gemini 2.5 Pro',
-      runtimeVariant: 'Advanced Agentic Coding',
-      reasoningEffort: 'Deep Reasoning',
+      serviceVersion: '1.7.3-rc',
+      agent: 'CDX',
+      agentProduct: 'Codex',
+      modelFamily: 'GPT-5',
+      runtimeVariant: 'not exposed to the static page',
+      reasoningEffort: 'not exposed to the static page',
       repository: 'randybryanmoore/randybryanmoore-dot-us',
       branch: 'main',
-      baseCommit: 'cddfcca',
+      baseCommit: '8ea39cf',
       publicUrl: 'https://symphony.randybryanmoore.us',
       releaseManifest: './release-manifest.json'
     });
@@ -526,19 +526,19 @@ source:
   repository: "${currentTelemetry.repository}"
   branch: "${currentTelemetry.branch}"
   base_commit: "${currentTelemetry.baseCommit}"
-  working_tree: "verified release telemetry finalization"
+  working_tree: "local centered-hero release candidate verified in browser"
 lifecycle:
   local: true
-  committed: true
-  pushed: true
-  pull_request_or_merged: true
-  deployed: true
+  committed: false
+  pushed: false
+  pull_request_or_merged: false
+  deployed: false
   staging: false
   production_verified: true
 production:
   url: "${currentTelemetry.publicUrl}"
-  state: "v1.7.1 live and verified from the primary repository"
-  verified_at: "2026-08-20T21:07:01-04:00"
+  state: "v1.7.2 live badge read back from the primary custom domain; v1.7.3-rc remains local"
+  verified_at: "2026-08-21T12:14:40-04:00"
   first_verified_one_repository_build: "1d58442"
 presentation:
   annotation_feature_live: true
@@ -558,14 +558,15 @@ release_artifacts:
 validation:
   prior_release_candidate_gate: "pass"
   structured_telemetry_export: "source_checks_pass"
-  complete_handoff_export: "pass; browser-copied handoff contained Sections 10.1-10.9, all 8 version records, full-modal fallback, lifecycle definitions, telemetry keys, time method, machine YAML, and no private owner code"
+  complete_handoff_export: "pass; browser export contains Sections 10.1-10.9 and all 10 visible version records"
+  hero_action_alignment: "pass; equal-width centered two-column grid at 1440x1000 and centered single-column stack at 390x844 with zero horizontal overflow"
   browser_interaction: "pass on HTTP with forced no-WebCrypto fallback; exact in-app file URL automation is policy-blocked"
-  inline_owner_control: "source audit pass; transparent marker exposes only a compact code gate while locked; full telemetry remains closed until successful owner-code entry opens telemetry and turns annotation on; user file-page confirmation pending"
+  inline_owner_control: "superseded in v1.7.2; telemetry and the dual-stream annotation dock are visible by default"
   grouped_annotation_export: "pass; one saved multi-element batch exports as one numbered AI comment with all targets listed"
   performing_arts_copy_constraints: "pass; 40-word opening, 123-word main narrative, 78-word roots-practice-community passage; requested stewardship pull quote removed"
-  production_readback: "pass; custom domain returned the v1.7.1 candidate source with manifest-matching HTML, CSS, and JavaScript before final live-status reconciliation"
+  production_readback: "partial pass; custom domain returned the v1.7.2 LIVE badge on Aug 21, 2026 at 12:14 PM EDT; artifact-hash readback not repeated for this local patch"
 security:
-  access_gate: "client-side presentation convenience; not authentication"
+  access_gate: "not active on the default v1.7.2 page load; client-side presentation controls are not authentication"
   sensitive_values_in_export: false
 blockers:
   - id: "RELEASE-AUTHORIZATION-1.7.0"
@@ -711,23 +712,23 @@ This is the current operational snapshot. Reverify every changeable fact before 
 
 ### Lifecycle — report each state separately
 - Local: Yes — \`v${currentTelemetry.serviceVersion}\` release source is present and validated.
-- Committed: Yes — candidate checkpoint \`5fa8969\`.
-- Pushed: Yes — primary GitHub repository.
-- Merged / Pull Request: Yes — PR #4 merged into \`main\` as \`689456d\`.
-- Deployed: Yes — primary-repository GitHub Actions Pages run #32435108061.
+- Committed: No — the centered-action candidate changes are uncommitted.
+- Pushed: No — the candidate remains local.
+- Merged / Pull Request: No — no candidate PR or merge exists.
+- Deployed: No — the candidate has not entered the Pages workflow.
 - Staging: Not used.
-- Live / Production: \`v${currentTelemetry.serviceVersion}\` verified at the custom domain Aug 20, 2026 at 9:07 PM EDT.
+- Live / Production: \`v1.7.2\` remains live; its LIVE badge was read back at the custom domain Aug 21, 2026 at 12:14 PM EDT. \`v${currentTelemetry.serviceVersion}\` is not live.
 
 ### Presentation thresholds — report separately
-- Feature Live: Yes — the owner-gated annotation capability is deployed in production v1.7.1 and available.
-- Admin Controls: ${annotationToolsAreEnabled() ? 'Unlocked — full telemetry, annotation, and owner actions are available.' : 'Locked — the transparent telemetry marker exposes only the owner-code gate; full telemetry and annotation are unavailable.'}
-- Ready to Present: ${annotationToolsAreEnabled() ? 'No — admin and annotation tools are currently active in this browser.' : 'Yes — annotation, editing, notes, and inspector overlays are hidden; the telemetry badge remains available for owner access.'}
+- Feature Live: Yes — production v1.7.2 exposes telemetry and the dual-stream annotation dock by default.
+- Admin Controls: ${annotationToolsAreEnabled() ? 'Available — telemetry, annotation, and review actions are visible in this browser.' : 'Hidden — presentation mode is active in this browser.'}
+- Ready to Present: ${annotationToolsAreEnabled() ? 'No — annotation and review tools are currently visible.' : 'Yes — annotation and review tools are hidden.'}
 
 A commit is not a push. A push is not a deployment. A deployment is not confirmed live until production readback succeeds.
 
 ## 2. Privacy and access classification
 - Distribution: Internal engineering handoff. Remove personal contact details and machine-specific paths before broader sharing.
-- The four-digit overlay is a client-side presentation convenience, not authentication or confidentiality protection.
+- Any client-side presentation gate is a convenience, not authentication or confidentiality protection; production v1.7.2 loads the review tools visibly by default.
 - Do not put passcodes, tokens, private-note contents, or credential-file paths in generated handoffs.
 - Do not publish the dossier ZIP without explicit approval of its complete manifest.
 
@@ -772,6 +773,8 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 - Reordered the core narrative to Systems, Role Alignment, Case Studies, then Performing Arts, with matching navigation and section numbers.
 - Centered Deployment at the top of telemetry, made Code Lifecycle State collapsible, replaced red annotation outlines with gold, and standardized visible monograms as RBM.
 - Made every context handoff dynamically include all current telemetry, all version adjustments, lifecycle definitions, both telemetry keys, the engineering-time method, presentation and annotation state, machine-readable YAML, and a full-modal fallback for future additions.
+- Recorded the previously unarchived v1.7.2 Antigravity changes and disclosed that their engineering time was not captured rather than inventing a duration.
+- Centered the four hero actions in an equal-width two-column grid with a single-column mobile stack.
 
 ## 6. Safe release protocol
 1. Explain the intended source changes in 3–7 bullets.
@@ -795,8 +798,8 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 - \`DEPLOY-APPROVAL-001\` — Closed. Randy explicitly authorized publication.
 - First verified one-repository build: \`1d58442\` from merged PR #2.
 - Complete-telemetry candidate: \`5fa8969\`, merged by PR #4 as \`689456d\`.
-- Current production release: v1.7.1.
-- Production readback passed at the custom domain on Aug 20, 2026 at 9:07 PM EDT; HTML, CSS, and JavaScript matched the release manifest.
+- Current production release: v1.7.2.
+- Production badge readback passed at the custom domain on Aug 21, 2026 at 12:14 PM EDT; artifact hashes were not re-read for this local-only patch.
 
 ## 9. Machine-readable companion
 The complete YAML telemetry is embedded in Section 10.7 and is also available separately through “Copy Machine Telemetry (.YAML).” Treat browser-generated state as a handoff snapshot, not as an independently verified Git or hosting measurement.`);

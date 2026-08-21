@@ -73,7 +73,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1787274421">
+  <link rel="stylesheet" href="styles.css?v=1787328880">
 </head>
 <body data-review-tools="on" class="dossier-unlocked">
 
@@ -82,11 +82,11 @@
        version and date on each substantive pass. Always visible -- it is
        independent of the review-tools switch. -->
   <button type="button" class="build-badge" id="build-badge" aria-expanded="false" aria-controls="build-provenance-modal" title="⚡ Build &amp; Agent Telemetry (Shift+V)">
-    <span class="build-badge-agent" title="Active AI Agent: Antigravity (AG)">AG</span>
-    <span class="build-badge-live-dot" title="Live production release verified Aug 20, 2026"></span>
-    <span class="build-badge-version">v1.7.2</span>
-    <span class="build-badge-sha">LIVE</span>
-    <span class="build-badge-date">Aug 20, 2026</span>
+    <span class="build-badge-agent" title="Active AI Agent: Codex (CDX)">CDX</span>
+    <span class="build-badge-live-dot" style="background:var(--gold-light); box-shadow:0 0 0 2px rgba(223,202,116,.22);" title="Local v1.7.3 release candidate // production remains v1.7.2"></span>
+    <span class="build-badge-version">v1.7.3-rc</span>
+    <span class="build-badge-sha">LOCAL</span>
+    <span class="build-badge-date">Aug 21, 2026</span>
   </button>
 
 
@@ -100,7 +100,7 @@
     <div class="provenance-grid">
       <div class="provenance-card provenance-card--deployment">
         <div class="provenance-card-label">Deployment</div>
-        <div class="provenance-card-value" style="color:#15803d; font-weight:800;">● Live // Production Verified</div>
+        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">● Local Candidate // Production v1.7.2</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Active Agent</div>
@@ -112,15 +112,15 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Build Version</div>
-        <div class="provenance-card-value">v1.7.1 (Current Live)</div>
+        <div class="provenance-card-value">v1.7.3-rc (Current Local)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Total Time Logged</div>
-        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">⏱️ 10.6 Hours (manually logged)</div>
+        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">⏱️ 10.7 Hours Logged (AG v1.7.2 time uncaptured)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Git Commit SHA</div>
-        <div class="provenance-card-value" id="prov-commit-sha">#689456d verified candidate deployment</div>
+        <div class="provenance-card-value" id="prov-commit-sha">#8ea39cf production baseline</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Sync Branch</div>
@@ -131,17 +131,17 @@
     <details class="lifecycle-status-box">
       <summary class="provenance-version-title" id="lifecycle-status-title">
         <span>Code Lifecycle State</span>
-        <span style="color:#15803d; font-size:9px;">LIVE // VERIFIED</span>
+        <span style="color:#9a6a00; font-size:9px;">LOCAL CANDIDATE // NOT DEPLOYED</span>
       </summary>
       <div class="lifecycle-status-content">
         <dl class="lifecycle-status-grid">
-          <div><dt>Local</dt><dd>v1.7.1 source and verified release files</dd></div>
-          <div><dt>Committed</dt><dd>Yes // candidate checkpoint #5fa8969</dd></div>
-          <div><dt>Pushed</dt><dd>Yes // primary GitHub repository</dd></div>
-          <div><dt>Merged / PR</dt><dd>Yes // PR #4 merged to main as #689456d</dd></div>
-          <div><dt>Deployed</dt><dd>Yes // GitHub Actions Pages run #32435108061</dd></div>
+          <div><dt>Local</dt><dd>v1.7.3-rc centered hero-action candidate</dd></div>
+          <div><dt>Committed</dt><dd>No // candidate changes are uncommitted</dd></div>
+          <div><dt>Pushed</dt><dd>No // candidate remains local</dd></div>
+          <div><dt>Merged / PR</dt><dd>No // no candidate PR or merge</dd></div>
+          <div><dt>Deployed</dt><dd>No // candidate has not entered the Pages workflow</dd></div>
           <div><dt>Staging</dt><dd>Not used</dd></div>
-          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.7.1 verified at the custom domain Aug 20, 2026 &bull; 9:07 PM EDT</dd></div>
+          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.7.2 badge read back at the custom domain Aug 21, 2026 &bull; 12:14 PM EDT</dd></div>
         </dl>
         <details class="lifecycle-glossary">
           <summary>Lifecycle definitions used by all agents</summary>
@@ -210,28 +210,86 @@
       <!-- Time Summary Pill: hover/focus previews the arithmetic; click/tap keeps it open. -->
       <details class="engineering-time-breakdown">
         <summary class="engineering-time-breakdown__summary">
-          <span>⏱️ Total Engineering: 10.6h</span>
-          <span class="engineering-time-breakdown__agents">AG: 3.75h &bull; CL: 3.25h &bull; CDX: 3.60h</span>
+          <span>⏱️ Total Engineering Logged: 10.7h</span>
+          <span class="engineering-time-breakdown__agents">AG: 3.75h + uncaptured v1.7.2 &bull; CL: 3.25h &bull; CDX: 3.70h</span>
         </summary>
         <div class="engineering-time-breakdown__panel">
-          <strong>Calculation // 3.75 + 3.25 + 3.60 = 10.60 hours</strong>
+          <strong>Calculation // 3.75 + 3.25 + 3.70 = 10.70 logged hours</strong>
           <span><strong>Active time only:</strong> a work block runs from the first verified inspect, edit, or test action to the last action before an explicit break or a gap of 10+ minutes. Breaks, idle gaps, and time waiting for user input or approval are excluded. Active blocks are added, then the displayed project total is rounded to one decimal place.</span>
-          <span><strong>Precision note:</strong> AG and CL hours are inherited historical manual estimates; their break-level records cannot be independently reconstructed. CDX time is reconciled from the available session action timestamps. This is not an automated wall-clock timer.</span>
+          <span><strong>Precision note:</strong> AG and CL hours are inherited historical manual estimates; their break-level records cannot be independently reconstructed. AG's v1.7.2 work is present in Git but has no reliable time record, so it is disclosed as uncaptured and excluded from the 10.7-hour arithmetic. CDX time is reconciled from available session action timestamps. This is not an automated wall-clock timer.</span>
         </div>
       </details>
 
       <div class="provenance-changelog-list">
-        <!-- v1.7.1 -->
+        <!-- v1.7.3-rc -->
         <div class="version-item-wrap active">
           <div class="version-item-row" role="button" tabindex="0" aria-expanded="true">
-            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.7.1</strong> (Current Live)</span>
-            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 0.2h &bull; Aug 20</span>
+            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.7.3-rc</strong> (Current Local)</span>
+            <span class="version-row-tag version-row-tag--local">● 0.1h &bull; Aug 21</span>
+          </div>
+          <div class="version-hover-card">
+            <div class="version-hover-header">
+              <div class="version-hover-title">
+                <span>v1.7.3-rc · Centered Hero Actions</span>
+                <span style="color:#9a6a00; font-size:9px;">● LOCAL &bull; RELEASE CANDIDATE</span>
+              </div>
+              <div class="version-hover-meta">
+                <div><strong>Authoring Agent:</strong> Codex (CDX)</div>
+                <div><strong>Model / Effort:</strong> GPT-5 family &bull; exact runtime SKU / effort not exposed</div>
+                <div><strong>Updated:</strong> Aug 21, 2026 · 12:14 PM EDT</div>
+                <div><strong>Source Baseline:</strong> #8ea39cf</div>
+                <div><strong>Candidate Lifecycle:</strong> local &bull; not committed &bull; not pushed &bull; not deployed</div>
+                <div><strong>Production:</strong> v1.7.2 remains live at the custom domain</div>
+              </div>
+            </div>
+            <ul class="version-hover-bullets">
+              <li><strong>[12:14 PM]</strong> Centered Explore Concept Dashboard, Role Alignment, Systems Case Studies, and Music // Artistry in a balanced equal-width two-column hero grid.</li>
+              <li><strong>[12:14 PM]</strong> Preserved a centered single-column stack at the mobile breakpoint and retained every label, destination, color, and tap target.</li>
+              <li><strong>[12:14 PM]</strong> Reconciled the local telemetry candidate against the verified v1.7.2 production badge without treating the local patch as committed, pushed, deployed, or live.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v1.7.2 -->
+        <div class="version-item-wrap">
+          <div class="version-item-row" role="button" tabindex="0" aria-expanded="false">
+            <span><span class="agent-chip agent-chip--ag">AG</span> <strong>v1.7.2</strong> (Current Live)</span>
+            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● Time uncaptured &bull; Aug 20</span>
+          </div>
+          <div class="version-hover-card">
+            <div class="version-hover-header">
+              <div class="version-hover-title">
+                <span>v1.7.2 · Panel Strategy // Open Review Tools</span>
+                <span style="color:#15803d; font-size:9px;">● LIVE &bull; BADGE READBACK VERIFIED</span>
+              </div>
+              <div class="version-hover-meta">
+                <div><strong>Authoring Agent:</strong> Antigravity (AG)</div>
+                <div><strong>Model / Effort:</strong> Source records Gemini 2.5 Pro &bull; Advanced Agentic Coding &bull; Deep Reasoning</div>
+                <div><strong>Source Updated:</strong> Aug 20, 2026 · 11:04 PM EDT</div>
+                <div><strong>Release Lineage:</strong> #f25d12d through #8ea39cf</div>
+                <div><strong>Time Logged:</strong> Not captured; excluded from the cumulative arithmetic</div>
+                <div><strong>Production:</strong> v1.7.2 badge read back at the custom domain Aug 21, 2026 · 12:14 PM EDT</div>
+              </div>
+            </div>
+            <ul class="version-hover-bullets">
+              <li><strong>[9:39 PM]</strong> Aligned dossier, case studies, qualification matrix, and printable handout with the panel-interview strategy.</li>
+              <li><strong>[10:58 PM]</strong> Modernized the printable handout layout and typography.</li>
+              <li><strong>[11:02–11:04 PM]</strong> Made telemetry and the dual-stream annotation dock openable and visible by default, including on the one-pager, and removed the prior owner-gate popover barrier.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v1.7.1 -->
+        <div class="version-item-wrap">
+          <div class="version-item-row" role="button" tabindex="0" aria-expanded="false">
+            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.7.1</strong> (Released · Superseded)</span>
+            <span class="version-row-tag version-row-tag--released">● 0.2h &bull; Aug 20</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-header">
               <div class="version-hover-title">
                 <span>v1.7.1 · Complete Telemetry Handoff</span>
-                <span style="color:#15803d; font-size:9px;">● LIVE &bull; PRODUCTION VERIFIED</span>
+                <span class="version-status--released">● RELEASED &bull; SUPERSEDED BY v1.7.2</span>
               </div>
               <div class="version-hover-meta">
                 <div><strong>Authoring Agent:</strong> Codex (CDX)</div>
@@ -239,7 +297,7 @@
                 <div><strong>Released:</strong> Aug 20, 2026 · 9:07 PM EDT</div>
                 <div><strong>Source Baseline:</strong> #5ba8f3b</div>
                 <div><strong>Candidate Checkpoint:</strong> #5fa8969 &bull; merged by PR #4 as #689456d</div>
-                <div><strong>Production:</strong> v1.7.1 verified at the custom domain</div>
+                <div><strong>Production History:</strong> v1.7.1 was verified at the custom domain, then superseded by v1.7.2</div>
               </div>
             </div>
             <ul class="version-hover-bullets">
@@ -1472,6 +1530,6 @@
   </div>
 
   <!-- Suite Script (external only — no inline duplication) -->
-  <script src="script.js?v=1787274421"></script>
+  <script src="script.js?v=1787328880"></script>
 </body>
 </html>
