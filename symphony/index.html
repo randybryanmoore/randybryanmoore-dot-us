@@ -97,7 +97,7 @@
     <div class="telemetry-unlock-title" id="telemetry-unlock-title">(( Owner Access Required ))</div>
     <label class="annotation-owner-code-field" for="annotation-owner-code-input">
       <span>Owner Code</span>
-      <input id="annotation-owner-code-input" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="off" aria-describedby="annotation-owner-control-note" placeholder="4 digits">
+      <input id="annotation-owner-code-input" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="off" aria-label="Owner verification code" aria-describedby="annotation-owner-control-note" placeholder="4 digits">
     </label>
     <p id="annotation-owner-control-note" aria-live="polite">Unlocking opens telemetry // turns annotation on.</p>
     <button id="annotation-owner-unlock-btn" class="button button-navy" type="button">🔐 Unlock Telemetry // Annotation</button>
@@ -1428,7 +1428,7 @@
     </div>
     <div class="popover-target-snippet" id="popover-target-text"></div>
     <div class="popover-tags" id="popover-tags-container"></div>
-    <textarea class="popover-textarea" id="popover-comment-input" placeholder="Type your note or revision... (Press Enter to save)"></textarea>
+    <textarea class="popover-textarea" id="popover-comment-input" aria-label="Annotation comment text" placeholder="Type your note or revision... (Press Enter to save)"></textarea>
     <div class="popover-actions">
       <button class="popover-cancel-btn" id="popover-dismiss-btn">Cancel (Esc)</button>
       <button class="popover-pin-btn" id="popover-save-btn">Pin for AI ↵</button>
@@ -1447,7 +1447,7 @@
     </div>
 
     <div class="drawer-toolbar">
-      <input type="text" id="drawer-search-input" placeholder="🔍 Filter notes or tags..." class="drawer-search-box">
+      <input type="text" id="drawer-search-input" aria-label="Filter notes and tags" placeholder="🔍 Filter notes or tags..." class="drawer-search-box">
       <button id="drawer-toggle-badges-btn" class="drawer-tool-btn" title="Show or hide pin badges on the page">👁️ Badges On</button>
     </div>
 
