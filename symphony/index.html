@@ -73,7 +73,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1787272208">
+  <link rel="stylesheet" href="styles.css?v=1787272667">
 </head>
 <!-- Review tooling switch: owner-controlled presentation state. The browser
      persists only the on/off preference; the owner code is never stored. -->
@@ -85,9 +85,9 @@
        independent of the review-tools switch. -->
   <button type="button" class="build-badge" id="build-badge" aria-expanded="false" aria-controls="telemetry-unlock-popover build-provenance-modal" title="Owner telemetry // hover to reveal // unlock required (Shift+V)">
     <span class="build-badge-agent" title="Active AI Agent: Codex (CDX)">CDX</span>
-    <span class="build-badge-live-dot" title="Local v1.7.0 release candidate // production remains v1.6.6" style="background:var(--gold-light);"></span>
-    <span class="build-badge-version">v1.7.0-rc</span>
-    <span class="build-badge-sha">LOCAL</span>
+    <span class="build-badge-live-dot" title="Live production release verified Aug 20, 2026 at 8:35 PM EDT"></span>
+    <span class="build-badge-version">v1.7.0</span>
+    <span class="build-badge-sha">LIVE</span>
     <span class="build-badge-date">Aug 20, 2026</span>
   </button>
 
@@ -112,7 +112,7 @@
     <div class="provenance-grid">
       <div class="provenance-card provenance-card--deployment">
         <div class="provenance-card-label">Deployment</div>
-        <div class="provenance-card-value" style="color:#92400e; font-weight:800;">● Candidate Not Deployed</div>
+        <div class="provenance-card-value" style="color:#15803d; font-weight:800;">● Live // Production Verified</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Active Agent</div>
@@ -124,36 +124,36 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Build Version</div>
-        <div class="provenance-card-value">v1.7.0-rc (Local Candidate)</div>
+        <div class="provenance-card-value">v1.7.0 (Current Live)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Total Time Logged</div>
-        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">⏱️ 10.3 Hours (manually logged)</div>
+        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">⏱️ 10.4 Hours (manually logged)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Git Commit SHA</div>
-        <div class="provenance-card-value" id="prov-commit-sha">#8eab123 + local presentation controls</div>
+        <div class="provenance-card-value" id="prov-commit-sha">#1d58442 first verified one-repository build</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Sync Branch</div>
-        <div class="provenance-card-value">main (local) &bull; production remains v1.6.6</div>
+        <div class="provenance-card-value">main &bull; GitHub Actions Pages</div>
       </div>
     </div>
 
     <details class="lifecycle-status-box">
       <summary class="provenance-version-title" id="lifecycle-status-title">
         <span>Code Lifecycle State</span>
-        <span style="color:#92400e; font-size:9px;">LOCAL RELEASE CANDIDATE</span>
+        <span style="color:#15803d; font-size:9px;">LIVE // VERIFIED</span>
       </summary>
       <div class="lifecycle-status-content">
         <dl class="lifecycle-status-grid">
-          <div><dt>Local</dt><dd>v1.7.0-rc presentation controls</dd></div>
-          <div><dt>Committed</dt><dd>No</dd></div>
-          <div><dt>Pushed</dt><dd>No</dd></div>
-          <div><dt>Merged / PR</dt><dd>No new PR or merge</dd></div>
-          <div><dt>Deployed</dt><dd>No</dd></div>
+          <div><dt>Local</dt><dd>v1.7.0 source and verified release files</dd></div>
+          <div><dt>Committed</dt><dd>Yes // release lineage #1d58442</dd></div>
+          <div><dt>Pushed</dt><dd>Yes // primary GitHub repository</dd></div>
+          <div><dt>Merged / PR</dt><dd>Yes // PR #2 merged to main</dd></div>
+          <div><dt>Deployed</dt><dd>Yes // GitHub Actions Pages</dd></div>
           <div><dt>Staging</dt><dd>Not used</dd></div>
-          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.6.6 verified at the custom domain Aug 20, 2026 &bull; 5:57 PM EDT</dd></div>
+          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.7.0 verified at the custom domain Aug 20, 2026 &bull; 8:35 PM EDT</dd></div>
         </dl>
         <details class="lifecycle-glossary">
           <summary>Lifecycle definitions used by all agents</summary>
@@ -222,35 +222,35 @@
       <!-- Time Summary Pill: hover/focus previews the arithmetic; click/tap keeps it open. -->
       <details class="engineering-time-breakdown">
         <summary class="engineering-time-breakdown__summary">
-          <span>⏱️ Total Engineering: 10.3h</span>
-          <span class="engineering-time-breakdown__agents">AG: 3.75h &bull; CL: 3.25h &bull; CDX: 3.30h</span>
+          <span>⏱️ Total Engineering: 10.4h</span>
+          <span class="engineering-time-breakdown__agents">AG: 3.75h &bull; CL: 3.25h &bull; CDX: 3.40h</span>
         </summary>
         <div class="engineering-time-breakdown__panel">
-          <strong>Calculation // 3.75 + 3.25 + 3.30 = 10.30 hours</strong>
+          <strong>Calculation // 3.75 + 3.25 + 3.40 = 10.40 hours</strong>
           <span><strong>Active time only:</strong> a work block runs from the first verified inspect, edit, or test action to the last action before an explicit break or a gap of 10+ minutes. Breaks, idle gaps, and time waiting for user input or approval are excluded. Active blocks are added, then the displayed project total is rounded to one decimal place.</span>
           <span><strong>Precision note:</strong> AG and CL hours are inherited historical manual estimates; their break-level records cannot be independently reconstructed. CDX time is reconciled from the available session action timestamps. This is not an automated wall-clock timer.</span>
         </div>
       </details>
 
       <div class="provenance-changelog-list">
-        <!-- v1.7.0-rc -->
+        <!-- v1.7.0 -->
         <div class="version-item-wrap active">
           <div class="version-item-row" role="button" tabindex="0" aria-expanded="true">
-            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.7.0-rc</strong> (Current Local)</span>
-            <span class="version-row-tag" style="background:#fef3c7; color:#92400e; border-color:#fcd34d;">● 1.5h &bull; Aug 20</span>
+            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.7.0</strong> (Current Live)</span>
+            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 1.7h &bull; Aug 20</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-header">
               <div class="version-hover-title">
-                <span>v1.7.0-rc · Owner Controls // Narrative Refinement</span>
-                <span style="color:#92400e; font-size:9px;">● LOCAL &bull; NOT DEPLOYED</span>
+                <span>v1.7.0 · Owner Controls // Narrative Refinement</span>
+                <span style="color:#15803d; font-size:9px;">● LIVE &bull; PRODUCTION VERIFIED</span>
               </div>
               <div class="version-hover-meta">
                 <div><strong>Authoring Agent:</strong> Codex (CDX)</div>
                 <div><strong>Model / Effort:</strong> GPT-5 family &bull; exact runtime SKU / effort not exposed</div>
-                <div><strong>Updated:</strong> Aug 20, 2026 · 8:29 PM EDT</div>
-                <div><strong>Source Baseline:</strong> #8eab123</div>
-                <div><strong>Production:</strong> v1.6.6 remains live</div>
+                <div><strong>Released:</strong> Aug 20, 2026 · 8:35 PM EDT</div>
+                <div><strong>First Verified One-Repository Build:</strong> #1d58442</div>
+                <div><strong>Production:</strong> v1.7.0 verified at the custom domain</div>
               </div>
             </div>
             <ul class="version-hover-bullets">
@@ -270,6 +270,7 @@
               <li><strong>[8:15 PM]</strong> Moved the dashboard disclosure above its button; rebuilt the hero name as three larger lines; converted telemetry actions from pills to compact controls; grouped multi-element AI annotations into one exported comment; replaced the Performing Arts résumé repetition with a source-qualified Roots, Practice, Community narrative and compact listening-study links; centered Deployment at the top; collapsed Code Lifecycle State; changed annotation outlines to gold; standardized the RBM monogram.</li>
               <li><strong>[8:21 PM]</strong> Changed CDX identity markers from Live green to gold; replaced the blunt genealogy disclaimer with attribution to family accounts; removed the requested stewardship pull quote; and migrated deployment authority into the primary repository’s validated Pages workflow.</li>
               <li><strong>[8:29 PM]</strong> Reordered the dossier narrative and navigation to place Role Alignment second, Case Studies third, and Performing Arts fourth; tightened the mid-size header so its actions stay within the viewport.</li>
+              <li><strong>[8:35 PM]</strong> Merged PR #2, deployed the validated `symphony/` artifact from the primary repository, transferred the Symphony custom domain, confirmed its approved HTTPS certificate, and matched production CSS and JavaScript hashes to the release manifest.</li>
             </ul>
           </div>
         </div>
@@ -277,21 +278,21 @@
         <!-- v1.6.6 -->
         <div class="version-item-wrap">
           <div class="version-item-row" role="button" tabindex="0" aria-expanded="false">
-            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.6.6</strong> (Live)</span>
-            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 0.4h &bull; Aug 20</span>
+            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.6.6</strong> (Released · Superseded)</span>
+            <span class="version-row-tag version-row-tag--released">● 0.4h &bull; Aug 20</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-header">
               <div class="version-hover-title">
                 <span>v1.6.6 · Brand Language &amp; Telemetry Keys</span>
-                <span style="color:#15803d; font-size:9px;">● LIVE &bull; PRODUCTION VERIFIED</span>
+                <span class="version-status--released">● RELEASED &bull; SUPERSEDED BY v1.7.0</span>
               </div>
               <div class="version-hover-meta">
                 <div><strong>Authoring Agent:</strong> Codex (CDX)</div>
                 <div><strong>Model / Effort:</strong> Not captured for this historical session</div>
                 <div><strong>Released:</strong> Aug 20, 2026 · 5:57 PM EDT</div>
                 <div><strong>Release Lineage:</strong> source candidate #f8b60a4</div>
-                <div><strong>Production:</strong> v1.6.6 verified at the custom domain</div>
+                <div><strong>Production History:</strong> v1.6.6 was verified at the custom domain, then superseded by v1.7.0</div>
               </div>
             </div>
             <ul class="version-hover-bullets">
@@ -1453,6 +1454,6 @@
   </div>
 
   <!-- Suite Script (external only — no inline duplication) -->
-  <script src="script.js?v=1787272208"></script>
+  <script src="script.js?v=1787272667"></script>
 </body>
 </html>
