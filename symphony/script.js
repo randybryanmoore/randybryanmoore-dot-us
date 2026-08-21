@@ -252,8 +252,8 @@
       surfaceKey: 'one-pager',
       surfaceName: 'Executive One-Pager',
       serviceName: 'richmond-symphony-executive-one-pager',
-      serviceVersion: '1.0.1-rc',
-      parentServiceVersion: '1.7.3',
+      serviceVersion: '1.0.1',
+      parentServiceVersion: '1.7.4',
       agent: 'CDX',
       agentProduct: 'Codex',
       modelFamily: 'GPT-5',
@@ -261,7 +261,7 @@
       reasoningEffort: 'not exposed to the static page',
       repository: 'randybryanmoore/randybryanmoore-dot-us',
       branch: 'main',
-      baseCommit: '0ef3a79',
+      baseCommit: '6cf448a',
       publicUrl: 'https://symphony.randybryanmoore.us/one_pager.html',
       releaseManifest: './one_pager-release-manifest.json'
     } : {
@@ -269,7 +269,7 @@
       surfaceKey: 'dossier',
       surfaceName: 'Full Candidate Dossier',
       serviceName: 'richmond-symphony-candidate-dossier',
-      serviceVersion: '1.7.4-rc',
+      serviceVersion: '1.7.4',
       parentServiceVersion: '',
       agent: 'CDX',
       agentProduct: 'Codex',
@@ -278,37 +278,37 @@
       reasoningEffort: 'not exposed to the static page',
       repository: 'randybryanmoore/randybryanmoore-dot-us',
       branch: 'main',
-      baseCommit: '0ef3a79',
+      baseCommit: '6cf448a',
       publicUrl: 'https://symphony.randybryanmoore.us',
       releaseManifest: './release-manifest.json'
     });
 
     const telemetryLifecycle = Object.freeze(isOnePagerTelemetry ? {
-      workingTree: 'independent one-pager telemetry candidate verified locally',
-      committed: false,
-      pushed: false,
+      workingTree: 'OP v1.0.1 release source plus post-deployment telemetry finalization',
+      committed: true,
+      pushed: true,
       pullRequestOrMerged: false,
-      deployed: false,
-      staging: false,
-      productionVerified: false,
-      productionVersion: 'parent dossier v1.7.3',
-      productionState: 'parent dossier v1.7.3 is live; independent one-pager telemetry v1.0.1-rc remains local',
-      verifiedAt: 'independent one-pager release not yet deployed',
-      releaseCheckpoint: '0ef3a79 parent production baseline',
-      deploymentWorkflowRun: 'not started'
-    } : {
-      workingTree: 'independent one-pager telemetry candidate; production remains v1.7.3',
-      committed: false,
-      pushed: false,
-      pullRequestOrMerged: false,
-      deployed: false,
+      deployed: true,
       staging: false,
       productionVerified: true,
-      productionVersion: 'v1.7.3',
-      productionState: 'v1.7.3 remains verified at the primary custom domain; v1.7.4-rc is local',
-      verifiedAt: '2026-08-21T13:05:06-04:00',
-      releaseCheckpoint: '0ef3a79 production baseline',
-      deploymentWorkflowRun: '32506630533 production baseline'
+      productionVersion: 'OP v1.0.1',
+      productionState: 'OP v1.0.1 and parent dossier v1.7.4 are verified at the custom domain',
+      verifiedAt: '2026-08-21T16:50:59-04:00',
+      releaseCheckpoint: '6cf448a verified release source',
+      deploymentWorkflowRun: '32525596664'
+    } : {
+      workingTree: 'v1.7.4 release source plus post-deployment telemetry finalization',
+      committed: true,
+      pushed: true,
+      pullRequestOrMerged: false,
+      deployed: true,
+      staging: false,
+      productionVerified: true,
+      productionVersion: 'v1.7.4',
+      productionState: 'v1.7.4 and its complete release artifact set are verified at the primary custom domain',
+      verifiedAt: '2026-08-21T16:50:59-04:00',
+      releaseCheckpoint: '6cf448a verified release source',
+      deploymentWorkflowRun: '32525596664'
     });
 
     function annotationToolsAreEnabled() {
@@ -620,7 +620,7 @@ validation:
   inline_owner_control: "superseded in v1.7.2; telemetry and the dual-stream annotation dock are visible by default"
   grouped_annotation_export: "pass; one saved multi-element batch exports as one numbered AI comment with all targets listed"
   performing_arts_copy_constraints: "pass; 40-word opening, 123-word main narrative, 78-word roots-practice-community passage; requested stewardship pull quote removed"
-  production_readback: "${isOnePagerTelemetry ? 'parent one-pager is live in v1.7.3; independent telemetry candidate has not been deployed' : 'production v1.7.3 remains live; v1.7.4-rc has not been deployed'}"
+  production_readback: "${isOnePagerTelemetry ? 'OP v1.0.1 and parent dossier v1.7.4 verified at the custom domain' : 'production v1.7.4 and complete release artifact hashes verified at the custom domain'}"
 security:
   access_gate: "not active on the default ${currentTelemetry.surfaceName} page load; client-side presentation controls are not authentication"
   sensitive_values_in_export: false
@@ -769,12 +769,12 @@ This handoff describes the executive one-pager as its own release surface. The p
 
 ### One-pager lifecycle — report separately
 - Local: Yes — OP v${currentTelemetry.serviceVersion} is present and locally validated.
-- Committed: No — the independent one-pager telemetry candidate is uncommitted.
-- Pushed: No — the candidate remains local.
+- Committed: Yes — release source checkpoint 6cf448a.
+- Pushed: Yes — the release branch and main contain the checkpoint.
 - Merged / Pull Request: No — no one-pager telemetry PR or merge exists.
-- Deployed: No — the independent telemetry candidate has not entered the Pages workflow.
+- Deployed: Yes — GitHub Actions Pages run 32525596664 completed successfully.
 - Staging: Not used.
-- Live / Production: The parent v${currentTelemetry.parentServiceVersion} one-pager remains public; OP v${currentTelemetry.serviceVersion} is not live.
+- Live / Production: OP v${currentTelemetry.serviceVersion} and parent v${currentTelemetry.parentServiceVersion} are verified at the custom domain.
 
 ## 2. Telemetry boundary
 - The one-pager reports its own surface version, page-specific changes, scoped engineering time, artifact path, and lifecycle.
@@ -788,12 +788,12 @@ This handoff describes the executive one-pager as its own release surface. The p
 
 ## 4. Current one-pager change
 - Replaced the stale shared dossier telemetry with a dedicated Executive One-Pager telemetry surface.
-- Established OP v1.0.1-rc as the independently versioned one-pager candidate with the shared compact telemetry pill.
+- Released OP v1.0.1 as the independently versioned one-pager with the shared compact telemetry pill.
 - Added page-specific lifecycle, time-accounting, artifact, release-note, and parent-dossier reference fields.
 - Kept the complete project context available in this handoff while separating active one-pager records from dossier records.
 
 ## 5. Scoped engineering time
-- OP v1.0.1-rc: 0.2 hour for the independent telemetry implementation, compact pill refinement, and verification pass.
+- OP v1.0.1: 0.2 hour for the independent telemetry implementation, compact pill refinement, release, and verification pass.
 - Earlier one-pager design work: not reconstructed; no duration is invented.
 - Idle gaps and time awaiting user input are excluded.
 
@@ -811,8 +811,8 @@ This handoff describes the executive one-pager as its own release surface. The p
 
 ## 8. Parent release evidence
 - Parent dossier production: v${currentTelemetry.parentServiceVersion}.
-- Parent production baseline: 0ef3a79.
-- The parent release remains public while this one-pager-specific telemetry candidate is local.
+- Parent production baseline: 6cf448a.
+- The one-pager and parent dossier were verified together through workflow run 32525596664.
 
 ## 9. Machine-readable companion
 The page-specific YAML telemetry is embedded in Section 10.7 and is also available through Copy Telemetry. The complete visible one-pager telemetry modal is retained in Section 10.8.`);
@@ -840,15 +840,15 @@ This is the current operational snapshot. Reverify every changeable fact before 
 
 ### Lifecycle — report each state separately
 - Local: Yes — \`v${currentTelemetry.serviceVersion}\` release source is present and validated.
-- Committed: No — the v1.7.4-rc one-pager telemetry candidate is uncommitted.
-- Pushed: No — the candidate remains local.
+- Committed: Yes — release source checkpoint \`6cf448a\`.
+- Pushed: Yes — the release branch and \`main\` contain the checkpoint.
 - Merged / Pull Request: No — no candidate PR or merge exists.
-- Deployed: No — the candidate has not entered the Pages workflow.
+- Deployed: Yes — GitHub Actions Pages run \`32525596664\` completed successfully.
 - Staging: Not used.
-- Live / Production: v1.7.3 remains verified at the custom domain. \`v${currentTelemetry.serviceVersion}\` is not live.
+- Live / Production: \`v${currentTelemetry.serviceVersion}\` and its complete artifact set are verified at the custom domain.
 
 ### Presentation thresholds — report separately
-- Feature Live: Yes — production v1.7.3 exposes telemetry and the dual-stream annotation dock by default.
+- Feature Live: Yes — production v1.7.4 exposes telemetry and the dual-stream annotation dock by default.
 - Admin Controls: ${annotationToolsAreEnabled() ? 'Available — telemetry, annotation, and review actions are visible in this browser.' : 'Hidden — presentation mode is active in this browser.'}
 - Ready to Present: ${annotationToolsAreEnabled() ? 'No — annotation and review tools are currently visible.' : 'Yes — annotation and review tools are hidden.'}
 
@@ -856,7 +856,7 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 
 ## 2. Privacy and access classification
 - Distribution: Internal engineering handoff. Remove personal contact details and machine-specific paths before broader sharing.
-- Any client-side presentation gate is a convenience, not authentication or confidentiality protection; production v1.7.3 loads the review tools visibly by default.
+- Any client-side presentation gate is a convenience, not authentication or confidentiality protection; production v1.7.4 loads the review tools visibly by default.
 - Do not put passcodes, tokens, private-note contents, or credential-file paths in generated handoffs.
 - Do not publish the dossier ZIP without explicit approval of its complete manifest.
 
@@ -927,9 +927,9 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 - \`DEPLOY-APPROVAL-001\` — Closed. Randy explicitly authorized publication.
 - First verified one-repository build: \`1d58442\` from merged PR #2.
 - Complete-telemetry candidate: \`5fa8969\`, merged by PR #4 as \`689456d\`.
-- Current production release: v1.7.3 at checkpoint \`0ef3a79\`.
-- Current local candidate: v1.7.4-rc; not committed, pushed, deployed, or live.
-- The independent one-pager telemetry surface is OP v1.0.1-rc and remains local.
+- Current production release: v1.7.4 from release source checkpoint \`6cf448a\`; deployed by workflow run \`32525596664\`.
+- Production readback matched the committed HTML, CSS, JavaScript, one-pager, and manifest artifact hashes.
+- The independent one-pager telemetry surface is OP v1.0.1 and is live.
 
 ## 9. Machine-readable companion
 The complete YAML telemetry is embedded in Section 10.7 and is also available separately through “Copy Machine Telemetry (.YAML).” Treat browser-generated state as a handoff snapshot, not as an independently verified Git or hosting measurement.`);

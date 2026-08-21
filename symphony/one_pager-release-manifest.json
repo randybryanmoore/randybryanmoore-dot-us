@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-21T16:44:00-04:00",
+  "generated_at": "2026-08-21T16:55:32-04:00",
   "surface_name": "Richmond Symphony Executive One-Pager",
-  "surface_version": "1.0.1-rc",
+  "surface_version": "1.0.1",
   "surface_prefix": "OP",
   "parent_dossier": {
-    "production_version": "v1.7.3",
-    "production_commit": "0ef3a79",
+    "production_version": "v1.7.4",
+    "production_commit": "6cf448a",
     "relationship": "shared repository, stylesheet, client script, and GitHub Pages host; separate telemetry lineage"
   },
   "generator": {
@@ -18,19 +18,22 @@
   },
   "source": {
     "repository": "randybryanmoore/randybryanmoore-dot-us",
-    "branch": "codex/one-pager-telemetry",
-    "base_commit": "0ef3a79",
+    "branch": "main",
+    "base_commit": "6cf448a",
     "primary_artifact": "symphony/one_pager.html"
   },
   "lifecycle": {
     "local": true,
-    "committed": false,
-    "pushed": false,
+    "committed": true,
+    "pushed": true,
     "merged_or_pull_request": false,
-    "deployed": false,
+    "deployed": true,
     "staging": false,
-    "production_verified": false,
-    "production_note": "Parent v1.7.3 one-pager remains public; OP v1.0.1-rc is not live"
+    "production_verified": true,
+    "production_note": "OP v1.0.1 and parent dossier v1.7.4 are verified at the custom domain",
+    "verified_at": "2026-08-21T16:50:59-04:00",
+    "release_checkpoint": "6cf448a",
+    "deployment_workflow_run": "32525596664"
   },
   "engineering_time": {
     "current_scoped_pass_hours": 0.2,
@@ -39,7 +42,7 @@
   "artifacts": [
     {
       "path": "one_pager.html",
-      "sha256": "6f856684b9925095aca44ff79d056b17ddd76b696c3ce09c67603187fb7d38f5"
+      "sha256": "6d44f622dfb1781bc94767a8421e9347af68689af06dc898d3d5cb9e625a6fd8"
     },
     {
       "path": "styles.css",
@@ -47,17 +50,18 @@
     },
     {
       "path": "script.js",
-      "sha256": "b2d26f6a5c3cbcb4cb840686d47914c83350ab4a022e057c30c7802b89e2a641"
+      "sha256": "3f112e448dc87684296003765b02671677d528831760db9bc7042b5d621f472f"
     }
   ],
   "validation": {
     "javascript_syntax": "pass",
     "manifest_syntax": "pass",
-    "page_specific_modal": "pass: Executive One-Pager identity, OP v1.0.1-rc lifecycle, scoped time, artifact, and parent boundary visible",
+    "page_specific_modal": "pass: Executive One-Pager identity, OP v1.0.1 lifecycle, scoped time, artifact, and parent boundary visible",
     "page_specific_machine_export": "pass: service name, surface, OP version, and local lifecycle exported independently",
     "page_specific_complete_handoff": "pass: COMPLETE Sections 10.1-10.9 bundle with two visible records and no private owner code",
     "action_layout": "pass: compact floating OP telemetry pill plus two equal-width contained controls in the narrow telemetry panel",
-    "browser_console": "pass: zero errors",
+    "browser_console": "pass: zero errors in the local interaction audit",
+    "production_readback": "pass: OP v1.0.1 pill, page HTML, shared assets, and page-specific manifest verified at the public URL",
     "offline_archive": "pass: rebuilt and integrity tested"
   }
 }

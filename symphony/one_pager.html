@@ -6,7 +6,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d1a32'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='27' font-weight='700' fill='%23f2eadf'%3ERM%3C/text%3E%3C/svg%3E">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
   <title>Executive Candidate Briefing — Richmond Symphony | Randy Bryan Moore, MSW</title>
-  <link rel="stylesheet" href="styles.css?v=1787344268">
+  <link rel="stylesheet" href="styles.css?v=1787345732">
   <style>
     /* ------------------------------------------------------------------
        SELF-CONTAINED HANDOUT STYLES
@@ -417,9 +417,9 @@
        independent from the parent dossier version shown inside the panel. -->
   <button type="button" class="build-badge" id="build-badge" aria-expanded="false" aria-controls="build-provenance-modal" title="Open Executive One-Pager Telemetry (Shift+V)">
     <span class="build-badge-agent" title="Executive One-Pager telemetry surface">OP</span>
-    <span class="build-badge-live-dot" style="background:var(--gold-light); box-shadow:0 0 0 2px rgba(223,202,116,.22);" title="Local OP v1.0.1 release candidate // parent dossier v1.7.3 remains live"></span>
-    <span class="build-badge-version">v1.0.1-rc</span>
-    <span class="build-badge-sha">LOCAL</span>
+    <span class="build-badge-live-dot" title="OP v1.0.1 live // production verified"></span>
+    <span class="build-badge-version">v1.0.1</span>
+    <span class="build-badge-sha">LIVE</span>
     <span class="build-badge-date">Aug 21, 2026</span>
   </button>
 
@@ -622,7 +622,7 @@
     <div class="provenance-grid">
       <div class="provenance-card provenance-card--deployment">
         <div class="provenance-card-label">Deployment</div>
-        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">● One-Pager Candidate // Parent v1.7.3 Live</div>
+        <div class="provenance-card-value" style="color:#15803d; font-weight:800;">● One-Pager Live // Production Verified</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Telemetry Surface</div>
@@ -638,11 +638,11 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">One-Pager Version</div>
-        <div class="provenance-card-value">OP v1.0.1-rc (Current Local)</div>
+        <div class="provenance-card-value">OP v1.0.1 (Current Live)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Parent Dossier Release</div>
-        <div class="provenance-card-value" style="color:#15803d; font-weight:800;">v1.7.3 &bull; LIVE</div>
+        <div class="provenance-card-value" style="color:#15803d; font-weight:800;">v1.7.4 &bull; LIVE</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">One-Pager Time Logged</div>
@@ -650,7 +650,7 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Parent Source Baseline</div>
-        <div class="provenance-card-value" id="prov-commit-sha">#0ef3a79 &bull; main</div>
+        <div class="provenance-card-value" id="prov-commit-sha">#6cf448a &bull; main</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Page Artifact</div>
@@ -661,17 +661,17 @@
     <details class="lifecycle-status-box">
       <summary class="provenance-version-title" id="lifecycle-status-title">
         <span>One-Pager Lifecycle State</span>
-        <span style="color:#9a6a00; font-size:9px;">LOCAL CANDIDATE // NOT DEPLOYED</span>
+        <span style="color:#15803d; font-size:9px;">LIVE // VERIFIED</span>
       </summary>
       <div class="lifecycle-status-content">
         <dl class="lifecycle-status-grid">
-          <div><dt>Local</dt><dd>OP v1.0.1-rc page-specific telemetry candidate</dd></div>
-          <div><dt>Committed</dt><dd>No // candidate changes are uncommitted</dd></div>
-          <div><dt>Pushed</dt><dd>No // candidate remains local</dd></div>
-          <div><dt>Merged / PR</dt><dd>No // no one-pager telemetry PR or merge</dd></div>
-          <div><dt>Deployed</dt><dd>No // candidate has not entered the Pages workflow</dd></div>
+          <div><dt>Local</dt><dd>OP v1.0.1 verified release source</dd></div>
+          <div><dt>Committed</dt><dd>Yes // release source checkpoint #6cf448a</dd></div>
+          <div><dt>Pushed</dt><dd>Yes // release branch and main</dd></div>
+          <div><dt>Merged / PR</dt><dd>No PR // main was fast-forwarded directly</dd></div>
+          <div><dt>Deployed</dt><dd>Yes // GitHub Actions Pages run #32525596664</dd></div>
           <div><dt>Staging</dt><dd>Not used</dd></div>
-          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>Parent v1.7.3 one-pager remains public; OP v1.0.1-rc is not live</dd></div>
+          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>OP v1.0.1 verified at the public one-pager URL Aug 21, 2026 · 4:51 PM EDT</dd></div>
         </dl>
         <details class="lifecycle-glossary">
           <summary>How the one-pager lifecycle is counted</summary>
@@ -726,41 +726,42 @@
       <div class="provenance-changelog-list">
         <div class="version-item-wrap active">
           <div class="version-item-row" role="button" tabindex="0" aria-expanded="true">
-            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>OP v1.0.1-rc</strong> (Current Local)</span>
-            <span class="version-row-tag version-row-tag--local">● 0.2h &bull; Aug 21</span>
+            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>OP v1.0.1</strong> (Current Live)</span>
+            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 0.2h &bull; Aug 21</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-title">
-              <span>OP v1.0.1-rc · Independent Telemetry Pill</span>
-              <span style="color:#9a6a00; font-size:9px;">● LOCAL &bull; RELEASE CANDIDATE</span>
+              <span>OP v1.0.1 · Independent Telemetry Pill</span>
+              <span style="color:#15803d; font-size:9px;">● LIVE &bull; PRODUCTION VERIFIED</span>
             </div>
             <div class="version-hover-meta">
               <div><strong>Surface:</strong> Executive One-Pager only</div>
               <div><strong>Authoring Agent:</strong> Codex (CDX)</div>
-              <div><strong>Updated:</strong> Aug 21, 2026 · 4:44 PM EDT</div>
-              <div><strong>Parent Baseline:</strong> #0ef3a79 &bull; dossier v1.7.3 live</div>
+              <div><strong>Released:</strong> Aug 21, 2026 · 4:51 PM EDT</div>
+              <div><strong>Release Source:</strong> #6cf448a &bull; dossier v1.7.4 live</div>
+              <div><strong>Deployment:</strong> GitHub Actions Pages run #32525596664</div>
             </div>
             <ul class="version-hover-bullets">
               <li>Separated the one-pager's active version, lifecycle, time, artifact, and release notes from the dossier telemetry.</li>
               <li>Added a page-specific machine export and complete handoff while retaining the parent release as explicit context.</li>
               <li>Replaced the rectangular toolbar control with the compact floating OP telemetry pill used by the dossier.</li>
-              <li>Kept all independent lifecycle fields local until a separately authorized commit and deployment.</li>
+              <li>Verified the deployed pill, page, shared assets, and page-specific manifest at the public custom domain.</li>
             </ul>
           </div>
         </div>
 
         <div class="version-item-wrap">
           <div class="version-item-row" role="button" tabindex="0" aria-expanded="false">
-            <span><span class="agent-chip agent-chip--cdx">PARENT</span> <strong>Dossier v1.7.3</strong> (Live Reference)</span>
+            <span><span class="agent-chip agent-chip--cdx">PARENT</span> <strong>Dossier v1.7.4</strong> (Live Reference)</span>
             <span class="version-row-tag version-row-tag--released">● Shared hosting context</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-title">
-              <span>Dossier v1.7.3 · Parent Release Reference</span>
+              <span>Dossier v1.7.4 · Parent Release Reference</span>
               <span class="version-status--released">● NOT AN OP VERSION</span>
             </div>
             <div class="version-hover-meta">
-              <div><strong>Production Baseline:</strong> #0ef3a79</div>
+              <div><strong>Production Baseline:</strong> #6cf448a</div>
               <div><strong>Relationship:</strong> shared repository, CSS, JavaScript, and Pages host</div>
               <div><strong>Boundary:</strong> dossier history remains separate from the one-pager release line</div>
             </div>
@@ -846,6 +847,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=1787344268"></script>
+  <script src="script.js?v=1787345732"></script>
 </body>
 </html>
