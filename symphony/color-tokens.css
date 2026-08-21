@@ -1,0 +1,48 @@
+/**
+ * Randy Bryan Moore — Design System & Color Tokens
+ * Generated: August 21, 2026
+ * Scopes: Richmond Symphony Candidate Dossier (symphony/) & Main Portfolio (randybryanmoore.us)
+ */
+
+:root {
+  /* =========================================================================
+     1. RICHMOND SYMPHONY CANDIDATE DOSSIER & BRIEFING PALETTE
+     ========================================================================= */
+  
+  /* Atlantic Navy (Grounds & Elevation Scale) */
+  --navy-deep:     #0d1a32; /* Layer 0: Page ground, sticky nav, gate ground */
+  --navy:          #182b4d; /* Layer 1: Primary cards, containers, footer */
+  --navy-light:    #243d6b; /* Layer 2: Inset panels, active tabs, hover states */
+  
+  /* Cabernet Maroon (Canonical Single Red) */
+  --maroon:        #2b0710; /* Singular brand red across buttons, markers, header */
+  --wine:          #2b0710;
+  
+  /* Antique Cream, Paper & Inks */
+  --cream:         #f2eadf; /* Warm antique ground (case studies, handout) */
+  --paper:         #fbf6ed; /* Elevated paper modal surface */
+  --paper-deep:    #e8ddcc; /* Soft paper table headers and borders */
+  --ink:           #151c22; /* High-contrast body typography (14.2:1 AAA) */
+  --muted:         #595e64; /* Secondary descriptions and dates (5.72:1 AAA) */
+  --muted-light:   #8a9096; /* Subtle tertiary metadata */
+  --white:         #ffffff; /* Pure white contrast text and QR canvas */
+  
+  /* Champagne Gold & Status */
+  --gold-light:    #dfca74; /* Text-safe gold on dark navy grounds */
+  --gold-ink:      #76601A; /* Text-safe gold on light cream grounds */
+  --gold:          #b89628; /* Borders and gold foil rules only */
+  --live-green:    #15803d; /* Verified production deployment badge */
+  
+  /* =========================================================================
+     2. MAIN PERSONAL PORTFOLIO WEBSITE PALETTE (randybryanmoore.us)
+     ========================================================================= */
+  --clr-bg:        #0d0d0d; /* Obsidian base */
+  --clr-surface:   #161616; /* Card surface */
+  --clr-surface2:  #1f1f1f; /* Inset elevated panels */
+  --clr-border:    #2a2a2a; /* Dark borders */
+  --clr-text:      #e8e4dc; /* Warm Ivory typography */
+  --clr-muted:     #888880; /* Muted captions */
+  --clr-gold:      #c9a84c; /* Signature Champagne Gold */
+  --clr-gold-lt:   #e2c47a; /* Highlight gold */
+  --clr-white:     #ffffff; /* Headings */
+}

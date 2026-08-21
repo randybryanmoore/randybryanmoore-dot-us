@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "project": "Randy Bryan Moore Brand & Symphony Candidate Dossier",
+  "lastVerified": "2026-08-21T17:14:00-04:00",
+  "palettes": {
+    "symphonyDossier": {
+      "name": "Richmond Symphony Advancement Dossier & Handout",
+      "scope": "symphony.randybryanmoore.us",
+      "tokens": {
+        "navy": {
+          "navyDeep": {
+            "token": "--navy-deep",
+            "hex": "#0D1A32",
+            "rgb": "rgb(13, 26, 50)",
+            "hsl": "hsl(219, 59%, 12%)",
+            "role": "Layer 0 Base Ground: Primary page backdrop, sticky nav, passcode overlay"
+          },
+          "navy": {
+            "token": "--navy",
+            "hex": "#182B4D",
+            "rgb": "rgb(24, 43, 77)",
+            "hsl": "hsl(218, 52%, 20%)",
+            "role": "Layer 1 Panels & Cards: Primary card containers, QR portal, footer band"
+          },
+          "navyLight": {
+            "token": "--navy-light",
+            "hex": "#243D6B",
+            "rgb": "rgb(36, 61, 107)",
+            "hsl": "hsl(219, 50%, 28%)",
+            "role": "Layer 2 Insets & Hover: Active tabs, card insets, secondary button hover"
+          }
+        },
+        "maroon": {
+          "canonicalRed": {
+            "token": "--maroon",
+            "hex": "#2B0710",
+            "rgb": "rgb(43, 7, 16)",
+            "hsl": "hsl(345, 72%, 10%)",
+            "role": "Singular Brand Red: Header bar, primary CTA buttons, chapter tags, MSW accent"
+          }
+        },
+        "creamAndPaper": {
+          "cream": {
+            "token": "--cream",
+            "hex": "#F2EADF",
+            "rgb": "rgb(242, 234, 223)",
+            "hsl": "hsl(35, 39%, 91%)",
+            "role": "Warm Antique Ground: Case studies ground, executive handout backdrop"
+          },
+          "paper": {
+            "token": "--paper",
+            "hex": "#FBF6ED",
+            "rgb": "rgb(251, 246, 237)",
+            "hsl": "hsl(39, 64%, 96%)",
+            "role": "Elevated Paper Surface: Modals, annotation drawer, paper cards"
+          },
+          "paperDeep": {
+            "token": "--paper-deep",
+            "hex": "#E8DDCC",
+            "rgb": "rgb(232, 221, 204)",
+            "hsl": "hsl(36, 40%, 85%)",
+            "role": "Soft Paper Accent: Table headers, subtle border dividers"
+          }
+        },
+        "typographyAndBorders": {
+          "ink": {
+            "token": "--ink",
+            "hex": "#151C22",
+            "rgb": "rgb(21, 28, 34)",
+            "hsl": "hsl(208, 24%, 11%)",
+            "contrastOnCream": "14.2:1 (WCAG AAA)",
+            "role": "Primary Body Text on light surfaces"
+          },
+          "muted": {
+            "token": "--muted",
+            "hex": "#595E64",
+            "rgb": "rgb(89, 94, 100)",
+            "hsl": "hsl(213, 6%, 37%)",
+            "contrastOnPaper": "5.72:1 (WCAG AAA)",
+            "role": "Secondary metadata, descriptions, dates"
+          },
+          "line": {
+            "token": "--line",
+            "hex": "rgba(21, 28, 34, 0.16)",
+            "role": "Subtle hair-rules and table borders"
+          }
+        },
+        "goldAccents": {
+          "goldLight": {
+            "token": "--gold-light",
+            "hex": "#DFCA74",
+            "rgb": "rgb(223, 202, 116)",
+            "hsl": "hsl(48, 64%, 66%)",
+            "role": "Text-safe gold on dark navy grounds (PIN pills, subtitles)"
+          },
+          "goldInk": {
+            "token": "--gold-ink",
+            "hex": "#76601A",
+            "rgb": "rgb(118, 96, 26)",
+            "hsl": "hsl(46, 64%, 28%)",
+            "role": "Text-safe gold on light cream grounds"
+          },
+          "goldBorder": {
+            "token": "--gold",
+            "hex": "#B89628",
+            "rgb": "rgb(184, 150, 40)",
+            "hsl": "hsl(46, 64%, 44%)",
+            "role": "Card borders and gold foil rules (never used for body text)"
+          }
+        },
+        "status": {
+          "liveGreen": {
+            "hex": "#15803D",
+            "backgroundHex": "#DCFCE7",
+            "role": "Verified production release badge & live dot"
+          }
+        }
+      }
+    },
+    "mainWebsite": {
+      "name": "Randy Bryan Moore Personal Brand & Portfolio",
+      "scope": "randybryanmoore.us",
+      "tokens": {
+        "clrBg": {
+          "token": "--clr-bg",
+          "hex": "#0D0D0D",
+          "rgb": "rgb(13, 13, 13)",
+          "role": "Obsidian Base Background"
+        },
+        "clrSurface": {
+          "token": "--clr-surface",
+          "hex": "#161616",
+          "rgb": "rgb(22, 22, 22)",
+          "role": "Card and container surface"
+        },
+        "clrSurface2": {
+          "token": "--clr-surface2",
+          "hex": "#1F1F1F",
+          "rgb": "rgb(31, 31, 31)",
+          "role": "Elevated inset panels and input fields"
+        },
+        "clrBorder": {
+          "token": "--clr-border",
+          "hex": "#2A2A2A",
+          "rgb": "rgb(42, 42, 42)",
+          "role": "Dark structural dividers"
+        },
+        "clrText": {
+          "token": "--clr-text",
+          "hex": "#E8E4DC",
+          "rgb": "rgb(232, 228, 220)",
+          "role": "Warm Ivory body text"
+        },
+        "clrMuted": {
+          "token": "--clr-muted",
+          "hex": "#888880",
+          "rgb": "rgb(136, 136, 128)",
+          "role": "Muted captions and dates"
+        },
+        "clrGold": {
+          "token": "--clr-gold",
+          "hex": "#C9A84C",
+          "rgb": "rgb(201, 168, 76)",
+          "role": "Signature Champagne Gold (labels, CTA buttons)"
+        },
+        "clrGoldLt": {
+          "token": "--clr-gold-lt",
+          "hex": "#E2C47A",
+          "rgb": "rgb(226, 196, 122)",
+          "role": "Highlight gold hover states"
+        },
+        "clrWhite": {
+          "token": "--clr-white",
+          "hex": "#FFFFFF",
+          "rgb": "rgb(255, 255, 255)",
+          "role": "Headlines and prominent titles"
+        }
+      }
+    }
+  }
+}
