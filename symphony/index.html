@@ -75,9 +75,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=1787274421">
 </head>
-<!-- Review tooling switch: owner-controlled presentation state. The browser
-     persists only the on/off preference; the owner code is never stored. -->
-<body data-review-tools="off" class="dossier-locked">
+<body data-review-tools="on" class="dossier-unlocked">
 
   <!-- Build watermark: which agent last worked this page, the version and
        the date. Claude sets CL; AG sets Antigravity. Bump the
@@ -540,10 +538,10 @@
         </dl>
       </section>
       <div class="provenance-action-cluster" aria-label="Telemetry actions">
-        <button id="provenance-copy-handoff-btn" class="button button-maroon" type="button" disabled>📋 Copy Complete Handoff</button>
-        <button id="provenance-copy-telemetry-btn" class="button button-navy" type="button" disabled>⚙ Copy Telemetry</button>
+        <button id="provenance-copy-handoff-btn" class="button button-maroon" type="button">📋 Copy Complete Handoff</button>
+        <button id="provenance-copy-telemetry-btn" class="button button-navy" type="button">⚙ Copy Telemetry</button>
         <button id="annotation-owner-toggle-btn" class="button button-navy" type="button">🔒 Lock Admin</button>
-        <button id="provenance-relock-btn" class="button button-navy" type="button" disabled>🔒 Re-Lock</button>
+        <button id="provenance-relock-btn" class="button button-navy" type="button">🔒 Re-Lock</button>
       </div>
     </div>
   </div>

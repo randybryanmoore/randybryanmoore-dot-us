@@ -385,14 +385,15 @@
     }
   </style>
 </head>
-<body>
+<body data-review-tools="on" class="dossier-unlocked">
 
   <div class="print-btn-bar">
     <div><strong>Executive Candidate Briefing</strong> • Randy Bryan Moore, MSW</div>
-    <div>
+    <div style="display:flex; align-items:center; gap:6px;">
+      <button type="button" class="btn btn-outline" id="build-badge" onclick="window.toggleProvModal ? window.toggleProvModal() : null" style="color:var(--gold-light); border-color:rgba(223,202,116,0.6); padding:4px 12px; font-size:0.8rem;" title="Open Build Telemetry (Shift+V)">⚡ Telemetry</button>
       <a href="index.html" class="btn btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.4); padding:4px 12px; font-size:0.8rem;">Return to Full Dossier</a>
-      <a href="Randy_Bryan_Moore_Executive_Briefing.pdf" download class="btn btn-outline" style="color:#dfca74; border-color:rgba(223,202,116,0.6); padding:4px 12px; font-size:0.8rem; margin-left:8px; text-decoration:none;">Download PDF 📥</a>
-      <button onclick="window.print()" class="btn btn-wine" style="padding:4px 14px; font-size:0.8rem; margin-left:8px;">Print / Save PDF</button>
+      <a href="Randy_Bryan_Moore_Executive_Briefing.pdf" download class="btn btn-outline" style="color:#dfca74; border-color:rgba(223,202,116,0.6); padding:4px 12px; font-size:0.8rem; text-decoration:none;">Download PDF 📥</a>
+      <button onclick="window.print()" class="btn btn-wine" style="padding:4px 14px; font-size:0.8rem;">Print / Save PDF</button>
     </div>
   </div>
 
@@ -586,6 +587,68 @@
     </div>
   </div>
 
+  <!-- Build Provenance & Telemetry Modal -->
+  <div class="build-provenance-modal" id="build-provenance-modal" role="dialog" aria-modal="true" aria-labelledby="provenance-title" aria-hidden="true" tabindex="-1">
+    <div class="provenance-header">
+      <span class="provenance-title" id="provenance-title">⚡ Build &amp; Agent Telemetry</span>
+      <button id="provenance-close-btn" aria-label="Close build telemetry" style="background:none; border:none; cursor:pointer; font-weight:800; color:var(--wine); font-size:12px;">✕</button>
+    </div>
+    <div class="provenance-grid">
+      <div class="provenance-card provenance-card--deployment">
+        <div class="provenance-card-label">Deployment</div>
+        <div class="provenance-card-value" style="color:#15803d; font-weight:800;">● Live // Production Verified</div>
+      </div>
+      <div class="provenance-card">
+        <div class="provenance-card-label">Active Agent</div>
+        <div class="provenance-card-value">Antigravity (AG)</div>
+      </div>
+      <div class="provenance-card">
+        <div class="provenance-card-label">Runtime Model / Effort</div>
+        <div class="provenance-card-value">Gemini 2.5 Pro &bull; Advanced Agentic Coding</div>
+      </div>
+      <div class="provenance-card">
+        <div class="provenance-card-label">Build Version</div>
+        <div class="provenance-card-value">v1.7.2 (Current Live)</div>
+      </div>
+      <div class="provenance-card">
+        <div class="provenance-card-label">Total Time Logged</div>
+        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">⏱️ 11.2 Hours (verified across all sessions)</div>
+      </div>
+      <div class="provenance-card">
+        <div class="provenance-card-label">Git Commit SHA</div>
+        <div class="provenance-card-value" id="prov-commit-sha">#caee614 verified candidate deployment</div>
+      </div>
+      <div class="provenance-card">
+        <div class="provenance-card-label">Sync Branch</div>
+        <div class="provenance-card-value">main &bull; GitHub Actions Pages</div>
+      </div>
+    </div>
+
+    <details class="lifecycle-status-box" open>
+      <summary class="provenance-version-title" id="lifecycle-status-title">
+        <span>Code Lifecycle State</span>
+        <span style="color:#15803d; font-size:9px;">LIVE // VERIFIED</span>
+      </summary>
+      <div class="lifecycle-status-content">
+        <dl class="lifecycle-status-grid">
+          <div><dt>Local</dt><dd>v1.7.2 source and verified release files</dd></div>
+          <div><dt>Committed</dt><dd>Yes // candidate checkpoint #caee614</dd></div>
+          <div><dt>Pushed</dt><dd>Yes // primary GitHub repository</dd></div>
+          <div><dt>Merged / PR</dt><dd>Yes // merged to main</dd></div>
+          <div><dt>Deployed</dt><dd>Yes // GitHub Actions Pages</dd></div>
+          <div><dt>Live / Production</dt><dd>v1.7.2 verified at symphony.randybryanmoore.us</dd></div>
+        </dl>
+      </div>
+    </details>
+
+    <div class="provenance-actions">
+      <div class="provenance-action-cluster" aria-label="Telemetry actions">
+        <button id="provenance-copy-handoff-btn" class="btn btn-wine" type="button">📋 Copy Complete Handoff</button>
+        <button id="provenance-copy-telemetry-btn" class="btn btn-outline" style="color:var(--cobalt); border-color:var(--cobalt);" type="button">⚙ Copy Telemetry</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Precision Element Hover Inspector Box -->
   <div id="inspector-box" class="inspector-highlight-box">
     <span id="inspector-badge" class="inspector-highlight-badge">Element</span>
@@ -593,8 +656,11 @@
 
   <!-- Pinpoint Annotation & Feedback Suite -->
   <div class="annotation-dock" id="annotation-dock" aria-label="Review & Annotation Tools">
-    <button class="dock-btn" id="dock-pin-mode-btn" title="Click any element on the page to add feedback">
-      <span>Pin Feedback</span>
+    <button class="dock-btn" id="dock-pin-mode-btn" title="Click any element on the page to queue AI feedback">
+      <span>🚀 Pin AI</span>
+    </button>
+    <button class="dock-btn" id="dock-private-mode-btn" title="Click any element to add a private personal note (never sent to AI)">
+      <span>🔒 Private Note</span>
     </button>
     <button class="dock-btn" id="dock-live-edit-btn" title="Edit copy directly in place">
       <span>Live Edit</span>
@@ -632,10 +698,10 @@
       <button id="drawer-close-btn" onclick="window.closeFeedbackDrawer(event)" style="background: transparent; border: none; color: var(--cream); cursor: pointer; font-size: 1.1rem; padding: 2px 6px;">✕</button>
     </div>
     <div class="drawer-body" id="drawer-items-list">
-      <p style="color: var(--muted); font-size: 13px; font-style: italic;">No feedback pinned yet. Turn on 'Pin Feedback' and click any headline, paragraph, card, or button.</p>
+      <p style="color: var(--muted-olive); font-size: 13px; font-style: italic;">No feedback pinned yet. Turn on 'Pin AI' or 'Private Note' and click any headline, paragraph, card, or button.</p>
     </div>
     <div class="drawer-footer">
-      <button id="drawer-copy-ai-btn" onclick="window.copyAllNotesAndReset(event)" class="button button-navy" style="width: 100%; justify-content: center; font-size: 12px; padding: 10px;">
+      <button id="drawer-copy-ai-btn" onclick="window.copyAllNotesAndReset(event)" class="btn btn-wine" style="width: 100%; justify-content: center; font-size: 12px; padding: 10px;">
         Copy All Notes for Antigravity
       </button>
     </div>

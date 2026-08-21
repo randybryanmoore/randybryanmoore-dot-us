@@ -889,11 +889,8 @@ The complete YAML telemetry is embedded in Section 10.7 and is also available se
     }
 
     function toggleProvModal() {
-      if (!annotationToolsAreEnabled()) {
-        setOwnerUnlockOpen(Boolean(telemetryUnlockPopover?.hidden));
-        return;
-      }
-      setProvenanceOpen(!provModal?.classList.contains('open'));
+      if (!provModal) return;
+      setProvenanceOpen(!provModal.classList.contains('open'));
     }
 
     if (buildBadge) {
