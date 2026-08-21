@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-21T16:44:00-04:00",
+  "surface_name": "Richmond Symphony Executive One-Pager",
+  "surface_version": "1.0.1-rc",
+  "surface_prefix": "OP",
+  "parent_dossier": {
+    "production_version": "v1.7.3",
+    "production_commit": "0ef3a79",
+    "relationship": "shared repository, stylesheet, client script, and GitHub Pages host; separate telemetry lineage"
+  },
+  "generator": {
+    "agent": "CDX",
+    "product": "Codex",
+    "model_family": "GPT-5",
+    "runtime_variant": "not exposed to the static page",
+    "reasoning_effort": "not exposed to the static page"
+  },
+  "source": {
+    "repository": "randybryanmoore/randybryanmoore-dot-us",
+    "branch": "codex/one-pager-telemetry",
+    "base_commit": "0ef3a79",
+    "primary_artifact": "symphony/one_pager.html"
+  },
+  "lifecycle": {
+    "local": true,
+    "committed": false,
+    "pushed": false,
+    "merged_or_pull_request": false,
+    "deployed": false,
+    "staging": false,
+    "production_verified": false,
+    "production_note": "Parent v1.7.3 one-pager remains public; OP v1.0.1-rc is not live"
+  },
+  "engineering_time": {
+    "current_scoped_pass_hours": 0.2,
+    "earlier_one_pager_work": "uncaptured; no duration invented"
+  },
+  "artifacts": [
+    {
+      "path": "one_pager.html",
+      "sha256": "6f856684b9925095aca44ff79d056b17ddd76b696c3ce09c67603187fb7d38f5"
+    },
+    {
+      "path": "styles.css",
+      "sha256": "be59bb4d933f6450eaab9a2d67e928bb08d33921b11b4efcc234f753b4eb0bb5"
+    },
+    {
+      "path": "script.js",
+      "sha256": "b2d26f6a5c3cbcb4cb840686d47914c83350ab4a022e057c30c7802b89e2a641"
+    }
+  ],
+  "validation": {
+    "javascript_syntax": "pass",
+    "manifest_syntax": "pass",
+    "page_specific_modal": "pass: Executive One-Pager identity, OP v1.0.1-rc lifecycle, scoped time, artifact, and parent boundary visible",
+    "page_specific_machine_export": "pass: service name, surface, OP version, and local lifecycle exported independently",
+    "page_specific_complete_handoff": "pass: COMPLETE Sections 10.1-10.9 bundle with two visible records and no private owner code",
+    "action_layout": "pass: compact floating OP telemetry pill plus two equal-width contained controls in the narrow telemetry panel",
+    "browser_console": "pass: zero errors",
+    "offline_archive": "pass: rebuilt and integrity tested"
+  }
+}

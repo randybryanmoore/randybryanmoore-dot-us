@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-21T13:05:06-04:00",
+  "generated_at": "2026-08-21T16:44:00-04:00",
   "service_name": "richmond-symphony-candidate-dossier",
-  "service_version": "1.7.3",
+  "service_version": "1.7.4-rc",
   "generator": {
     "agent": "CDX",
     "product": "Codex",
@@ -14,8 +14,8 @@
   "source": {
     "repository": "randybryanmoore/randybryanmoore-dot-us",
     "branch": "main",
-    "base_commit": "081f6f1",
-    "working_tree": "release source plus post-deployment telemetry finalization"
+    "base_commit": "0ef3a79",
+    "working_tree": "local independent one-pager telemetry candidate"
   },
   "deployment_architecture": {
     "source_repository": "randybryanmoore/randybryanmoore-dot-us",
@@ -25,22 +25,22 @@
   },
   "lifecycle": {
     "local": true,
-    "committed": true,
-    "pushed": true,
+    "committed": false,
+    "pushed": false,
     "merged_or_pull_request": false,
-    "deployed": true,
+    "deployed": false,
     "staging": false,
     "production_verified": true,
     "production_version": "v1.7.3",
-    "verified_at": "2026-08-21T13:05:06-04:00",
-    "release_checkpoint": "081f6f1",
-    "deployment_workflow_run": "32506199014",
+    "verified_at": "2026-08-21T13:09:21-04:00",
+    "release_checkpoint": "0ef3a79",
+    "deployment_workflow_run": "32506630533",
     "first_verified_one_repository_build": "1d58442"
   },
   "artifacts": [
     {
       "path": "index.html",
-      "sha256": "2d4808379b26782d784f1a12c6d166eccf6c27632e3301b7fda94486a09540a3"
+      "sha256": "9cb85f29bebe0dfe7fbaf5ed6c7b18f8900f759391edd49578584121d3f59b3f"
     },
     {
       "path": "styles.css",
@@ -48,15 +48,15 @@
     },
     {
       "path": "script.js",
-      "sha256": "83acbd011a7c13765d13831c242d724316903f6a5221a5e965fee67d55626261"
+      "sha256": "b2d26f6a5c3cbcb4cb840686d47914c83350ab4a022e057c30c7802b89e2a641"
     },
     {
       "path": "one_pager.html",
-      "sha256": "07bbc7029c2dce4ec229fd04753a40069b0bf6399c1b33acd332afdb0ee59a9d"
+      "sha256": "6f856684b9925095aca44ff79d056b17ddd76b696c3ce09c67603187fb7d38f5"
     },
     {
       "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",
-      "sha256": "25e53a3916c1426966fee4d2e6653e248161473246ffcdfd6661bdf632023faf"
+      "sha256": "6672bfa071b2608d96a0db602f2897bcd64b31aebb41d14fa086ab5568d7565f"
     }
   ],
   "validation": {
@@ -70,9 +70,10 @@
     "performing_arts_copy_constraints": "pass: 40-word opening, 123-word main narrative, 78-word roots-practice-community passage; requested stewardship pull quote removed",
     "family_genealogy_language": "pass: Carter and Stanley connections are attributed to family accounts and presented as cultural context without an inherited-accomplishment claim",
     "section_order": "pass: 01 Systems, 02 Role Alignment, 03 Case Studies, 04 Performing Arts",
-    "complete_handoff_export": "pass: browser export contains Sections 10.1-10.9 and all 10 visible version records; private owner code absent",
+    "complete_handoff_export": "pass: dossier retains 11 records; one-pager exports a COMPLETE Sections 10.1-10.9 handoff with two page-specific records",
     "hero_action_alignment": "pass: equal-width centered two-column grid at 1440x1000 and centered single-column stack at 390x844 with zero horizontal overflow",
-    "production_readback": "pass: custom-domain HTML, CSS, JavaScript, one-pager, and dossier ZIP hashes matched the release manifest Aug 21, 2026 at 1:05 PM EDT"
+    "one_pager_telemetry": "pass: OP v1.0.1-rc reports its own surface identity, compact floating pill, lifecycle, scoped time, artifact, two-record archive, machine telemetry, and complete handoff",
+    "production_readback": "production v1.7.3 remains verified; local v1.7.4-rc and OP v1.0.1-rc have not been deployed"
   },
   "blockers": [
     {
