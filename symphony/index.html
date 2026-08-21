@@ -73,7 +73,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1787273941">
+  <link rel="stylesheet" href="styles.css?v=1787274421">
 </head>
 <!-- Review tooling switch: owner-controlled presentation state. The browser
      persists only the on/off preference; the owner code is never stored. -->
@@ -85,9 +85,9 @@
        independent of the review-tools switch. -->
   <button type="button" class="build-badge" id="build-badge" aria-expanded="false" aria-controls="telemetry-unlock-popover build-provenance-modal" title="Owner telemetry // hover to reveal // unlock required (Shift+V)">
     <span class="build-badge-agent" title="Active AI Agent: Codex (CDX)">CDX</span>
-    <span class="build-badge-live-dot" style="background:var(--gold-light); box-shadow:0 0 0 2px rgba(223,202,116,.22);" title="Local v1.7.1 release candidate // production remains v1.7.0"></span>
-    <span class="build-badge-version">v1.7.1-rc</span>
-    <span class="build-badge-sha">LOCAL</span>
+    <span class="build-badge-live-dot" title="Live production release verified Aug 20, 2026 at 9:07 PM EDT"></span>
+    <span class="build-badge-version">v1.7.1</span>
+    <span class="build-badge-sha">LIVE</span>
     <span class="build-badge-date">Aug 20, 2026</span>
   </button>
 
@@ -112,7 +112,7 @@
     <div class="provenance-grid">
       <div class="provenance-card provenance-card--deployment">
         <div class="provenance-card-label">Deployment</div>
-        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">● Local Candidate // Production v1.7.0</div>
+        <div class="provenance-card-value" style="color:#15803d; font-weight:800;">● Live // Production Verified</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Active Agent</div>
@@ -124,7 +124,7 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Build Version</div>
-        <div class="provenance-card-value">v1.7.1-rc (Current Local)</div>
+        <div class="provenance-card-value">v1.7.1 (Current Live)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Total Time Logged</div>
@@ -132,7 +132,7 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Git Commit SHA</div>
-        <div class="provenance-card-value" id="prov-commit-sha">#5ba8f3b production baseline</div>
+        <div class="provenance-card-value" id="prov-commit-sha">#689456d verified candidate deployment</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Sync Branch</div>
@@ -143,17 +143,17 @@
     <details class="lifecycle-status-box">
       <summary class="provenance-version-title" id="lifecycle-status-title">
         <span>Code Lifecycle State</span>
-        <span style="color:#9a6a00; font-size:9px;">LOCAL CANDIDATE // NOT DEPLOYED</span>
+        <span style="color:#15803d; font-size:9px;">LIVE // VERIFIED</span>
       </summary>
       <div class="lifecycle-status-content">
         <dl class="lifecycle-status-grid">
-          <div><dt>Local</dt><dd>v1.7.1-rc source under validation</dd></div>
-          <div><dt>Committed</dt><dd>No // candidate changes are uncommitted</dd></div>
-          <div><dt>Pushed</dt><dd>No // candidate remains local</dd></div>
-          <div><dt>Merged / PR</dt><dd>No // no candidate PR or merge</dd></div>
-          <div><dt>Deployed</dt><dd>No // candidate has not entered the Pages workflow</dd></div>
+          <div><dt>Local</dt><dd>v1.7.1 source and verified release files</dd></div>
+          <div><dt>Committed</dt><dd>Yes // candidate checkpoint #5fa8969</dd></div>
+          <div><dt>Pushed</dt><dd>Yes // primary GitHub repository</dd></div>
+          <div><dt>Merged / PR</dt><dd>Yes // PR #4 merged to main as #689456d</dd></div>
+          <div><dt>Deployed</dt><dd>Yes // GitHub Actions Pages run #32435108061</dd></div>
           <div><dt>Staging</dt><dd>Not used</dd></div>
-          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.7.0 verified at the custom domain Aug 20, 2026 &bull; 8:35 PM EDT</dd></div>
+          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.7.1 verified at the custom domain Aug 20, 2026 &bull; 9:07 PM EDT</dd></div>
         </dl>
         <details class="lifecycle-glossary">
           <summary>Lifecycle definitions used by all agents</summary>
@@ -233,31 +233,32 @@
       </details>
 
       <div class="provenance-changelog-list">
-        <!-- v1.7.1-rc -->
+        <!-- v1.7.1 -->
         <div class="version-item-wrap active">
           <div class="version-item-row" role="button" tabindex="0" aria-expanded="true">
-            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.7.1-rc</strong> (Current Local)</span>
-            <span class="version-row-tag version-row-tag--local">● 0.2h &bull; Aug 20</span>
+            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.7.1</strong> (Current Live)</span>
+            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 0.2h &bull; Aug 20</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-header">
               <div class="version-hover-title">
-                <span>v1.7.1-rc · Complete Telemetry Handoff</span>
-                <span style="color:#9a6a00; font-size:9px;">● LOCAL &bull; RELEASE CANDIDATE</span>
+                <span>v1.7.1 · Complete Telemetry Handoff</span>
+                <span style="color:#15803d; font-size:9px;">● LIVE &bull; PRODUCTION VERIFIED</span>
               </div>
               <div class="version-hover-meta">
                 <div><strong>Authoring Agent:</strong> Codex (CDX)</div>
                 <div><strong>Model / Effort:</strong> GPT-5 family &bull; exact runtime SKU / effort not exposed</div>
-                <div><strong>Updated:</strong> Aug 20, 2026 · 8:59 PM EDT</div>
+                <div><strong>Released:</strong> Aug 20, 2026 · 9:07 PM EDT</div>
                 <div><strong>Source Baseline:</strong> #5ba8f3b</div>
-                <div><strong>Candidate Lifecycle:</strong> local &bull; not committed &bull; not pushed &bull; not deployed</div>
-                <div><strong>Production:</strong> v1.7.0 remains live and verified at the custom domain</div>
+                <div><strong>Candidate Checkpoint:</strong> #5fa8969 &bull; merged by PR #4 as #689456d</div>
+                <div><strong>Production:</strong> v1.7.1 verified at the custom domain</div>
               </div>
             </div>
             <ul class="version-hover-bullets">
               <li><strong>[8:59 PM]</strong> Rebuilt “Copy Complete Handoff” so every export dynamically includes current telemetry cards, lifecycle states and definitions, color and version keys, the engineering-time method, every version record and adjustment, presentation and annotation state, and the complete machine-readable YAML snapshot.</li>
               <li><strong>[8:59 PM]</strong> Added a handoff completeness audit, visible section count, missing-section report, full-modal text fallback, and permanent Sections 10.1–10.9 retention rule so future agents receive newly added telemetry even before the structured extractor is updated.</li>
               <li><strong>[8:59 PM]</strong> Kept the private owner code out of telemetry and handoff exports while preserving the public lifecycle and presentation-state context needed by successor agents.</li>
+              <li><strong>[9:07 PM]</strong> Merged PR #4, completed GitHub Actions Pages run #32435108061, read back v1.7.1 at the custom domain, and matched production HTML, CSS, and JavaScript to the release manifest.</li>
             </ul>
           </div>
         </div>
@@ -265,21 +266,21 @@
         <!-- v1.7.0 -->
         <div class="version-item-wrap">
           <div class="version-item-row" role="button" tabindex="0" aria-expanded="false">
-            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.7.0</strong> (Current Live)</span>
-            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 1.7h &bull; Aug 20</span>
+            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.7.0</strong> (Released · Superseded)</span>
+            <span class="version-row-tag version-row-tag--released">● 1.7h &bull; Aug 20</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-header">
               <div class="version-hover-title">
                 <span>v1.7.0 · Owner Controls // Narrative Refinement</span>
-                <span style="color:#15803d; font-size:9px;">● LIVE &bull; PRODUCTION VERIFIED</span>
+                <span class="version-status--released">● RELEASED &bull; SUPERSEDED BY v1.7.1</span>
               </div>
               <div class="version-hover-meta">
                 <div><strong>Authoring Agent:</strong> Codex (CDX)</div>
                 <div><strong>Model / Effort:</strong> GPT-5 family &bull; exact runtime SKU / effort not exposed</div>
                 <div><strong>Released:</strong> Aug 20, 2026 · 8:35 PM EDT</div>
                 <div><strong>First Verified One-Repository Build:</strong> #1d58442</div>
-                <div><strong>Production:</strong> v1.7.0 verified at the custom domain</div>
+                <div><strong>Production History:</strong> v1.7.0 was verified at the custom domain, then superseded by v1.7.1</div>
               </div>
             </div>
             <ul class="version-hover-bullets">
@@ -1483,6 +1484,6 @@
   </div>
 
   <!-- Suite Script (external only — no inline duplication) -->
-  <script src="script.js?v=1787273941"></script>
+  <script src="script.js?v=1787274421"></script>
 </body>
 </html>
