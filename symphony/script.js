@@ -248,7 +248,7 @@
     const currentTelemetry = Object.freeze({
       schemaVersion: 1,
       serviceName: 'richmond-symphony-candidate-dossier',
-      serviceVersion: '1.7.1-rc',
+      serviceVersion: '1.7.1',
       agent: 'CDX',
       agentProduct: 'Codex',
       modelFamily: 'GPT-5',
@@ -256,7 +256,7 @@
       reasoningEffort: 'not exposed to the static page',
       repository: 'randybryanmoore/randybryanmoore-dot-us',
       branch: 'main',
-      baseCommit: '5ba8f3b',
+      baseCommit: '689456d',
       publicUrl: 'https://symphony.randybryanmoore.us',
       releaseManifest: './release-manifest.json'
     });
@@ -526,19 +526,19 @@ source:
   repository: "${currentTelemetry.repository}"
   branch: "${currentTelemetry.branch}"
   base_commit: "${currentTelemetry.baseCommit}"
-  working_tree: "local release candidate under validation"
+  working_tree: "verified release telemetry finalization"
 lifecycle:
   local: true
-  committed: false
-  pushed: false
-  pull_request_or_merged: false
-  deployed: false
+  committed: true
+  pushed: true
+  pull_request_or_merged: true
+  deployed: true
   staging: false
   production_verified: true
 production:
   url: "${currentTelemetry.publicUrl}"
-  state: "v1.7.0 live and verified from the primary repository; v1.7.1-rc remains local"
-  verified_at: "2026-08-20T20:35:30-04:00"
+  state: "v1.7.1 live and verified from the primary repository"
+  verified_at: "2026-08-20T21:07:01-04:00"
   first_verified_one_repository_build: "1d58442"
 presentation:
   annotation_feature_live: true
@@ -558,12 +558,12 @@ release_artifacts:
 validation:
   prior_release_candidate_gate: "pass"
   structured_telemetry_export: "source_checks_pass"
-  complete_handoff_export: "pass; 48,885-character copied handoff contained Sections 10.1-10.9, all 8 version records, full-modal fallback, lifecycle definitions, telemetry keys, time method, machine YAML, and no private owner code"
+  complete_handoff_export: "pass; browser-copied handoff contained Sections 10.1-10.9, all 8 version records, full-modal fallback, lifecycle definitions, telemetry keys, time method, machine YAML, and no private owner code"
   browser_interaction: "pass on HTTP with forced no-WebCrypto fallback; exact in-app file URL automation is policy-blocked"
   inline_owner_control: "source audit pass; transparent marker exposes only a compact code gate while locked; full telemetry remains closed until successful owner-code entry opens telemetry and turns annotation on; user file-page confirmation pending"
   grouped_annotation_export: "pass; one saved multi-element batch exports as one numbered AI comment with all targets listed"
   performing_arts_copy_constraints: "pass; 40-word opening, 123-word main narrative, 78-word roots-practice-community passage; requested stewardship pull quote removed"
-  production_readback: "pass; custom domain returned the v1.7.0 release source with manifest-matching CSS and JavaScript from the primary repository"
+  production_readback: "pass; custom domain returned the v1.7.1 candidate source with manifest-matching HTML, CSS, and JavaScript before final live-status reconciliation"
 security:
   access_gate: "client-side presentation convenience; not authentication"
   sensitive_values_in_export: false
@@ -711,15 +711,15 @@ This is the current operational snapshot. Reverify every changeable fact before 
 
 ### Lifecycle — report each state separately
 - Local: Yes — \`v${currentTelemetry.serviceVersion}\` release source is present and validated.
-- Committed: No — the candidate changes are not yet committed.
-- Pushed: No — the candidate remains local.
-- Merged / Pull Request: No — no candidate PR or merge exists yet.
-- Deployed: No — the candidate has not entered the Pages workflow.
+- Committed: Yes — candidate checkpoint \`5fa8969\`.
+- Pushed: Yes — primary GitHub repository.
+- Merged / Pull Request: Yes — PR #4 merged into \`main\` as \`689456d\`.
+- Deployed: Yes — primary-repository GitHub Actions Pages run #32435108061.
 - Staging: Not used.
-- Live / Production: \`v1.7.0\` remains verified at the custom domain; \`v${currentTelemetry.serviceVersion}\` is not live.
+- Live / Production: \`v${currentTelemetry.serviceVersion}\` verified at the custom domain Aug 20, 2026 at 9:07 PM EDT.
 
 ### Presentation thresholds — report separately
-- Feature Live: Yes — the owner-gated annotation capability is deployed in production v1.7.0 and available.
+- Feature Live: Yes — the owner-gated annotation capability is deployed in production v1.7.1 and available.
 - Admin Controls: ${annotationToolsAreEnabled() ? 'Unlocked — full telemetry, annotation, and owner actions are available.' : 'Locked — the transparent telemetry marker exposes only the owner-code gate; full telemetry and annotation are unavailable.'}
 - Ready to Present: ${annotationToolsAreEnabled() ? 'No — admin and annotation tools are currently active in this browser.' : 'Yes — annotation, editing, notes, and inspector overlays are hidden; the telemetry badge remains available for owner access.'}
 
@@ -771,6 +771,7 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 - Consolidated source and deployment authority in the primary repository with a validated GitHub Pages workflow that publishes only \`symphony/\`; the legacy serving repository is retained solely as a recoverable archive after cutover.
 - Reordered the core narrative to Systems, Role Alignment, Case Studies, then Performing Arts, with matching navigation and section numbers.
 - Centered Deployment at the top of telemetry, made Code Lifecycle State collapsible, replaced red annotation outlines with gold, and standardized visible monograms as RBM.
+- Made every context handoff dynamically include all current telemetry, all version adjustments, lifecycle definitions, both telemetry keys, the engineering-time method, presentation and annotation state, machine-readable YAML, and a full-modal fallback for future additions.
 
 ## 6. Safe release protocol
 1. Explain the intended source changes in 3–7 bullets.
@@ -793,8 +794,9 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 ## 8. Release evidence
 - \`DEPLOY-APPROVAL-001\` — Closed. Randy explicitly authorized publication.
 - First verified one-repository build: \`1d58442\` from merged PR #2.
-- Current production release: v1.7.0.
-- Production readback passed at the custom domain on Aug 20, 2026 at 8:35 PM EDT; CSS and JavaScript matched the release manifest.
+- Complete-telemetry candidate: \`5fa8969\`, merged by PR #4 as \`689456d\`.
+- Current production release: v1.7.1.
+- Production readback passed at the custom domain on Aug 20, 2026 at 9:07 PM EDT; HTML, CSS, and JavaScript matched the release manifest.
 
 ## 9. Machine-readable companion
 The complete YAML telemetry is embedded in Section 10.7 and is also available separately through “Copy Machine Telemetry (.YAML).” Treat browser-generated state as a handoff snapshot, not as an independently verified Git or hosting measurement.`);
