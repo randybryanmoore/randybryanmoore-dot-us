@@ -38,7 +38,7 @@
   "artifacts": [
     {
       "path": "index.html",
-      "sha256": "96d4432c290349ba9b4cf7b830ec664dc80dc2903f8e9e387f9275800228486c"
+      "sha256": "bb1a379fdd6b29ed5a4156a078f8d61f5d8e522624f4d18d49bf4f03a70a683a"
     },
     {
       "path": "styles.css",
@@ -46,7 +46,7 @@
     },
     {
       "path": "script.js",
-      "sha256": "f4bc98aee18d951c433e83111dae1ec6f8fafdb40508593ddb84e015b5f36493"
+      "sha256": "a12f58e968944792aaf601aa96d8bce66af25ab55a18fba9efe4aef915147795"
     },
     {
       "path": "one_pager.html",
@@ -54,7 +54,7 @@
     },
     {
       "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",
-      "sha256": "b6765160d32966296d029a6809a935b0c69bad4694a772389c6f15d03c2f5533"
+      "sha256": "af7f5becefc1427d14a695574dc3c1ff86168800f6866fdf1c05b9091d84f164"
     }
   ],
   "validation": {

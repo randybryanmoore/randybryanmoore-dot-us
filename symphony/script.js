@@ -248,15 +248,15 @@
     const currentTelemetry = Object.freeze({
       schemaVersion: 1,
       serviceName: 'richmond-symphony-candidate-dossier',
-      serviceVersion: '1.7.1',
-      agent: 'CDX',
-      agentProduct: 'Codex',
-      modelFamily: 'GPT-5',
-      runtimeVariant: 'not exposed to the static page',
-      reasoningEffort: 'not exposed to the static page',
+      serviceVersion: '1.7.2',
+      agent: 'AG',
+      agentProduct: 'Antigravity',
+      modelFamily: 'Gemini 2.5 Pro',
+      runtimeVariant: 'Advanced Agentic Coding',
+      reasoningEffort: 'Deep Reasoning',
       repository: 'randybryanmoore/randybryanmoore-dot-us',
       branch: 'main',
-      baseCommit: '689456d',
+      baseCommit: 'cddfcca',
       publicUrl: 'https://symphony.randybryanmoore.us',
       releaseManifest: './release-manifest.json'
     });
@@ -1746,6 +1746,7 @@ The complete YAML telemetry is embedded in Section 10.7 and is also available se
       });
     }
 
+    applyAnnotationToolsState(true);
     renderTags();
     updateDrawer();
   }
