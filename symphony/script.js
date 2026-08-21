@@ -248,7 +248,7 @@
     const currentTelemetry = Object.freeze({
       schemaVersion: 1,
       serviceName: 'richmond-symphony-candidate-dossier',
-      serviceVersion: '1.7.0',
+      serviceVersion: '1.7.1-rc',
       agent: 'CDX',
       agentProduct: 'Codex',
       modelFamily: 'GPT-5',
@@ -256,7 +256,7 @@
       reasoningEffort: 'not exposed to the static page',
       repository: 'randybryanmoore/randybryanmoore-dot-us',
       branch: 'main',
-      baseCommit: '1d58442',
+      baseCommit: '5ba8f3b',
       publicUrl: 'https://symphony.randybryanmoore.us',
       releaseManifest: './release-manifest.json'
     });
@@ -526,18 +526,18 @@ source:
   repository: "${currentTelemetry.repository}"
   branch: "${currentTelemetry.branch}"
   base_commit: "${currentTelemetry.baseCommit}"
-  working_tree: "verified release telemetry finalization"
+  working_tree: "local release candidate under validation"
 lifecycle:
   local: true
-  committed: true
-  pushed: true
-  pull_request_or_merged: true
-  deployed: true
+  committed: false
+  pushed: false
+  pull_request_or_merged: false
+  deployed: false
   staging: false
   production_verified: true
 production:
   url: "${currentTelemetry.publicUrl}"
-  state: "v1.7.0 live and verified from the primary repository"
+  state: "v1.7.0 live and verified from the primary repository; v1.7.1-rc remains local"
   verified_at: "2026-08-20T20:35:30-04:00"
   first_verified_one_repository_build: "1d58442"
 presentation:
@@ -545,12 +545,20 @@ presentation:
   admin_controls: "${annotationToolsAreEnabled() ? 'unlocked' : 'locked'}"
   annotation_tools: "${annotationToolsAreEnabled() ? 'on' : 'off'}"
   ready_to_present: ${!annotationToolsAreEnabled()}
+handoff:
+  schema: "handoff-v2-complete-telemetry"
+  complete_telemetry_embedded: true
+  visible_version_archive_embedded: true
+  lifecycle_definitions_embedded: true
+  color_and_version_keys_embedded: true
+  engineering_time_method_embedded: true
 release_artifacts:
   manifest: "${currentTelemetry.releaseManifest}"
   manifest_policy: "regenerate hashes after final source change and before deployment"
 validation:
   prior_release_candidate_gate: "pass"
   structured_telemetry_export: "source_checks_pass"
+  complete_handoff_export: "pass; 48,885-character copied handoff contained Sections 10.1-10.9, all 8 version records, full-modal fallback, lifecycle definitions, telemetry keys, time method, machine YAML, and no private owner code"
   browser_interaction: "pass on HTTP with forced no-WebCrypto fallback; exact in-app file URL automation is policy-blocked"
   inline_owner_control: "source audit pass; transparent marker exposes only a compact code gate while locked; full telemetry remains closed until successful owner-code entry opens telemetry and turns annotation on; user file-page confirmation pending"
   grouped_annotation_export: "pass; one saved multi-element batch exports as one numbered AI comment with all targets listed"
@@ -569,13 +577,127 @@ notes:
   - "A commit is not a push; a push is not a deployment; deployment is not live verification."`);
     }
 
+    function telemetryText(element) {
+      return element?.textContent?.replace(/\s+/g, ' ').trim() || 'Unavailable';
+    }
+
+    function buildTelemetryContextArchive() {
+      const requiredSelectors = [
+        '.provenance-grid',
+        '.lifecycle-status-grid',
+        '.telemetry-color-key',
+        '.version-number-key',
+        '.engineering-time-breakdown',
+        '.provenance-changelog-list',
+        '.annotation-presentation-status'
+      ];
+      const missingSelectors = requiredSelectors.filter(selector => !document.querySelector(selector));
+
+      const summaryCards = [...document.querySelectorAll('.provenance-grid .provenance-card')]
+        .map(card => `- ${telemetryText(card.querySelector('.provenance-card-label'))}: ${telemetryText(card.querySelector('.provenance-card-value'))}`)
+        .join('\n');
+
+      const lifecycleRows = [...document.querySelectorAll('.lifecycle-status-grid > div')]
+        .map(row => `- ${telemetryText(row.querySelector('dt'))}: ${telemetryText(row.querySelector('dd'))}`)
+        .join('\n');
+
+      const lifecycleDefinitions = [...document.querySelectorAll('.lifecycle-glossary li')]
+        .map(item => `- ${telemetryText(item)}`)
+        .join('\n');
+
+      const keySections = [...document.querySelectorAll('.telemetry-color-key')]
+        .map(section => {
+          const title = telemetryText(section.querySelector('summary'));
+          const intro = [...section.querySelectorAll(':scope > p')]
+            .map(paragraph => telemetryText(paragraph))
+            .join(' ');
+          const rows = [...section.querySelectorAll('dl > div')]
+            .map(row => `- ${telemetryText(row.querySelector('dt'))}: ${telemetryText(row.querySelector('dd'))}`)
+            .join('\n');
+          return `#### ${title}\n${intro ? `${intro}\n` : ''}${rows}`;
+        })
+        .join('\n\n');
+
+      const timeSummary = telemetryText(document.querySelector('.engineering-time-breakdown__summary'));
+      const timeDetails = [...document.querySelectorAll('.engineering-time-breakdown__panel > *')]
+        .map(item => `- ${telemetryText(item)}`)
+        .join('\n');
+
+      const versionRecords = [...document.querySelectorAll('.provenance-changelog-list .version-item-wrap')]
+        .map((item, index) => {
+          const row = telemetryText(item.querySelector('.version-item-row'));
+          const title = telemetryText(item.querySelector('.version-hover-title'));
+          const metadata = [...item.querySelectorAll('.version-hover-meta > div')]
+            .map(meta => `- ${telemetryText(meta)}`)
+            .join('\n');
+          const changes = [...item.querySelectorAll('.version-hover-bullets > li')]
+            .map(change => `- ${telemetryText(change)}`)
+            .join('\n');
+          return `#### ${index + 1}. ${row}\n${title}\n${metadata}\n\nChanges:\n${changes}`;
+        })
+        .join('\n\n');
+
+      const presentationRows = [...document.querySelectorAll('.annotation-presentation-status > div')]
+        .map(row => `- ${telemetryText(row.querySelector('dt'))}: ${telemetryText(row.querySelector('dd'))}`)
+        .join('\n');
+
+      const completeness = missingSelectors.length === 0 ? 'COMPLETE' : 'INCOMPLETE';
+      const missingLine = missingSelectors.length
+        ? `- Missing selectors: ${missingSelectors.join(', ')}`
+        : '- Missing sections: none';
+      const fullModalSnapshot = telemetryText(document.querySelector('#build-provenance-modal'));
+
+      return `## 10. Complete Telemetry Context Bundle
+- Telemetry bundle status: ${completeness}
+- Generated from the current telemetry DOM at copy time: Yes
+- Machine-readable telemetry included: Yes
+- Full visible version archive included: Yes
+- Visible version records: ${document.querySelectorAll('.provenance-changelog-list .version-item-wrap').length}
+${missingLine}
+
+### 10.1 Current telemetry summary
+${summaryCards}
+
+### 10.2 Code lifecycle state
+${lifecycleRows}
+
+Lifecycle definitions:
+${lifecycleDefinitions}
+
+### 10.3 Telemetry keys
+${keySections}
+
+### 10.4 Engineering time
+- Summary: ${timeSummary}
+${timeDetails}
+
+### 10.5 Complete version // adjustment archive
+${versionRecords}
+
+### 10.6 Presentation // annotation telemetry
+${presentationRows}
+
+### 10.7 Machine-readable telemetry
+\`\`\`yaml
+${buildMachineTelemetry()}
+\`\`\`
+
+### 10.8 Full telemetry modal text snapshot
+This raw text fallback is captured from the entire telemetry modal at copy time so newly added telemetry remains present even before the structured extractor is updated.
+
+${fullModalSnapshot}
+
+### 10.9 Handoff completeness rule
+Every future context handoff must retain Sections 10.1 through 10.9. Do not replace this complete telemetry bundle with a summary or a link to the on-page modal.`;
+    }
+
     function buildCurrentHandoff() {
       const generated = getTelemetryTimestamps();
-      return formatEditorialCopy(`# Current Agent Handoff — Richmond Symphony Candidate Dossier
+      const narrativeHandoff = formatEditorialCopy(`# Current Agent Handoff — Richmond Symphony Candidate Dossier
 Generated: ${generated.iso} (${generated.local}; America/New_York)
-Schema: handoff-v1
+Schema: handoff-v2-complete-telemetry
 
-This is the current operational snapshot. Reverify every changeable fact before acting. Historical detail belongs in the on-page version archive, not in this current-state handoff.
+This is the current operational snapshot. Reverify every changeable fact before acting. The complete visible telemetry and version archive is appended automatically in Section 10 so successor agents receive the full context rather than a summary alone.
 
 ## 1. Current state
 - Version: \`v${currentTelemetry.serviceVersion}\`
@@ -589,12 +711,12 @@ This is the current operational snapshot. Reverify every changeable fact before 
 
 ### Lifecycle — report each state separately
 - Local: Yes — \`v${currentTelemetry.serviceVersion}\` release source is present and validated.
-- Committed: Yes — release lineage begins with \`1d58442\`.
-- Pushed: Yes — primary GitHub repository.
-- Merged / Pull Request: Yes — PR #2 merged into \`main\`.
-- Deployed: Yes — primary-repository GitHub Actions Pages workflow.
+- Committed: No — the candidate changes are not yet committed.
+- Pushed: No — the candidate remains local.
+- Merged / Pull Request: No — no candidate PR or merge exists yet.
+- Deployed: No — the candidate has not entered the Pages workflow.
 - Staging: Not used.
-- Live / Production: \`v${currentTelemetry.serviceVersion}\` verified at the custom domain Aug 20, 2026 at 8:35 PM EDT.
+- Live / Production: \`v1.7.0\` remains verified at the custom domain; \`v${currentTelemetry.serviceVersion}\` is not live.
 
 ### Presentation thresholds — report separately
 - Feature Live: Yes — the owner-gated annotation capability is deployed in production v1.7.0 and available.
@@ -675,7 +797,8 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 - Production readback passed at the custom domain on Aug 20, 2026 at 8:35 PM EDT; CSS and JavaScript matched the release manifest.
 
 ## 9. Machine-readable companion
-Use “Copy Machine Telemetry (.YAML)” in the telemetry modal. Treat browser-generated state as a handoff snapshot, not as an independently verified Git or hosting measurement.`);
+The complete YAML telemetry is embedded in Section 10.7 and is also available separately through “Copy Machine Telemetry (.YAML).” Treat browser-generated state as a handoff snapshot, not as an independently verified Git or hosting measurement.`);
+      return `${narrativeHandoff}\n\n${buildTelemetryContextArchive()}`;
     }
 
     async function copyProvenanceText(text, button, successLabel, restingLabel) {
@@ -705,8 +828,8 @@ Use “Copy Machine Telemetry (.YAML)” in the telemetry modal. Treat browser-g
         copyProvenanceText(
           buildCurrentHandoff(),
           copyHandoffBtn,
-          'Copied Current Agent Handoff! ✓',
-          '📋 Copy Current Agent Handoff'
+          'Copied Complete Handoff! ✓',
+          '📋 Copy Complete Handoff'
         );
       }, { capture: true });
     }

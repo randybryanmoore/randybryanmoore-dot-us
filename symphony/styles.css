@@ -3403,6 +3403,12 @@ body[data-review-tools="off"] .annotation-element-badge {
   color: var(--cream);
 }
 
+.version-item-row .version-row-tag--local {
+  background: var(--gold-light);
+  border-color: #b59c3d;
+  color: var(--blue-l1);
+}
+
 .telemetry-color-key {
   margin-bottom: 10px;
   padding: 9px;
