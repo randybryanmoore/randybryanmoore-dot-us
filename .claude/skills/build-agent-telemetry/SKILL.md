@@ -179,3 +179,12 @@ Use this skill whenever building, updating, or maintaining web applications, pro
 3. **Preserve Lifecycle & Provenance**: Never erase historical milestones or overwrite authoring/deployment agent attribution.
 4. **Reconcile Manifest Digests**: Always re-calculate SHA-256 digests in `release-manifest.json` after the final source edit.
 5. **Verify Production Readback**: Query custom domain and live Pages status before declaring tasks complete.
+---
+
+## 🔄 Cross-Platform Automatic Synchronization Protocol
+Whenever this skill is updated, expanded, or refined by any AI agent or platform (Antigravity, Claude Code, Codex, or Cursor), the modifying agent **MUST unconditionally synchronize** the updated  across all 3 canonical skill locations on the user's system:
+1. **Antigravity Global**: 
+2. **Claude Code Native**: 
+3. **Codex / Cursor / Universal**: 
+
+Running  in the workspace will automatically propagate the newest version across all platforms.
