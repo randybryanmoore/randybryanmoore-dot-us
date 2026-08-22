@@ -2938,7 +2938,7 @@ body[data-review-tools="on"] {
    ======================================================================= */
 .build-badge {
   position: fixed;
-  top: calc(var(--nav-h) + 12px);
+  top: calc(var(--nav-h, 84px) + 14px);
   right: 18px;
   z-index: 9998;
   display: flex;

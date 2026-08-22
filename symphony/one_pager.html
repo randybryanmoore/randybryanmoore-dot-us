@@ -37,12 +37,23 @@
       --muted-olive: #59645E;   /* brand --muted — 5.72:1 on paper */
       --border-subtle: rgba(24, 43, 77, 0.12);
       --border-strong: rgba(28, 33, 30, 0.22);
+      --nav-h: 74px;
       --font-serif: 'Playfair Display', 'Iowan Old Style', Palatino, Georgia, serif;
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
       --shadow-md: 0 8px 24px rgba(28, 33, 30, 0.08);
       --radius-sm: 4px;
       --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Ensure telemetry watermark floats cleanly below the sticky header */
+    .build-badge {
+      top: calc(var(--nav-h, 74px) + 14px) !important;
+      right: 20px !important;
+      z-index: 999;
+    }
+    .build-provenance-modal {
+      top: calc(var(--nav-h, 74px) + 12px) !important;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
