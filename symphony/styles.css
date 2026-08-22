@@ -1413,13 +1413,8 @@ img {
 
 @media (max-width: 820px) {
   .music-rpc-grid,
-  .selected-listening-studies,
-  .selected-listening-studies nav {
+  .selected-listening-studies {
     grid-template-columns: 1fr;
-  }
-
-  .selected-listening-studies a {
-    min-height: 78px;
   }
 }
 
