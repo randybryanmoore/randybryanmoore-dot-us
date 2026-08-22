@@ -47,6 +47,13 @@
   --paper:         #fbf6ed;
   --paper-deep:    #e8ddcc;
   --gold-light:    #dfca74;
+  /* Agent identity (not lifecycle): navy AG, orange CL, gold CDX, violet CUR. */
+  --agent-ag:      var(--blue-l1);
+  --agent-cl:      #c2410c;
+  --agent-cdx:     var(--gold-light);
+  --agent-cur:     #5a4e8c;
+  --agent-cur-ink: #f2eadf;
+  --agent-cur-line:#c5b8e8;
   --white:         #ffffff;
   --ink:           #151c22;
   --muted:         #595e64;
@@ -898,7 +905,7 @@ img {
   /* Unified dark blue hue matching ticker and QR card */
   background: var(--blue-l2);
   border: 1px solid rgba(242, 234, 223, 0.22);
-  border-left: 4px solid var(--gold-light);
+  border-left: 4px solid var(--maroon);
   padding: 14px 16px;
   border-radius: 6px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -1406,13 +1413,8 @@ img {
 
 @media (max-width: 820px) {
   .music-rpc-grid,
-  .selected-listening-studies,
-  .selected-listening-studies nav {
+  .selected-listening-studies {
     grid-template-columns: 1fr;
-  }
-
-  .selected-listening-studies a {
-    min-height: 78px;
   }
 }
 
@@ -2862,6 +2864,30 @@ body[data-review-tools="on"] {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
+.build-badge-agent--ag {
+  background: var(--agent-ag);
+  color: #ffffff;
+  border-color: var(--gold-light);
+}
+
+.build-badge-agent--cl {
+  background: var(--agent-cl);
+  color: #ffffff;
+  border-color: #9a3412;
+}
+
+.build-badge-agent--cdx {
+  background: var(--agent-cdx);
+  color: var(--blue-l1);
+  border-color: var(--cream);
+}
+
+.build-badge-agent--cur {
+  background: var(--agent-cur);
+  color: var(--agent-cur-ink);
+  border-color: var(--agent-cur-line);
+}
+
 .annotation-presentation-control {
   display: grid;
   gap: 7px;
@@ -3379,21 +3405,27 @@ body[data-review-tools="on"] {
 }
 
 .agent-chip--ag {
-  background: var(--blue-base);
+  background: var(--agent-ag);
   color: #ffffff;
   border: 1px solid var(--gold-light);
 }
 
 .agent-chip--cl {
-  background: #c2410c;
+  background: var(--agent-cl);
   color: #ffffff;
   border: 1px solid #9a3412;
 }
 
 .agent-chip--cdx {
-  background: var(--gold-light);
+  background: var(--agent-cdx);
   color: var(--blue-l1);
   border: 1px solid #b59c3d;
+}
+
+.agent-chip--cur {
+  background: var(--agent-cur);
+  color: var(--agent-cur-ink);
+  border: 1px solid var(--agent-cur-line);
 }
 
 .version-item-row strong {
@@ -3620,6 +3652,10 @@ body[data-review-tools="on"] {
 .telemetry-swatch--released { background: var(--blue-l3); }
 .telemetry-swatch--attention { background: var(--maroon); }
 .telemetry-swatch--neutral { background: var(--cream); }
+.telemetry-swatch--ag { background: var(--agent-ag); }
+.telemetry-swatch--cl { background: var(--agent-cl); }
+.telemetry-swatch--cdx { background: var(--agent-cdx); }
+.telemetry-swatch--cur { background: var(--agent-cur); }
 
 @media (max-width: 480px) {
   .telemetry-color-key__grid {

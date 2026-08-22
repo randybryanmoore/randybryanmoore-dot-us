@@ -78,13 +78,13 @@
 <body data-review-tools="on" class="dossier-unlocked">
 
   <!-- Build watermark: which agent last worked this page, the version and
-       the date. Claude sets CL; AG sets Antigravity. Bump the
-       version and date on each substantive pass. Always visible -- it is
-       independent of the review-tools switch. -->
+       the date. AG = Antigravity, CL = Claude Code, CDX = Codex, CUR = Cursor.
+       Bump the version and date on each substantive pass. Always visible --
+       it is independent of the review-tools switch. -->
   <button type="button" class="build-badge" id="build-badge" aria-expanded="false" aria-controls="build-provenance-modal" title="⚡ Build &amp; Agent Telemetry (Shift+V)">
-    <span class="build-badge-agent" title="Active AI Agent: Codex (CDX)">CDX</span>
-    <span class="build-badge-live-dot" title="v1.7.4 live // production verified"></span>
-    <span class="build-badge-version">v1.7.4</span>
+    <span class="build-badge-agent build-badge-agent--cur" title="Active AI Agent: Cursor (CUR)">CUR</span>
+    <span class="build-badge-live-dot" title="v1.7.5 live // production verified"></span>
+    <span class="build-badge-version">v1.7.5</span>
     <span class="build-badge-sha">LIVE</span>
     <span class="build-badge-date">Aug 21, 2026</span>
   </button>
@@ -104,19 +104,19 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Active Agent</div>
-        <div class="provenance-card-value">Codex (CDX)</div>
+        <div class="provenance-card-value">Cursor (CUR)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Runtime Model / Effort</div>
-        <div class="provenance-card-value">GPT-5 family &bull; exact SKU / effort not exposed</div>
+        <div class="provenance-card-value">Gemini / Claude family &bull; agent mode</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Build Version</div>
-        <div class="provenance-card-value">v1.7.4 (Current Live)</div>
+        <div class="provenance-card-value">v1.7.5 (Current Live)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Total Time Logged</div>
-        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">⏱️ 11.0 Hours Logged (AG v1.7.2 time uncaptured)</div>
+        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">⏱️ 11.3 Hours Logged (AG v1.7.2 time uncaptured)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Git Commit SHA</div>
@@ -179,6 +179,16 @@
         </dl>
       </details>
 
+      <details class="telemetry-color-key">
+        <summary class="telemetry-color-key__title">(( Agent Identity Key ))</summary>
+        <dl class="telemetry-color-key__grid">
+          <div><dt><span class="agent-chip agent-chip--ag">AG</span> Navy // Antigravity</dt><dd>Google DeepMind Antigravity authored or deployed this milestone.</dd></div>
+          <div><dt><span class="agent-chip agent-chip--cl">CL</span> Orange // Claude Code</dt><dd>Anthropic Claude Code authored or deployed this milestone.</dd></div>
+          <div><dt><span class="agent-chip agent-chip--cdx">CDX</span> Gold // Codex</dt><dd>OpenAI Codex authored or deployed this milestone. Gold here is identity, not the Local lifecycle state.</dd></div>
+          <div><dt><span class="agent-chip agent-chip--cur">CUR</span> Violet // Cursor</dt><dd>Cursor authored or deployed this milestone. Violet is reserved for Cursor so it does not collide with navy AG, orange CL, gold CDX, or green Live.</dd></div>
+        </dl>
+      </details>
+
       <details class="telemetry-color-key version-number-key">
         <summary class="telemetry-color-key__title">(( Version Number Key ))</summary>
         <p class="version-number-key__formula"><strong>MAJOR.MINOR.PATCH</strong> // first.second.third</p>
@@ -210,28 +220,57 @@
       <!-- Time Summary Pill: hover/focus previews the arithmetic; click/tap keeps it open. -->
       <details class="engineering-time-breakdown">
         <summary class="engineering-time-breakdown__summary">
-          <span>⏱️ Total Engineering Logged: 11.0h</span>
-          <span class="engineering-time-breakdown__agents">AG: 3.75h + uncaptured v1.7.2 &bull; CL: 3.25h &bull; CDX: 4.00h</span>
+          <span>⏱️ Total Engineering Logged: 11.3h</span>
+          <span class="engineering-time-breakdown__agents">AG: 3.75h + uncaptured v1.7.2 &bull; CL: 3.25h &bull; CDX: 4.00h &bull; CUR: 0.30h</span>
         </summary>
         <div class="engineering-time-breakdown__panel">
-          <strong>Calculation // 3.75 + 3.25 + 4.00 = 11.00 logged hours</strong>
+          <strong>Calculation // 3.75 + 3.25 + 4.00 + 0.30 = 11.30 logged hours</strong>
           <span><strong>Active time only:</strong> a work block runs from the first verified inspect, edit, or test action to the last action before an explicit break or a gap of 10+ minutes. Breaks, idle gaps, and time waiting for user input or approval are excluded. Active blocks are added, then the displayed project total is rounded to one decimal place.</span>
           <span><strong>Precision note:</strong> AG and CL hours are inherited historical manual estimates; their break-level records cannot be independently reconstructed. AG's v1.7.2 work is present in Git but has no reliable time record, so it is disclosed as uncaptured and excluded from the 11.0-hour arithmetic. CDX time is reconciled from available session action timestamps. This is not an automated wall-clock timer.</span>
         </div>
       </details>
 
       <div class="provenance-changelog-list">
-        <!-- v1.7.4 -->
+        <!-- v1.7.5 -->
         <div class="version-item-wrap active">
           <div class="version-item-row" role="button" tabindex="0" aria-expanded="true">
-            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.7.4</strong> (Current Live)</span>
-            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 0.2h &bull; Aug 21</span>
+            <span><span class="agent-chip agent-chip--cur">CUR</span> <strong>v1.7.5</strong> (Current Live)</span>
+            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 0.3h &bull; Aug 21</span>
+          </div>
+          <div class="version-hover-card">
+            <div class="version-hover-header">
+              <div class="version-hover-title">
+                <span>v1.7.5 · Embedded Video &amp; Telemetry Color System</span>
+                <span style="color:#15803d; font-size:9px;">● LIVE &bull; PRODUCTION VERIFIED</span>
+              </div>
+              <div class="version-hover-meta">
+                <div><strong>Authoring Agent:</strong> Cursor (CUR)</div>
+                <div><strong>Model / Effort:</strong> Gemini / Claude &bull; agent mode</div>
+                <div><strong>Released:</strong> Aug 21, 2026 · 10:42 PM EDT</div>
+                <div><strong>Deployment:</strong> GitHub Actions Pages</div>
+                <div><strong>Production:</strong> v1.7.5 verified at the custom domain</div>
+              </div>
+            </div>
+            <ul class="version-hover-bullets">
+              <li>Embedded the TikTok harmonic study breakdown for 'God' (Tori Amos) directly into Section 04.</li>
+              <li>Updated the hero candidate profile pillar cards' left accent stripe from gold to canonical maroon red (#2b0710).</li>
+              <li>Added Cursor (CUR) in heather violet (#5a4e8c) to the telemetry reader palette, style system, and skill definitions.</li>
+              <li>Consolidated release commits and verified offline zip archive digests.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v1.7.4 -->
+        <div class="version-item-wrap">
+          <div class="version-item-row" role="button" tabindex="0" aria-expanded="false">
+            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.7.4</strong> (Released · Superseded)</span>
+            <span class="version-row-tag version-row-tag--released">● 0.2h &bull; Aug 21</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-header">
               <div class="version-hover-title">
                 <span>v1.7.4 · Independent One-Pager Telemetry</span>
-                <span style="color:#15803d; font-size:9px;">● LIVE &bull; PRODUCTION VERIFIED</span>
+                <span class="version-status--released">● RELEASED &bull; SUPERSEDED BY v1.7.5</span>
               </div>
               <div class="version-hover-meta">
                 <div><strong>Authoring Agent:</strong> Codex (CDX)</div>
@@ -1405,15 +1444,23 @@
 
         <div class="selected-listening-studies">
           <div>
-            <p class="kicker kicker-light">Selected Listening Studies</p>
+            <p class="kicker kicker-light">Selected Listening Study</p>
             <h3>Analytical Song Breakdown · Tori Amos</h3>
-            <p>Compact studies in harmonic structure, vocal phrasing, instrumentation, and dynamic arrangement.</p>
+            <p>Compact study in harmonic structure, vocal phrasing, instrumentation, and dynamic arrangement from the 1,000 Songs Project.</p>
           </div>
-          <nav aria-label="Selected Tori Amos listening studies">
-            <a href="https://www.tiktok.com/@randybryanmoore/video/7650511312975334670" target="_blank" rel="noopener"><span>01</span><strong>Cornflake Girl</strong><em>Open on TikTok ↗</em></a>
-            <a href="https://www.tiktok.com/@randybryanmoore/video/7597478771502910733" target="_blank" rel="noopener"><span>02</span><strong>God</strong><em>Open on TikTok ↗</em></a>
-            <a href="https://www.tiktok.com/@randybryanmoore/video/7597268441631886606" target="_blank" rel="noopener"><span>03</span><strong>Father Lucifer</strong><em>Open on TikTok ↗</em></a>
-          </nav>
+          <div class="home-tiktok-card" style="max-width: 340px; margin: 0 auto; width: 100%; border-radius: 6px; box-shadow: var(--shadow-sm);">
+            <iframe
+              src="https://www.tiktok.com/embed/v2/7597478771502910733"
+              title="Analytical Song Breakdown: God by Tori Amos"
+              allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+              allowfullscreen
+              loading="lazy"></iframe>
+            <div>
+              <span>Study 02 // Harmonic Breakdown</span>
+              <h3 style="margin: 4px 0 6px; font-size: 19px; color: var(--ink);">God (Tori Amos)</h3>
+              <a href="https://www.tiktok.com/@randybryanmoore/video/7597478771502910733" target="_blank" rel="noopener">Open on TikTok ↗</a>
+            </div>
+          </div>
         </div>
 
         <!-- Spotify artist player -->

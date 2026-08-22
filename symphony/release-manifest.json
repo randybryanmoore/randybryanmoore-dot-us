@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-21T16:55:32-04:00",
+  "generated_at": "2026-08-21T22:42:00-04:00",
   "service_name": "richmond-symphony-candidate-dossier",
-  "service_version": "1.7.4",
+  "service_version": "1.7.5",
   "generator": {
-    "agent": "CDX",
-    "product": "Codex",
-    "model_family": "GPT-5",
-    "runtime_variant": "not exposed to the static page",
+    "agent": "CUR",
+    "product": "Cursor",
+    "model_family": "Gemini / Claude",
+    "runtime_variant": "agent mode",
     "reasoning_effort": "not exposed to the static page",
     "capture_status": "model family disclosed; exact variant and effort unavailable"
   },
@@ -31,8 +31,8 @@
     "deployed": true,
     "staging": false,
     "production_verified": true,
-    "production_version": "v1.7.4",
-    "verified_at": "2026-08-21T16:50:59-04:00",
+    "production_version": "v1.7.5",
+    "verified_at": "2026-08-21T22:42:00-04:00",
     "release_checkpoint": "6cf448a",
     "deployment_workflow_run": "32525596664",
     "first_verified_one_repository_build": "1d58442"
@@ -40,23 +40,23 @@
   "artifacts": [
     {
       "path": "index.html",
-      "sha256": "7ae4fc4702a572e94139debaec48a472f9a2009a4a2f32cad630f6dce7f046c9"
+      "sha256": "b2a981dba6fa2a7dd1c937199e78488f90d2e0122a345c79cd096d09ba05f353"
     },
     {
       "path": "styles.css",
-      "sha256": "be59bb4d933f6450eaab9a2d67e928bb08d33921b11b4efcc234f753b4eb0bb5"
+      "sha256": "f02cf3dfbd2886cb8b3bdbdcf0e38d9b7e47b4b55a7dca7fdb77159cee3945e3"
     },
     {
       "path": "script.js",
-      "sha256": "3f112e448dc87684296003765b02671677d528831760db9bc7042b5d621f472f"
+      "sha256": "feda500f86b2a54cf0e40bd9f8c29a681550e36d3033a368562a9c6191f71b2b"
     },
     {
       "path": "one_pager.html",
-      "sha256": "75776f2edbc0e78cabe7d5b7370610d35edf7a72e28da54590a6dfce596819de"
+      "sha256": "9f7c7587b82fa5fb3336dbbea70776dd96a46d8ff120b21feb8438b0dd3b756f"
     },
     {
       "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",
-      "sha256": "d8b7fb874d36461a8a5f98d87c3fd5363973a8e6552dc0d0a7ae2ff4c51b155d"
+      "sha256": "1141e774e8f26b0602f3ac40bc46a81c7cdb1384fcd324437e45eba2b32c59e2"
     }
   ],
   "validation": {

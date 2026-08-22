@@ -1,6 +1,6 @@
 ---
 name: build-agent-telemetry
-description: Universal 100/100 Build Telemetry, Provenance Modal & Cross-Agent Handoff Suite for web applications, prototypes, and HTML artifacts. Embeds a glassmorphic live watermark pill (● LIVE, version, commit SHA, date), interactive provenance modal (Shift+V), semantic hover/tap cards with session start times, itemized edit timestamps, live push times, 7-state code lifecycle tracking, owner-gated presentation mode, and 1-click complete multi-session agent handoff generation (Markdown + YAML) for seamless continuity across Claude Code, Antigravity, and Codex.
+description: Universal 100/100 Build Telemetry, Provenance Modal & Cross-Agent Handoff Suite for web applications, prototypes, and HTML artifacts. Embeds a glassmorphic live watermark pill (● LIVE, version, commit SHA, date), interactive provenance modal (Shift+V), semantic hover/tap cards with session start times, itemized edit timestamps, live push times, 7-state code lifecycle tracking, owner-gated presentation mode, and 1-click complete multi-session agent handoff generation (Markdown + YAML) for seamless continuity across Claude Code, Antigravity, Codex, and Cursor.
 ---
 
 # ⚡ Universal Build & Agent Telemetry Suite (100/100 Gold Standard)
@@ -13,20 +13,21 @@ Use this skill whenever building, updating, or maintaining web applications, pro
 
 | Component | Standard Specification |
 | :--- | :--- |
-| **1. Standardized Agent Attribution** | Avatar badges and changelogs enshrine the active authoring & deployment agent: **`AG`** (Antigravity · DeepMind), **`CL`** (Claude Code · Anthropic), and **`CDX`** (Codex · OpenAI), alongside runtime model family provenance. |
+| **1. Standardized Agent Attribution** | Avatar badges and changelogs enshrine the active authoring & deployment agent: **`AG`** (Antigravity · DeepMind), **`CL`** (Claude Code · Anthropic), **`CDX`** (Codex · OpenAI), and **`CUR`** (Cursor), alongside runtime model family provenance. |
 | **2. 7-State Code Lifecycle Tracking** | Clear, distinct reporting of: `Local`, `Committed`, `Pushed`, `Merged / PR`, `Deployed`, `Staging`, and `Live / Production Verified` (a commit is not a push; a push is not a deployment; deployment is not verified live until custom domain readback passes). |
 | **3. Owner-Gated Presentation Mode** | Compact owner verification gate (4-digit code) toggling between `Ready to Present` (clean public view with editor/annotation tools hidden) and `Admin Controls Unlocked` (full telemetry, live editing, and annotation dock visible). |
-| **4. Active-Block Engineering Time Arithmetic** | Cumulative development time tracking with explicit arithmetic: active work blocks (first action to last action before a 10+ min break) with per-agent breakdowns (`AG: X.Xh • CL: X.Xh • CDX: X.Xh`) and precision notes. |
-| **5. Telemetry & Version Keys** | Collapsible, keyboard-accessible keys defining status colors (Gold Local, Green Live, Blue Released, Red Attention) and `MAJOR.MINOR.PATCH` semantic versioning thresholds. |
+| **4. Active-Block Engineering Time Arithmetic** | Cumulative development time tracking with explicit arithmetic: active work blocks (first action to last action before a 10+ min break) with per-agent breakdowns (`AG: X.Xh • CL: X.Xh • CDX: X.Xh • CUR: X.Xh`) and precision notes. |
+| **5. Telemetry & Version Keys** | Collapsible, keyboard-accessible keys defining status colors (Gold Local, Green Live, Blue Released, Red Attention), agent identity colors (Navy AG, Orange CL, Gold CDX, Violet CUR), and `MAJOR.MINOR.PATCH` semantic versioning thresholds. |
 | **6. Unclipped Inline Version Cards** | Interactive version rows that expand inline directly below each milestone on hover or tap, avoiding CSS `overflow: auto/hidden` clipping bugs across desktop and mobile screens. |
 | **7. Dual-Format Master Agent Handoff** | 1-Click **`[ 📋 Copy Complete Agent Handoff ]`** and **`[ ⚙ Copy Telemetry (.YAML) ]`** generating complete multi-session dossiers with zero context loss. |
 
 ---
 
 ## 🏷️ Standardized AI Agent Identification & Provenance
-- **`AG`** = **Antigravity** (Google DeepMind)
-- **`CL`** = **Claude Code** (Anthropic)
-- **`CDX`** = **Codex** (OpenAI)
+- **`AG`** = **Antigravity** (Google DeepMind) — navy `#0d1a32`
+- **`CL`** = **Claude Code** (Anthropic) — orange `#c2410c`
+- **`CDX`** = **Codex** (OpenAI) — gold `#dfca74` (identity only; not the Local lifecycle state)
+- **`CUR`** = **Cursor** — heather violet `#5a4e8c` (reserved so it does not collide with navy, orange, gold, green Live, or maroon Attention)
 
 ---
 
@@ -36,7 +37,7 @@ Use this skill whenever building, updating, or maintaining web applications, pro
 3. **Reconciliation**: Active blocks are summed, then the displayed project total is rounded to one decimal place.
 4. **Format**:
    ```
-   ⏱️ Total Engineering: 10.6h (AG: 3.75h • CL: 3.25h • CDX: 3.60h) across 45+ commits
+   ⏱️ Total Engineering: 10.6h (AG: 3.75h • CL: 3.25h • CDX: 3.60h • CUR: 0.0h) across 45+ commits
    ```
 
 ---
@@ -58,6 +59,12 @@ Use this skill whenever building, updating, or maintaining web applications, pro
 - **Blue // Released**: A completed historical release that is retained for provenance but is not the current live build.
 - **Red // Attention**: A blocker, failed check, approval requirement, or other action that still needs resolution.
 - **Cream // Information**: Descriptive metadata only; this color does not communicate lifecycle progress.
+
+Agent identity is a separate key from lifecycle:
+- **Navy // AG**: Antigravity
+- **Orange // CL**: Claude Code
+- **Gold // CDX**: Codex
+- **Violet // CUR**: Cursor (`#5a4e8c`)
 
 ---
 

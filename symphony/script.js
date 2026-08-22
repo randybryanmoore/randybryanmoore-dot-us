@@ -269,11 +269,11 @@
       surfaceKey: 'dossier',
       surfaceName: 'Full Candidate Dossier',
       serviceName: 'richmond-symphony-candidate-dossier',
-      serviceVersion: '1.7.4',
+      serviceVersion: '1.7.5',
       parentServiceVersion: '',
-      agent: 'CDX',
-      agentProduct: 'Codex',
-      modelFamily: 'GPT-5',
+      agent: 'CUR',
+      agentProduct: 'Cursor',
+      modelFamily: 'Gemini / Claude',
       runtimeVariant: 'not exposed to the static page',
       reasoningEffort: 'not exposed to the static page',
       repository: 'randybryanmoore/randybryanmoore-dot-us',
@@ -1719,7 +1719,7 @@ The complete YAML telemetry is embedded in Section 10.7 and is also available se
         const emptyMsg = activeDrawerTab === 'private'
           ? 'No private notes yet. Click "🔒 Private Note" on the bottom dock or toggle to "🔒 Private Note" in the popover to pin your personal thoughts.'
           : (activeDrawerTab === 'ai' 
-              ? 'No AI review notes queued. Click "🚀 Pin AI" on the dock and pin changes to send to Antigravity/Claude.'
+              ? 'No AI review notes queued. Click "🚀 Pin AI" on the dock and pin changes to send to Antigravity, Claude, Codex, or Cursor.'
               : 'No notes match your filter.');
         drawerList.innerHTML = `<p style="color:var(--muted);font-size:12px;font-style:italic;padding:12px;text-align:center;">${emptyMsg}</p>`;
         return;
