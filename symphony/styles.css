@@ -2856,9 +2856,9 @@ body[data-review-tools="on"] {
   gap: 7px;
   padding: 4px 10px 4px 5px;
   border-radius: 999px;
-  background: transparent;
-  border: 1.5px solid transparent;
-  box-shadow: none;
+  background: rgba(24, 43, 77, 0.85);
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   font-family: var(--mono);
@@ -2869,7 +2869,7 @@ body[data-review-tools="on"] {
   appearance: none;
   color: inherit;
   text-align: left;
-  opacity: 0.18;
+  opacity: 0.9;
 }
 
 .build-badge:hover,
@@ -3776,10 +3776,15 @@ body[data-review-tools="on"] {
 
 @media (max-width: 820px) {
   .build-badge {
-    top: calc(var(--nav-h) + 10px);
-    right: 12px;
-    padding: 3px 8px 3px 4px;
-    gap: 5px;
+    top: auto;
+    bottom: 16px;
+    right: 14px;
+    padding: 4px 9px 4px 5px;
+    gap: 6px;
+    background: rgba(24, 43, 77, 0.95);
+    border: 1.5px solid var(--gold);
+    opacity: 0.95;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
   }
   .build-badge-date {
     display: none;
