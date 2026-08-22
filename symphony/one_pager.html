@@ -720,8 +720,9 @@
 
     @media print {
       /* ------------------------------------------------------------------
-         FULL-PAGE 2-SIDED DUPLEX EXECUTIVE BRIEFING
-         Engineered to fill 100% of Page 1 & Page 2 with legible typography
+         PRESTIGIOUS LIGHT-LUXURY EXECUTIVE BRIEFING SHEET
+         Clean paper ground, high-contrast editorial typography, gold hairlines,
+         and ivory container surfaces. Zero dark toner ink blocks.
          ------------------------------------------------------------------ */
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
@@ -729,9 +730,10 @@
         margin: 0 !important;
         padding: 0 !important;
         background: #FFFFFF !important;
-        color: var(--charcoal) !important;
+        color: #15221C !important;
+        font-family: var(--font-sans) !important;
         font-size: 8.2pt !important;
-        line-height: 1.30 !important;
+        line-height: 1.32 !important;
       }
 
       .op-site-header, .top-nav, .annotation-dock, .annotation-popover,
@@ -764,88 +766,272 @@
         margin-top: 0 !important;
       }
 
+      /* Executive Header Band - Light Luxury */
       .handout-header {
-        padding: 0.50rem 0.90rem !important;
-        margin-bottom: 0.40rem !important;
-        border-radius: 5px !important;
-        border: 1px solid var(--gold) !important;
-        box-shadow: none !important;
-        background: var(--wine) !important;
-        color: #ffffff !important;
-      }
-      .handout-title h1 { font-size: 1.40rem !important; margin-bottom: 0.12rem !important; line-height: 1.15 !important; color: #ffffff !important; }
-      .handout-title p { font-size: 0.76rem !important; letter-spacing: 0.04em !important; color: var(--gold-light) !important; }
-      .handout-meta { font-size: 0.78rem !important; line-height: 1.32 !important; color: rgba(255,255,255,0.95) !important; }
-
-      .portfolio-block {
-        display: grid !important;
-        grid-template-columns: 52px 1fr !important;
-        gap: 0.75rem !important;
-        padding: 0.40rem 0.80rem !important;
-        margin-bottom: 0.40rem !important;
-        border-radius: 5px !important;
-        border: 1px solid var(--gold) !important;
-        box-shadow: none !important;
-        background: var(--cobalt) !important;
-      }
-      .portfolio-block .qr-wrap { width: 48px !important; height: 48px !important; padding: 2px !important; background: #fff !important; }
-      .portfolio-block h3 { font-size: 0.90rem !important; margin-bottom: 0.10rem !important; color: #fff !important; }
-      .portfolio-block p { font-size: 0.73rem !important; line-height: 1.30 !important; margin-bottom: 0.12rem !important; color: rgba(255,255,255,0.92) !important; }
-      .portfolio-block a.portfolio-link { font-size: 0.74rem !important; color: var(--gold-light) !important; }
-
-      .handout-section { margin-bottom: 0.40rem !important; }
-      .handout-section h2 { font-size: 0.94rem !important; padding-bottom: 0.12rem !important; margin-bottom: 0.22rem !important; color: var(--cobalt) !important; border-bottom: 1px solid var(--border-subtle) !important; }
-      .handout-section p { font-size: 0.75rem !important; line-height: 1.32 !important; margin-bottom: 0.20rem !important; }
-      .op-kicker { font-size: 0.65rem !important; margin-bottom: 0.08rem !important; color: var(--wine) !important; font-family: var(--font-mono) !important; font-weight: 800 !important; }
-      .how-i-think-panel { padding: 0.35rem 0.65rem !important; margin-bottom: 0.30rem !important; background: var(--cream) !important; border-radius: 4px !important; border-left: 3.5px solid var(--wine) !important; }
-      .how-i-think-panel p { font-size: 0.74rem !important; line-height: 1.32 !important; margin-bottom: 0.10rem !important; }
-
-      .handout-grid-2 { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
-      .handout-grid-3 { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
-
-      .dcard { padding: 0.40rem 0.60rem !important; border-radius: 4px !important; box-shadow: none !important; background: var(--cobalt) !important; color: #fff !important; }
-      .dcard:nth-child(2), .dcard:nth-child(3) { background: var(--wine) !important; }
-      .dcard .dcard-num { font-size: 7.8px !important; margin-bottom: 0.08rem !important; color: var(--gold-light) !important; font-family: var(--font-mono) !important; font-weight: 800 !important; }
-      .dcard h3 { font-size: 0.82rem !important; margin-bottom: 0.12rem !important; color: #fff !important; }
-      .dcard p { font-size: 0.71rem !important; line-height: 1.28 !important; color: rgba(255,255,255,0.94) !important; }
-
-      .matrix-table { width: 100% !important; margin-top: 0.20rem !important; font-size: 0.72rem !important; border-collapse: collapse !important; border: 1px solid var(--border-subtle) !important; }
-      .matrix-table th { padding: 4px 6px !important; font-size: 0.68rem !important; background: var(--wine) !important; color: var(--gold-light) !important; font-weight: 800 !important; text-transform: uppercase !important; border-bottom: 1px solid var(--border-subtle) !important; }
-      .matrix-table td { padding: 4px 6px !important; font-size: 0.71rem !important; line-height: 1.28 !important; border-bottom: 1px solid var(--border-subtle) !important; vertical-align: top !important; }
-
-      .op-metrics { display: grid !important; grid-template-columns: repeat(6, 1fr) !important; gap: 6px !important; }
-      .op-metric { padding: 0.25rem 0.35rem !important; background: var(--cream) !important; border-radius: 4px !important; text-align: center !important; }
-      .op-metric-value { font-size: 0.90rem !important; font-weight: 800 !important; color: var(--wine) !important; display: block !important; }
-      .op-metric-label { font-size: 0.62rem !important; line-height: 1.2 !important; color: var(--charcoal) !important; display: block !important; }
-
-      .op-history-list { display: flex !important; flex-direction: column !important; gap: 6px !important; }
-      .op-history-item { padding: 0.35rem 0.65rem !important; border-radius: 4px !important; background: var(--cream) !important; border-left: 3.5px solid var(--wine) !important; page-break-inside: avoid !important; }
-      .op-history-item:nth-child(even) { border-left-color: var(--cobalt) !important; }
-      .op-history-meta { display: flex !important; justify-content: space-between !important; margin-bottom: 0.08rem !important; }
-      .op-history-org { font-size: 0.78rem !important; font-weight: 700 !important; color: var(--cobalt) !important; }
-      .op-history-date { font-size: 0.68rem !important; font-family: var(--font-mono) !important; color: var(--muted-olive) !important; }
-      .op-history-desc { font-size: 0.71rem !important; line-height: 1.28 !important; margin: 0 !important; }
-
-      .op-education-row { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; font-size: 0.68rem !important; }
-      .op-education-row > div { padding: 0.30rem 0.50rem !important; background: var(--cream) !important; border-radius: 4px !important; }
-      .op-education-row strong { display: block !important; color: var(--cobalt) !important; font-size: 0.74rem !important; margin-bottom: 0.06rem !important; }
-
-      .handout-footer {
-        padding: 0.35rem 0.80rem !important;
-        margin-top: auto !important;
-        font-size: 0.72rem !important;
+        padding: 0.45rem 0.85rem !important;
+        margin-bottom: 0.35rem !important;
         border-radius: 4px !important;
-        border: 1px solid var(--gold) !important;
+        border: 1px solid #D5C9B3 !important;
+        border-left: 5px solid #2B0710 !important;
         box-shadow: none !important;
-        background: var(--cobalt) !important;
-        color: #ffffff !important;
+        background: #FAF6EE !important;
+        color: #15221C !important;
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
       }
-      .handout-footer a { color: var(--gold-light) !important; text-decoration: none !important; font-family: var(--font-mono) !important; font-weight: 700 !important; }
-      .handout-footer strong { color: #ffffff !important; }
-      .handout-footer .footer-pin { background: rgba(255,255,255,0.2) !important; color: #fff !important; padding: 1px 6px !important; border-radius: 3px !important; font-family: var(--font-mono) !important; font-size: 0.68rem !important; }
+      .handout-title h1 {
+        font-family: var(--font-serif) !important;
+        font-size: 1.45rem !important;
+        margin-bottom: 0.10rem !important;
+        line-height: 1.15 !important;
+        color: #2B0710 !important;
+        font-weight: 700 !important;
+      }
+      .handout-title h1 span:first-child { color: #2B0710 !important; }
+      .handout-title h1 span:last-child {
+        background: #0D1A32 !important;
+        color: #DFCA74 !important;
+        border: 1px solid #C5A059 !important;
+      }
+      .handout-title p {
+        font-size: 0.75rem !important;
+        letter-spacing: 0.03em !important;
+        color: #4A5650 !important;
+        font-weight: 700 !important;
+      }
+      .handout-meta {
+        font-size: 0.76rem !important;
+        line-height: 1.30 !important;
+        color: #2D3832 !important;
+        text-align: right !important;
+      }
+
+      /* Portfolio QR Invitation Card */
+      .portfolio-block {
+        display: grid !important;
+        grid-template-columns: 50px 1fr !important;
+        gap: 0.70rem !important;
+        padding: 0.35rem 0.75rem !important;
+        margin-bottom: 0.35rem !important;
+        border-radius: 4px !important;
+        border: 1px solid #D5C9B3 !important;
+        border-left: 4px solid #0D1A32 !important;
+        box-shadow: none !important;
+        background: #FAF6EE !important;
+      }
+      .portfolio-block .qr-wrap {
+        width: 46px !important;
+        height: 46px !important;
+        padding: 2px !important;
+        background: #ffffff !important;
+        border: 1px solid #D5C9B3 !important;
+        border-radius: 3px !important;
+      }
+      .portfolio-block h3 {
+        font-family: var(--font-serif) !important;
+        font-size: 0.88rem !important;
+        margin-bottom: 0.08rem !important;
+        color: #0D1A32 !important;
+        font-weight: 700 !important;
+      }
+      .portfolio-block p {
+        font-size: 0.72rem !important;
+        line-height: 1.28 !important;
+        margin-bottom: 0.10rem !important;
+        color: #384840 !important;
+      }
+      .portfolio-block a.portfolio-link {
+        font-size: 0.74rem !important;
+        color: #2B0710 !important;
+        font-family: var(--font-mono) !important;
+        font-weight: 700 !important;
+        text-decoration: underline !important;
+      }
+
+      /* Sections & Kickers */
+      .handout-section { margin-bottom: 0.35rem !important; }
+      .handout-section h2 {
+        font-family: var(--font-serif) !important;
+        font-size: 0.94rem !important;
+        padding-bottom: 0.10rem !important;
+        margin-bottom: 0.20rem !important;
+        color: #0D1A32 !important;
+        font-weight: 700 !important;
+        border-bottom: 1px solid #DFCA74 !important;
+      }
+      .handout-section p {
+        font-size: 0.74rem !important;
+        line-height: 1.30 !important;
+        margin-bottom: 0.18rem !important;
+        color: #2D3832 !important;
+      }
+      .op-kicker {
+        font-size: 0.64rem !important;
+        margin-bottom: 0.06rem !important;
+        color: #8C243B !important;
+        font-family: var(--font-mono) !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.10em !important;
+      }
+
+      /* Positioning / How I Think Panel */
+      .how-i-think-panel {
+        padding: 0.32rem 0.65rem !important;
+        margin-bottom: 0.28rem !important;
+        background: #FDFBF7 !important;
+        border-radius: 4px !important;
+        border: 1px solid #E2D9C8 !important;
+        border-left: 4px solid #2B0710 !important;
+      }
+      .how-i-think-panel .op-lede {
+        font-size: 0.78rem !important;
+        line-height: 1.32 !important;
+        margin-bottom: 0.10rem !important;
+        color: #2B0710 !important;
+        font-weight: 700 !important;
+      }
+      .how-i-think-panel .op-body {
+        font-size: 0.73rem !important;
+        line-height: 1.30 !important;
+        margin-bottom: 0 !important;
+        color: #2D3832 !important;
+      }
+
+      /* Four Pillars Grid */
+      .handout-grid-2 { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 7px !important; }
+      .handout-grid-3 { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 7px !important; }
+
+      .dcard {
+        padding: 0.35rem 0.55rem !important;
+        border-radius: 4px !important;
+        box-shadow: none !important;
+        background: #FAF6EE !important;
+        border: 1px solid #DDD3C1 !important;
+        border-left: 4px solid #0D1A32 !important;
+        color: #15221C !important;
+      }
+      .dcard:nth-child(2), .dcard:nth-child(3) { border-left-color: #2B0710 !important; }
+      .dcard .dcard-num {
+        font-size: 7.5px !important;
+        margin-bottom: 0.06rem !important;
+        color: #8C243B !important;
+        font-family: var(--font-mono) !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.06em !important;
+      }
+      .dcard h3 {
+        font-family: var(--font-serif) !important;
+        font-size: 0.82rem !important;
+        margin-bottom: 0.10rem !important;
+        color: #0D1A32 !important;
+        font-weight: 700 !important;
+      }
+      .dcard p {
+        font-size: 0.70rem !important;
+        line-height: 1.26 !important;
+        color: #2D3832 !important;
+        margin-bottom: 0 !important;
+      }
+
+      /* Alignment Matrix Table */
+      .matrix-table {
+        width: 100% !important;
+        margin-top: 0.18rem !important;
+        font-size: 0.70rem !important;
+        border-collapse: collapse !important;
+        border: 1px solid #D5C9B3 !important;
+        border-radius: 4px !important;
+        overflow: hidden !important;
+      }
+      .matrix-table th {
+        padding: 4px 6px !important;
+        font-size: 0.66rem !important;
+        background: #2B0710 !important;
+        color: #FBF6ED !important;
+        font-weight: 800 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        border-bottom: 1px solid #DFCA74 !important;
+      }
+      .matrix-table td {
+        padding: 4px 6px !important;
+        font-size: 0.70rem !important;
+        line-height: 1.25 !important;
+        color: #15221C !important;
+        border-bottom: 1px solid #E8DFCE !important;
+        vertical-align: top !important;
+      }
+      .matrix-table tbody tr:nth-child(even) { background: #FAF6EE !important; }
+      .matrix-table tbody tr:nth-child(odd) { background: #FFFFFF !important; }
+      .matrix-table td strong { color: #0D1A32 !important; }
+
+      /* Metrics Row */
+      .op-metrics { display: grid !important; grid-template-columns: repeat(6, 1fr) !important; gap: 5px !important; }
+      .op-metric {
+        padding: 0.22rem 0.30rem !important;
+        background: #FAF6EE !important;
+        border: 1px solid #DDD3C1 !important;
+        border-radius: 4px !important;
+        text-align: center !important;
+      }
+      .op-metric-value { font-size: 0.88rem !important; font-weight: 800 !important; color: #2B0710 !important; display: block !important; }
+      .op-metric-label { font-size: 0.60rem !important; line-height: 1.15 !important; color: #384840 !important; display: block !important; }
+
+      /* Career History Timeline */
+      .op-history-list { display: flex !important; flex-direction: column !important; gap: 5px !important; }
+      .op-history-item {
+        padding: 0.30rem 0.60rem !important;
+        border-radius: 4px !important;
+        background: #FAF6EE !important;
+        border: 1px solid #DDD3C1 !important;
+        border-left: 4px solid #2B0710 !important;
+        page-break-inside: avoid !important;
+      }
+      .op-history-item:nth-child(even) { border-left-color: #0D1A32 !important; }
+      .op-history-meta { display: flex !important; justify-content: space-between !important; margin-bottom: 0.06rem !important; }
+      .op-history-org { font-size: 0.76rem !important; font-weight: 700 !important; color: #0D1A32 !important; }
+      .op-history-date { font-size: 0.66rem !important; font-family: var(--font-mono) !important; color: #7A6F5D !important; font-weight: 700 !important; }
+      .op-history-desc { font-size: 0.70rem !important; line-height: 1.25 !important; margin: 0 !important; color: #2D3832 !important; }
+
+      /* Education Row */
+      .op-education-row { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 7px !important; font-size: 0.66rem !important; }
+      .op-education-row > div {
+        padding: 0.28rem 0.48rem !important;
+        background: #FAF6EE !important;
+        border: 1px solid #DDD3C1 !important;
+        border-left: 3px solid #0D1A32 !important;
+        border-radius: 4px !important;
+      }
+      .op-education-row strong { display: block !important; color: #0D1A32 !important; font-size: 0.72rem !important; margin-bottom: 0.04rem !important; }
+      .op-education-row span { color: #4A5650 !important; }
+
+      /* Footers */
+      .handout-footer {
+        padding: 0.30rem 0.75rem !important;
+        margin-top: auto !important;
+        font-size: 0.70rem !important;
+        border-radius: 4px !important;
+        border: 1px solid #D5C9B3 !important;
+        border-top: 2px solid #2B0710 !important;
+        box-shadow: none !important;
+        background: #FAF6EE !important;
+        color: #15221C !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+      }
+      .handout-footer a { color: #2B0710 !important; text-decoration: none !important; font-family: var(--font-mono) !important; font-weight: 700 !important; }
+      .handout-footer strong { color: #0D1A32 !important; }
+      .handout-footer .footer-pin {
+        background: #2B0710 !important;
+        color: #FBF6ED !important;
+        padding: 1px 5px !important;
+        border-radius: 3px !important;
+        font-family: var(--font-mono) !important;
+        font-size: 0.65rem !important;
+        font-weight: 700 !important;
+      }
     }
   </style>
 </head>
