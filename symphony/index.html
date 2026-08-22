@@ -78,9 +78,9 @@
 <body data-review-tools="on" class="dossier-unlocked">
 
   <!-- Build watermark: which agent last worked this page, the version and
-       the date. Claude sets CL; AG sets Antigravity. Bump the
-       version and date on each substantive pass. Always visible -- it is
-       independent of the review-tools switch. -->
+       the date. AG = Antigravity, CL = Claude Code, CDX = Codex, CUR = Cursor.
+       Bump the version and date on each substantive pass. Always visible --
+       it is independent of the review-tools switch. -->
   <button type="button" class="build-badge" id="build-badge" aria-expanded="false" aria-controls="build-provenance-modal" title="⚡ Build &amp; Agent Telemetry (Shift+V)">
     <span class="build-badge-agent" title="Active AI Agent: Codex (CDX)">CDX</span>
     <span class="build-badge-live-dot" title="v1.7.4 live // production verified"></span>
@@ -176,6 +176,16 @@
           <div><dt><span class="telemetry-swatch telemetry-swatch--released" aria-hidden="true"></span>Blue // Released</dt><dd>A completed historical release that is retained for provenance but is not the current live build.</dd></div>
           <div><dt><span class="telemetry-swatch telemetry-swatch--attention" aria-hidden="true"></span>Red // Attention</dt><dd>A blocker, failed check, approval requirement, or other action that still needs resolution.</dd></div>
           <div class="telemetry-color-key__wide"><dt><span class="telemetry-swatch telemetry-swatch--neutral" aria-hidden="true"></span>Cream // Information</dt><dd>Descriptive metadata only; this color does not communicate lifecycle progress.</dd></div>
+        </dl>
+      </details>
+
+      <details class="telemetry-color-key">
+        <summary class="telemetry-color-key__title">(( Agent Identity Key ))</summary>
+        <dl class="telemetry-color-key__grid">
+          <div><dt><span class="agent-chip agent-chip--ag">AG</span> Navy // Antigravity</dt><dd>Google DeepMind Antigravity authored or deployed this milestone.</dd></div>
+          <div><dt><span class="agent-chip agent-chip--cl">CL</span> Orange // Claude Code</dt><dd>Anthropic Claude Code authored or deployed this milestone.</dd></div>
+          <div><dt><span class="agent-chip agent-chip--cdx">CDX</span> Gold // Codex</dt><dd>OpenAI Codex authored or deployed this milestone. Gold here is identity, not the Local lifecycle state.</dd></div>
+          <div><dt><span class="agent-chip agent-chip--cur">CUR</span> Violet // Cursor</dt><dd>Cursor authored or deployed this milestone. Violet is reserved for Cursor so it does not collide with navy AG, orange CL, gold CDX, or green Live.</dd></div>
         </dl>
       </details>
 

@@ -5,7 +5,7 @@ description: Universal 100/100 Interactive Annotation, Private Journaling & Buil
 
 # Universal Web Annotation, Private Journaling & Telemetry Suite (100/100 Standard)
 
-Use this skill whenever building, auditing, or refining web applications, prototypes, or executive HTML artifacts where the user wants to visually inspect, pin critique notes, maintain persistent private working memos, or transfer comprehensive build telemetry between AI coding agents (Claude Code, Antigravity, Codex).
+Use this skill whenever building, auditing, or refining web applications, prototypes, or executive HTML artifacts where the user wants to visually inspect, pin critique notes, maintain persistent private working memos, or transfer comprehensive build telemetry between AI coding agents (Claude Code, Antigravity, Codex, Cursor).
 
 ---
 
@@ -18,7 +18,7 @@ Use this skill whenever building, auditing, or refining web applications, protot
 | **3. Drawer Management & Search** | 15 pts | Tabbed drawer views (`AI Queue`, `Private Notes`, `All`), live keyword/tag search filter, smooth-scroll spotlight ripple jump-to-element, and badge visibility toggle (`👁️ Badges On/Off`). |
 | **4. Owner-Gated Presentation Controls** | 15 pts | Seamless toggle between **`Ready to Present`** (clean client presentation mode with annotation and editor docks hidden) and **`Admin Controls Unlocked`** via a compact 4-digit verification gate. |
 | **5. Provenance & Version Breakdown** | 15 pts | Clickable flyout (or `Shift + V`) displaying the active stack, 7-state code lifecycle, cumulative active-block engineering time (`⏱️ 10.6 Hours Logged`), and unclipped inline expandable version cards. |
-| **6. Cross-Agent Handoff Interoperability** | 15 pts | **1-Click "📋 Copy Complete Agent Handoff"** and **"⚙ Copy Telemetry (.YAML)"** tools that compile the entire multi-session architecture, sourced claims, design tokens, and work log for instant zero-loss handoffs to Claude Code (`CL`), Codex (`CDX`), or Antigravity (`AG`). |
+| **6. Cross-Agent Handoff Interoperability** | 15 pts | **1-Click "📋 Copy Complete Agent Handoff"** and **"⚙ Copy Telemetry (.YAML)"** tools that compile the entire multi-session architecture, sourced claims, design tokens, and work log for instant zero-loss handoffs to Claude Code (`CL`), Codex (`CDX`), Antigravity (`AG`), or Cursor (`CUR`). |
 
 ---
 
