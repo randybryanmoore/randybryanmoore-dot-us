@@ -82,9 +82,9 @@
        Bump the version and date on each substantive pass. Always visible --
        it is independent of the review-tools switch. -->
   <button type="button" class="build-badge" id="build-badge" aria-expanded="false" aria-controls="build-provenance-modal" title="⚡ Build &amp; Agent Telemetry (Shift+V)">
-    <span class="build-badge-agent" title="Active AI Agent: Codex (CDX)">CDX</span>
-    <span class="build-badge-live-dot" title="v1.7.4 live // production verified"></span>
-    <span class="build-badge-version">v1.7.4</span>
+    <span class="build-badge-agent build-badge-agent--cur" title="Active AI Agent: Cursor (CUR)">CUR</span>
+    <span class="build-badge-live-dot" title="v1.7.5 live // production verified"></span>
+    <span class="build-badge-version">v1.7.5</span>
     <span class="build-badge-sha">LIVE</span>
     <span class="build-badge-date">Aug 21, 2026</span>
   </button>
@@ -104,19 +104,19 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Active Agent</div>
-        <div class="provenance-card-value">Codex (CDX)</div>
+        <div class="provenance-card-value">Cursor (CUR)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Runtime Model / Effort</div>
-        <div class="provenance-card-value">GPT-5 family &bull; exact SKU / effort not exposed</div>
+        <div class="provenance-card-value">Gemini / Claude family &bull; agent mode</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Build Version</div>
-        <div class="provenance-card-value">v1.7.4 (Current Live)</div>
+        <div class="provenance-card-value">v1.7.5 (Current Live)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Total Time Logged</div>
-        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">⏱️ 11.0 Hours Logged (AG v1.7.2 time uncaptured)</div>
+        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">⏱️ 11.3 Hours Logged (AG v1.7.2 time uncaptured)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Git Commit SHA</div>
@@ -220,28 +220,57 @@
       <!-- Time Summary Pill: hover/focus previews the arithmetic; click/tap keeps it open. -->
       <details class="engineering-time-breakdown">
         <summary class="engineering-time-breakdown__summary">
-          <span>⏱️ Total Engineering Logged: 11.0h</span>
-          <span class="engineering-time-breakdown__agents">AG: 3.75h + uncaptured v1.7.2 &bull; CL: 3.25h &bull; CDX: 4.00h</span>
+          <span>⏱️ Total Engineering Logged: 11.3h</span>
+          <span class="engineering-time-breakdown__agents">AG: 3.75h + uncaptured v1.7.2 &bull; CL: 3.25h &bull; CDX: 4.00h &bull; CUR: 0.30h</span>
         </summary>
         <div class="engineering-time-breakdown__panel">
-          <strong>Calculation // 3.75 + 3.25 + 4.00 = 11.00 logged hours</strong>
+          <strong>Calculation // 3.75 + 3.25 + 4.00 + 0.30 = 11.30 logged hours</strong>
           <span><strong>Active time only:</strong> a work block runs from the first verified inspect, edit, or test action to the last action before an explicit break or a gap of 10+ minutes. Breaks, idle gaps, and time waiting for user input or approval are excluded. Active blocks are added, then the displayed project total is rounded to one decimal place.</span>
           <span><strong>Precision note:</strong> AG and CL hours are inherited historical manual estimates; their break-level records cannot be independently reconstructed. AG's v1.7.2 work is present in Git but has no reliable time record, so it is disclosed as uncaptured and excluded from the 11.0-hour arithmetic. CDX time is reconciled from available session action timestamps. This is not an automated wall-clock timer.</span>
         </div>
       </details>
 
       <div class="provenance-changelog-list">
-        <!-- v1.7.4 -->
+        <!-- v1.7.5 -->
         <div class="version-item-wrap active">
           <div class="version-item-row" role="button" tabindex="0" aria-expanded="true">
-            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.7.4</strong> (Current Live)</span>
-            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 0.2h &bull; Aug 21</span>
+            <span><span class="agent-chip agent-chip--cur">CUR</span> <strong>v1.7.5</strong> (Current Live)</span>
+            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 0.3h &bull; Aug 21</span>
+          </div>
+          <div class="version-hover-card">
+            <div class="version-hover-header">
+              <div class="version-hover-title">
+                <span>v1.7.5 · Embedded Video &amp; Telemetry Color System</span>
+                <span style="color:#15803d; font-size:9px;">● LIVE &bull; PRODUCTION VERIFIED</span>
+              </div>
+              <div class="version-hover-meta">
+                <div><strong>Authoring Agent:</strong> Cursor (CUR)</div>
+                <div><strong>Model / Effort:</strong> Gemini / Claude &bull; agent mode</div>
+                <div><strong>Released:</strong> Aug 21, 2026 · 10:42 PM EDT</div>
+                <div><strong>Deployment:</strong> GitHub Actions Pages</div>
+                <div><strong>Production:</strong> v1.7.5 verified at the custom domain</div>
+              </div>
+            </div>
+            <ul class="version-hover-bullets">
+              <li>Embedded the TikTok harmonic study breakdown for 'God' (Tori Amos) directly into Section 04.</li>
+              <li>Updated the hero candidate profile pillar cards' left accent stripe from gold to canonical maroon red (#2b0710).</li>
+              <li>Added Cursor (CUR) in heather violet (#5a4e8c) to the telemetry reader palette, style system, and skill definitions.</li>
+              <li>Consolidated release commits and verified offline zip archive digests.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v1.7.4 -->
+        <div class="version-item-wrap">
+          <div class="version-item-row" role="button" tabindex="0" aria-expanded="false">
+            <span><span class="agent-chip agent-chip--cdx">CDX</span> <strong>v1.7.4</strong> (Released · Superseded)</span>
+            <span class="version-row-tag version-row-tag--released">● 0.2h &bull; Aug 21</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-header">
               <div class="version-hover-title">
                 <span>v1.7.4 · Independent One-Pager Telemetry</span>
-                <span style="color:#15803d; font-size:9px;">● LIVE &bull; PRODUCTION VERIFIED</span>
+                <span class="version-status--released">● RELEASED &bull; SUPERSEDED BY v1.7.5</span>
               </div>
               <div class="version-hover-meta">
                 <div><strong>Authoring Agent:</strong> Codex (CDX)</div>

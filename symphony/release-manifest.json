@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-21T16:55:32-04:00",
+  "generated_at": "2026-08-21T22:42:00-04:00",
   "service_name": "richmond-symphony-candidate-dossier",
-  "service_version": "1.7.4",
+  "service_version": "1.7.5",
   "generator": {
-    "agent": "CDX",
-    "product": "Codex",
-    "model_family": "GPT-5",
-    "runtime_variant": "not exposed to the static page",
+    "agent": "CUR",
+    "product": "Cursor",
+    "model_family": "Gemini / Claude",
+    "runtime_variant": "agent mode",
     "reasoning_effort": "not exposed to the static page",
     "capture_status": "model family disclosed; exact variant and effort unavailable"
   },
@@ -31,8 +31,8 @@
     "deployed": true,
     "staging": false,
     "production_verified": true,
-    "production_version": "v1.7.4",
-    "verified_at": "2026-08-21T16:50:59-04:00",
+    "production_version": "v1.7.5",
+    "verified_at": "2026-08-21T22:42:00-04:00",
     "release_checkpoint": "6cf448a",
     "deployment_workflow_run": "32525596664",
     "first_verified_one_repository_build": "1d58442"
@@ -40,7 +40,7 @@
   "artifacts": [
     {
       "path": "index.html",
-      "sha256": "08655a48865434d00a057f1461eeaf0a8d5285184618c882f7d04a09abd28e1f"
+      "sha256": "b2a981dba6fa2a7dd1c937199e78488f90d2e0122a345c79cd096d09ba05f353"
     },
     {
       "path": "styles.css",
@@ -48,7 +48,7 @@
     },
     {
       "path": "script.js",
-      "sha256": "3a90e640535518a08bd489e8e36220bd1d3647bbcabfef7e935623ad76e498b4"
+      "sha256": "feda500f86b2a54cf0e40bd9f8c29a681550e36d3033a368562a9c6191f71b2b"
     },
     {
       "path": "one_pager.html",
@@ -56,7 +56,7 @@
     },
     {
       "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",
-      "sha256": "8731dd3eeac8eb356b78e8c4d17dd01db61fcb896463056a2a3797c1f9cfe32a"
+      "sha256": "1141e774e8f26b0602f3ac40bc46a81c7cdb1384fcd324437e45eba2b32c59e2"
     }
   ],
   "validation": {
