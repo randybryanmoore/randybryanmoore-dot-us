@@ -203,7 +203,7 @@
       surfaceKey: 'one-pager',
       surfaceName: 'Executive One-Pager',
       serviceName: 'richmond-symphony-executive-one-pager',
-      serviceVersion: '1.3.0',
+      serviceVersion: '1.4.0',
       parentServiceVersion: '1.8.0',
       agent: 'CL',
       agentProduct: 'Claude Code',
@@ -2009,7 +2009,11 @@ The complete YAML telemetry is embedded in Section 10.7 and is also available se
       });
     }
 
-    applyAnnotationToolsState(true);
+    // Finalise in the LOCKED state. This previously passed true, which
+    // silently undid the lock applied during init, so the annotation dock
+    // was always visible and sat on top of the telemetry badge. Owner tools
+    // now stay hidden until the 4-digit owner code is entered.
+    applyAnnotationToolsState(false);
     renderTags();
     updateDrawer();
   }

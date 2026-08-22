@@ -73,9 +73,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1787600012">
+  <link rel="stylesheet" href="styles.css?v=1787600028">
 </head>
-<body data-review-tools="on" class="dossier-unlocked">
+<body data-review-tools="off" class="dossier-unlocked">
 
   <!-- Build watermark: which agent last worked this page, the version and
        the date. AG = Antigravity, CL = Claude Code, CDX = Codex, CUR = Cursor.
@@ -92,6 +92,20 @@
 
 
   <!-- Build Provenance & Telemetry Modal -->
+
+  <!-- Owner unlock: review tools stay hidden until the 4-digit code is entered.
+       Verified against a SHA-256 digest in script.js; the code is never stored
+       in the page. Opened by clicking the telemetry badge (or Shift+V). -->
+  <div class="telemetry-unlock-popover" id="telemetry-unlock-popover" hidden>
+    <p class="telemetry-unlock-title">Owner Code Required</p>
+    <input id="annotation-owner-code-input" type="password" inputmode="numeric" pattern="\d{4}"
+           maxlength="4" autocomplete="off" aria-label="4-digit owner code" placeholder="&bull;&bull;&bull;&bull;"
+           style="width:100%; padding:9px 10px; font-family:var(--mono); font-size:15px; letter-spacing:0.5em;
+                  text-align:center; border:1.5px solid var(--navy); border-radius:6px; background:#fff; color:var(--ink);">
+    <button type="button" id="annotation-owner-unlock-btn" class="button button-maroon">Unlock Owner Tools</button>
+    <p id="annotation-owner-control-note">Owner telemetry locked &bull; annotation and review tools are hidden</p>
+  </div>
+
   <div class="build-provenance-modal" id="build-provenance-modal" role="dialog" aria-modal="true" aria-labelledby="provenance-title" aria-hidden="true" tabindex="-1">
     <div class="provenance-header">
       <span class="provenance-title" id="provenance-title">⚡ Build &amp; Agent Telemetry</span>
@@ -1757,6 +1771,6 @@ I will understand before redesigning, protect donor intent, support the people d
   </div>
 
   <!-- Suite Script (external only — no inline duplication) -->
-  <script src="script.js?v=1787600012"></script>
+  <script src="script.js?v=1787600028"></script>
 </body>
 </html>

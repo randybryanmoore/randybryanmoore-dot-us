@@ -6,7 +6,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d1a32'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='27' font-weight='700' fill='%23f2eadf'%3ERM%3C/text%3E%3C/svg%3E">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
   <title>Executive Candidate Briefing — Richmond Symphony | Randy Bryan Moore, MSW</title>
-  <link rel="stylesheet" href="styles.css?v=1787600025">
+  <link rel="stylesheet" href="styles.css?v=1787600028">
   <style>
     /* ------------------------------------------------------------------
        SELF-CONTAINED HANDOUT STYLES
@@ -758,7 +758,7 @@
     }
   </style>
 </head>
-<body data-review-tools="on" data-telemetry-surface="one-pager" class="dossier-unlocked">
+<body data-review-tools="off" data-telemetry-surface="one-pager" class="dossier-unlocked">
 
   <header class="op-site-header">
     <a href="index.html" class="op-wordmark">
@@ -781,8 +781,8 @@
        independent from the parent dossier version shown inside the panel. -->
   <button type="button" class="build-badge" id="build-badge" aria-expanded="false" aria-controls="build-provenance-modal" title="Open Executive One-Pager Telemetry (Shift+V)">
     <span class="build-badge-agent build-badge-agent--cl" title="Active AI Agent: Claude Code (CL) &bull; Claude Opus 5">CL</span>
-    <span class="build-badge-live-dot" title="OP v1.3.0 live // production verified"></span>
-    <span class="build-badge-version">v1.3.0</span>
+    <span class="build-badge-live-dot" title="OP v1.4.0 live // production verified"></span>
+    <span class="build-badge-version">v1.4.0</span>
     <span class="build-badge-sha">LIVE</span>
     <span class="build-badge-date">Aug 22, 2026</span>
   </button>
@@ -1012,6 +1012,21 @@
     </div>
   </div>
 
+
+  <!-- Owner unlock: review tools stay hidden until the 4-digit code is entered.
+       Verified against a SHA-256 digest in script.js; the code is never stored
+       in the page. Opened by clicking the telemetry badge (or Shift+V). -->
+      <button type="button" id="annotation-owner-toggle-btn" hidden aria-hidden="true" tabindex="-1"></button>
+  <div class="telemetry-unlock-popover" id="telemetry-unlock-popover" hidden>
+    <p class="telemetry-unlock-title">Owner Code Required</p>
+    <input id="annotation-owner-code-input" type="password" inputmode="numeric" pattern="\d{4}"
+           maxlength="4" autocomplete="off" aria-label="4-digit owner code" placeholder="&bull;&bull;&bull;&bull;"
+           style="width:100%; padding:9px 10px; font-family:var(--mono); font-size:15px; letter-spacing:0.5em;
+                  text-align:center; border:1.5px solid var(--navy); border-radius:6px; background:#fff; color:var(--ink);">
+    <button type="button" id="annotation-owner-unlock-btn" class="button button-maroon">Unlock Owner Tools</button>
+    <p id="annotation-owner-control-note">Owner telemetry locked &bull; annotation and review tools are hidden</p>
+  </div>
+
   <!-- Executive One-Pager Provenance & Telemetry Modal -->
   <div class="build-provenance-modal" id="build-provenance-modal" role="dialog" aria-modal="true" aria-labelledby="provenance-title" aria-hidden="true" tabindex="-1">
     <div class="provenance-header">
@@ -1037,7 +1052,7 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Build Version</div>
-        <div class="provenance-card-value">OP v1.3.0 (Current Live)</div>
+        <div class="provenance-card-value">OP v1.4.0 (Current Live)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Parent Dossier Release</div>
@@ -1064,13 +1079,13 @@
       </summary>
       <div class="lifecycle-status-content">
         <dl class="lifecycle-status-grid">
-          <div><dt>Local</dt><dd>OP v1.3.0 verified release source</dd></div>
+          <div><dt>Local</dt><dd>OP v1.4.0 verified release source</dd></div>
           <div><dt>Committed</dt><dd>Yes // release source checkpoint #13e730a</dd></div>
           <div><dt>Pushed</dt><dd>Yes // release branch and main</dd></div>
           <div><dt>Merged / PR</dt><dd>Merged // origin/main reconciled in 46246df</dd></div>
           <div><dt>Deployed</dt><dd>Yes // GitHub Actions Pages run #32593867344</dd></div>
           <div><dt>Staging</dt><dd>Not used</dd></div>
-          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>OP v1.3.0 verified at the public one-pager URL Aug 22, 2026 · 3:30 PM EDT</dd></div>
+          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>OP v1.4.0 verified at the public one-pager URL Aug 22, 2026 · 3:30 PM EDT</dd></div>
         </dl>
         <details class="lifecycle-glossary">
           <summary>How the one-pager lifecycle is counted</summary>
@@ -1135,12 +1150,12 @@
       <div class="provenance-changelog-list">
         <div class="version-item-wrap active">
           <div class="version-item-row" role="button" tabindex="0" aria-expanded="true">
-            <span><span class="agent-chip agent-chip--cl">CL</span> <strong>OP v1.3.0</strong> (Current Live)</span>
+            <span><span class="agent-chip agent-chip--cl">CL</span> <strong>OP v1.4.0</strong> (Current Live)</span>
             <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 0.4h &bull; Aug 22</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-title">
-              <span>OP v1.3.0 &middot; Front-to-Back Duplex Handout</span>
+              <span>OP v1.4.0 &middot; Front-to-Back Duplex Handout</span>
               <span style="color:#15803d; font-size:9px;">● LIVE &bull; PRODUCTION VERIFIED</span>
             </div>
             <div class="version-hover-meta">
@@ -1168,7 +1183,7 @@
           <div class="version-hover-card">
             <div class="version-hover-title">
               <span>OP v1.1.0 &middot; Editorial Revision &amp; Single-Page Handout</span>
-              <span style="font-size:9px; opacity:0.7;">SUPERSEDED BY OP v1.3.0</span>
+              <span style="font-size:9px; opacity:0.7;">SUPERSEDED BY OP v1.4.0</span>
             </div>
             <div class="version-hover-meta">
               <div><strong>Surface:</strong> Executive One-Pager only</div>
@@ -1195,7 +1210,7 @@
           <div class="version-hover-card">
             <div class="version-hover-title">
               <span>OP v1.0.1 · Independent Telemetry Pill</span>
-              <span style="font-size:9px; opacity:0.7;">SUPERSEDED BY OP v1.3.0</span>
+              <span style="font-size:9px; opacity:0.7;">SUPERSEDED BY OP v1.4.0</span>
             </div>
             <div class="version-hover-meta">
               <div><strong>Surface:</strong> Executive One-Pager only</div>
@@ -1317,6 +1332,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=1787600025"></script>
+  <script src="script.js?v=1787600028"></script>
 </body>
 </html>

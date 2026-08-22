@@ -4011,3 +4011,19 @@ body[data-review-tools="on"] {
   box-shadow: 0 4px 16px rgba(43, 7, 16, 0.5), 0 0 14px rgba(223, 202, 116, 0.38);
 }
 
+
+/* =====================================================================
+   OWNER GATE (2026-08-22)
+   The annotation dock declared `display: flex !important` unconditionally,
+   so review tools were visible to every visitor and sat on top of the
+   telemetry badge. Owner surfaces are now hidden unless the 4-digit owner
+   code has been entered, which sets body[data-review-tools="on"].
+   ===================================================================== */
+body:not([data-review-tools="on"]) .annotation-dock,
+body:not([data-review-tools="on"]) .annotation-popover,
+body:not([data-review-tools="on"]) .feedback-drawer,
+body:not([data-review-tools="on"]) .annotation-presentation-status,
+body:not([data-review-tools="on"]) #inspector-box {
+  display: none !important;
+}
+body:not([data-review-tools="on"]) { padding-bottom: 0; }
