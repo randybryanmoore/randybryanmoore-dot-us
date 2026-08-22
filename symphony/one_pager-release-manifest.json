@@ -24,16 +24,16 @@
   },
   "lifecycle": {
     "local": true,
-    "committed": false,
-    "pushed": false,
-    "merged_or_pull_request": false,
-    "deployed": false,
+    "committed": true,
+    "pushed": true,
+    "merged_or_pull_request": true,
+    "deployed": true,
     "staging": false,
-    "production_verified": false,
-    "production_note": "OP v1.1.0 editorial revision verified locally only; not yet committed, pushed, or deployed",
-    "verified_at": "2026-08-22T14:58:00-04:00",
-    "release_checkpoint": "e6e819b",
-    "deployment_workflow_run": null
+    "production_verified": true,
+    "production_note": "OP v1.1.0 committed in fcda78d, merged with origin/main in 46246df, pushed to main, deployed by the symphony-pages workflow, and read back from the custom domain",
+    "verified_at": "2026-08-22T15:43:00-04:00",
+    "release_checkpoint": "46246df",
+    "deployment_workflow_run": "not captured: gh CLI unavailable in this environment"
   },
   "engineering_time": {
     "current_scoped_pass_hours": 1.4,
@@ -61,7 +61,7 @@
     "page_specific_complete_handoff": "pass: COMPLETE Sections 10.1-10.9 bundle with two visible records and no private owner code",
     "action_layout": "pass: compact floating OP telemetry pill plus two equal-width contained controls in the narrow telemetry panel",
     "browser_console": "pass: zero errors on one-pager and dossier in a clean tab",
-    "production_readback": "pending: OP v1.1.0 not yet read back from the public URL",
+    "production_readback": "pass: OP v1.1.0 badge, page HTML, shared assets, and manifest read back from https://symphony.randybryanmoore.us on 2026-08-22",
     "offline_archive": "pass: rebuilt and integrity tested",
     "single_page_print": "pass: headless Chrome render is exactly 1 US Letter page, 465 words",
     "unsupported_claims_sweep": "pass: 0 hits for staff names, $850k, 48h SLA, LYBUNT/SYBUNT, pipeline velocity, Operating vs. Endowment, moves management",
@@ -70,6 +70,7 @@
     "responsive": "pass: desktop 1280, tablet 768, mobile 375; no horizontal page overflow at any width",
     "pdf_regenerated": "pass: Randy_Bryan_Moore_Executive_Briefing.pdf recompiled to 1 page",
     "source_verification": "partial: only 2 of 15 briefing sources present in repo (resume, cover letter); no organizational claim independently verifiable",
-    "telemetry_badge_position": "pass: merged the upstream high-contrast badge and modal offsets from origin/main (8401aad)"
+    "telemetry_badge_position": "pass: merged the upstream high-contrast badge and modal offsets from origin/main (8401aad)",
+    "lifecycle_accuracy": "pass: lifecycle flags corrected post-push; they previously understated the deployed state"
   }
 }

@@ -22,18 +22,18 @@
   },
   "lifecycle": {
     "local": true,
-    "committed": false,
-    "pushed": false,
-    "merged_or_pull_request": false,
-    "deployed": false,
+    "committed": true,
+    "pushed": true,
+    "merged_or_pull_request": true,
+    "deployed": true,
     "staging": false,
-    "production_verified": false,
+    "production_verified": true,
     "production_version": "v1.7.5",
-    "verified_at": "2026-08-21T22:42:00-04:00",
-    "release_checkpoint": "6cf448a",
-    "deployment_workflow_run": "32525596664",
+    "verified_at": "2026-08-22T15:43:00-04:00",
+    "release_checkpoint": "46246df",
+    "deployment_workflow_run": "not captured: gh CLI unavailable in this environment",
     "first_verified_one_repository_build": "1d58442",
-    "production_note": "Dossier v1.8.0 editorial revision verified locally only; not yet committed, pushed, or deployed"
+    "production_note": "Dossier v1.8.0 committed in fcda78d, merged with origin/main in 46246df, pushed to main, deployed by the symphony-pages workflow, and read back from the custom domain"
   },
   "artifacts": [
     {
@@ -71,14 +71,15 @@
     "complete_handoff_export": "pass: dossier retains 11 records; one-pager exports a COMPLETE Sections 10.1-10.9 handoff with two page-specific records",
     "hero_action_alignment": "pass: equal-width centered two-column grid at 1440x1000 and centered single-column stack at 390x844 with zero horizontal overflow",
     "one_pager_telemetry": "pass: OP v1.1.0 reports its own surface identity and lifecycle",
-    "production_readback": "pending: v1.8.0 not yet read back from the custom domain",
+    "production_readback": "pass: Dossier v1.8.0 badge, page HTML, shared assets, and manifest read back from https://symphony.randybryanmoore.us on 2026-08-22",
     "unsupported_claims_sweep": "pass: 0 hits for staff names, $850k, 48h SLA, LYBUNT/SYBUNT, pipeline velocity, Operating vs. Endowment, moves management",
     "quotation_integrity": "pass: global and/& -> // transform removed",
     "new_sections": "pass: #philosophy and #scope added with nav entries; 7 sections resolve",
     "strategic_fit_matrix": "pass: rebuilt as 3 columns x 6 rows, stacks to labelled cards below 760px",
     "browser_console": "pass: zero errors in a clean tab",
     "source_verification": "partial: 13 of 15 briefing sources absent from repo",
-    "telemetry_badge_position": "pass: merged the upstream high-contrast badge and modal offsets from origin/main (8401aad)"
+    "telemetry_badge_position": "pass: merged the upstream high-contrast badge and modal offsets from origin/main (8401aad)",
+    "lifecycle_accuracy": "pass: lifecycle flags corrected post-push; they previously understated the deployed state"
   },
   "blockers": [
     "One-page decision applied per instruction: professional history now lives in the dossier only.",
