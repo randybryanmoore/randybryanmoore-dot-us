@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_at": "2026-08-22T14:58:00-04:00",
   "surface_name": "Richmond Symphony Executive One-Pager",
-  "surface_version": "1.1.0",
+  "surface_version": "1.2.0",
   "surface_prefix": "OP",
   "parent_dossier": {
     "production_version": "v1.7.5",
@@ -46,15 +46,15 @@
   "artifacts": [
     {
       "path": "one_pager.html",
-      "sha256": "9ea99e9d3772faec23a3463c32293ded0dabe6bb88a9034fb09fcf83ece34e7e"
+      "sha256": "b5dd4de97e09211cdde8d838f6a4a6ba9cbad7afc8f0786fedcb5f498fb551d4"
     },
     {
       "path": "styles.css",
-      "sha256": "c54f15b209dce6061506481d5bd150d203de8f289f0c011d7bc96557e248f761"
+      "sha256": "0d5253c578770559e3dbebe31f82a6abd8266b52704802b838cf8eab555ed560"
     },
     {
       "path": "script.js",
-      "sha256": "8784b4db29d866dadd05cf1b94599ecd237350dd62df977434caa90c606152cc"
+      "sha256": "c94329d2157ac751a7d56ff19a96c663ac6f9edf571a840d1936a1c591b849a8"
     }
   ],
   "validation": {
@@ -67,7 +67,7 @@
     "browser_console": "pass: zero errors on one-pager and dossier in a clean tab",
     "production_readback": "pass: OP v1.1.0 badge, page HTML, shared assets, and manifest read back from https://symphony.randybryanmoore.us on 2026-08-22",
     "offline_archive": "pass: rebuilt and integrity tested",
-    "single_page_print": "pass: headless Chrome render is exactly 1 US Letter page, 465 words",
+    "single_page_print": "superseded by duplex_print in OP v1.2.0",
     "unsupported_claims_sweep": "pass: 0 hits for staff names, $850k, 48h SLA, LYBUNT/SYBUNT, pipeline velocity, Operating vs. Endowment, moves management",
     "quotation_integrity": "pass: global and/& -> // transform removed; cover-letter quotation now matches the source PDF",
     "editorial_separator_scope": "pass: // retained only in the three First 90 Days stage labels and three dossier roadmap labels",
@@ -76,6 +76,9 @@
     "source_verification": "partial: only 2 of 15 briefing sources present in repo (resume, cover letter); no organizational claim independently verifiable",
     "telemetry_badge_position": "pass: merged the upstream high-contrast badge and modal offsets from origin/main (8401aad)",
     "lifecycle_accuracy": "pass: lifecycle flags corrected post-push; they previously understated the deployed state",
-    "deployment_run_captured": "pass: run 32593867344 (success) deployed 46246df, retrieved from the public Actions API"
+    "deployment_run_captured": "pass: run 32593867344 (success) deployed 46246df, retrieved from the public Actions API",
+    "duplex_print": "pass: renders exactly 2 US Letter pages, front 465 words / back 366 words, one double-sided sheet",
+    "telemetry_identity": "pass: badge shows CL agent chip plus OP surface chip; runtime model, parent release, and scoped time corrected from Codex values",
+    "contrast": "pass: One-Pager Time Logged moved from --gold-light (1.15:1, unreadable) to --gold-ink (5.46:1)"
   }
 }
