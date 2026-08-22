@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_at": "2026-08-22T14:58:00-04:00",
   "surface_name": "Richmond Symphony Executive One-Pager",
-  "surface_version": "1.2.0",
+  "surface_version": "1.3.0",
   "surface_prefix": "OP",
   "parent_dossier": {
     "production_version": "v1.7.5",
@@ -46,7 +46,7 @@
   "artifacts": [
     {
       "path": "one_pager.html",
-      "sha256": "334e90833049e62a38cadbd512a8b28cc0fcb913baa2a04a72e7f6248d556494"
+      "sha256": "af8a3c44232ba7e6cab031313377f04a18f18f0fe5f157a1cf57265863a6043c"
     },
     {
       "path": "styles.css",
@@ -54,7 +54,7 @@
     },
     {
       "path": "script.js",
-      "sha256": "c94329d2157ac751a7d56ff19a96c663ac6f9edf571a840d1936a1c591b849a8"
+      "sha256": "ef861091273c50baabbc3f2d2f17377f573ad81ed773d6c8ff3a8ff2b8b421d2"
     }
   ],
   "validation": {
@@ -77,8 +77,10 @@
     "telemetry_badge_position": "pass: merged the upstream high-contrast badge and modal offsets from origin/main (8401aad)",
     "lifecycle_accuracy": "pass: lifecycle flags corrected post-push; they previously understated the deployed state",
     "deployment_run_captured": "pass: run 32593867344 (success) deployed 46246df, retrieved from the public Actions API",
-    "duplex_print": "pass: renders exactly 2 US Letter pages, front 465 words / back 366 words, one double-sided sheet",
+    "duplex_print": "pass: 4 US Letter sides = two sheets duplexed, 291/204/191/216 words",
     "telemetry_identity": "pass: badge shows CL agent chip plus OP surface chip; runtime model, parent release, and scoped time corrected from Codex values",
-    "contrast": "pass: One-Pager Time Logged moved from --gold-light (1.15:1, unreadable) to --gold-ink (5.46:1)"
+    "contrast": "pass: One-Pager Time Logged moved from --gold-light (1.15:1, unreadable) to --gold-ink (5.46:1)",
+    "print_matches_web": "pass: print inherits the screen type scale, spacing and colour; fit handled by a single 0.88 zoom rather than a second compressed design",
+    "flex_stretch": "pass: .handout-sheet > * pinned to natural height; flex children were stretching the header band and inflating cards"
   }
 }

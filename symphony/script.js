@@ -203,7 +203,7 @@
       surfaceKey: 'one-pager',
       surfaceName: 'Executive One-Pager',
       serviceName: 'richmond-symphony-executive-one-pager',
-      serviceVersion: '1.2.0',
+      serviceVersion: '1.3.0',
       parentServiceVersion: '1.8.0',
       agent: 'CL',
       agentProduct: 'Claude Code',

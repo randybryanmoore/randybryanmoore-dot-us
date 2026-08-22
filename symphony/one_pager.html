@@ -6,7 +6,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d1a32'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='27' font-weight='700' fill='%23f2eadf'%3ERM%3C/text%3E%3C/svg%3E">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
   <title>Executive Candidate Briefing — Richmond Symphony | Randy Bryan Moore, MSW</title>
-  <link rel="stylesheet" href="styles.css?v=1787600020">
+  <link rel="stylesheet" href="styles.css?v=1787600025">
   <style>
     /* ------------------------------------------------------------------
        SELF-CONTAINED HANDOUT STYLES
@@ -702,150 +702,59 @@
     }
 
     @media print {
+      /* ------------------------------------------------------------------
+         PRINT = THE WEB PAGE ON PAPER.
+         Deliberately minimal. It hides interactive chrome, sets sheet
+         geometry, and controls pagination. Type scale, spacing and colour
+         are inherited from the screen styles, so the printed handout is the
+         online layout rather than a second, compressed design.
+         Four sides = two sheets duplexed.
+         ------------------------------------------------------------------ */
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-      html, body { background: #fff !important; padding: 0 !important; margin: 0 !important; }
-      body { color: var(--charcoal); font-size: 6.5pt; line-height: 1.32; }
-      .op-site-header, .top-nav, .annotation-dock, .annotation-popover, .feedback-drawer, .passcode-gate-overlay, .print-btn-bar, .build-badge, .build-provenance-modal, #inspector-box { display: none !important; }
-      
-      .page-break { page-break-before: always; break-before: page; margin-top: 0 !important; }
+
+      html, body { margin: 0 !important; padding: 0 !important; background: #FFFFFF !important; }
+      /* single fit control: shrinks the web layout just enough to land on
+         the sheet. Not a redesign, only a scale. */
+      body { zoom: 0.88; }
+
+      .op-site-header, .top-nav, .annotation-dock, .annotation-popover,
+      .annotation-presentation-status, .dock-badge, .popover-voice-status,
+      .feedback-drawer, .passcode-gate-overlay, .print-btn-bar,
+      .build-badge, .build-provenance-modal, #inspector-box {
+        display: none !important;
+      }
+
       .handout-sheet {
-        box-shadow: none !important;
-        /* Navy trim framing the full printable area, not just the content.
-           10.4in = 11in letter height minus the 0.3in top and bottom @page
-           margins, so the frame reaches the bottom of every sheet. */
-        border: 3px solid var(--cobalt-deep) !important;
-        border-radius: 0 !important;
-        padding: 15px 17px !important;
-        margin: 0 !important;
-        max-width: 100% !important;
         width: 100% !important;
-        min-height: 10.4in !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 26px 28px !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        border: 3px solid var(--cobalt-deep) !important;   /* navy trim */
+        background: var(--cream-surface) !important;
+        min-height: 9.9in !important;
         box-sizing: border-box !important;
         display: flex !important;
         flex-direction: column !important;
-        background: transparent !important;
-        page-break-inside: avoid;
       }
-
-      .handout-header {
-        padding: 0.22rem 0.55rem !important;
-        margin-bottom: 0.18rem !important;
-        border-radius: 4px !important;
-        border: 1px solid var(--gold) !important;
-        box-shadow: none !important;
-      }
-      .handout-title h1 { font-size: 1.243rem !important; margin-bottom: 0.06rem !important; line-height: 1.32 !important; }
-      .handout-title p { font-size: 0.678rem !important; letter-spacing: 0.05em !important; }
-      .handout-meta { font-size: 0.701rem !important; line-height: 1.32 !important; }
-
-      .portfolio-block {
-        display: grid !important;
-        grid-template-columns: 44px 1fr !important;
-        gap: 0.45rem !important;
-        padding: 0.20rem 0.50rem !important;
-        margin-bottom: 0.20rem !important;
-        border-radius: 4px !important;
-        border: 1px solid var(--gold) !important;
-        box-shadow: none !important;
-        background: var(--cobalt) !important;
-      }
-      .portfolio-block .qr-wrap { width: 40px !important; height: 40px !important; padding: 2px !important; }
-      .portfolio-block h3 { font-size: 0.836rem !important; margin-bottom: 0.06rem !important; color: #fff !important; }
-      .portfolio-block p { font-size: 0.678rem !important; line-height: 1.32 !important; margin-bottom: 0.08rem !important; color: rgba(255,255,255,0.9) !important; }
-      .portfolio-block a.portfolio-link { font-size: 0.678rem !important; }
-
-      .handout-section { margin-bottom: 0.20rem !important; }
-      .handout-section h2 { font-size: 0.859rem !important; padding-bottom: 0.08rem !important; margin-bottom: 0.12rem !important; }
-      .handout-section p { font-size: 0.712rem !important; line-height: 1.32 !important; margin-bottom: 0.12rem !important; }
-      .handout-section blockquote { font-size: 0.689rem !important; margin: 0.15rem 0 !important; padding-left: 6px !important; line-height: 1.32 !important; }
-      .op-kicker { font-size: 0.610rem !important; margin-bottom: 0.06rem !important; }
-      .how-i-think-panel { padding: 0.14rem 0.35rem !important; margin-bottom: 0.14rem !important; }
-      .pillar-tags { margin: 0.10rem 0 !important; gap: 3px !important; }
-      .pillar-tag { font-size: 0.610rem !important; padding: 1px 3px !important; }
-
-      .dcard { padding: 0.20rem 0.40rem !important; border-radius: 4px !important; box-shadow: none !important; background: var(--cobalt) !important; }
-      .dcard--wine { background: var(--wine) !important; }
-      .dcard .dcard-num { font-size: 6.2px !important; margin-bottom: 0.06rem !important; }
-      .dcard h3 { font-size: 0.768rem !important; margin-bottom: 0.06rem !important; }
-      .dcard p { font-size: 0.667rem !important; line-height: 1.32 !important; }
-
-      .matrix-table { margin-top: 0.12rem !important; font-size: 0.667rem !important; }
-      .matrix-table th { padding: 1.5px 3.5px !important; font-size: 0.655rem !important; background: var(--wine) !important; color: var(--gold-light) !important; }
-      .matrix-table td { padding: 1.5px 3.5px !important; font-size: 0.655rem !important; line-height: 1.32 !important; }
-
-      .handout-footer {
-        padding: 0.20rem 0.55rem !important;
-        margin-top: 0.20rem !important;
-        font-size: 0.701rem !important;
-        border-radius: 4px !important;
-        border: 1px solid var(--gold) !important;
-        box-shadow: none !important;
-        background: var(--cobalt) !important;
-      }
-      .handout-footer--wine {
-        background: var(--wine) !important;
-      }
-      .handout-footer .footer-pin { font-size: 0.701rem !important; padding: 1px 4px !important; }
-
-      /* Page 2 Specific Containment */
-      .handout-grid-2 { gap: 4px !important; }
-      .handout-card { padding: 0.35rem 0.5rem !important; border-radius: 4px !important; }
-      .handout-card h3 { font-size: 0.836rem !important; margin-bottom: 0.1rem !important; }
-      .handout-card p { font-size: 0.734rem !important; line-height: 1.32 !important; }
-      .op-history-item { padding: 0.2rem 0.45rem !important; margin-bottom: 0.15rem !important; }
-      .op-history-item--navy { background: #EAF0F9 !important; border-left: 3px solid var(--cobalt) !important; }
-      .op-history-item--wine { background: #F8EBEF !important; border-left: 3px solid var(--wine) !important; }
-      .op-history-org { font-size: 0.791rem !important; }
-      .op-history-date { font-size: 0.655rem !important; padding: 0 3px !important; }
-      .op-history-desc { font-size: 0.712rem !important; line-height: 1.32 !important; }
-
-      .handout-section:last-of-type > div { gap: 0.25rem !important; font-size: 0.757rem !important; }
-      .handout-section:last-of-type span { font-size: 0.712rem !important; line-height: 1.32 !important; }
-    
-      /* --- print sizing for single-sheet components (2026-08-22) --- */
-      .op-lede { font-size: 0.904rem !important; line-height: 1.26 !important; margin-bottom: 0.20rem !important; }
-      .op-body { font-size: 0.729rem !important; line-height: 1.22 !important; margin-bottom: 0.16rem !important; }
-      .op-card-num { font-size: 0.588rem !important; margin-bottom: 0.02rem !important; }
-      .handout-grid-3 { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 5px !important; }
-      .handout-section .op-stage-label { font-size: 0.621rem !important; margin-bottom: 0.08rem !important; line-height: 1.32 !important; }
-      .op-metrics { padding: 0.22rem 0 !important; gap: 4px !important; grid-template-columns: repeat(6, 1fr) !important; border-width: 1px !important; }
-      .op-metric-value { font-size: 1.073rem !important; }
-      .handout-section .op-metric-label { font-size: 0.520rem !important; line-height: 1.08 !important; margin-top: 0.06rem !important; }
-    
-      /* keep the 2x2 strengths grid in print (screen rule collapses it under 820px) */
-      .handout-grid-2 { grid-template-columns: 1fr 1fr !important; }
-      /* hide every floating review/telemetry surface */
-      .annotation-presentation-status, .dock-badge, .popover-voice-status,
-      .annotation-dock, .annotation-popover, .build-badge { display: none !important; }
-    
-      /* --- duplex (front-to-back) sheet setup --- */
-      .handout-sheet { page-break-after: always; break-after: page; }
-      .handout-sheet:last-of-type { page-break-after: auto; break-after: auto; }
-      .page-break { page-break-before: always; break-before: page; margin-top: 0 !important; }
-      .op-history-item { page-break-inside: avoid; break-inside: avoid; }
-      .op-education-row { grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
-      .op-education-row > div { padding: 0.3rem 0.45rem !important; }
-      .op-education-row strong { font-size: 0.701rem !important; margin-bottom: 0.04rem !important; }
-      .op-education-row span { font-size: 0.599rem !important; line-height: 1.32 !important; }
-      .op-history-desc { font-size: 0.701rem !important; line-height: 1.2 !important; }
-      .op-history-org { font-size: 0.746rem !important; }
-      .op-history-date { font-size: 0.678rem !important; }
-      .op-history-item { padding: 0.32rem 0.5rem !important; }
-      .op-history-list { gap: 5px !important; }
-    
-      /* Side 2 holds fewer blocks than side 1, so its history section grows
-         and the role cards distribute down the sheet. This redistributes
-         existing space; it does not add height, so the 2-page fit holds.
-         (.page-break is the side-2 hook. :last-of-type counts every div,
-         not every sheet, so it silently matches nothing here.) */
-      .handout-sheet.page-break .handout-section:first-of-type {
-        flex: 1 1 auto !important; display: flex !important; flex-direction: column !important;
-      }
-      .handout-sheet.page-break .op-history-list {
-        flex: 1 1 auto !important; display: flex !important; flex-direction: column !important;
-        justify-content: space-between !important;
-      }
+      /* flex children stretch by default; that inflates the header band */
+      .handout-sheet > * { flex: 0 0 auto !important; }
       .handout-footer { margin-top: auto !important; }
+
+      /* one break before each subsequent side */
+      /* the print box is 7.9in wide, which trips the sub-820px responsive
+         rules and stacks the grids. The desktop site shows 2x2 and 3-up, so
+         restore those here to match what you see online. */
+      .handout-grid-2 { grid-template-columns: 1fr 1fr !important; }
+      .handout-grid-3 { grid-template-columns: repeat(3, 1fr) !important; }
+      .op-metrics { grid-template-columns: repeat(6, 1fr) !important; }
+      .op-education-row { grid-template-columns: repeat(3, 1fr) !important; }
+
+      .page-break { page-break-before: always; break-before: page; margin-top: 0 !important; }
+      .handout-card, .op-history-item, .op-metric, .op-education-row > div {
+        page-break-inside: avoid; break-inside: avoid;
+      }
     }
   </style>
 </head>
@@ -872,16 +781,15 @@
        independent from the parent dossier version shown inside the panel. -->
   <button type="button" class="build-badge" id="build-badge" aria-expanded="false" aria-controls="build-provenance-modal" title="Open Executive One-Pager Telemetry (Shift+V)">
     <span class="build-badge-agent build-badge-agent--cl" title="Active AI Agent: Claude Code (CL) &bull; Claude Opus 5">CL</span>
-    <span class="build-badge-live-dot" title="OP v1.2.0 live // production verified"></span>
-    <span class="build-badge-version">v1.2.0</span>
+    <span class="build-badge-live-dot" title="OP v1.3.0 live // production verified"></span>
+    <span class="build-badge-version">v1.3.0</span>
     <span class="build-badge-sha">LIVE</span>
     <span class="build-badge-date">Aug 22, 2026</span>
   </button>
 
-  <!-- Executive leave-behind: ONE US Letter sheet.
-       Professional history intentionally lives in the dossier only. -->
+  <!-- Side 1 of 4 -->
   <div class="handout-sheet">
-    <div class="handout-header">
+<div class="handout-header">
       <div class="handout-title">
         <h1 style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
           <span>Randy <em>Bryan</em> Moore</span>
@@ -895,8 +803,7 @@
         <div>(803) 486-4007</div>
       </div>
     </div>
-
-    <div class="handout-section">
+<div class="handout-section">
       <p class="op-kicker">POSITIONING</p>
       <div class="how-i-think-panel">
         <p class="op-lede">Nonprofit systems and operations leader with more than ten years across advocacy, government, and housing, and four years as a working Richmond pianist.</p>
@@ -904,8 +811,7 @@
         <p class="op-body" style="margin-bottom:0;">Across ten years in advocacy, government, and housing I have managed constituent data in CRM, designed and documented processes, coordinated work across program, communications, finance, and leadership, and supported colleagues with very different levels of technical confidence. For four of those years I have also been at the piano at The Jefferson Hotel. This position joins the two halves of my working life.</p>
       </div>
     </div>
-
-    <div class="handout-section">
+<div class="handout-section">
       <p class="op-kicker">01 &middot; CORE STRENGTHS</p>
       <h2>Four Transferable Strengths</h2>
       <div class="handout-grid-2">
@@ -931,8 +837,28 @@
         </div>
       </div>
     </div>
+<div class="handout-footer handout-footer--wine">
+      <div>Online Dossier: <a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us</a> <span class="footer-pin">PIN: 0000</span></div>
+      <div style="text-align: right; line-height: 1.45;">
+        <div>Direct Contact: <strong>randybryanmoore@gmail.com</strong></div>
+        <div><strong>(803) 486-4007</strong></div>
+      </div>
+    </div>
+  </div>
 
-    <div class="handout-section">
+  <!-- Side 2 of 4 -->
+  <div class="handout-sheet page-break">
+    <div class="handout-header handout-header--running">
+      <div class="handout-title">
+        <h1 style="font-size: 1.35rem;">Results &amp; Onboarding Approach</h1>
+        <p>Randy Bryan Moore, MSW &bull; Candidate Briefing &bull; Side 2 of 4</p>
+      </div>
+      <div class="handout-meta">
+        <div>randybryanmoore@gmail.com</div>
+        <div>(803) 486-4007</div>
+      </div>
+    </div>
+<div class="handout-section">
       <p class="op-kicker">02 &middot; VERIFIED RECORD</p>
       <h2>Selected Results</h2>
       <div class="op-metrics">
@@ -944,8 +870,7 @@
         <div class="op-metric"><span class="op-metric-value">4 yrs</span><span class="op-metric-label">contract pianist, The Jefferson Hotel</span></div>
       </div>
     </div>
-
-    <div class="handout-section">
+<div class="handout-section">
       <p class="op-kicker">03 &middot; ONBOARDING APPROACH</p>
       <h2>First 90 Days</h2>
       <div class="handout-grid-3">
@@ -963,8 +888,7 @@
         </div>
       </div>
     </div>
-
-    <div class="portfolio-block">
+<div class="portfolio-block">
       <div class="qr-wrap"><svg role="img" aria-label="QR code linking to https://symphony.randybryanmoore.us/" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31"><path fill="#fff" d="M0 0h31v31h-31z"/><path stroke="#2b0710" d="M1 1.5h7m1 0h1m2 0h1m1 0h2m3 0h1m3 0h7m-29 1h1m5 0h1m2 0h6m1 0h4m2 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m2 0h1m4 0h1m4 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h2m4 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h2m6 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h3m1 0h1m3 0h5m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h1m1 0h2m1 0h1m2 0h2m2 0h1m-21 1h1m3 0h1m1 0h8m2 0h2m1 0h7m2 0h1m-29 1h1m1 0h2m6 0h1m1 0h6m4 0h7m-29 1h1m2 0h4m1 0h1m6 0h1m1 0h1m3 0h1m1 0h1m4 0h1m-29 1h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h7m1 0h1m1 0h2m-29 1h4m1 0h2m1 0h1m1 0h1m1 0h3m1 0h2m2 0h2m1 0h1m3 0h1m-28 1h1m2 0h3m1 0h2m1 0h3m2 0h2m1 0h1m3 0h7m-29 1h5m1 0h1m3 0h2m1 0h5m2 0h1m4 0h2m1 0h1m-28 1h1m3 0h1m2 0h1m1 0h2m1 0h1m3 0h2m5 0h1m2 0h2m-29 1h3m2 0h6m1 0h2m1 0h1m1 0h1m1 0h3m5 0h1m-28 1h1m1 0h4m1 0h2m3 0h4m1 0h2m3 0h4m1 0h2m-25 1h3m1 0h1m2 0h1m3 0h1m2 0h1m7 0h1m1 0h1m-27 1h3m2 0h2m3 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h2m2 0h2m-29 1h2m1 0h9m1 0h2m2 0h1m1 0h7m2 0h1m-21 1h1m2 0h2m2 0h4m1 0h1m3 0h1m3 0h1m-29 1h7m1 0h3m1 0h9m1 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m5 0h2m2 0h5m3 0h1m2 0h2m-29 1h1m1 0h3m1 0h1m1 0h2m2 0h2m2 0h2m1 0h7m1 0h1m-28 1h1m1 0h3m1 0h1m2 0h2m2 0h7m1 0h1m1 0h1m4 0h1m-29 1h1m1 0h3m1 0h1m4 0h2m1 0h2m2 0h3m4 0h4m-29 1h1m5 0h1m3 0h1m1 0h1m4 0h2m1 0h2m2 0h2m1 0h2m-29 1h7m1 0h2m3 0h3m1 0h1m1 0h3m2 0h1m2 0h1"/></svg></div>
       <div>
         <h3 style="color:#fff; font-size:1.05rem; margin-bottom:0.25rem;">Scan for the Full Interactive Dossier</h3>
@@ -975,8 +899,7 @@
         </div>
       </div>
     </div>
-
-    <div class="handout-footer handout-footer--wine">
+<div class="handout-footer handout-footer--wine">
       <div>Online Dossier: <a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us</a> <span class="footer-pin">PIN: 0000</span></div>
       <div style="text-align: right; line-height: 1.45;">
         <div>Direct Contact: <strong>randybryanmoore@gmail.com</strong></div>
@@ -985,60 +908,85 @@
     </div>
   </div>
 
-  <!-- Side 2 (back of the duplex sheet): verified professional history -->
+  <!-- Side 3 of 4 -->
   <div class="handout-sheet page-break">
-    <div class="handout-header">
+    <div class="handout-header handout-header--running">
       <div class="handout-title">
-        <h1 style="font-size: 1.65rem;">Verified Professional History</h1>
-        <p>Randy Bryan Moore, MSW &bull; Candidate Briefing &bull; Side 2 of 2</p>
+        <h1 style="font-size: 1.35rem;">Verified Professional History</h1>
+        <p>Randy Bryan Moore, MSW &bull; Candidate Briefing &bull; Side 3 of 4</p>
       </div>
       <div class="handout-meta">
-        <div>Richmond, Virginia</div>
         <div>randybryanmoore@gmail.com</div>
         <div>(803) 486-4007</div>
       </div>
     </div>
-
     <div class="handout-section">
       <p class="op-kicker">04 &middot; PROFESSIONAL TRACK RECORD</p>
       <h2>Ten Years of Systems and Public Service</h2>
       <div class="op-history-list">
-        <div class="op-history-item op-history-item--wine">
+          <div class="op-history-item op-history-item--wine">
           <div class="op-history-meta">
             <span class="op-history-org">Save the Children Action Network &bull; Virginia State Manager</span>
             <span class="op-history-date">12/24 &ndash; 11/25</span>
           </div>
           <p class="op-history-desc">Led statewide advocacy operations and coordinated 55 General Assembly meetings. Used EveryAction to capture, tag, and organize constituent engagement, building outreach lists, follow-up workflows, and event reporting. Tracked turnout, media, partner engagement, and organizing outcomes.</p>
         </div>
-        <div class="op-history-item op-history-item--navy">
+          <div class="op-history-item op-history-item--navy">
           <div class="op-history-meta">
             <span class="op-history-org">Active Minds &bull; Policy Manager</span>
             <span class="op-history-date">04/22 &ndash; 12/24</span>
           </div>
           <p class="op-history-desc">Built the organization's first federal policy platform and the tracking systems supporting it. Led a ten-organization coalition and engaged more than 50 legislative offices, coordinating data, timelines, partner communications, and follow-up. Developed reporting, training, and briefing materials for leadership.</p>
         </div>
-        <div class="op-history-item op-history-item--wine">
+          <div class="op-history-item op-history-item--wine">
           <div class="op-history-meta">
             <span class="op-history-org">Office of U.S. Senator Mark R. Warner &bull; Outreach Representative</span>
             <span class="op-history-date">08/20 &ndash; 04/22</span>
           </div>
           <p class="op-history-desc">Managed communication across more than 40 Central Virginia counties with officials, agencies, businesses, advocates, press, and constituents. Prepared senior-level briefs and organized more than 40 public engagements with detailed schedules, records, logistics, and follow-up. Supported work connected to a $14.1 million rural broadband grant.</p>
         </div>
-        <div class="op-history-item op-history-item--navy">
+      </div>
+    </div>
+<div class="handout-footer handout-footer--wine">
+      <div>Online Dossier: <a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us</a> <span class="footer-pin">PIN: 0000</span></div>
+      <div style="text-align: right; line-height: 1.45;">
+        <div>Direct Contact: <strong>randybryanmoore@gmail.com</strong></div>
+        <div><strong>(803) 486-4007</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Side 4 of 4 -->
+  <div class="handout-sheet page-break">
+    <div class="handout-header handout-header--running">
+      <div class="handout-title">
+        <h1 style="font-size: 1.35rem;">Professional History &amp; Education</h1>
+        <p>Randy Bryan Moore, MSW &bull; Candidate Briefing &bull; Side 4 of 4</p>
+      </div>
+      <div class="handout-meta">
+        <div>randybryanmoore@gmail.com</div>
+        <div>(803) 486-4007</div>
+      </div>
+    </div>
+    <div class="handout-section">
+      <p class="op-kicker">04 &middot; PROFESSIONAL TRACK RECORD &middot; CONTINUED</p>
+      <h2>Ten Years of Systems and Public Service</h2>
+      <div class="op-history-list">
+          <div class="op-history-item op-history-item--navy">
           <div class="op-history-meta">
             <span class="op-history-org">Virginia Housing Alliance &bull; Director of Policy and Advocacy</span>
             <span class="op-history-date">12/17 &ndash; 05/20</span>
           </div>
           <p class="op-history-desc">Developed housing policy, budget, and campaign strategy involving the Virginia Housing Trust Fund, homelessness, and permanent supportive housing. Coordinated statewide coalitions and public communications. Supervised graduate interns and served as MSW field instructor, providing structured coaching, feedback, and professional development.</p>
         </div>
-        <div class="op-history-item op-history-item--wine">
+          <div class="op-history-item op-history-item--wine">
           <div class="op-history-meta">
             <span class="op-history-org">Virginia Civic Engagement Table &bull; Community Organizer</span>
             <span class="op-history-date">02/17 &ndash; 12/17</span>
           </div>
           <p class="op-history-desc">Built systems and training support for 40 partner organizations across Virginia working on advocacy, voter registration, and civic engagement. Designed and delivered training, coordinated partner communications, and supported shared campaign timelines.</p>
         </div>
-        <div class="op-history-item op-history-item--navy">
+          <div class="op-history-item op-history-item--navy">
           <div class="op-history-meta">
             <span class="op-history-org">The Jefferson Hotel &bull; Contract Pianist</span>
             <span class="op-history-date">2022 &ndash; Present</span>
@@ -1047,8 +995,7 @@
         </div>
       </div>
     </div>
-
-    <div class="handout-section">
+<div class="handout-section">
       <p class="op-kicker">05 &middot; EDUCATION</p>
       <div class="op-education-row">
         <div><strong>Master of Social Work</strong><span>University of South Carolina &bull; Advanced standing, Organizations and Communities macro concentration</span></div>
@@ -1056,8 +1003,7 @@
         <div><strong>Sorensen Political Leaders Institute</strong><span>University of Virginia Weldon Cooper Center for Public Service &bull; 2022</span></div>
       </div>
     </div>
-
-    <div class="handout-footer handout-footer--wine">
+<div class="handout-footer handout-footer--wine">
       <div>Online Dossier: <a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us</a> <span class="footer-pin">PIN: 0000</span></div>
       <div style="text-align: right; line-height: 1.45;">
         <div>Direct Contact: <strong>randybryanmoore@gmail.com</strong></div>
@@ -1091,7 +1037,7 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Build Version</div>
-        <div class="provenance-card-value">OP v1.2.0 (Current Live)</div>
+        <div class="provenance-card-value">OP v1.3.0 (Current Live)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Parent Dossier Release</div>
@@ -1118,13 +1064,13 @@
       </summary>
       <div class="lifecycle-status-content">
         <dl class="lifecycle-status-grid">
-          <div><dt>Local</dt><dd>OP v1.2.0 verified release source</dd></div>
+          <div><dt>Local</dt><dd>OP v1.3.0 verified release source</dd></div>
           <div><dt>Committed</dt><dd>Yes // release source checkpoint #13e730a</dd></div>
           <div><dt>Pushed</dt><dd>Yes // release branch and main</dd></div>
           <div><dt>Merged / PR</dt><dd>Merged // origin/main reconciled in 46246df</dd></div>
           <div><dt>Deployed</dt><dd>Yes // GitHub Actions Pages run #32593867344</dd></div>
           <div><dt>Staging</dt><dd>Not used</dd></div>
-          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>OP v1.2.0 verified at the public one-pager URL Aug 22, 2026 · 3:30 PM EDT</dd></div>
+          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>OP v1.3.0 verified at the public one-pager URL Aug 22, 2026 · 3:30 PM EDT</dd></div>
         </dl>
         <details class="lifecycle-glossary">
           <summary>How the one-pager lifecycle is counted</summary>
@@ -1189,12 +1135,12 @@
       <div class="provenance-changelog-list">
         <div class="version-item-wrap active">
           <div class="version-item-row" role="button" tabindex="0" aria-expanded="true">
-            <span><span class="agent-chip agent-chip--cl">CL</span> <strong>OP v1.2.0</strong> (Current Live)</span>
+            <span><span class="agent-chip agent-chip--cl">CL</span> <strong>OP v1.3.0</strong> (Current Live)</span>
             <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 0.4h &bull; Aug 22</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-title">
-              <span>OP v1.2.0 &middot; Front-to-Back Duplex Handout</span>
+              <span>OP v1.3.0 &middot; Front-to-Back Duplex Handout</span>
               <span style="color:#15803d; font-size:9px;">● LIVE &bull; PRODUCTION VERIFIED</span>
             </div>
             <div class="version-hover-meta">
@@ -1222,7 +1168,7 @@
           <div class="version-hover-card">
             <div class="version-hover-title">
               <span>OP v1.1.0 &middot; Editorial Revision &amp; Single-Page Handout</span>
-              <span style="font-size:9px; opacity:0.7;">SUPERSEDED BY OP v1.2.0</span>
+              <span style="font-size:9px; opacity:0.7;">SUPERSEDED BY OP v1.3.0</span>
             </div>
             <div class="version-hover-meta">
               <div><strong>Surface:</strong> Executive One-Pager only</div>
@@ -1249,7 +1195,7 @@
           <div class="version-hover-card">
             <div class="version-hover-title">
               <span>OP v1.0.1 · Independent Telemetry Pill</span>
-              <span style="font-size:9px; opacity:0.7;">SUPERSEDED BY OP v1.2.0</span>
+              <span style="font-size:9px; opacity:0.7;">SUPERSEDED BY OP v1.3.0</span>
             </div>
             <div class="version-hover-meta">
               <div><strong>Surface:</strong> Executive One-Pager only</div>
@@ -1371,6 +1317,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=1787600020"></script>
+  <script src="script.js?v=1787600025"></script>
 </body>
 </html>
