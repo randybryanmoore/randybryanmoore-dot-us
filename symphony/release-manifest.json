@@ -4,9 +4,9 @@
   "service_name": "richmond-symphony-candidate-dossier",
   "service_version": "1.8.0",
   "generator": {
-    "agent": "CLD",
+    "agent": "CL",
     "product": "Claude Code",
-    "model_family": "Opus 5"
+    "model_family": "Claude Opus 5"
   },
   "source": {
     "repository": "randybryanmoore/randybryanmoore-dot-us",
@@ -42,7 +42,7 @@
   "artifacts": [
     {
       "path": "index.html",
-      "sha256": "1757a245bb8a4d0903817602911d0c3b7319c4d121ba4d65988e863ee2d02c83"
+      "sha256": "3ab5ed2c7aa82d97f99aa20d414cd3739cba696adf1fcf3f53882b2f2c85b6be"
     },
     {
       "path": "styles.css",
@@ -50,11 +50,11 @@
     },
     {
       "path": "script.js",
-      "sha256": "b3504b346ec086818978e5d6a8aa754f29f3fd19476eebe667c6f8a4db099af8"
+      "sha256": "8784b4db29d866dadd05cf1b94599ecd237350dd62df977434caa90c606152cc"
     },
     {
       "path": "one_pager.html",
-      "sha256": "16e11a2ee4bf227d5340873a9b39050bab7c45be4e7df173340b2a568ab31335"
+      "sha256": "9ea99e9d3772faec23a3463c32293ded0dabe6bb88a9034fb09fcf83ece34e7e"
     },
     {
       "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",

@@ -10,9 +10,9 @@
     "relationship": "shared repository, stylesheet, client script, and GitHub Pages host; separate telemetry lineage"
   },
   "generator": {
-    "agent": "CLD",
+    "agent": "CL",
     "product": "Claude Code",
-    "model_family": "Opus 5",
+    "model_family": "Claude Opus 5",
     "runtime_variant": "not exposed to the static page",
     "reasoning_effort": "not exposed to the static page"
   },
@@ -46,7 +46,7 @@
   "artifacts": [
     {
       "path": "one_pager.html",
-      "sha256": "16e11a2ee4bf227d5340873a9b39050bab7c45be4e7df173340b2a568ab31335"
+      "sha256": "9ea99e9d3772faec23a3463c32293ded0dabe6bb88a9034fb09fcf83ece34e7e"
     },
     {
       "path": "styles.css",
@@ -54,7 +54,7 @@
     },
     {
       "path": "script.js",
-      "sha256": "b3504b346ec086818978e5d6a8aa754f29f3fd19476eebe667c6f8a4db099af8"
+      "sha256": "8784b4db29d866dadd05cf1b94599ecd237350dd62df977434caa90c606152cc"
     }
   ],
   "validation": {

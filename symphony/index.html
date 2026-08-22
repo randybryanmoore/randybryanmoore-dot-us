@@ -73,7 +73,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1787600004">
+  <link rel="stylesheet" href="styles.css?v=1787600006">
 </head>
 <body data-review-tools="on" class="dossier-unlocked">
 
@@ -82,7 +82,7 @@
        Bump the version and date on each substantive pass. Always visible --
        it is independent of the review-tools switch. -->
   <button type="button" class="build-badge" id="build-badge" aria-expanded="false" aria-controls="build-provenance-modal" title="⚡ Build &amp; Agent Telemetry (Shift+V)">
-    <span class="build-badge-agent build-badge-agent--cur" title="Active AI Agent: Cursor (CUR)">CUR</span>
+    <span class="build-badge-agent build-badge-agent--cl" title="Active AI Agent: Claude Code (CL)">CL</span>
     <span class="build-badge-live-dot" title="v1.7.5 live // production verified"></span>
     <span class="build-badge-version">v1.8.0</span>
     <span class="build-badge-sha">LIVE</span>
@@ -104,15 +104,15 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Active Agent</div>
-        <div class="provenance-card-value">Cursor (CUR)</div>
+        <div class="provenance-card-value">Claude Code (CL)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Runtime Model / Effort</div>
-        <div class="provenance-card-value">Gemini / Claude family &bull; agent mode</div>
+        <div class="provenance-card-value">Claude Opus 5 &bull; agent mode</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Build Version</div>
-        <div class="provenance-card-value">v1.7.5 (Current Live)</div>
+        <div class="provenance-card-value">v1.8.0 (Current Live)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Total Time Logged</div>
@@ -120,7 +120,7 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Git Commit SHA</div>
-        <div class="provenance-card-value" id="prov-commit-sha">#6cf448a verified release source</div>
+        <div class="provenance-card-value" id="prov-commit-sha">#13e730a verified release source</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Sync Branch</div>
@@ -135,13 +135,13 @@
       </summary>
       <div class="lifecycle-status-content">
         <dl class="lifecycle-status-grid">
-          <div><dt>Local</dt><dd>v1.7.4 verified release source</dd></div>
-          <div><dt>Committed</dt><dd>Yes // release source checkpoint #6cf448a</dd></div>
+          <div><dt>Local</dt><dd>v1.8.0 verified release source</dd></div>
+          <div><dt>Committed</dt><dd>Yes // release source checkpoint #13e730a</dd></div>
           <div><dt>Pushed</dt><dd>Yes // release branch and main</dd></div>
-          <div><dt>Merged / PR</dt><dd>No PR // main was fast-forwarded directly</dd></div>
-          <div><dt>Deployed</dt><dd>Yes // GitHub Actions Pages run #32525596664</dd></div>
+          <div><dt>Merged / PR</dt><dd>Merged // origin/main reconciled in 46246df</dd></div>
+          <div><dt>Deployed</dt><dd>Yes // GitHub Actions Pages run #32593867344</dd></div>
           <div><dt>Staging</dt><dd>Not used</dd></div>
-          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.7.4 verified at the custom domain Aug 21, 2026 · 4:51 PM EDT</dd></div>
+          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.8.0 verified at the custom domain Aug 22, 2026 · 3:30 PM EDT</dd></div>
         </dl>
         <details class="lifecycle-glossary">
           <summary>Lifecycle definitions used by all agents</summary>
@@ -231,24 +231,56 @@
       </details>
 
       <div class="provenance-changelog-list">
-        <!-- v1.7.5 -->
+        <!-- v1.8.0 -->
         <div class="version-item-wrap active">
           <div class="version-item-row" role="button" tabindex="0" aria-expanded="true">
-            <span><span class="agent-chip agent-chip--cur">CUR</span> <strong>v1.7.5</strong> (Current Live)</span>
-            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 0.3h &bull; Aug 21</span>
+            <span><span class="agent-chip agent-chip--cl">CL</span> <strong>v1.8.0</strong> (Current Live)</span>
+            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 1.4h &bull; Aug 22</span>
+          </div>
+          <div class="version-hover-card">
+            <div class="version-hover-header">
+              <div class="version-hover-title">
+                <span>v1.8.0 &middot; Editorial Revision &amp; Factual Discipline</span>
+                <span style="color:#15803d; font-size:9px;">● LIVE &bull; PRODUCTION VERIFIED</span>
+              </div>
+              <div class="version-hover-meta">
+                <div><strong>Authoring Agent:</strong> Claude Code (CL)</div>
+                <div><strong>Model / Effort:</strong> Claude Opus 5 &bull; agent mode</div>
+                <div><strong>Released:</strong> Aug 22, 2026 &middot; 3:30 PM EDT</div>
+                <div><strong>Deployment:</strong> GitHub Actions Pages &middot; run 32593867344</div>
+                <div><strong>Production:</strong> v1.8.0 verified at the custom domain</div>
+              </div>
+            </div>
+            <ul class="version-hover-bullets">
+              <li>Removed every claim that could not be supported by a primary source: inferred staff portfolios, a 48-hour acknowledgement target, a weekly GL reconciliation cadence, restriction categories, LYBUNT/SYBUNT segments, and pipeline-velocity reporting. Several traced to the fictional demonstration dataset and were presented as institutional fact.</li>
+              <li>Replaced all four named current employees with organizational functions across 19 references.</li>
+              <li>Stopped describing EveryAction constituent work as donor moves management, and separated the Virginia Housing Trust Fund policy work from the $14.1M rural broadband grant, restoring the resume's verbs.</li>
+              <li>Removed the global "and"/"&amp;" to " // " text transform, which had been rewriting every text node including a verbatim cover-letter quotation. The // motif is now hard-coded in stage labels and the nav separator only.</li>
+              <li>Added Candidate Philosophy (01) and Scope of Experience (04) sections; rebuilt the strategic-fit matrix as three columns that stack to labelled cards below 760px.</li>
+              <li>Renumbered all sections 01-08 in document order and gave the header a numbered nav; added the gold rim to the header Concept Demo button.</li>
+              <li>Corrected manifest lifecycle flags that understated the deployed state, and captured the real Actions run via scripts/stamp_release.py.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v1.7.5 -->
+        <div class="version-item-wrap">
+          <div class="version-item-row" role="button" tabindex="0" aria-expanded="false">
+            <span><span class="agent-chip agent-chip--cur">CUR</span> <strong>v1.7.5</strong></span>
+            <span class="version-row-tag">0.3h &bull; Aug 21</span>
           </div>
           <div class="version-hover-card">
             <div class="version-hover-header">
               <div class="version-hover-title">
                 <span>v1.7.5 · Embedded Video &amp; Telemetry Color System</span>
-                <span style="color:#15803d; font-size:9px;">● LIVE &bull; PRODUCTION VERIFIED</span>
+                <span style="font-size:9px; opacity:0.7;">SUPERSEDED BY v1.8.0</span>
               </div>
               <div class="version-hover-meta">
                 <div><strong>Authoring Agent:</strong> Cursor (CUR)</div>
                 <div><strong>Model / Effort:</strong> Gemini / Claude &bull; agent mode</div>
                 <div><strong>Released:</strong> Aug 21, 2026 · 10:42 PM EDT</div>
                 <div><strong>Deployment:</strong> GitHub Actions Pages</div>
-                <div><strong>Production:</strong> v1.7.5 verified at the custom domain</div>
+                <div><strong>Production:</strong> superseded by v1.8.0 on Aug 22, 2026</div>
               </div>
             </div>
             <ul class="version-hover-bullets">
@@ -1725,6 +1757,6 @@ I will understand before redesigning, protect donor intent, support the people d
   </div>
 
   <!-- Suite Script (external only — no inline duplication) -->
-  <script src="script.js?v=1787600004"></script>
+  <script src="script.js?v=1787600006"></script>
 </body>
 </html>
