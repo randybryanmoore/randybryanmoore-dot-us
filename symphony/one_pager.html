@@ -6,7 +6,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d1a32'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='27' font-weight='700' fill='%23f2eadf'%3ERM%3C/text%3E%3C/svg%3E">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
   <title>Executive Candidate Briefing — Richmond Symphony | Randy Bryan Moore, MSW</title>
-  <link rel="stylesheet" href="styles.css?v=1787600011">
+  <link rel="stylesheet" href="styles.css?v=1787600012">
   <style>
     /* ------------------------------------------------------------------
        SELF-CONTAINED HANDOUT STYLES
@@ -296,7 +296,7 @@
       margin: 32px auto;
       padding: 38px 42px;
       border-radius: 8px;
-      border: 1.5px solid rgba(239, 230, 212, 0.4);
+      border: 2.5px solid var(--cobalt-deep);
       box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
     }
 
@@ -696,7 +696,9 @@
 
     @page {
       size: letter portrait;
-      margin: 0.12in 0.20in;
+      /* 0.3in keeps the navy trim inside the unprintable edge on typical
+         desktop printers, which clip roughly the outer 0.16-0.25in. */
+      margin: 0.3in;
     }
 
     @media print {
@@ -708,11 +710,19 @@
       .page-break { page-break-before: always; break-before: page; margin-top: 0 !important; }
       .handout-sheet {
         box-shadow: none !important;
-        border: none !important;
-        padding: 0 !important;
+        /* Navy trim framing the full printable area, not just the content.
+           10.4in = 11in letter height minus the 0.3in top and bottom @page
+           margins, so the frame reaches the bottom of every sheet. */
+        border: 3px solid var(--cobalt-deep) !important;
+        border-radius: 0 !important;
+        padding: 15px 17px !important;
         margin: 0 !important;
         max-width: 100% !important;
         width: 100% !important;
+        min-height: 10.4in !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
         background: transparent !important;
         page-break-inside: avoid;
       }
@@ -1347,6 +1357,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=1787600011"></script>
+  <script src="script.js?v=1787600012"></script>
 </body>
 </html>
