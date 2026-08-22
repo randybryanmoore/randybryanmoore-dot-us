@@ -3938,3 +3938,69 @@ body[data-review-tools="on"] {
 .matrix-table-wrap strong {
   color: var(--maroon);
 }
+
+/* ---------------------------------------------------------------
+   Three-column strategic-fit matrix (2026-08-22 editorial revision)
+   Scoped to .matrix-table--three so the two-column matrices used
+   elsewhere in the suite are untouched. Below 760px the row becomes
+   a labelled stack, because three prose columns at phone width are
+   unreadable even when the wrapper scrolls.
+   --------------------------------------------------------------- */
+.matrix-table--three { min-width: 720px; }
+
+@media (max-width: 760px) {
+  .matrix-table--three { min-width: 0; width: 100%; display: block; }
+  .matrix-table--three thead { display: none; }
+  .matrix-table--three tbody,
+  .matrix-table--three tr,
+  .matrix-table--three td { display: block; width: 100%; }
+  .matrix-table--three tr {
+    margin-bottom: 18px;
+    border: 1px solid rgba(24, 43, 77, 0.16);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .matrix-table--three td { border: none; padding: 12px 14px; }
+  .matrix-table--three td:first-child {
+    background: rgba(24, 43, 77, 0.06);
+    border-bottom: 1px solid rgba(24, 43, 77, 0.12);
+  }
+  .matrix-table--three td:nth-child(2)::before { content: "Verified foundation"; }
+  .matrix-table--three td:nth-child(3)::before { content: "Responsible starting point"; }
+  .matrix-table--three td:nth-child(2)::before,
+  .matrix-table--three td:nth-child(3)::before {
+    display: block;
+    font-family: var(--mono, monospace);
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.65;
+    margin-bottom: 5px;
+  }
+  .matrix-table--three td:nth-child(3) { border-top: 1px dashed rgba(24, 43, 77, 0.18); }
+}
+
+/* Numbered header nav (2026-08-22) — the monospace ordinal mirrors the
+   section kickers so the header reads as an index of the dossier. */
+.desktop-nav .nav-num {
+  font-family: var(--mono, monospace);
+  font-size: 0.85em;
+  font-weight: 700;
+  opacity: 0.55;
+  margin-right: 3px;
+}
+.desktop-nav a:hover .nav-num,
+.desktop-nav a.active .nav-num { opacity: 0.9; }
+
+/* Header Concept Demo button — carries the same gold rim as the hero
+   .hero-dashboard-cta so the two prototype entry points read as a pair. */
+.header-demo-cta {
+  border: 1.5px solid var(--gold-light) !important;
+  box-shadow: 0 2px 10px rgba(43, 7, 16, 0.35), 0 0 8px rgba(223, 202, 116, 0.22);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+.header-demo-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(43, 7, 16, 0.5), 0 0 14px rgba(223, 202, 116, 0.38);
+}

@@ -1,67 +1,68 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-21T16:55:32-04:00",
+  "generated_at": "2026-08-22T14:58:00-04:00",
   "surface_name": "Richmond Symphony Executive One-Pager",
-  "surface_version": "1.0.1",
+  "surface_version": "1.1.0",
   "surface_prefix": "OP",
-    "parent_dossier": {
-      "production_version": "v1.7.5",
-      "production_commit": "4f71b86",
-      "relationship": "shared repository, stylesheet, client script, and GitHub Pages host; separate telemetry lineage"
-    },
+  "parent_dossier": {
+    "production_version": "v1.7.5",
+    "production_commit": "4f71b86",
+    "relationship": "shared repository, stylesheet, client script, and GitHub Pages host; separate telemetry lineage"
+  },
   "generator": {
-    "agent": "CDX",
-    "product": "Codex",
-    "model_family": "GPT-5",
+    "agent": "CLD",
+    "product": "Claude Code",
+    "model_family": "Opus 5",
     "runtime_variant": "not exposed to the static page",
     "reasoning_effort": "not exposed to the static page"
   },
   "source": {
     "repository": "randybryanmoore/randybryanmoore-dot-us",
     "branch": "main",
-    "base_commit": "6cf448a",
+    "base_commit": "e6e819b",
     "primary_artifact": "symphony/one_pager.html"
   },
   "lifecycle": {
     "local": true,
-    "committed": true,
-    "pushed": true,
+    "committed": false,
+    "pushed": false,
     "merged_or_pull_request": false,
-    "deployed": true,
+    "deployed": false,
     "staging": false,
-    "production_verified": true,
-    "production_note": "OP v1.0.1 and parent dossier v1.7.4 are verified at the custom domain",
-    "verified_at": "2026-08-21T16:50:59-04:00",
-    "release_checkpoint": "6cf448a",
-    "deployment_workflow_run": "32525596664"
+    "production_verified": false,
+    "production_note": "OP v1.1.0 editorial revision verified locally only; not yet committed, pushed, or deployed",
+    "verified_at": "2026-08-22T14:58:00-04:00",
+    "release_checkpoint": "e6e819b",
+    "deployment_workflow_run": null
   },
   "engineering_time": {
-    "current_scoped_pass_hours": 0.2,
-    "earlier_one_pager_work": "uncaptured; no duration invented"
+    "current_scoped_pass_hours": 1.4,
+    "scope": "editorial copy replacement across one-pager and dossier, // transform removal, single-page print compliance"
   },
   "artifacts": [
     {
       "path": "one_pager.html",
-      "sha256": "c3b32719aa8f0b3b4acfc70b83baf3256939f7a3d055153f870cbfa112454616"
+      "sha256": "17e39ad29ccf7364cc365c79b810855765b6149337d9c477e40e213086ff9abe"
     },
     {
       "path": "styles.css",
-      "sha256": "f532bd925bbbe758f26c2776dab71659dd306bb9b34c5f9c453e009d173a2659"
+      "sha256": "46d0413f71e84c7d2ba4189fb6aadc20bec316457b32dbc7650e3b0d1a36a934"
     },
     {
       "path": "script.js",
-      "sha256": "9ebb6d4676e168e4dad1d41cbc47c6a9eeacd59e1ee789b068b294018e0be5b7"
+      "sha256": "b3504b346ec086818978e5d6a8aa754f29f3fd19476eebe667c6f8a4db099af8"
     }
   ],
   "validation": {
-    "javascript_syntax": "pass",
+    "javascript_syntax": "pass: node --check",
     "manifest_syntax": "pass",
-    "page_specific_modal": "pass: Executive One-Pager identity, OP v1.0.1 lifecycle, scoped time, artifact, and parent boundary visible",
-    "page_specific_machine_export": "pass: service name, surface, OP version, and local lifecycle exported independently",
-    "page_specific_complete_handoff": "pass: COMPLETE Sections 10.1-10.9 bundle with two visible records and no private owner code",
-    "action_layout": "pass: compact floating OP telemetry pill plus two equal-width contained controls in the narrow telemetry panel",
-    "browser_console": "pass: zero errors in the local interaction audit",
-    "production_readback": "pass: OP v1.0.1 pill, page HTML, shared assets, and page-specific manifest verified at the public URL",
-    "offline_archive": "pass: rebuilt and integrity tested"
+    "single_page_print": "pass: headless Chrome render is exactly 1 US Letter page, 465 words",
+    "unsupported_claims_sweep": "pass: 0 hits for staff names, $850k, 48h SLA, LYBUNT/SYBUNT, pipeline velocity, Operating vs. Endowment, moves management",
+    "quotation_integrity": "pass: global and/& -> // transform removed; cover-letter quotation now matches the source PDF",
+    "editorial_separator_scope": "pass: // retained only in the three First 90 Days stage labels and three dossier roadmap labels",
+    "browser_console": "pass: zero errors on one-pager and dossier in a clean tab",
+    "responsive": "pass: desktop 1280, tablet 768, mobile 375; no horizontal page overflow at any width",
+    "pdf_regenerated": "pass: Randy_Bryan_Moore_Executive_Briefing.pdf recompiled to 1 page",
+    "source_verification": "partial: only 2 of 15 briefing sources present in repo (resume, cover letter); no organizational claim independently verifiable"
   }
 }

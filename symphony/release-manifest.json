@@ -1,15 +1,12 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-21T22:42:00-04:00",
+  "generated_at": "2026-08-22T14:58:00-04:00",
   "service_name": "richmond-symphony-candidate-dossier",
-  "service_version": "1.7.5",
+  "service_version": "1.8.0",
   "generator": {
-    "agent": "CUR",
-    "product": "Cursor",
-    "model_family": "Gemini / Claude",
-    "runtime_variant": "agent mode",
-    "reasoning_effort": "not exposed to the static page",
-    "capture_status": "model family disclosed; exact variant and effort unavailable"
+    "agent": "CLD",
+    "product": "Claude Code",
+    "model_family": "Opus 5"
   },
   "source": {
     "repository": "randybryanmoore/randybryanmoore-dot-us",
@@ -25,34 +22,35 @@
   },
   "lifecycle": {
     "local": true,
-    "committed": true,
-    "pushed": true,
+    "committed": false,
+    "pushed": false,
     "merged_or_pull_request": false,
-    "deployed": true,
+    "deployed": false,
     "staging": false,
-    "production_verified": true,
+    "production_verified": false,
     "production_version": "v1.7.5",
     "verified_at": "2026-08-21T22:42:00-04:00",
     "release_checkpoint": "6cf448a",
     "deployment_workflow_run": "32525596664",
-    "first_verified_one_repository_build": "1d58442"
+    "first_verified_one_repository_build": "1d58442",
+    "production_note": "Dossier v1.8.0 editorial revision verified locally only; not yet committed, pushed, or deployed"
   },
   "artifacts": [
     {
       "path": "index.html",
-      "sha256": "bd0bf3973a1e4c6a28eccfc1b6a958eea31dd67107b7ed01a646236015e45673"
+      "sha256": "1757a245bb8a4d0903817602911d0c3b7319c4d121ba4d65988e863ee2d02c83"
     },
     {
       "path": "styles.css",
-      "sha256": "72122c981c5756d5f49365a9705ca15217180710d3058ca049e992b9f8a9c840"
+      "sha256": "46d0413f71e84c7d2ba4189fb6aadc20bec316457b32dbc7650e3b0d1a36a934"
     },
     {
       "path": "script.js",
-      "sha256": "bb3672a552ca77bdbebdfa61bc22f665c833781a06f74865473360ea666dc0c3"
+      "sha256": "b3504b346ec086818978e5d6a8aa754f29f3fd19476eebe667c6f8a4db099af8"
     },
     {
       "path": "one_pager.html",
-      "sha256": "22e5b5c55d7d856cc7d368474017be7a1c41f5810b53253a4a8cf3570678d660"
+      "sha256": "17e39ad29ccf7364cc365c79b810855765b6149337d9c477e40e213086ff9abe"
     },
     {
       "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",
@@ -73,14 +71,16 @@
     "complete_handoff_export": "pass: dossier retains 11 records; one-pager exports a COMPLETE Sections 10.1-10.9 handoff with two page-specific records",
     "hero_action_alignment": "pass: equal-width centered two-column grid at 1440x1000 and centered single-column stack at 390x844 with zero horizontal overflow",
     "one_pager_telemetry": "pass: OP v1.0.1 reports its own surface identity, compact floating pill, lifecycle, scoped time, artifact, two-record archive, machine telemetry, and complete handoff",
-    "production_readback": "pass: v1.7.4 and OP v1.0.1 HTML, CSS, JavaScript, and manifests read back from the custom domain; hashes matched release source"
+    "production_readback": "pass: v1.7.4 and OP v1.0.1 HTML, CSS, JavaScript, and manifests read back from the custom domain; hashes matched release source",
+    "unsupported_claims_sweep": "pass: 0 hits for staff names, $850k, 48h SLA, LYBUNT/SYBUNT, pipeline velocity, Operating vs. Endowment, moves management",
+    "quotation_integrity": "pass: global and/& -> // transform removed",
+    "new_sections": "pass: #philosophy and #scope added with nav entries; 7 sections resolve",
+    "strategic_fit_matrix": "pass: rebuilt as 3 columns x 6 rows, stacks to labelled cards below 760px",
+    "browser_console": "pass: zero errors in a clean tab",
+    "source_verification": "partial: 13 of 15 briefing sources absent from repo"
   },
   "blockers": [
-    {
-      "id": "RELEASE-AUTHORIZATION-1.7.0",
-      "severity": "high",
-      "status": "closed",
-      "description": "Randy explicitly authorized commit, push, deployment, production publication, and repository consolidation."
-    }
+    "One-page decision applied per instruction: professional history now lives in the dossier only.",
+    "Organizational claims could not be verified: job description and Symphony documents are not in this repository."
   ]
 }

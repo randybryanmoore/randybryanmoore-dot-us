@@ -5,61 +5,12 @@
 // =========================================================================
 
 (function() {
-  const editorialSeparatorPattern = /\s*(?:\band\b|&)\s*/gi;
-  const editorialCopyAttributes = ['aria-label', 'placeholder', 'title'];
-
-  function formatEditorialCopy(value) {
-    return String(value).replace(editorialSeparatorPattern, ' // ');
-  }
-
-  function applyEditorialSeparators(root = document.body) {
-    if (!root) return;
-
-    const replaceText = (textNode) => {
-      const parent = textNode.parentElement;
-      if (!parent || parent.closest('script, style, code, pre, textarea')) return;
-      const formatted = formatEditorialCopy(textNode.nodeValue);
-      if (formatted !== textNode.nodeValue) textNode.nodeValue = formatted;
-    };
-
-    if (root.nodeType === Node.TEXT_NODE) {
-      replaceText(root);
-      return;
-    }
-
-    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-    let textNode;
-    while ((textNode = walker.nextNode())) replaceText(textNode);
-
-    if (root.nodeType === Node.ELEMENT_NODE) {
-      const elements = [root, ...root.querySelectorAll('*')];
-      elements.forEach((element) => {
-        editorialCopyAttributes.forEach((attribute) => {
-          const value = element.getAttribute(attribute);
-          if (!value) return;
-          const formatted = formatEditorialCopy(value);
-          if (formatted !== value) element.setAttribute(attribute, formatted);
-        });
-      });
-    }
-  }
+  // The global 'and'/'&' -> ' // ' text transform was removed on 2026-08-22.
+  // It rewrote every text node on the page, including verbatim quotations from
+  // the cover letter, which altered a primary source. The '//' motif is now
+  // hard-coded in the specific headings and labels that should carry it.
 
   function initSuite() {
-    applyEditorialSeparators();
-    const editorialObserver = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'characterData') applyEditorialSeparators(mutation.target);
-        if (mutation.type === 'attributes') applyEditorialSeparators(mutation.target);
-        mutation.addedNodes.forEach((node) => applyEditorialSeparators(node));
-      });
-    });
-    editorialObserver.observe(document.body, {
-      attributes: true,
-      attributeFilter: editorialCopyAttributes,
-      childList: true,
-      characterData: true,
-      subtree: true
-    });
 
     let pinActive = false;
     let editActive = false;
@@ -252,8 +203,8 @@
       surfaceKey: 'one-pager',
       surfaceName: 'Executive One-Pager',
       serviceName: 'richmond-symphony-executive-one-pager',
-      serviceVersion: '1.0.1',
-      parentServiceVersion: '1.7.5',
+      serviceVersion: '1.1.0',
+      parentServiceVersion: '1.8.0',
       agent: 'CUR',
       agentProduct: 'Cursor',
       modelFamily: 'Gemini / Claude',
@@ -269,7 +220,7 @@
       surfaceKey: 'dossier',
       surfaceName: 'Full Candidate Dossier',
       serviceName: 'richmond-symphony-candidate-dossier',
-      serviceVersion: '1.7.5',
+      serviceVersion: '1.8.0',
       parentServiceVersion: '',
       agent: 'CUR',
       agentProduct: 'Cursor',
@@ -558,7 +509,7 @@
 
     function buildMachineTelemetry() {
       const generated = getTelemetryTimestamps();
-      return formatEditorialCopy(`schema_version: ${currentTelemetry.schemaVersion}
+      return `schema_version: ${currentTelemetry.schemaVersion}
 generated_at: "${generated.iso}"
 generated_at_local: "${generated.local}"
 timezone: "America/New_York"
@@ -631,7 +582,7 @@ blockers:
     description: "Randy explicitly authorized commit, push, deployment, production publication, and repository consolidation."
 notes:
   - "Self-reported engineering time is historical context, not measured observability data."
-  - "A commit is not a push; a push is not a deployment; deployment is not live verification."`);
+  - "A commit is not a push; a push is not a deployment; deployment is not live verification."`;
     }
 
     function telemetryText(element) {
@@ -750,7 +701,7 @@ Every future context handoff must retain Sections 10.1 through 10.9. Do not repl
 
     function buildOnePagerHandoff() {
       const generated = getTelemetryTimestamps();
-      const onePagerHandoff = formatEditorialCopy(`# Current Agent Handoff — Richmond Symphony Executive One-Pager
+      const onePagerHandoff = `# Current Agent Handoff — Richmond Symphony Executive One-Pager
 Generated: ${generated.iso} (${generated.local}; America/New_York)
 Schema: handoff-v2-complete-telemetry
 
@@ -815,14 +766,14 @@ This handoff describes the executive one-pager as its own release surface. The p
 - The one-pager and parent dossier were verified together through workflow run 32525596664.
 
 ## 9. Machine-readable companion
-The page-specific YAML telemetry is embedded in Section 10.7 and is also available through Copy Telemetry. The complete visible one-pager telemetry modal is retained in Section 10.8.`);
+The page-specific YAML telemetry is embedded in Section 10.7 and is also available through Copy Telemetry. The complete visible one-pager telemetry modal is retained in Section 10.8.`;
       return `${onePagerHandoff}\n\n${buildTelemetryContextArchive()}`;
     }
 
     function buildCurrentHandoff() {
       if (isOnePagerTelemetry) return buildOnePagerHandoff();
       const generated = getTelemetryTimestamps();
-      const narrativeHandoff = formatEditorialCopy(`# Current Agent Handoff — Richmond Symphony Candidate Dossier
+      const narrativeHandoff = `# Current Agent Handoff — Richmond Symphony Candidate Dossier
 Generated: ${generated.iso} (${generated.local}; America/New_York)
 Schema: handoff-v2-complete-telemetry
 
@@ -932,7 +883,7 @@ A commit is not a push. A push is not a deployment. A deployment is not confirme
 - The independent one-pager telemetry surface is OP v1.0.1 and is live.
 
 ## 9. Machine-readable companion
-The complete YAML telemetry is embedded in Section 10.7 and is also available separately through “Copy Machine Telemetry (.YAML).” Treat browser-generated state as a handoff snapshot, not as an independently verified Git or hosting measurement.`);
+The complete YAML telemetry is embedded in Section 10.7 and is also available separately through “Copy Machine Telemetry (.YAML).” Treat browser-generated state as a handoff snapshot, not as an independently verified Git or hosting measurement.`;
       return `${narrativeHandoff}\n\n${buildTelemetryContextArchive()}`;
     }
 
