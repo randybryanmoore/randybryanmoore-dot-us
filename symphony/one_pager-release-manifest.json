@@ -42,11 +42,11 @@
   "artifacts": [
     {
       "path": "one_pager.html",
-      "sha256": "c0fbbba0b907f99fd57aea51d9820c493b3c61c534ad611d179f76fea745ba44"
+      "sha256": "b4fcb92054e6d8f4ef50b59c94e59d47c7741badd5a3426e62796bb09f840df7"
     },
     {
       "path": "styles.css",
-      "sha256": "eeda9579ae46f98110df4f2f1a9d82907f377d04283abc6f7042db74505e9979"
+      "sha256": "1d58aaa3559ab84bedeefc80243196d1bed0dac634e0d39f5d5004bbf8f9de9b"
     },
     {
       "path": "script.js",

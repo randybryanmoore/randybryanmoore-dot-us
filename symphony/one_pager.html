@@ -48,12 +48,19 @@
 
     /* Ensure telemetry watermark floats cleanly below the sticky header */
     .build-badge {
-      top: calc(var(--nav-h, 74px) + 14px) !important;
+      position: fixed !important;
+      top: 96px !important;
       right: 20px !important;
-      z-index: 999;
+      z-index: 9998 !important;
+      display: inline-flex !important;
+      opacity: 0.95 !important;
+      background: rgba(24, 43, 77, 0.95) !important;
+      border: 1.5px solid var(--gold) !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
     }
     .build-provenance-modal {
-      top: calc(var(--nav-h, 74px) + 12px) !important;
+      top: 142px !important;
+      bottom: auto !important;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -104,17 +111,6 @@
       top: 0;
       z-index: 1000;
       box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-    }
-    .build-badge {
-      position: fixed;
-      top: 94px !important;
-      right: 18px !important;
-      z-index: 9998;
-      display: inline-flex !important;
-      opacity: 0.95 !important;
-      background: rgba(24, 43, 77, 0.95) !important;
-      border: 1.5px solid var(--gold) !important;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
     }
     .op-wordmark {
       display: flex;
@@ -579,11 +575,18 @@
         justify-content: space-between;
       }
       .build-badge {
-        top: auto !important;
-        bottom: 16px !important;
-        right: 16px !important;
+        position: fixed !important;
+        top: calc(var(--nav-h, 110px) + 12px) !important;
+        bottom: auto !important;
+        right: 14px !important;
         background: rgba(24, 43, 77, 0.95) !important;
+        border: 1.5px solid var(--gold) !important;
         opacity: 0.95 !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
+      }
+      .build-provenance-modal {
+        top: calc(var(--nav-h, 110px) + 48px) !important;
+        bottom: auto !important;
       }
       .handout-sheet {
         padding: 26px 22px;
