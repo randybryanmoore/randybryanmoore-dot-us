@@ -2939,7 +2939,7 @@ body[data-review-tools="on"] {
 .build-badge {
   position: fixed;
   top: 96px;
-  right: 18px;
+  right: 24px;
   z-index: 9998;
   display: flex;
   align-items: center;
