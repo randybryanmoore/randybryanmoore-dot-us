@@ -16,25 +16,26 @@
        never falls back to unstyled black Times.
        ------------------------------------------------------------------ */
     :root {
-      /* Brand values taken verbatim from randybryanmoore.us */
+      /* Brand values taken verbatim from randybryanmoore.us & dossier */
       --cream: #F2EADF;          /* brand --cream */
       --cream-surface: #FBF6ED;  /* brand --paper */
       --cream-soft: #E8DDCC;     /* brand --paper-deep */
       --wine: #2B0710;           /* canonical single red */
-      --wine-dark: #2B0710;      /* canonical single red */
+      --wine-dark: #1E050B;      /* dark red */
       --cobalt: #182B4D;         /* brand --navy */
       --cobalt-mid: #172A42;     /* brand --admin-blue */
       --cobalt-deep: #0D1A32;    /* brand --forest-deep */
+      --cobalt-light: #243D6B;   /* light navy */
       --cobalt-soft: rgba(24, 43, 77, 0.07);
       --sage: #808370;           /* brand --muted-olive — material only, never text */
       --sage-soft: rgba(128, 131, 112, 0.10);
-      --gold: #B89628;          /* borders/rules only — fails contrast as text */
+      --gold: #B89628;          /* borders/rules only */
       --gold-ink: #76601A;      /* text-safe gold */
-      --gold-light: #DFCA74;    /* text only on dark grounds */
+      --gold-light: #DFCA74;    /* highlight gold */
       --charcoal: #15221C;      /* brand --ink */
       --charcoal-soft: #2B3A33;
       --muted-olive: #59645E;   /* brand --muted — 5.72:1 on paper */
-      --border-subtle: rgba(28, 33, 30, 0.1);
+      --border-subtle: rgba(24, 43, 77, 0.12);
       --border-strong: rgba(28, 33, 30, 0.22);
       --font-serif: 'Playfair Display', 'Iowan Old Style', Palatino, Georgia, serif;
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -65,10 +66,24 @@
     p { margin-bottom: 0.75rem; }
     em { font-style: italic; }
 
+    /* Section Kickers matching Dossier signature */
+    .op-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--wine);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
     /* Site Header Match */
     .op-site-header {
       background: var(--wine);
-      border-bottom: 1px solid var(--gold);
+      border-bottom: 1.5px solid var(--gold);
       color: #fff;
       padding: 12px 28px;
       display: flex;
@@ -154,33 +169,51 @@
       width: 100%;
     }
 
-    /* Alignment table */
+    /* Alignment table with rich dossier styling */
     .matrix-table {
       width: 100%;
       border-collapse: collapse;
       text-align: left;
       margin-top: 0.6rem;
       background: #ffffff;
-      border: 1px solid var(--border-subtle);
+      border: 1.5px solid rgba(24, 43, 77, 0.18);
       border-radius: 6px;
       overflow: hidden;
-    }
-    .matrix-table th,
-    .matrix-table td {
-      border-bottom: 1px solid var(--border-subtle);
-      vertical-align: top;
-      padding: 10px 14px;
+      box-shadow: 0 4px 14px rgba(13, 26, 50, 0.05);
     }
     .matrix-table th {
-      background: var(--cream-soft);
-      font-family: var(--font-sans);
+      background: var(--wine);
+      font-family: var(--font-mono);
       font-size: 0.74rem;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--cobalt);
+      letter-spacing: 0.1em;
+      color: var(--gold-light);
+      border-bottom: 1.5px solid var(--gold);
+      padding: 10px 14px;
+    }
+    .matrix-table td {
+      border-bottom: 1px solid rgba(24, 43, 77, 0.09);
+      vertical-align: top;
+      padding: 10px 14px;
+    }
+    .matrix-table tr:nth-child(even) td {
+      background: #FAF5EB;
     }
     .matrix-table tr:last-child td { border-bottom: none; }
+    .matrix-req-title {
+      color: var(--wine);
+      display: block;
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin-bottom: 2px;
+    }
+    .matrix-req-sub {
+      color: var(--muted-olive);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      display: block;
+    }
 
     /* Four Pillars Grid */
     .dgrid {
@@ -195,17 +228,20 @@
       color: #fff;
       padding: 1.15rem 1.35rem;
       border-radius: 6px;
-      border-left: 3.5px solid var(--wine);
-      box-shadow: 0 4px 12px rgba(13, 26, 50, 0.1);
+      border: 1px solid rgba(223, 202, 116, 0.22);
+      border-left: 4px solid var(--wine);
+      box-shadow: 0 4px 14px rgba(13, 26, 50, 0.18);
+      transition: var(--transition);
     }
-    .dcard:nth-child(2), .dcard:nth-child(3) {
-      background: var(--wine);
-      border-left: 3.5px solid var(--gold);
+    .dcard:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(13, 26, 50, 0.28);
+      border-color: rgba(223, 202, 116, 0.45);
     }
     .dcard .dcard-num {
       display: block;
       font-family: var(--font-mono);
-      font-size: 9px;
+      font-size: 9.5px;
       font-weight: 800;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -213,14 +249,14 @@
       margin-bottom: 0.35rem;
     }
     .dcard h3 {
-      font-size: 1rem;
+      font-size: 1.02rem;
       color: #ffffff;
       margin-bottom: 0.35rem;
     }
     .dcard p {
       font-size: 0.85rem;
-      line-height: 1.5;
-      color: rgba(255, 255, 255, 0.94);
+      line-height: 1.52;
+      color: rgba(242, 234, 223, 0.94);
       margin: 0;
     }
 
@@ -245,8 +281,8 @@
       padding: 1.5rem 1.85rem;
       border-radius: 8px;
       margin-bottom: 1.5rem;
-      border: 1px solid var(--gold);
-      box-shadow: 0 6px 16px rgba(43, 7, 16, 0.25);
+      border: 1.5px solid var(--gold);
+      box-shadow: 0 6px 18px rgba(43, 7, 16, 0.35);
     }
     .handout-title h1 {
       font-size: 2.1rem;
@@ -276,11 +312,39 @@
       margin-bottom: 1.5rem;
     }
     .handout-section h2 {
-      font-size: 1.2rem;
+      font-size: 1.22rem;
       color: var(--cobalt);
-      border-bottom: 1.5px solid var(--border-subtle);
+      border-bottom: 1.5px solid var(--wine);
       padding-bottom: 0.35rem;
       margin-bottom: 0.75rem;
+    }
+
+    /* Inset Editorial Panel for "How I Think" */
+    .how-i-think-panel {
+      background: #F6EFE3;
+      border: 1px solid rgba(184, 150, 40, 0.28);
+      border-left: 4px solid var(--wine);
+      padding: 1.15rem 1.35rem;
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+    }
+    .pillar-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      margin: 0.75rem 0 0.5rem;
+    }
+    .pillar-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 3px 8px;
+      border-radius: 3px;
+      background: var(--wine);
+      color: #FFFFFF;
+      border: 1px solid var(--gold);
     }
 
     .handout-grid-2 {
@@ -309,7 +373,9 @@
     .handout-card--navy {
       background: var(--cobalt) !important;
       color: #ffffff !important;
-      border-left: 3.5px solid var(--wine) !important;
+      border: 1px solid rgba(223, 202, 116, 0.22) !important;
+      border-left: 4px solid var(--wine) !important;
+      box-shadow: 0 4px 14px rgba(13, 26, 50, 0.18) !important;
     }
     .handout-card--navy h3,
     .handout-card--navy p {
@@ -322,7 +388,9 @@
     .handout-card--wine {
       background: var(--wine) !important;
       color: #ffffff !important;
-      border-left: 3.5px solid var(--gold) !important;
+      border: 1px solid var(--gold) !important;
+      border-left: 4px solid var(--gold-light) !important;
+      box-shadow: 0 4px 16px rgba(43, 7, 16, 0.3) !important;
     }
     .handout-card--wine h3,
     .handout-card--wine p {
@@ -330,6 +398,54 @@
     }
     .handout-card--wine span {
       color: var(--gold-light) !important;
+    }
+
+    /* Timeline History Cards */
+    .op-history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .op-history-item {
+      background: #F7F1E7;
+      border: 1px solid rgba(24, 43, 77, 0.09);
+      border-left: 3.5px solid var(--wine);
+      border-radius: 5px;
+      padding: 10px 14px;
+      transition: var(--transition);
+    }
+    .op-history-item:hover {
+      background: #FDFBF7;
+      border-color: rgba(184, 150, 40, 0.35);
+    }
+    .op-history-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .op-history-org {
+      font-size: 0.92rem;
+      color: var(--cobalt);
+      font-weight: 700;
+    }
+    .op-history-date {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--wine);
+      background: var(--cream);
+      padding: 1px 6px;
+      border-radius: 3px;
+      border: 1px solid rgba(43, 7, 16, 0.15);
+    }
+    .op-history-desc {
+      color: var(--muted-olive);
+      font-size: 0.82rem;
+      line-height: 1.48;
+      margin: 0;
     }
 
     .handout-footer {
@@ -342,7 +458,8 @@
       justify-content: space-between;
       align-items: center;
       font-size: 0.86rem;
-      border: 1px solid var(--gold);
+      border: 1.5px solid var(--gold);
+      box-shadow: 0 4px 14px rgba(13, 26, 50, 0.2);
     }
     .handout-footer a {
       color: var(--gold-light);
@@ -373,10 +490,18 @@
       border-radius: 8px;
       padding: 1.2rem 1.5rem;
       margin-bottom: 1.5rem;
-      border: 1px solid rgba(223, 202, 116, 0.4);
-      box-shadow: 0 4px 14px rgba(13, 26, 50, 0.2);
+      border: 1.5px solid rgba(223, 202, 116, 0.4);
+      box-shadow: 0 6px 18px rgba(13, 26, 50, 0.25);
     }
-    .portfolio-block .qr-wrap { background: #fff; padding: 6px; border-radius: 6px; width: 96px; height: 96px; flex-shrink: 0; }
+    .portfolio-block .qr-wrap {
+      background: #fff;
+      padding: 6px;
+      border-radius: 6px;
+      border: 2px solid var(--wine);
+      width: 96px;
+      height: 96px;
+      flex-shrink: 0;
+    }
     .portfolio-block .qr-wrap svg { display: block; width: 100%; height: 100%; }
     .portfolio-block h3 { color: #fff; font-size: 1.08rem; margin-bottom: 0.3rem; }
     .portfolio-block p { color: rgba(255,255,255,0.92); font-size: 0.85rem; line-height: 1.5; margin-bottom: 0.4rem; }
@@ -476,6 +601,10 @@
       .handout-section h2 { font-size: 0.84rem !important; padding-bottom: 0.15rem !important; margin-bottom: 0.2rem !important; }
       .handout-section p { font-size: 0.69rem !important; line-height: 1.22 !important; margin-bottom: 0.2rem !important; }
       .handout-section blockquote { font-size: 0.67rem !important; margin: 0.25rem 0 !important; padding-left: 6px !important; line-height: 1.2 !important; }
+      .op-kicker { font-size: 0.58rem !important; margin-bottom: 0.1rem !important; }
+      .how-i-think-panel { padding: 0.25rem 0.5rem !important; margin-bottom: 0.25rem !important; }
+      .pillar-tags { margin: 0.15rem 0 !important; gap: 4px !important; }
+      .pillar-tag { font-size: 0.58rem !important; padding: 1px 4px !important; }
 
       .dgrid { gap: 4px !important; margin-top: 0.2rem !important; }
       .dcard { padding: 0.35rem 0.5rem !important; border-radius: 4px !important; box-shadow: none !important; }
@@ -502,6 +631,10 @@
       .handout-card { padding: 0.35rem 0.5rem !important; border-radius: 4px !important; }
       .handout-card h3 { font-size: 0.74rem !important; margin-bottom: 0.1rem !important; }
       .handout-card p { font-size: 0.65rem !important; line-height: 1.18 !important; }
+      .op-history-item { padding: 0.2rem 0.45rem !important; margin-bottom: 0.15rem !important; }
+      .op-history-org { font-size: 0.7rem !important; }
+      .op-history-date { font-size: 0.58rem !important; padding: 0 3px !important; }
+      .op-history-desc { font-size: 0.63rem !important; line-height: 1.15 !important; }
 
       .handout-section:last-of-type > div { gap: 0.25rem !important; font-size: 0.67rem !important; }
       .handout-section:last-of-type span { font-size: 0.63rem !important; line-height: 1.15 !important; }
@@ -567,25 +700,32 @@
     </div>
 
     <div class="handout-section">
+      <p class="op-kicker">CANDIDATE PHILOSOPHY</p>
       <h2>How I Think</h2>
-      <p style="font-size: 1.02rem; line-height: 1.45; color: var(--cobalt); margin-bottom: 0.6rem; font-family: var(--font-serif); letter-spacing: -0.015em;">
-        Most operations hires are evaluated on which systems they've touched. I'd rather be evaluated on how I think, because the systems change every few years and the thinking is what transfers.
-      </p>
-      <p style="font-size: 0.9rem; line-height: 1.5; color: var(--charcoal); margin-bottom: 0.5rem;">
-        When I meet an established process, my instinct is archaeological — who built this, what were they solving for, and which assumptions have quietly expired. Most dysfunction isn't designed; it accumulates. I work at three focal lengths at once: the granular mechanics, the structural handoffs between departments, and what it costs a person to use a system that fights them. More than ten years in advocacy and public service, together with a working life at the piano, taught me the same skill — hearing which signal matters and which noise is just crowding it.
-      </p>
-      <p style="font-size: 0.86rem; line-height: 1.45; color: var(--muted-olive); margin-bottom: 0.4rem;">
-        <strong style="color: var(--wine);">Archaeology before architecture</strong> &nbsp;·&nbsp; <strong style="color: var(--wine);">Three focal lengths</strong> &nbsp;·&nbsp; <strong style="color: var(--wine);">Friction is data</strong> &nbsp;·&nbsp; <strong style="color: var(--wine);">Built, not borrowed</strong>
-      </p>
+      <div class="how-i-think-panel">
+        <p style="font-size: 1.02rem; line-height: 1.45; color: var(--cobalt); margin-bottom: 0.6rem; font-family: var(--font-serif); letter-spacing: -0.015em;">
+          Most operations hires are evaluated on which systems they've touched. I'd rather be evaluated on how I think, because the systems change every few years and the thinking is what transfers.
+        </p>
+        <p style="font-size: 0.9rem; line-height: 1.5; color: var(--charcoal); margin-bottom: 0.5rem;">
+          When I meet an established process, my instinct is archaeological — who built this, what were they solving for, and which assumptions have quietly expired. Most dysfunction isn't designed; it accumulates. I work at three focal lengths at once: the granular mechanics, the structural handoffs between departments, and what it costs a person to use a system that fights them. More than ten years in advocacy and public service, together with a working life at the piano, taught me the same skill — hearing which signal matters and which noise is just crowding it.
+        </p>
+        <div class="pillar-tags">
+          <span class="pillar-tag">Archaeology before architecture</span>
+          <span class="pillar-tag">Three focal lengths</span>
+          <span class="pillar-tag">Friction is data</span>
+          <span class="pillar-tag">Built, not borrowed</span>
+        </div>
+      </div>
       <p style="font-size: 0.88rem; line-height: 1.5; color: var(--charcoal); margin-bottom: 0.5rem;">
         A Master of Social Work (MSW) systems practitioner and nonprofit operations leader with ten-plus years across advocacy, government, and housing. Contract pianist at The Jefferson Hotel since 2022.
       </p>
-      <blockquote style="font-size: 0.88rem; font-style: italic; color: var(--cobalt); border-left: 3px solid var(--wine); padding-left: 12px; margin: 0.75rem 0;">
+      <blockquote style="font-size: 0.88rem; font-style: italic; color: var(--cobalt); border-left: 3.5px solid var(--wine); background: rgba(24, 43, 77, 0.05); padding: 8px 14px; border-radius: 0 4px 4px 0; margin: 0.75rem 0;">
         “My background is broader than traditional advancement operations, and I have not yet administered Bloomerang. I do bring hands-on experience with EveryAction, Microsoft Office, reporting, process design, and cross-functional nonprofit operations.” — <em>From cover letter, August 7, 2026</em>
       </blockquote>
     </div>
 
     <div class="handout-section">
+      <p class="op-kicker">01 · CORE COMPETENCIES</p>
       <h2>Four Core Transferable Pillars</h2>
       <div class="dgrid">
         <div class="dcard" data-mark="01">
@@ -612,34 +752,50 @@
     </div>
 
     <div class="handout-section">
+      <p class="op-kicker">02 · STRATEGIC FIT</p>
       <h2>Position Requirements Alignment</h2>
       <table class="matrix-table" style="font-size: 0.86rem;">
         <thead>
           <tr>
-            <th style="padding: 6px 10px; width: 30%;">Institutional Area</th>
-            <th style="padding: 6px 10px; width: 70%;">Demonstrated Track Record &amp; Panel Alignment</th>
+            <th style="padding: 10px 14px; width: 32%;">Institutional Area</th>
+            <th style="padding: 10px 14px; width: 68%;">Demonstrated Track Record &amp; Panel Alignment</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style="padding: 6px 10px;"><strong>CRM Administration (Bloomerang)</strong></td>
-            <td style="padding: 6px 10px;">Hands-on EveryAction constituent tagging, outreach lists, follow-up workflows, and custom reporting. Bloomerang is new; disciplined 30-day learning ramp to deliver pipeline velocity reporting in partnership with CDO Eboni Boadi.</td>
+            <td>
+              <span class="matrix-req-title">CRM Administration (Bloomerang)</span>
+              <span class="matrix-req-sub">Database architecture, tagging &amp; hygiene</span>
+            </td>
+            <td style="line-height: 1.55;">Hands-on EveryAction constituent tagging, outreach lists, follow-up workflows, and custom reporting. Bloomerang is new; disciplined 30-day learning ramp to deliver pipeline velocity reporting in partnership with CDO Eboni Boadi.</td>
           </tr>
           <tr>
-            <td style="padding: 6px 10px;"><strong>Finance Subledger Reconciliation</strong></td>
-            <td style="padding: 6px 10px;">Budget and policy strategy tied to state trust fund allocations at VHA and $14.1M federal grant alignment. Prepared to collaborate with Shacoya Henley on weekly GL reconciliation and restriction compliance.</td>
+            <td>
+              <span class="matrix-req-title">Finance Subledger Reconciliation</span>
+              <span class="matrix-req-sub">GL sync, restrictions &amp; audit controls</span>
+            </td>
+            <td style="line-height: 1.55;">Budget and policy strategy tied to state trust fund allocations at VHA and $14.1M federal grant alignment. Prepared to collaborate with Shacoya Henley on weekly GL reconciliation and restriction compliance.</td>
           </tr>
           <tr>
-            <td style="padding: 6px 10px;"><strong>People Leadership &amp; Staff Development</strong></td>
-            <td style="padding: 6px 10px;">Supervised graduate interns as MSW field instructor at VHA; trained 40 partner organizations at VCET. Prepared to support and coach Leah Coltrane (Annual Fund) and Camryn Claude (Advancement Assistant &lt;48h SLA).</td>
+            <td>
+              <span class="matrix-req-title">People Leadership &amp; Staff Development</span>
+              <span class="matrix-req-sub">Coaching, supervision &amp; SLA discipline</span>
+            </td>
+            <td style="line-height: 1.55;">Supervised graduate interns as MSW field instructor at VHA; trained 40 partner organizations at VCET. Prepared to support and coach Leah Coltrane (Annual Fund) and Camryn Claude (Advancement Assistant &lt;48h SLA).</td>
           </tr>
           <tr>
-            <td style="padding: 6px 10px;"><strong>Cross-Departmental Collaboration</strong></td>
-            <td style="padding: 6px 10px;">Collaborative coalition builder across 40+ organizations; prepared to collaborate with Davey Van Beveren to track RSSoM student retention, tuition aid data, and Big Tent community engagement.</td>
+            <td>
+              <span class="matrix-req-title">Cross-Departmental Collaboration</span>
+              <span class="matrix-req-sub">Education, concert ops &amp; community aid</span>
+            </td>
+            <td style="line-height: 1.55;">Collaborative coalition builder across 40+ organizations; prepared to collaborate with Davey Van Beveren to track RSSoM student retention, tuition aid data, and Big Tent community engagement.</td>
           </tr>
           <tr>
-            <td style="padding: 6px 10px;"><strong>Donor Hosting &amp; Artistic Fluency</strong></td>
-            <td style="padding: 6px 10px;">Organized 40+ public engagements for Senator Warner; contract pianist at The Jefferson Hotel since 2022. Available for evening/weekend concerts and patron stewardship events.</td>
+            <td>
+              <span class="matrix-req-title">Donor Hosting &amp; Artistic Fluency</span>
+              <span class="matrix-req-sub">Patron hospitality &amp; community presence</span>
+            </td>
+            <td style="line-height: 1.55;">Organized 40+ public engagements for Senator Warner; contract pianist at The Jefferson Hotel since 2022. Available for evening/weekend concerts and patron stewardship events.</td>
           </tr>
         </tbody>
       </table>
@@ -669,6 +825,7 @@
     </div>
 
     <div class="handout-section">
+      <p class="op-kicker">03 · STRATEGIC ONBOARDING ROADMAP</p>
       <h2>30-60-90 Day Advancement Execution Roadmap</h2>
       <p style="font-size: 0.85rem; font-style: italic; color: var(--wine); margin-bottom: 0.6rem;">
         <strong>North Star:</strong> “Build trustworthy systems that protect donor intent, reduce staff friction, and turn relationship data into decisions.”
@@ -693,27 +850,43 @@
     </div>
 
     <div class="handout-section">
-      <h2>Verified Professional History & Public Service</h2>
-      <div style="display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.88rem;">
-        <div>
-          <strong>Save the Children Action Network</strong> • Virginia State Manager (12/24 – 11/25)<br>
-          <span style="color: var(--muted-olive); font-size: 0.8rem;">Led statewide advocacy operations and coordinated 55 General Assembly meetings; used EveryAction to capture, tag, and organize constituent engagement.</span>
+      <p class="op-kicker">04 · PROFESSIONAL TRACK RECORD</p>
+      <h2>Verified Professional History &amp; Public Service</h2>
+      <div class="op-history-list">
+        <div class="op-history-item">
+          <div class="op-history-meta">
+            <span class="op-history-org">Save the Children Action Network • Virginia State Manager</span>
+            <span class="op-history-date">12/24 – 11/25</span>
+          </div>
+          <p class="op-history-desc">Led statewide advocacy operations and coordinated 55 General Assembly meetings; used EveryAction to capture, tag, and organize constituent engagement.</p>
         </div>
-        <div>
-          <strong>Active Minds</strong> • Policy Manager (04/22 – 12/24)<br>
-          <span style="color: var(--muted-olive); font-size: 0.8rem;">Built the organization's first federal policy platform and tracking systems; led a 10-organization coalition and engaged 50+ legislative offices.</span>
+        <div class="op-history-item">
+          <div class="op-history-meta">
+            <span class="op-history-org">Active Minds • Policy Manager</span>
+            <span class="op-history-date">04/22 – 12/24</span>
+          </div>
+          <p class="op-history-desc">Built the organization's first federal policy platform and tracking systems; led a 10-organization coalition and engaged 50+ legislative offices.</p>
         </div>
-        <div>
-          <strong>Office of U.S. Senator Mark R. Warner</strong> • Outreach Representative (08/20 – 04/22)<br>
-          <span style="color: var(--muted-olive); font-size: 0.8rem;">Managed communication across 40+ Central Virginia counties; prepared senior-level briefs and organized 40+ public engagements.</span>
+        <div class="op-history-item">
+          <div class="op-history-meta">
+            <span class="op-history-org">Office of U.S. Senator Mark R. Warner • Outreach Representative</span>
+            <span class="op-history-date">08/20 – 04/22</span>
+          </div>
+          <p class="op-history-desc">Managed communication across 40+ Central Virginia counties; prepared senior-level briefs and organized 40+ public engagements.</p>
         </div>
-        <div>
-          <strong>Virginia Housing Alliance</strong> • Director of Policy and Advocacy (12/17 – 05/20)<br>
-          <span style="color: var(--muted-olive); font-size: 0.8rem;">Developed housing policy, budget, and campaign strategy; supervised graduate interns as MSW field instructor.</span>
+        <div class="op-history-item">
+          <div class="op-history-meta">
+            <span class="op-history-org">Virginia Housing Alliance • Director of Policy and Advocacy</span>
+            <span class="op-history-date">12/17 – 05/20</span>
+          </div>
+          <p class="op-history-desc">Developed housing policy, budget, and campaign strategy; supervised graduate interns as MSW field instructor.</p>
         </div>
-        <div>
-          <strong>Virginia Civic Engagement Table</strong> • Community Organizer (02/17 – 12/17)<br>
-          <span style="color: var(--muted-olive); font-size: 0.8rem;">Built systems and training support for 40 partner organizations across Virginia; designed and delivered trainings and coordinated shared campaign timelines.</span>
+        <div class="op-history-item">
+          <div class="op-history-meta">
+            <span class="op-history-org">Virginia Civic Engagement Table • Community Organizer</span>
+            <span class="op-history-date">02/17 – 12/17</span>
+          </div>
+          <p class="op-history-desc">Built systems and training support for 40 partner organizations across Virginia; designed and delivered trainings and coordinated shared campaign timelines.</p>
         </div>
       </div>
     </div>
