@@ -2938,17 +2938,17 @@ body[data-review-tools="on"] {
    ======================================================================= */
 .build-badge {
   position: fixed;
-  top: calc(var(--nav-h, 84px) + 14px);
-  right: 18px;
+  top: 96px;
+  right: 24px;
   z-index: 9998;
   display: flex;
   align-items: center;
   gap: 7px;
   padding: 4px 10px 4px 5px;
   border-radius: 999px;
-  background: transparent;
-  border: 1.5px solid transparent;
-  box-shadow: none;
+  background: rgba(24, 43, 77, 0.92);
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   font-family: var(--mono);
@@ -2959,7 +2959,7 @@ body[data-review-tools="on"] {
   appearance: none;
   color: inherit;
   text-align: left;
-  opacity: 0.18;
+  opacity: 0.95;
 }
 
 .build-badge:hover,
@@ -3266,12 +3266,12 @@ body[data-review-tools="on"] {
 /* Provenance Inspector Modal */
 .build-provenance-modal {
   position: fixed;
-  top: auto;
+  top: calc(var(--nav-h, 84px) + 52px);
   right: 24px;
-  bottom: 84px;
+  bottom: auto;
   width: 380px;
   max-width: calc(100vw - 48px);
-  max-height: calc(100vh - var(--nav-h) - 108px);
+  max-height: calc(100vh - var(--nav-h, 84px) - 68px);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   background: rgba(251, 246, 237, 0.97);
@@ -3866,22 +3866,28 @@ body[data-review-tools="on"] {
 
 @media (max-width: 820px) {
   .build-badge {
-    top: calc(var(--nav-h) + 10px);
-    right: 12px;
-    padding: 3px 8px 3px 4px;
-    gap: 5px;
+    position: fixed;
+    top: calc(var(--nav-h, 84px) + 12px);
+    bottom: auto;
+    right: 14px;
+    padding: 4px 9px 4px 5px;
+    gap: 6px;
+    background: rgba(24, 43, 77, 0.95);
+    border: 1.5px solid var(--gold);
+    opacity: 0.95;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
   }
   .build-badge-date {
     display: none;
   }
   .build-provenance-modal {
-    top: auto;
+    top: calc(var(--nav-h, 84px) + 52px);
+    bottom: auto;
     left: auto;
     right: 12px;
-    bottom: 84px;
     width: 360px;
     max-width: calc(100vw - 24px);
-    max-height: calc(100vh - var(--nav-h) - 96px);
+    max-height: calc(100vh - var(--nav-h, 84px) - 64px);
   }
   .version-hover-card {
     position: static;

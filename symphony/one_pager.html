@@ -48,12 +48,19 @@
 
     /* Ensure telemetry watermark floats cleanly below the sticky header */
     .build-badge {
-      top: calc(var(--nav-h, 74px) + 14px) !important;
-      right: 20px !important;
-      z-index: 999;
+      position: fixed !important;
+      top: 88px !important;
+      right: 24px !important;
+      z-index: 9998 !important;
+      display: inline-flex !important;
+      opacity: 0.95 !important;
+      background: rgba(24, 43, 77, 0.95) !important;
+      border: 1.5px solid var(--gold) !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
     }
     .build-provenance-modal {
-      top: calc(var(--nav-h, 74px) + 12px) !important;
+      top: 136px !important;
+      bottom: auto !important;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -626,6 +633,20 @@
       .op-header-actions {
         width: 100%;
         justify-content: space-between;
+      }
+      .build-badge {
+        position: fixed !important;
+        top: calc(var(--nav-h, 110px) + 12px) !important;
+        bottom: auto !important;
+        right: 14px !important;
+        background: rgba(24, 43, 77, 0.95) !important;
+        border: 1.5px solid var(--gold) !important;
+        opacity: 0.95 !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
+      }
+      .build-provenance-modal {
+        top: calc(var(--nav-h, 110px) + 48px) !important;
+        bottom: auto !important;
       }
       .handout-sheet {
         padding: 26px 22px;

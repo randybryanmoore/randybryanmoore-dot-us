@@ -19,7 +19,7 @@
   "source": {
     "repository": "randybryanmoore/randybryanmoore-dot-us",
     "branch": "main",
-    "base_commit": "e6e819b",
+    "base_commit": "8401aad",
     "primary_artifact": "symphony/one_pager.html"
   },
   "lifecycle": {
@@ -42,11 +42,11 @@
   "artifacts": [
     {
       "path": "one_pager.html",
-      "sha256": "17e39ad29ccf7364cc365c79b810855765b6149337d9c477e40e213086ff9abe"
+      "sha256": "16e11a2ee4bf227d5340873a9b39050bab7c45be4e7df173340b2a568ab31335"
     },
     {
       "path": "styles.css",
-      "sha256": "46d0413f71e84c7d2ba4189fb6aadc20bec316457b32dbc7650e3b0d1a36a934"
+      "sha256": "c54f15b209dce6061506481d5bd150d203de8f289f0c011d7bc96557e248f761"
     },
     {
       "path": "script.js",
@@ -56,13 +56,20 @@
   "validation": {
     "javascript_syntax": "pass: node --check",
     "manifest_syntax": "pass",
+    "page_specific_modal": "pass: Executive One-Pager identity, OP v1.1.0 lifecycle, scoped time, artifact, and parent boundary visible",
+    "page_specific_machine_export": "pass: service name, surface, OP version, and local lifecycle exported independently",
+    "page_specific_complete_handoff": "pass: COMPLETE Sections 10.1-10.9 bundle with two visible records and no private owner code",
+    "action_layout": "pass: compact floating OP telemetry pill plus two equal-width contained controls in the narrow telemetry panel",
+    "browser_console": "pass: zero errors on one-pager and dossier in a clean tab",
+    "production_readback": "pending: OP v1.1.0 not yet read back from the public URL",
+    "offline_archive": "pass: rebuilt and integrity tested",
     "single_page_print": "pass: headless Chrome render is exactly 1 US Letter page, 465 words",
     "unsupported_claims_sweep": "pass: 0 hits for staff names, $850k, 48h SLA, LYBUNT/SYBUNT, pipeline velocity, Operating vs. Endowment, moves management",
     "quotation_integrity": "pass: global and/& -> // transform removed; cover-letter quotation now matches the source PDF",
     "editorial_separator_scope": "pass: // retained only in the three First 90 Days stage labels and three dossier roadmap labels",
-    "browser_console": "pass: zero errors on one-pager and dossier in a clean tab",
     "responsive": "pass: desktop 1280, tablet 768, mobile 375; no horizontal page overflow at any width",
     "pdf_regenerated": "pass: Randy_Bryan_Moore_Executive_Briefing.pdf recompiled to 1 page",
-    "source_verification": "partial: only 2 of 15 briefing sources present in repo (resume, cover letter); no organizational claim independently verifiable"
+    "source_verification": "partial: only 2 of 15 briefing sources present in repo (resume, cover letter); no organizational claim independently verifiable",
+    "telemetry_badge_position": "pass: merged the upstream high-contrast badge and modal offsets from origin/main (8401aad)"
   }
 }
