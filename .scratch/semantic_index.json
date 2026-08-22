@@ -1,0 +1,13 @@
+{
+  "name": "randybryanmoore-dot-us",
+  "path": "/Users/randybryanmoore/GITHUB/randybryanmoore-dot-us",
+  "framework": "Unknown",
+  "dependencies": [],
+  "entrypoints": [
+    "index.html"
+  ],
+  "files_count": 31,
+  "features": [
+    "Responsive Frontend Web App"
+  ]
+}

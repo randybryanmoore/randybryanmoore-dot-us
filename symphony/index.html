@@ -1559,7 +1559,13 @@
     </div>
     <div class="popover-target-snippet" id="popover-target-text"></div>
     <div class="popover-tags" id="popover-tags-container"></div>
-    <textarea class="popover-textarea" id="popover-comment-input" aria-label="Annotation comment text" placeholder="Type your note or revision... (Press Enter to save)"></textarea>
+    <div class="popover-voice-bar">
+      <button type="button" class="popover-voice-btn" id="popover-voice-btn" title="Click to speak / dictate note">
+        <span class="voice-mic-icon">🎙️</span> <span id="popover-voice-btn-label">Dictate Voice Note</span>
+      </button>
+      <span class="popover-voice-status" id="popover-voice-status">Click mic to speak</span>
+    </div>
+    <textarea class="popover-textarea" id="popover-comment-input" aria-label="Annotation comment text" placeholder="Type or dictate your note or revision... (Press Enter to save)"></textarea>
     <div class="popover-actions">
       <button class="popover-cancel-btn" id="popover-dismiss-btn">Cancel (Esc)</button>
       <button class="popover-pin-btn" id="popover-save-btn">Pin for AI ↵</button>

@@ -37,12 +37,23 @@
       --muted-olive: #59645E;   /* brand --muted — 5.72:1 on paper */
       --border-subtle: rgba(24, 43, 77, 0.12);
       --border-strong: rgba(28, 33, 30, 0.22);
+      --nav-h: 74px;
       --font-serif: 'Playfair Display', 'Iowan Old Style', Palatino, Georgia, serif;
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
       --shadow-md: 0 8px 24px rgba(28, 33, 30, 0.08);
       --radius-sm: 4px;
       --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Ensure telemetry watermark floats cleanly below the sticky header */
+    .build-badge {
+      top: calc(var(--nav-h, 74px) + 14px) !important;
+      right: 20px !important;
+      z-index: 999;
+    }
+    .build-provenance-modal {
+      top: calc(var(--nav-h, 74px) + 12px) !important;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -611,14 +622,14 @@
 
     @page {
       size: letter portrait;
-      margin: 0.22in 0.28in;
+      margin: 0.12in 0.20in;
     }
 
     @media print {
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
       html, body { background: #fff !important; padding: 0 !important; margin: 0 !important; }
-      body { color: var(--charcoal); font-size: 7.2pt; line-height: 1.24; }
-      .top-nav, .annotation-dock, .annotation-popover, .feedback-drawer, .passcode-gate-overlay, .print-btn-bar, .build-badge, .build-provenance-modal, #inspector-box { display: none !important; }
+      body { color: var(--charcoal); font-size: 6.5pt; line-height: 1.15; }
+      .op-site-header, .top-nav, .annotation-dock, .annotation-popover, .feedback-drawer, .passcode-gate-overlay, .print-btn-bar, .build-badge, .build-provenance-modal, #inspector-box { display: none !important; }
       
       .page-break { page-break-before: always; break-before: page; margin-top: 0 !important; }
       .handout-sheet {
@@ -633,55 +644,55 @@
       }
 
       .handout-header {
-        padding: 0.4rem 0.75rem !important;
-        margin-bottom: 0.35rem !important;
+        padding: 0.22rem 0.55rem !important;
+        margin-bottom: 0.18rem !important;
         border-radius: 4px !important;
         border: 1px solid var(--gold) !important;
         box-shadow: none !important;
       }
-      .handout-title h1 { font-size: 1.25rem !important; margin-bottom: 0.1rem !important; line-height: 1.1 !important; }
-      .handout-title p { font-size: 0.66rem !important; letter-spacing: 0.05em !important; }
-      .handout-meta { font-size: 0.68rem !important; line-height: 1.25 !important; }
+      .handout-title h1 { font-size: 1.10rem !important; margin-bottom: 0.06rem !important; line-height: 1.1 !important; }
+      .handout-title p { font-size: 0.60rem !important; letter-spacing: 0.05em !important; }
+      .handout-meta { font-size: 0.62rem !important; line-height: 1.18 !important; }
 
       .portfolio-block {
         display: grid !important;
-        grid-template-columns: 56px 1fr !important;
-        gap: 0.6rem !important;
-        padding: 0.35rem 0.65rem !important;
-        margin-bottom: 0.35rem !important;
+        grid-template-columns: 44px 1fr !important;
+        gap: 0.45rem !important;
+        padding: 0.20rem 0.50rem !important;
+        margin-bottom: 0.20rem !important;
         border-radius: 4px !important;
         border: 1px solid var(--gold) !important;
         box-shadow: none !important;
         background: var(--cobalt) !important;
       }
-      .portfolio-block .qr-wrap { width: 50px !important; height: 50px !important; padding: 2px !important; }
-      .portfolio-block h3 { font-size: 0.8rem !important; margin-bottom: 0.1rem !important; color: #fff !important; }
-      .portfolio-block p { font-size: 0.66rem !important; line-height: 1.2 !important; margin-bottom: 0.15rem !important; color: rgba(255,255,255,0.9) !important; }
-      .portfolio-block a.portfolio-link { font-size: 0.66rem !important; }
+      .portfolio-block .qr-wrap { width: 40px !important; height: 40px !important; padding: 2px !important; }
+      .portfolio-block h3 { font-size: 0.74rem !important; margin-bottom: 0.06rem !important; color: #fff !important; }
+      .portfolio-block p { font-size: 0.60rem !important; line-height: 1.14 !important; margin-bottom: 0.08rem !important; color: rgba(255,255,255,0.9) !important; }
+      .portfolio-block a.portfolio-link { font-size: 0.60rem !important; }
 
-      .handout-section { margin-bottom: 0.35rem !important; }
-      .handout-section h2 { font-size: 0.84rem !important; padding-bottom: 0.15rem !important; margin-bottom: 0.2rem !important; }
-      .handout-section p { font-size: 0.69rem !important; line-height: 1.22 !important; margin-bottom: 0.2rem !important; }
-      .handout-section blockquote { font-size: 0.67rem !important; margin: 0.25rem 0 !important; padding-left: 6px !important; line-height: 1.2 !important; }
-      .op-kicker { font-size: 0.58rem !important; margin-bottom: 0.1rem !important; }
-      .how-i-think-panel { padding: 0.25rem 0.5rem !important; margin-bottom: 0.25rem !important; }
-      .pillar-tags { margin: 0.15rem 0 !important; gap: 4px !important; }
-      .pillar-tag { font-size: 0.58rem !important; padding: 1px 4px !important; }
+      .handout-section { margin-bottom: 0.20rem !important; }
+      .handout-section h2 { font-size: 0.76rem !important; padding-bottom: 0.08rem !important; margin-bottom: 0.12rem !important; }
+      .handout-section p { font-size: 0.63rem !important; line-height: 1.15 !important; margin-bottom: 0.12rem !important; }
+      .handout-section blockquote { font-size: 0.61rem !important; margin: 0.15rem 0 !important; padding-left: 6px !important; line-height: 1.14 !important; }
+      .op-kicker { font-size: 0.54rem !important; margin-bottom: 0.06rem !important; }
+      .how-i-think-panel { padding: 0.14rem 0.35rem !important; margin-bottom: 0.14rem !important; }
+      .pillar-tags { margin: 0.10rem 0 !important; gap: 3px !important; }
+      .pillar-tag { font-size: 0.54rem !important; padding: 1px 3px !important; }
 
-      .dcard { padding: 0.35rem 0.5rem !important; border-radius: 4px !important; box-shadow: none !important; background: var(--cobalt) !important; }
+      .dcard { padding: 0.20rem 0.40rem !important; border-radius: 4px !important; box-shadow: none !important; background: var(--cobalt) !important; }
       .dcard--wine { background: var(--wine) !important; }
-      .dcard .dcard-num { font-size: 6.8px !important; margin-bottom: 0.1rem !important; }
-      .dcard h3 { font-size: 0.74rem !important; margin-bottom: 0.1rem !important; }
-      .dcard p { font-size: 0.65rem !important; line-height: 1.18 !important; }
+      .dcard .dcard-num { font-size: 6.2px !important; margin-bottom: 0.06rem !important; }
+      .dcard h3 { font-size: 0.68rem !important; margin-bottom: 0.06rem !important; }
+      .dcard p { font-size: 0.59rem !important; line-height: 1.12 !important; }
 
-      .matrix-table { margin-top: 0.2rem !important; font-size: 0.66rem !important; }
-      .matrix-table th { padding: 2.5px 5px !important; font-size: 0.63rem !important; background: var(--wine) !important; color: var(--gold-light) !important; }
-      .matrix-table td { padding: 2.5px 5px !important; line-height: 1.18 !important; }
+      .matrix-table { margin-top: 0.12rem !important; font-size: 0.59rem !important; }
+      .matrix-table th { padding: 1.5px 3.5px !important; font-size: 0.58rem !important; background: var(--wine) !important; color: var(--gold-light) !important; }
+      .matrix-table td { padding: 1.5px 3.5px !important; font-size: 0.58rem !important; line-height: 1.12 !important; }
 
       .handout-footer {
-        padding: 0.35rem 0.75rem !important;
-        margin-top: 0.35rem !important;
-        font-size: 0.67rem !important;
+        padding: 0.20rem 0.55rem !important;
+        margin-top: 0.20rem !important;
+        font-size: 0.62rem !important;
         border-radius: 4px !important;
         border: 1px solid var(--gold) !important;
         box-shadow: none !important;
@@ -1180,22 +1191,28 @@
 
   <!-- Precision Pinned Popover -->
   <div class="annotation-popover" id="annotation-popover">
+    <!-- Stream Mode Selector -->
+    <div class="popover-mode-tabs">
+      <button type="button" class="popover-mode-tab active" data-mode="ai">🚀 AI Review</button>
+      <button type="button" class="popover-mode-tab" data-mode="private">🔒 Private Note</button>
+    </div>
+
     <div class="popover-header">
       <span class="popover-title">Comment on Element</span>
       <button class="popover-cancel-btn" id="popover-close-btn" aria-label="Close Popover">✕</button>
     </div>
     <div class="popover-target-snippet" id="popover-target-text"></div>
-    <div class="popover-tags">
-      <span class="tag-chip selected" data-tag="Copy">Copy</span>
-      <span class="tag-chip" data-tag="Design">Design</span>
-      <span class="tag-chip" data-tag="Data">Data</span>
-      <span class="tag-chip" data-tag="Layout">Layout</span>
-      <span class="tag-chip" data-tag="Note">Note</span>
+    <div class="popover-tags" id="popover-tags-container"></div>
+    <div class="popover-voice-bar">
+      <button type="button" class="popover-voice-btn" id="popover-voice-btn" title="Click to speak / dictate note">
+        <span class="voice-mic-icon">🎙️</span> <span id="popover-voice-btn-label">Dictate Voice Note</span>
+      </button>
+      <span class="popover-voice-status" id="popover-voice-status">Click mic to speak</span>
     </div>
-    <textarea class="popover-textarea" id="popover-comment-input" placeholder="Type your note or revision... (Press Enter to save)"></textarea>
+    <textarea class="popover-textarea" id="popover-comment-input" aria-label="Annotation comment text" placeholder="Type or dictate your note or revision... (Press Enter to save)"></textarea>
     <div class="popover-actions">
       <button class="popover-cancel-btn" id="popover-dismiss-btn">Cancel (Esc)</button>
-      <button class="popover-pin-btn" id="popover-save-btn">Pin Note ↵</button>
+      <button class="popover-pin-btn" id="popover-save-btn">Pin for AI ↵</button>
     </div>
   </div>
 

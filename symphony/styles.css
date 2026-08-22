@@ -2306,6 +2306,96 @@ body[data-review-tools="on"] {
   border-color: var(--maroon);
 }
 
+/* Voice Notes & Live Speech Transcription */
+.popover-voice-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px 10px;
+  margin-bottom: 8px;
+}
+
+.popover-voice-btn {
+  background: var(--navy);
+  color: var(--cream);
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 140ms ease;
+}
+
+.popover-voice-btn:hover {
+  background: var(--navy-light);
+  transform: translateY(-1px);
+}
+
+.popover-voice-btn.recording {
+  background: #dc2626 !important;
+  border-color: #f87171 !important;
+  color: #ffffff !important;
+  animation: voiceRecordingPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes voiceRecordingPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.6); }
+  50% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+}
+
+.popover-voice-status {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.popover-voice-status.listening {
+  color: #dc2626;
+  font-weight: 800;
+}
+
+.drawer-voice-player {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(24, 43, 77, 0.08);
+  border: 1px solid var(--line);
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-top: 6px;
+  font-size: 11px;
+  font-family: var(--mono);
+  color: var(--navy);
+}
+
+.drawer-voice-player button {
+  background: var(--navy);
+  color: var(--cream);
+  border: none;
+  border-radius: 3px;
+  padding: 2px 7px;
+  font-size: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background 140ms ease;
+}
+
+.drawer-voice-player button:hover {
+  background: var(--maroon);
+}
+
 .popover-textarea {
   width: 100%;
   background: #ffffff;
@@ -2848,7 +2938,7 @@ body[data-review-tools="on"] {
    ======================================================================= */
 .build-badge {
   position: fixed;
-  top: calc(var(--nav-h) + 12px);
+  top: 96px;
   right: 18px;
   z-index: 9998;
   display: flex;
