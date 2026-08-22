@@ -152,21 +152,24 @@
     .btn-outline { border-color: rgba(223, 202, 116, 0.4); color: var(--cream); background: rgba(13, 26, 50, 0.6); }
     .btn-outline:hover { border-color: var(--gold-light); color: var(--gold-light); background: var(--cobalt-deep); transform: translateY(-1px); }
 
-    body[data-telemetry-surface="one-pager"] .provenance-action-cluster {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 6px;
-      width: 100%;
+    /* Header Action Group */
+    .op-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-
-    body[data-telemetry-surface="one-pager"] .provenance-action-cluster .btn {
-      box-sizing: border-box;
-      font-size: 0.66rem;
+    .op-header-links-col {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .op-header-links-col .btn {
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      min-height: 24px;
       line-height: 1.2;
-      min-width: 0;
-      padding: 7px 6px;
-      white-space: normal;
-      width: 100%;
+      justify-content: center;
+      text-align: center;
     }
 
     /* Alignment table with rich dossier styling */
@@ -543,6 +546,16 @@
 
     /* Responsive Breakpoints for Tablet & Mobile */
     @media (max-width: 820px) {
+      .op-site-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 18px;
+      }
+      .op-header-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
       .handout-sheet {
         padding: 26px 22px;
         margin: 18px auto;
@@ -688,10 +701,12 @@
         <div class="op-wordmark-sub">Richmond Symphony · Executive Briefing</div>
       </div>
     </a>
-    <div style="display:flex; align-items:center; gap:8px;">
-      <a href="index.html" class="btn btn-outline" style="font-size:0.76rem; padding:6px 14px;">Return to Full Dossier ↗</a>
-      <a href="Randy_Bryan_Moore_Executive_Briefing.pdf" download class="btn btn-outline" style="color:#dfca74; border-color:rgba(223,202,116,0.6); font-size:0.76rem; padding:6px 14px; text-decoration:none;">Download PDF 📥</a>
-      <button onclick="window.print()" class="btn btn-wine" style="font-size:0.76rem; padding:6px 16px;">Print / Save PDF</button>
+    <div class="op-header-actions">
+      <div class="op-header-links-col">
+        <a href="index.html" class="btn btn-outline">Return to Full Dossier ↗</a>
+        <a href="Randy_Bryan_Moore_Executive_Briefing.pdf" download class="btn btn-outline" style="color:#dfca74; border-color:rgba(223,202,116,0.6); text-decoration:none;">Download PDF 📥</a>
+      </div>
+      <button onclick="window.print()" class="btn btn-wine" style="font-size:0.78rem; padding:10px 18px; height:100%;">Print / Save PDF</button>
     </div>
   </header>
 
