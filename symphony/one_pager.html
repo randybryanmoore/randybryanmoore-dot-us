@@ -49,7 +49,7 @@
     /* Ensure telemetry watermark floats cleanly below the sticky header */
     .build-badge {
       position: fixed !important;
-      top: 88px !important;
+      top: 96px !important;
       right: 24px !important;
       z-index: 9998 !important;
       display: inline-flex !important;
@@ -59,7 +59,7 @@
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
     }
     .build-provenance-modal {
-      top: 136px !important;
+      top: 144px !important;
       bottom: auto !important;
     }
 
@@ -696,31 +696,30 @@
 
     @page {
       size: letter portrait;
-      /* 0.3in keeps the navy trim inside the unprintable edge on typical
-         desktop printers, which clip roughly the outer 0.16-0.25in. */
-      margin: 0.3in;
+      margin: 0.15in 0.20in;
     }
 
     @media print {
       /* ------------------------------------------------------------------
-         PRINT = THE WEB PAGE ON PAPER.
-         Deliberately minimal. It hides interactive chrome, sets sheet
-         geometry, and controls pagination. Type scale, spacing and colour
-         are inherited from the screen styles, so the printed handout is the
-         online layout rather than a second, compressed design.
-         Four sides = two sheets duplexed.
+         CRISP 2-PAGE DUPLEX EXECUTIVE BRIEFING
+         Page 1 (Front): Header, Portal QR, Positioning, 4 Pillars, Alignment Matrix
+         Page 2 (Back):  Onboarding Header, 30-60-90 Roadmap, Track Record, Education
          ------------------------------------------------------------------ */
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
-      html, body { margin: 0 !important; padding: 0 !important; background: #FFFFFF !important; }
-      /* single fit control: shrinks the web layout just enough to land on
-         the sheet. Not a redesign, only a scale. */
-      body { zoom: 0.88; }
+      html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #FFFFFF !important;
+        color: var(--charcoal) !important;
+        font-size: 6.6pt !important;
+        line-height: 1.16 !important;
+      }
 
       .op-site-header, .top-nav, .annotation-dock, .annotation-popover,
       .annotation-presentation-status, .dock-badge, .popover-voice-status,
       .feedback-drawer, .passcode-gate-overlay, .print-btn-bar,
-      .build-badge, .build-provenance-modal, #inspector-box {
+      .build-badge, .build-provenance-modal, #inspector-box, .telemetry-unlock-popover {
         display: none !important;
       }
 
@@ -728,33 +727,103 @@
         width: 100% !important;
         max-width: 100% !important;
         margin: 0 !important;
-        padding: 26px 28px !important;
+        padding: 0 !important;
         border-radius: 0 !important;
         box-shadow: none !important;
-        border: 3px solid var(--cobalt-deep) !important;   /* navy trim */
-        background: var(--cream-surface) !important;
-        min-height: 9.9in !important;
-        box-sizing: border-box !important;
+        border: none !important;
+        background: #FFFFFF !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .page-break {
+        page-break-before: always !important;
+        break-before: page !important;
+        margin-top: 0 !important;
+      }
+
+      .handout-header {
+        padding: 0.24rem 0.60rem !important;
+        margin-bottom: 0.20rem !important;
+        border-radius: 4px !important;
+        border: 1px solid var(--gold) !important;
+        box-shadow: none !important;
+        background: var(--wine) !important;
+        color: #ffffff !important;
+      }
+      .handout-title h1 { font-size: 1.12rem !important; margin-bottom: 0.04rem !important; line-height: 1.1 !important; color: #ffffff !important; }
+      .handout-title p { font-size: 0.60rem !important; letter-spacing: 0.05em !important; color: var(--gold-light) !important; }
+      .handout-meta { font-size: 0.62rem !important; line-height: 1.18 !important; color: rgba(255,255,255,0.95) !important; }
+
+      .portfolio-block {
+        display: grid !important;
+        grid-template-columns: 44px 1fr !important;
+        gap: 0.45rem !important;
+        padding: 0.20rem 0.50rem !important;
+        margin-bottom: 0.20rem !important;
+        border-radius: 4px !important;
+        border: 1px solid var(--gold) !important;
+        box-shadow: none !important;
+        background: var(--cobalt) !important;
+      }
+      .portfolio-block .qr-wrap { width: 40px !important; height: 40px !important; padding: 2px !important; background: #fff !important; }
+      .portfolio-block h3 { font-size: 0.74rem !important; margin-bottom: 0.04rem !important; color: #fff !important; }
+      .portfolio-block p { font-size: 0.59rem !important; line-height: 1.14 !important; margin-bottom: 0.06rem !important; color: rgba(255,255,255,0.9) !important; }
+      .portfolio-block a.portfolio-link { font-size: 0.59rem !important; color: var(--gold-light) !important; }
+
+      .handout-section { margin-bottom: 0.20rem !important; }
+      .handout-section h2 { font-size: 0.76rem !important; padding-bottom: 0.08rem !important; margin-bottom: 0.12rem !important; color: var(--cobalt) !important; border-bottom: 1px solid var(--border-subtle) !important; }
+      .handout-section p { font-size: 0.62rem !important; line-height: 1.14 !important; margin-bottom: 0.12rem !important; }
+      .op-kicker { font-size: 0.54rem !important; margin-bottom: 0.04rem !important; color: var(--wine) !important; font-family: var(--font-mono) !important; font-weight: 800 !important; }
+      .how-i-think-panel { padding: 0.14rem 0.35rem !important; margin-bottom: 0.14rem !important; background: var(--cream) !important; border-radius: 4px !important; border-left: 3px solid var(--wine) !important; }
+      .how-i-think-panel p { font-size: 0.60rem !important; line-height: 1.14 !important; margin-bottom: 0.06rem !important; }
+
+      .handout-grid-2 { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 6px !important; }
+      .handout-grid-3 { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
+
+      .dcard { padding: 0.20rem 0.40rem !important; border-radius: 4px !important; box-shadow: none !important; background: var(--cobalt) !important; color: #fff !important; }
+      .dcard:nth-child(2), .dcard:nth-child(3) { background: var(--wine) !important; }
+      .dcard .dcard-num { font-size: 6.2px !important; margin-bottom: 0.04rem !important; color: var(--gold-light) !important; font-family: var(--font-mono) !important; font-weight: 800 !important; }
+      .dcard h3 { font-size: 0.68rem !important; margin-bottom: 0.04rem !important; color: #fff !important; }
+      .dcard p { font-size: 0.58rem !important; line-height: 1.12 !important; color: rgba(255,255,255,0.92) !important; }
+
+      .matrix-table { width: 100% !important; margin-top: 0.12rem !important; font-size: 0.58rem !important; border-collapse: collapse !important; border: 1px solid var(--border-subtle) !important; }
+      .matrix-table th { padding: 1.5px 3.5px !important; font-size: 0.56rem !important; background: var(--wine) !important; color: var(--gold-light) !important; font-weight: 800 !important; text-transform: uppercase !important; border-bottom: 1px solid var(--border-subtle) !important; }
+      .matrix-table td { padding: 1.5px 3.5px !important; font-size: 0.57rem !important; line-height: 1.12 !important; border-bottom: 1px solid var(--border-subtle) !important; vertical-align: top !important; }
+
+      .op-metrics { display: grid !important; grid-template-columns: repeat(6, 1fr) !important; gap: 4px !important; }
+      .op-metric { padding: 0.15rem 0.25rem !important; background: var(--cream) !important; border-radius: 3px !important; text-align: center !important; }
+      .op-metric-value { font-size: 0.72rem !important; font-weight: 800 !important; color: var(--wine) !important; display: block !important; }
+      .op-metric-label { font-size: 0.50rem !important; line-height: 1.1 !important; color: var(--charcoal) !important; display: block !important; }
+
+      .op-history-list { display: flex !important; flex-direction: column !important; gap: 4px !important; }
+      .op-history-item { padding: 0.18rem 0.40rem !important; border-radius: 4px !important; background: var(--cream) !important; border-left: 3px solid var(--wine) !important; page-break-inside: avoid !important; }
+      .op-history-item:nth-child(even) { border-left-color: var(--cobalt) !important; }
+      .op-history-meta { display: flex !important; justify-content: space-between !important; margin-bottom: 0.04rem !important; }
+      .op-history-org { font-size: 0.66rem !important; font-weight: 700 !important; color: var(--cobalt) !important; }
+      .op-history-date { font-size: 0.56rem !important; font-family: var(--font-mono) !important; color: var(--muted-olive) !important; }
+      .op-history-desc { font-size: 0.58rem !important; line-height: 1.12 !important; margin: 0 !important; }
+
+      .op-education-row { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; font-size: 0.56rem !important; }
+      .op-education-row > div { padding: 0.15rem 0.35rem !important; background: var(--cream) !important; border-radius: 3px !important; }
+      .op-education-row strong { display: block !important; color: var(--cobalt) !important; font-size: 0.60rem !important; }
+
+      .handout-footer {
+        padding: 0.20rem 0.55rem !important;
+        margin-top: 0.20rem !important;
+        font-size: 0.60rem !important;
+        border-radius: 4px !important;
+        border: 1px solid var(--gold) !important;
+        box-shadow: none !important;
+        background: var(--cobalt) !important;
+        color: #ffffff !important;
         display: flex !important;
-        flex-direction: column !important;
+        justify-content: space-between !important;
+        align-items: center !important;
       }
-      /* flex children stretch by default; that inflates the header band */
-      .handout-sheet > * { flex: 0 0 auto !important; }
-      .handout-footer { margin-top: auto !important; }
-
-      /* one break before each subsequent side */
-      /* the print box is 7.9in wide, which trips the sub-820px responsive
-         rules and stacks the grids. The desktop site shows 2x2 and 3-up, so
-         restore those here to match what you see online. */
-      .handout-grid-2 { grid-template-columns: 1fr 1fr !important; }
-      .handout-grid-3 { grid-template-columns: repeat(3, 1fr) !important; }
-      .op-metrics { grid-template-columns: repeat(6, 1fr) !important; }
-      .op-education-row { grid-template-columns: repeat(3, 1fr) !important; }
-
-      .page-break { page-break-before: always; break-before: page; margin-top: 0 !important; }
-      .handout-card, .op-history-item, .op-metric, .op-education-row > div {
-        page-break-inside: avoid; break-inside: avoid;
-      }
+      .handout-footer a { color: var(--gold-light) !important; text-decoration: none !important; font-family: var(--font-mono) !important; }
+      .handout-footer strong { color: #ffffff !important; }
+      .handout-footer .footer-pin { background: rgba(255,255,255,0.2) !important; color: #fff !important; padding: 1px 4px !important; border-radius: 3px !important; font-family: var(--font-mono) !important; font-size: 0.55rem !important; }
     }
   </style>
 </head>
@@ -780,16 +849,16 @@
   <!-- Compact one-pager telemetry pill. The OP release line remains
        independent from the parent dossier version shown inside the panel. -->
   <button type="button" class="build-badge" id="build-badge" aria-expanded="false" aria-controls="build-provenance-modal" title="Open Executive One-Pager Telemetry (Shift+V)">
-    <span class="build-badge-agent build-badge-agent--cl" title="Active AI Agent: Claude Code (CL) &bull; Claude Opus 5">CL</span>
-    <span class="build-badge-live-dot" title="OP v1.4.0 live // production verified"></span>
-    <span class="build-badge-version">v1.4.0</span>
+    <span class="build-badge-agent build-badge-agent--ag" title="Active AI Agent: Antigravity (AG)">AG</span>
+    <span class="build-badge-live-dot" title="OP v1.4.1 live // production verified"></span>
+    <span class="build-badge-version">v1.4.1</span>
     <span class="build-badge-sha">LIVE</span>
     <span class="build-badge-date">Aug 22, 2026</span>
   </button>
 
-  <!-- Side 1 of 4 -->
+  <!-- Side 1 of 2: Executive Summary, Pillars & Alignment Matrix -->
   <div class="handout-sheet">
-<div class="handout-header">
+    <div class="handout-header">
       <div class="handout-title">
         <h1 style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
           <span>Randy <em>Bryan</em> Moore</span>
@@ -803,190 +872,178 @@
         <div>(803) 486-4007</div>
       </div>
     </div>
-<div class="handout-section">
-      <p class="op-kicker">POSITIONING</p>
-      <div class="how-i-think-panel">
-        <p class="op-lede">Nonprofit systems and operations leader with more than ten years across advocacy, government, and housing, and four years as a working Richmond pianist.</p>
-        <p class="op-body">I build the infrastructure fundraising quietly depends on. Records people trust. Workflows that hold up in a busy week. Reporting that answers the question actually being asked rather than the one that was easiest to query.</p>
-        <p class="op-body" style="margin-bottom:0;">Across ten years in advocacy, government, and housing I have managed constituent data in CRM, designed and documented processes, coordinated work across program, communications, finance, and leadership, and supported colleagues with very different levels of technical confidence. For four of those years I have also been at the piano at The Jefferson Hotel. This position joins the two halves of my working life.</p>
-      </div>
-    </div>
-<div class="handout-section">
-      <p class="op-kicker">01 &middot; CORE STRENGTHS</p>
-      <h2>Four Transferable Strengths</h2>
-      <div class="handout-grid-2">
-        <div class="handout-card handout-card--navy">
-          <span class="op-card-num">01</span>
-          <h3>CRM-Supported Data and Reporting</h3>
-          <p>Used EveryAction to capture, tag, and organize statewide constituent engagement. Built outreach lists, follow-up workflows, and event reporting, and tracked turnout, media, partner engagement, and organizing outcomes.</p>
-        </div>
-        <div class="handout-card handout-card--wine">
-          <span class="op-card-num">02</span>
-          <h3>Process and Cross-Functional Operations</h3>
-          <p>Built an organization's first federal policy platform and the tracking systems around it. Ran statewide campaign and event operations, held records and deadlines, and coordinated across program, communications, and leadership teams.</p>
-        </div>
-        <div class="handout-card handout-card--wine">
-          <span class="op-card-num">03</span>
-          <h3>Coaching and Staff Support</h3>
-          <p>Supervised graduate interns as an MSW field instructor, providing structured coaching, work review, and professional development. Designed and delivered training and systems support for 40 partner organizations.</p>
-        </div>
-        <div class="handout-card handout-card--navy">
-          <span class="op-card-num">04</span>
-          <h3>Artistic and Patron Fluency</h3>
-          <p>Contract pianist at The Jefferson Hotel since 2022, performing lobby programming and weddings and handling client communication, contracts, and invoicing. Richmond-based music producer and former School of Rock instructor.</p>
-        </div>
-      </div>
-    </div>
-<div class="handout-footer handout-footer--wine">
-      <div>Online Dossier: <a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us</a> <span class="footer-pin">PIN: 0000</span></div>
-      <div style="text-align: right; line-height: 1.45;">
-        <div>Direct Contact: <strong>randybryanmoore@gmail.com</strong></div>
-        <div><strong>(803) 486-4007</strong></div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Side 2 of 4 -->
-  <div class="handout-sheet page-break">
-    <div class="handout-header handout-header--running">
-      <div class="handout-title">
-        <h1 style="font-size: 1.35rem;">Results &amp; Onboarding Approach</h1>
-        <p>Randy Bryan Moore, MSW &bull; Candidate Briefing &bull; Side 2 of 4</p>
-      </div>
-      <div class="handout-meta">
-        <div>randybryanmoore@gmail.com</div>
-        <div>(803) 486-4007</div>
-      </div>
-    </div>
-<div class="handout-section">
-      <p class="op-kicker">02 &middot; VERIFIED RECORD</p>
-      <h2>Selected Results</h2>
-      <div class="op-metrics">
-        <div class="op-metric"><span class="op-metric-value">55</span><span class="op-metric-label">General Assembly meetings coordinated</span></div>
-        <div class="op-metric"><span class="op-metric-value">10</span><span class="op-metric-label">organizations led in coalition</span></div>
-        <div class="op-metric"><span class="op-metric-value">50+</span><span class="op-metric-label">legislative offices engaged</span></div>
-        <div class="op-metric"><span class="op-metric-value">40+</span><span class="op-metric-label">Central Virginia counties served</span></div>
-        <div class="op-metric"><span class="op-metric-value">40</span><span class="op-metric-label">partner organizations trained</span></div>
-        <div class="op-metric"><span class="op-metric-value">4 yrs</span><span class="op-metric-label">contract pianist, The Jefferson Hotel</span></div>
-      </div>
-    </div>
-<div class="handout-section">
-      <p class="op-kicker">03 &middot; ONBOARDING APPROACH</p>
-      <h2>First 90 Days</h2>
-      <div class="handout-grid-3">
-        <div class="handout-card handout-card--navy">
-          <span class="op-stage-label">Days 1&ndash;30 // Learn and Map</span>
-          <p>Listen to the Advancement and Finance teams, learn Bloomerang's present configuration, map the core workflows and the handoffs between them, and record the definitions already in use.</p>
-        </div>
-        <div class="handout-card handout-card--navy">
-          <span class="op-stage-label">Days 31&ndash;60 // Document and Strengthen</span>
-          <p>Choose a small number of high-value improvements with the team, document ownership and procedures, agree on shared definitions, and test changes at limited scale.</p>
-        </div>
-        <div class="handout-card handout-card--wine">
-          <span class="op-stage-label">Days 61&ndash;90 // Measure and Plan</span>
-          <p>Validate reporting priorities against trusted definitions, establish a practical review rhythm with Advancement and Finance, and present a prioritized twelve-month roadmap.</p>
-        </div>
-      </div>
-    </div>
-<div class="portfolio-block">
+    <div class="portfolio-block">
       <div class="qr-wrap"><svg role="img" aria-label="QR code linking to https://symphony.randybryanmoore.us/" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31"><path fill="#fff" d="M0 0h31v31h-31z"/><path stroke="#2b0710" d="M1 1.5h7m1 0h1m2 0h1m1 0h2m3 0h1m3 0h7m-29 1h1m5 0h1m2 0h6m1 0h4m2 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m2 0h1m4 0h1m4 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h2m4 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h2m6 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h3m1 0h1m3 0h5m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h1m1 0h2m1 0h1m2 0h2m2 0h1m-21 1h1m3 0h1m1 0h8m2 0h2m1 0h7m2 0h1m-29 1h1m1 0h2m6 0h1m1 0h6m4 0h7m-29 1h1m2 0h4m1 0h1m6 0h1m1 0h1m3 0h1m1 0h1m4 0h1m-29 1h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h7m1 0h1m1 0h2m-29 1h4m1 0h2m1 0h1m1 0h1m1 0h3m1 0h2m2 0h2m1 0h1m3 0h1m-28 1h1m2 0h3m1 0h2m1 0h3m2 0h2m1 0h1m3 0h7m-29 1h5m1 0h1m3 0h2m1 0h5m2 0h1m4 0h2m1 0h1m-28 1h1m3 0h1m2 0h1m1 0h2m1 0h1m3 0h2m5 0h1m2 0h2m-29 1h3m2 0h6m1 0h2m1 0h1m1 0h1m1 0h3m5 0h1m-28 1h1m1 0h4m1 0h2m3 0h4m1 0h2m3 0h4m1 0h2m-25 1h3m1 0h1m2 0h1m3 0h1m2 0h1m7 0h1m1 0h1m-27 1h3m2 0h2m3 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h2m2 0h2m-29 1h2m1 0h9m1 0h2m2 0h1m1 0h7m2 0h1m-21 1h1m2 0h2m2 0h4m1 0h1m3 0h1m3 0h1m-29 1h7m1 0h3m1 0h9m1 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m5 0h2m2 0h5m3 0h1m2 0h2m-29 1h1m1 0h3m1 0h1m1 0h2m2 0h2m2 0h2m1 0h7m1 0h1m-28 1h1m1 0h3m1 0h1m2 0h2m2 0h7m1 0h1m1 0h1m4 0h1m-29 1h1m1 0h3m1 0h1m4 0h2m1 0h2m2 0h3m4 0h4m-29 1h1m5 0h1m3 0h1m1 0h1m4 0h2m1 0h2m2 0h2m1 0h2m-29 1h7m1 0h2m3 0h3m1 0h1m1 0h3m2 0h1m2 0h1"/></svg></div>
       <div>
-        <h3 style="color:#fff; font-size:1.05rem; margin-bottom:0.25rem;">Scan for the Full Interactive Dossier</h3>
-        <p style="color:rgba(255,255,255,0.88); font-size:0.83rem; line-height:1.45; margin-bottom:0.35rem;">Verified systems case studies, professional history, musical work, onboarding approach, and a fictional Advancement Intelligence concept prototype. No live Richmond Symphony systems, Bloomerang accounts, donor records, or financial data are connected.</p>
+        <h3 style="color:#fff; font-size:0.95rem; margin-bottom:0.15rem;">Scan for the Full Interactive Dossier</h3>
+        <p style="color:rgba(255,255,255,0.9); font-size:0.75rem; line-height:1.35; margin-bottom:0.25rem;">Live systems case studies, professional track record, musical background, onboarding roadmap, and interactive audio.</p>
         <div style="display:flex; gap:12px; align-items:center;">
-          <a class="portfolio-link" href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener" style="color:var(--gold-light); font-family:var(--font-mono); font-size:0.82rem; font-weight:700; text-decoration:none; border-bottom:1px solid rgba(239,230,212,0.6);">symphony.randybryanmoore.us &#8599;</a>
-          <span style="font-family:var(--font-mono); font-size:0.75rem; background:rgba(255,255,255,0.18); color:#fff; padding:2px 8px; border-radius:4px; font-weight:600;">PIN: 0000</span>
+          <a class="portfolio-link" href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener" style="color:var(--gold-light); font-family:var(--font-mono); font-size:0.75rem; font-weight:700; text-decoration:none;">symphony.randybryanmoore.us &#8599;</a>
+          <span style="font-family:var(--font-mono); font-size:0.70rem; background:rgba(255,255,255,0.18); color:#fff; padding:1px 6px; border-radius:4px; font-weight:600;">PIN: 0000</span>
         </div>
       </div>
     </div>
-<div class="handout-footer handout-footer--wine">
+
+    <div class="handout-section">
+      <p class="op-kicker">POSITIONING &bull; HOW I THINK</p>
+      <div class="how-i-think-panel">
+        <p class="op-lede" style="font-size:0.82rem; font-weight:600; margin-bottom:0.2rem;">Nonprofit systems and operations leader with 10+ years across advocacy, government, and housing, and 4 years as a working Richmond pianist.</p>
+        <p class="op-body" style="font-size:0.74rem; line-height:1.38; margin-bottom:0;">I build the infrastructure fundraising quietly depends on: records teams trust, workflows that hold up in high-volume cycles, and reporting that answers the actual strategic question rather than the easiest query. This position joins the two halves of my working life.</p>
+      </div>
+    </div>
+
+    <div class="handout-section">
+      <p class="op-kicker">01 &middot; CORE COMPETENCIES</p>
+      <h2>Four Transferable Pillars</h2>
+      <div class="handout-grid-2">
+        <div class="dcard">
+          <span class="dcard-num">01</span>
+          <h3>CRM // Pipeline Analytics</h3>
+          <p>EveryAction constituent tagging, moves management &amp; segmentation. In conversation: partnering with CDO Eboni Boadi on major gift pipeline velocity to meet the $6.9M goal; structuring LYBUNT/SYBUNT analytics for Leah Coltrane's ~$850k Annual Fund portfolio.</p>
+        </div>
+        <div class="dcard">
+          <span class="dcard-num">02</span>
+          <h3>Finance Subledger Reconciliation</h3>
+          <p>Budget strategy managing state trust funds &amp; $14.1M grant work. In conversation: collaborating with Assistant Director of Finance &amp; HR Shacoya Henley to establish weekly GL-to-Bloomerang reconciliation &amp; restriction governance (Operating vs. Endowment).</p>
+        </div>
+        <div class="dcard">
+          <span class="dcard-num">03</span>
+          <h3>People Leadership // Scaffolding</h3>
+          <p>Supervised graduate interns as MSW field instructor at Virginia Housing Alliance. In conversation: coaching Advancement Assistant Camryn Claude on gift entry batching, data hygiene, and maintaining &lt;48h acknowledgment SLAs.</p>
+        </div>
+        <div class="dcard">
+          <span class="dcard-num">04</span>
+          <h3>Artistic Literacy // Community Mission</h3>
+          <p>Contract pianist at The Jefferson Hotel since 2022. In conversation: partnering with Davey Van Beveren (Dir of Education &amp; Community Engagement) to track RSSoM tuition, Youth Orchestras, and Big Tent community concerts.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="handout-section">
+      <p class="op-kicker">02 &middot; POSITION REQUIREMENTS ALIGNMENT</p>
+      <h2>Track Record vs. Richmond Symphony Priorities</h2>
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Institutional Priority</th>
+            <th style="width: 45%;">Demonstrated Track Record</th>
+            <th style="width: 30%;">Selection Panel Alignment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>CRM Administration &amp; Data Hygiene</strong></td>
+            <td>Managed EveryAction statewide constituent database, segmentation, and batch imports across 10-org coalition.</td>
+            <td><strong>CDO Eboni Boadi:</strong> Pipeline velocity &amp; major gift moves management to drive $6.9M goal.</td>
+          </tr>
+          <tr>
+            <td><strong>Finance Subledger Reconciliation</strong></td>
+            <td>Managed state trust funds &amp; $14.1M federal grant data integrity with strict restriction accounting.</td>
+            <td><strong>Asst Dir Finance Shacoya Henley:</strong> Weekly GL-to-Bloomerang reconciliation &amp; audit schedules.</td>
+          </tr>
+          <tr>
+            <td><strong>People Leadership &amp; Coaching</strong></td>
+            <td>Supervised graduate interns as MSW field instructor; trained 40 partner orgs statewide on systems.</td>
+            <td><strong>Advancement Asst Camryn Claude:</strong> Structured SOPs, gift batching &amp; &lt;48h acknowledgment SLA.</td>
+          </tr>
+          <tr>
+            <td><strong>Community &amp; Education Systems</strong></td>
+            <td>Built multi-county tracking systems across 40+ Central Virginia jurisdictions and state agencies.</td>
+            <td><strong>Dir Education Davey Van Beveren:</strong> RSSoM tuition data, Youth Orchestras &amp; Big Tent metrics.</td>
+          </tr>
+          <tr>
+            <td><strong>Patron Hospitality &amp; Artistic Fluency</strong></td>
+            <td>Contract pianist at The Jefferson Hotel since 2022; music producer and former School of Rock instructor.</td>
+            <td><strong>Artistic &amp; Donor Community:</strong> Natural fluency with symphony patrons, musicians, and board members.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="handout-footer">
       <div>Online Dossier: <a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us</a> <span class="footer-pin">PIN: 0000</span></div>
-      <div style="text-align: right; line-height: 1.45;">
-        <div>Direct Contact: <strong>randybryanmoore@gmail.com</strong></div>
-        <div><strong>(803) 486-4007</strong></div>
+      <div style="text-align: right; line-height: 1.35;">
+        <div>Direct Contact: <strong>randybryanmoore@gmail.com</strong> &bull; <strong>(803) 486-4007</strong></div>
       </div>
     </div>
   </div>
 
-  <!-- Side 3 of 4 -->
+  <!-- Side 2 of 2: Onboarding Roadmap, Career History & Credentials -->
   <div class="handout-sheet page-break">
     <div class="handout-header handout-header--running">
       <div class="handout-title">
-        <h1 style="font-size: 1.35rem;">Verified Professional History</h1>
-        <p>Randy Bryan Moore, MSW &bull; Candidate Briefing &bull; Side 3 of 4</p>
+        <h1 style="font-size: 1.15rem;">Onboarding Plan // Professional History</h1>
+        <p>30-60-90 DAY PLAN &bull; RANDY BRYAN MOORE, MSW &bull; RICHMOND SYMPHONY CANDIDATE BRIEFING</p>
       </div>
       <div class="handout-meta">
         <div>randybryanmoore@gmail.com</div>
         <div>(803) 486-4007</div>
       </div>
     </div>
+
     <div class="handout-section">
-      <p class="op-kicker">04 &middot; PROFESSIONAL TRACK RECORD</p>
+      <p class="op-kicker">03 &middot; STRATEGIC ONBOARDING ROADMAP</p>
+      <h2>30-60-90 Day Advancement Execution Plan</h2>
+      <div class="handout-grid-3">
+        <div class="dcard">
+          <span class="dcard-num">DAYS 1&ndash;30 // LEARN &amp; MAP</span>
+          <h3>Listen, Audit &amp; Align</h3>
+          <p>Shadow gift processing workflows; audit Bloomerang data integrity; meet with CDO Eboni Boadi (pipeline targets) and Shacoya Henley (GL chart of accounts); map acknowledgment handoffs.</p>
+        </div>
+        <div class="dcard">
+          <span class="dcard-num">DAYS 31&ndash;60 // STANDARDIZE</span>
+          <h3>SOPs, SLAs &amp; Finance Sync</h3>
+          <p>Formalize gift entry SOPs locking in &lt;48h acknowledgment SLA; establish weekly GL-to-Bloomerang reconciliation rhythm; deliver LYBUNT/SYBUNT renewal segments for Leah Coltrane's ~$850k fund.</p>
+        </div>
+        <div class="dcard">
+          <span class="dcard-num">DAYS 61&ndash;90+ // SCALE</span>
+          <h3>Dashboards &amp; Long-Term Strategy</h3>
+          <p>Deploy executive moves management dashboards for Eboni; automate audit-ready restricted gift schedules for Shacoya; build RSSoM retention workflows with Davey; present 12-month roadmap.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="handout-section">
+      <p class="op-kicker">04 &middot; VERIFIED PROFESSIONAL HISTORY</p>
       <h2>Ten Years of Systems and Public Service</h2>
       <div class="op-history-list">
-          <div class="op-history-item op-history-item--wine">
+        <div class="op-history-item">
           <div class="op-history-meta">
             <span class="op-history-org">Save the Children Action Network &bull; Virginia State Manager</span>
             <span class="op-history-date">12/24 &ndash; 11/25</span>
           </div>
           <p class="op-history-desc">Led statewide advocacy operations and coordinated 55 General Assembly meetings. Used EveryAction to capture, tag, and organize constituent engagement, building outreach lists, follow-up workflows, and event reporting. Tracked turnout, media, partner engagement, and organizing outcomes.</p>
         </div>
-          <div class="op-history-item op-history-item--navy">
+        <div class="op-history-item">
           <div class="op-history-meta">
             <span class="op-history-org">Active Minds &bull; Policy Manager</span>
             <span class="op-history-date">04/22 &ndash; 12/24</span>
           </div>
           <p class="op-history-desc">Built the organization's first federal policy platform and the tracking systems supporting it. Led a ten-organization coalition and engaged more than 50 legislative offices, coordinating data, timelines, partner communications, and follow-up. Developed reporting, training, and briefing materials for leadership.</p>
         </div>
-          <div class="op-history-item op-history-item--wine">
+        <div class="op-history-item">
           <div class="op-history-meta">
             <span class="op-history-org">Office of U.S. Senator Mark R. Warner &bull; Outreach Representative</span>
             <span class="op-history-date">08/20 &ndash; 04/22</span>
           </div>
           <p class="op-history-desc">Managed communication across more than 40 Central Virginia counties with officials, agencies, businesses, advocates, press, and constituents. Prepared senior-level briefs and organized more than 40 public engagements with detailed schedules, records, logistics, and follow-up. Supported work connected to a $14.1 million rural broadband grant.</p>
         </div>
-      </div>
-    </div>
-<div class="handout-footer handout-footer--wine">
-      <div>Online Dossier: <a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us</a> <span class="footer-pin">PIN: 0000</span></div>
-      <div style="text-align: right; line-height: 1.45;">
-        <div>Direct Contact: <strong>randybryanmoore@gmail.com</strong></div>
-        <div><strong>(803) 486-4007</strong></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Side 4 of 4 -->
-  <div class="handout-sheet page-break">
-    <div class="handout-header handout-header--running">
-      <div class="handout-title">
-        <h1 style="font-size: 1.35rem;">Professional History &amp; Education</h1>
-        <p>Randy Bryan Moore, MSW &bull; Candidate Briefing &bull; Side 4 of 4</p>
-      </div>
-      <div class="handout-meta">
-        <div>randybryanmoore@gmail.com</div>
-        <div>(803) 486-4007</div>
-      </div>
-    </div>
-    <div class="handout-section">
-      <p class="op-kicker">04 &middot; PROFESSIONAL TRACK RECORD &middot; CONTINUED</p>
-      <h2>Ten Years of Systems and Public Service</h2>
-      <div class="op-history-list">
-          <div class="op-history-item op-history-item--navy">
+        <div class="op-history-item">
           <div class="op-history-meta">
             <span class="op-history-org">Virginia Housing Alliance &bull; Director of Policy and Advocacy</span>
             <span class="op-history-date">12/17 &ndash; 05/20</span>
           </div>
           <p class="op-history-desc">Developed housing policy, budget, and campaign strategy involving the Virginia Housing Trust Fund, homelessness, and permanent supportive housing. Coordinated statewide coalitions and public communications. Supervised graduate interns and served as MSW field instructor, providing structured coaching, feedback, and professional development.</p>
         </div>
-          <div class="op-history-item op-history-item--wine">
+        <div class="op-history-item">
           <div class="op-history-meta">
             <span class="op-history-org">Virginia Civic Engagement Table &bull; Community Organizer</span>
             <span class="op-history-date">02/17 &ndash; 12/17</span>
           </div>
           <p class="op-history-desc">Built systems and training support for 40 partner organizations across Virginia working on advocacy, voter registration, and civic engagement. Designed and delivered training, coordinated partner communications, and supported shared campaign timelines.</p>
         </div>
-          <div class="op-history-item op-history-item--navy">
+        <div class="op-history-item">
           <div class="op-history-meta">
             <span class="op-history-org">The Jefferson Hotel &bull; Contract Pianist</span>
             <span class="op-history-date">2022 &ndash; Present</span>
@@ -995,19 +1052,20 @@
         </div>
       </div>
     </div>
-<div class="handout-section">
-      <p class="op-kicker">05 &middot; EDUCATION</p>
+
+    <div class="handout-section">
+      <p class="op-kicker">05 &middot; EDUCATION &amp; TECHNICAL ENVIRONMENT</p>
       <div class="op-education-row">
-        <div><strong>Master of Social Work</strong><span>University of South Carolina &bull; Advanced standing, Organizations and Communities macro concentration</span></div>
-        <div><strong>Bachelor of Social Work</strong><span>University of South Carolina &bull; Leadership Distinction in Civic Engagement</span></div>
-        <div><strong>Sorensen Political Leaders Institute</strong><span>University of Virginia Weldon Cooper Center for Public Service &bull; 2022</span></div>
+        <div><strong>Master of Social Work (MSW)</strong><span>Univ. of South Carolina &bull; Advanced Standing, Macro Concentration</span></div>
+        <div><strong>Bachelor of Social Work (BSW)</strong><span>Univ. of South Carolina &bull; Leadership Distinction in Civic Engagement</span></div>
+        <div><strong>Sorensen Political Leaders Institute</strong><span>UVA Weldon Cooper Center for Public Service &bull; 2022</span></div>
       </div>
     </div>
-<div class="handout-footer handout-footer--wine">
+
+    <div class="handout-footer">
       <div>Online Dossier: <a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us</a> <span class="footer-pin">PIN: 0000</span></div>
-      <div style="text-align: right; line-height: 1.45;">
-        <div>Direct Contact: <strong>randybryanmoore@gmail.com</strong></div>
-        <div><strong>(803) 486-4007</strong></div>
+      <div style="text-align: right; line-height: 1.35;">
+        <div>Direct Contact: <strong>randybryanmoore@gmail.com</strong> &bull; <strong>(803) 486-4007</strong></div>
       </div>
     </div>
   </div>
