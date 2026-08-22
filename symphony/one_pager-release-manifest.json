@@ -4,11 +4,11 @@
   "surface_name": "Richmond Symphony Executive One-Pager",
   "surface_version": "1.0.1",
   "surface_prefix": "OP",
-  "parent_dossier": {
-    "production_version": "v1.7.4",
-    "production_commit": "6cf448a",
-    "relationship": "shared repository, stylesheet, client script, and GitHub Pages host; separate telemetry lineage"
-  },
+    "parent_dossier": {
+      "production_version": "v1.7.5",
+      "production_commit": "4f71b86",
+      "relationship": "shared repository, stylesheet, client script, and GitHub Pages host; separate telemetry lineage"
+    },
   "generator": {
     "agent": "CDX",
     "product": "Codex",
@@ -42,15 +42,15 @@
   "artifacts": [
     {
       "path": "one_pager.html",
-      "sha256": "6d44f622dfb1781bc94767a8421e9347af68689af06dc898d3d5cb9e625a6fd8"
+      "sha256": "cc33417efb1132929b976fcad8079d26e6edabba93613a8055bed602e327c75a"
     },
     {
       "path": "styles.css",
-      "sha256": "be59bb4d933f6450eaab9a2d67e928bb08d33921b11b4efcc234f753b4eb0bb5"
+      "sha256": "f532bd925bbbe758f26c2776dab71659dd306bb9b34c5f9c453e009d173a2659"
     },
     {
       "path": "script.js",
-      "sha256": "3f112e448dc87684296003765b02671677d528831760db9bc7042b5d621f472f"
+      "sha256": "9ebb6d4676e168e4dad1d41cbc47c6a9eeacd59e1ee789b068b294018e0be5b7"
     }
   ],
   "validation": {

@@ -253,10 +253,10 @@
       surfaceName: 'Executive One-Pager',
       serviceName: 'richmond-symphony-executive-one-pager',
       serviceVersion: '1.0.1',
-      parentServiceVersion: '1.7.4',
-      agent: 'CDX',
-      agentProduct: 'Codex',
-      modelFamily: 'GPT-5',
+      parentServiceVersion: '1.7.5',
+      agent: 'CUR',
+      agentProduct: 'Cursor',
+      modelFamily: 'Gemini / Claude',
       runtimeVariant: 'not exposed to the static page',
       reasoningEffort: 'not exposed to the static page',
       repository: 'randybryanmoore/randybryanmoore-dot-us',
@@ -760,7 +760,7 @@ This handoff describes the executive one-pager as its own release surface. The p
 - Surface: Executive One-Pager
 - Surface version: OP v${currentTelemetry.serviceVersion}
 - Parent dossier production: v${currentTelemetry.parentServiceVersion}
-- Agent: Codex (CDX)
+- Agent: Cursor (CUR)
 - Model family: ${currentTelemetry.modelFamily}; exact runtime variant and reasoning effort are not exposed and must not be inferred.
 - Source baseline: ${currentTelemetry.baseCommit}
 - Working file: symphony/one_pager.html
@@ -830,7 +830,7 @@ This is the current operational snapshot. Reverify every changeable fact before 
 
 ## 1. Current state
 - Version: \`v${currentTelemetry.serviceVersion}\`
-- Agent: Codex (\`CDX\`)
+- Agent: Cursor (\`CUR\`)
 - Model family: \`${currentTelemetry.modelFamily}\`; exact runtime variant and reasoning effort are not exposed to the static page and must not be inferred.
 - Repository: \`${currentTelemetry.repository}\`, branch \`${currentTelemetry.branch}\`
 - Source release lineage begins with: \`${currentTelemetry.baseCommit}\`
