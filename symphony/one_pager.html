@@ -783,7 +783,7 @@
 
     .portfolio-block {
       display: grid;
-      grid-template-columns: 56px 1fr;
+      grid-template-columns: 84px 1fr;
       gap: 16px;
       padding: 12px 18px;
       margin-bottom: 14px;
@@ -794,9 +794,9 @@
       align-items: center;
     }
     .portfolio-block .qr-wrap {
-      width: 52px;
-      height: 52px;
-      padding: 3px;
+      width: 80px;
+      height: 80px;
+      padding: 4px;
       background: #ffffff;
       border-radius: 4px;
       border: 1px solid var(--gold);
@@ -999,26 +999,14 @@
 
     @page {
       size: letter portrait;
-      margin: 0.16in 0.20in;
+      margin: 0;
     }
 
     @media print {
-      /* ------------------------------------------------------------------
-         EXACT WEB MIRROR PRINT STANDARD (STRICT 2-PAGE DUPLEX)
-         Deep Atlantic Navy ground + Elevated Cream Sheets
-         ------------------------------------------------------------------ */
+      /* Force browsers to print all background colors and images */
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
-      html, body {
-        margin: 0 !important;
-        padding: 0 !important;
-        background: #0D1A32 !important;
-        color: var(--charcoal) !important;
-        font-family: var(--font-sans) !important;
-        font-size: 7.2pt !important;
-        line-height: 1.22 !important;
-      }
-
+      /* Hide UI chrome only — everything else stays identical to screen */
       .op-site-header, .top-nav, .annotation-dock, .annotation-popover,
       .annotation-presentation-status, .dock-badge, .popover-voice-status,
       .feedback-drawer, .passcode-gate-overlay, .print-btn-bar,
@@ -1026,102 +1014,26 @@
         display: none !important;
       }
 
-      .handout-sheet {
-        width: 100% !important;
-        max-width: 100% !important;
+      body {
+        padding: 0 !important;
         margin: 0 !important;
-        padding: 12px 16px !important;
-        border-radius: 6px !important;
-        border: 1.5px solid rgba(223, 202, 116, 0.5) !important;
+        background: var(--cobalt-deep) !important;
+      }
+
+      .handout-sheet {
+        page-break-after: always !important;
+        break-after: page !important;
         box-shadow: none !important;
-        background: #FBF6ED !important;
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
-        display: flex !important;
-        flex-direction: column !important;
-        box-sizing: border-box !important;
-        min-height: 10.3in !important;
-        height: auto !important;
+        zoom: 0.78 !important;
+        width: calc(100% - 48px) !important;
+        max-width: calc(100% - 48px) !important;
+        /* Equal top/bottom margin to center vertically within the navy page */
+        margin: 0.55in auto !important;
       }
 
       .page-break {
         page-break-before: always !important;
         break-before: page !important;
-        margin-top: 0 !important;
-      }
-
-      .handout-header {
-        padding: 5px 10px !important;
-        margin-bottom: 5px !important;
-        background: #2B0710 !important;
-        border: 1px solid var(--gold) !important;
-        border-radius: 4px !important;
-      }
-      .handout-title h1 { font-size: 1.18rem !important; margin-bottom: 1px !important; }
-      .handout-title p { font-size: 0.60rem !important; }
-      .handout-meta { font-size: 0.60rem !important; line-height: 1.18 !important; }
-
-      .portfolio-block {
-        padding: 5px 10px !important;
-        margin-bottom: 5px !important;
-        background: #182B4D !important;
-        border: 1px solid var(--gold) !important;
-        border-radius: 4px !important;
-        grid-template-columns: 36px 1fr !important;
-        gap: 8px !important;
-      }
-      .portfolio-block .qr-wrap { width: 34px !important; height: 34px !important; }
-      .portfolio-block h3 { font-size: 0.74rem !important; margin-bottom: 1px !important; }
-      .portfolio-block p { font-size: 0.60rem !important; line-height: 1.16 !important; margin-bottom: 1px !important; }
-      .portfolio-block a.portfolio-link { font-size: 0.60rem !important; }
-
-      .handout-section { margin-bottom: 5px !important; }
-      .handout-section h2 { font-size: 0.78rem !important; margin-bottom: 3px !important; padding-bottom: 1px !important; }
-      .op-kicker { font-size: 0.52rem !important; margin-bottom: 1px !important; }
-
-      .how-i-think-panel {
-        padding: 5px 8px !important;
-        margin-bottom: 5px !important;
-        background: #F4EDE0 !important;
-        border-left: 3px solid #2B0710 !important;
-      }
-      .how-i-think-panel .op-lede { font-size: 0.66rem !important; line-height: 1.20 !important; margin-bottom: 1px !important; }
-      .how-i-think-panel .op-body { font-size: 0.60rem !important; line-height: 1.18 !important; }
-
-      .handout-grid-2 { gap: 4px !important; }
-      .handout-grid-3 { gap: 4px !important; }
-
-      .dcard {
-        padding: 5px 7px !important;
-        border-radius: 4px !important;
-      }
-      .dcard .dcard-num { font-size: 6px !important; margin-bottom: 1px !important; }
-      .dcard h3 { font-size: 0.70rem !important; margin-bottom: 1px !important; }
-      .dcard p { font-size: 0.58rem !important; line-height: 1.15 !important; }
-
-      .matrix-table {
-        margin-top: 2px !important;
-        font-size: 0.58rem !important;
-      }
-      .matrix-table th { padding: 3px 5px !important; font-size: 0.56rem !important; background: #2B0710 !important; }
-      .matrix-table td { padding: 3px 5px !important; line-height: 1.15 !important; }
-
-      .op-history-list { gap: 3px !important; }
-      .op-history-item { padding: 4px 7px !important; border-radius: 3px !important; }
-      .op-history-org { font-size: 0.66rem !important; }
-      .op-history-date { font-size: 0.56rem !important; }
-      .op-history-desc { font-size: 0.58rem !important; line-height: 1.14 !important; }
-
-      .op-education-row { gap: 4px !important; }
-      .op-education-row > div { padding: 4px 5px !important; border-radius: 3px !important; font-size: 0.56rem !important; }
-      .op-education-row strong { font-size: 0.62rem !important; }
-
-      .handout-footer {
-        padding: 4px 8px !important;
-        font-size: 0.60rem !important;
-        background: #182B4D !important;
-        border-radius: 4px !important;
-        margin-top: auto !important;
       }
     }
   </style>
