@@ -3743,12 +3743,12 @@ body[data-review-tools="on"] {
   }
   .build-provenance-modal {
     top: auto;
-    left: 16px;
-    right: 16px;
-    bottom: 96px;
-    width: auto;
-    max-width: none;
-    max-height: calc(100vh - var(--nav-h) - 106px);
+    left: auto;
+    right: 12px;
+    bottom: 84px;
+    width: 360px;
+    max-width: calc(100vw - 24px);
+    max-height: calc(100vh - var(--nav-h) - 96px);
   }
   .version-hover-card {
     position: static;
