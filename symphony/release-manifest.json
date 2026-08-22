@@ -29,11 +29,15 @@
     "staging": false,
     "production_verified": true,
     "production_version": "v1.7.5",
-    "verified_at": "2026-08-22T15:43:00-04:00",
+    "verified_at": "2026-08-22T15:46:57-04:00",
     "release_checkpoint": "46246df",
-    "deployment_workflow_run": "not captured: gh CLI unavailable in this environment",
+    "deployment_workflow_run": "32593867344",
     "first_verified_one_repository_build": "1d58442",
-    "production_note": "Dossier v1.8.0 committed in fcda78d, merged with origin/main in 46246df, pushed to main, deployed by the symphony-pages workflow, and read back from the custom domain"
+    "production_note": "Dossier v1.8.0 committed in fcda78d, merged with origin/main in 46246df, pushed to main, deployed by the symphony-pages workflow, and read back from the custom domain",
+    "deployment_workflow_name": "Deploy Richmond Symphony dossier",
+    "deployment_workflow_conclusion": "success",
+    "deployment_workflow_url": "https://github.com/randybryanmoore/randybryanmoore-dot-us/actions/runs/32593867344",
+    "deployed_at": "2026-08-22T19:30:09Z"
   },
   "artifacts": [
     {
@@ -79,7 +83,8 @@
     "browser_console": "pass: zero errors in a clean tab",
     "source_verification": "partial: 13 of 15 briefing sources absent from repo",
     "telemetry_badge_position": "pass: merged the upstream high-contrast badge and modal offsets from origin/main (8401aad)",
-    "lifecycle_accuracy": "pass: lifecycle flags corrected post-push; they previously understated the deployed state"
+    "lifecycle_accuracy": "pass: lifecycle flags corrected post-push; they previously understated the deployed state",
+    "deployment_run_captured": "pass: run 32593867344 (success) deployed 46246df, retrieved from the public Actions API"
   },
   "blockers": [
     "One-page decision applied per instruction: professional history now lives in the dossier only.",
