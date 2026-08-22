@@ -4011,16 +4011,3 @@ body[data-review-tools="on"] {
   box-shadow: 0 4px 16px rgba(43, 7, 16, 0.5), 0 0 14px rgba(223, 202, 116, 0.38);
 }
 
-/* One-pager badge carries an agent chip and a surface chip. The agent chip
-   uses the shared .build-badge-agent--* palette; this is the surface marker. */
-.build-badge-surface {
-  font-family: var(--mono);
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  padding: 2px 5px;
-  border-radius: 4px;
-  background: rgba(242, 234, 223, 0.16);
-  color: var(--cream);
-  border: 1px solid rgba(242, 234, 223, 0.35);
-}

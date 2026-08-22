@@ -46,11 +46,11 @@
   "artifacts": [
     {
       "path": "one_pager.html",
-      "sha256": "b5dd4de97e09211cdde8d838f6a4a6ba9cbad7afc8f0786fedcb5f498fb551d4"
+      "sha256": "de1c740b7c857c64d2bd0846b2fee6b6086d5107eb997e8f8d7bdec62246267e"
     },
     {
       "path": "styles.css",
-      "sha256": "0d5253c578770559e3dbebe31f82a6abd8266b52704802b838cf8eab555ed560"
+      "sha256": "d18a44210667ec8bbf45d5d471feb93b02db3fc1123f9d7868b8b7b9d83f3618"
     },
     {
       "path": "script.js",
