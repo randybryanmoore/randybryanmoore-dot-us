@@ -629,6 +629,49 @@ img {
   width: 100%;
 }
 
+.hero-dashboard-cta {
+  grid-column: 1 / -1;
+  display: flex !important;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 20px !important;
+  background: var(--maroon) !important;
+  border: 1.5px solid var(--gold-light) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 18px rgba(43, 7, 16, 0.45), 0 0 12px rgba(223, 202, 116, 0.25);
+  text-decoration: none;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.hero-dashboard-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(43, 7, 16, 0.6), 0 0 18px rgba(223, 202, 116, 0.4);
+  background: #380a15 !important;
+}
+
+.hero-cta-title {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.hero-cta-sub {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  color: var(--gold-light);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  opacity: 0.95;
+}
+
 .dashboard-concept-note {
   grid-column: 1 / -1;
   margin: -2px 0 0;
