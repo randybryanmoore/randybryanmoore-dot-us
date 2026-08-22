@@ -302,8 +302,11 @@
 
     .handout-header {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
+      text-align: center;
+      gap: 12px;
       background: linear-gradient(135deg, var(--wine) 0%, #3d0a18 100%);
       color: #ffffff;
       padding: 1.4rem 1.8rem;
@@ -327,7 +330,7 @@
       letter-spacing: 0.08em;
     }
     .handout-meta {
-      text-align: right;
+      text-align: center;
       font-size: 0.88rem;
       color: rgba(255, 255, 255, 0.95) !important;
       line-height: 1.5;
@@ -738,8 +741,11 @@
       padding: 14px 20px;
       margin-bottom: 14px;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
+      text-align: center;
+      gap: 10px;
       box-shadow: 0 4px 16px rgba(43, 7, 16, 0.25);
     }
     .handout-title h1 {
@@ -749,6 +755,7 @@
       color: #ffffff;
       margin-bottom: 3px;
       display: flex;
+      justify-content: center;
       align-items: center;
       gap: 10px;
     }
@@ -778,7 +785,7 @@
       font-size: 0.76rem;
       line-height: 1.4;
       color: rgba(255, 255, 255, 0.92);
-      text-align: right;
+      text-align: center;
     }
 
     .portfolio-block {
@@ -1071,7 +1078,7 @@
   <div class="handout-sheet">
     <div class="handout-header">
       <div class="handout-title">
-        <h1 style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+        <h1 style="display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:8px;">
           <span>Randy <em>Bryan</em> Moore</span>
           <span style="font-family:var(--font-sans); font-size:0.95rem; font-weight:800; background:var(--cobalt-deep); color:var(--gold-light); padding:2px 8px; border-radius:4px; border:1px solid var(--gold); letter-spacing:0.04em;">MSW</span>
         </h1>
