@@ -13,12 +13,22 @@ Use this skill whenever building, auditing, or refining web applications, protot
 
 | Dimension | Points | Standard Specification |
 | :--- | :---: | :--- |
+<<<<<<< HEAD
 | **1. Dual-Stream Note Architecture** | 20 pts | Clear separation between **🚀 AI Review Queue** (transient feedback for prompt generation, auto-reset upon export) and **🔒 Private Notes / Journal** (persistent personal memos, interview talking points, research thoughts; **never deleted or reset on AI export**). |
 | **2. Target Precision & Grouped Batching** | 20 pts | Single-element click + multi-element batch selection. Grouped annotations export **one numbered AI comment per saved batch** with all selected elements listed cleanly beneath that single comment. |
 | **3. Drawer Management & Search** | 15 pts | Tabbed drawer views (`AI Queue`, `Private Notes`, `All`), live keyword/tag search filter, smooth-scroll spotlight ripple jump-to-element, and badge visibility toggle (`👁️ Badges On/Off`). |
 | **4. Owner-Gated Presentation Controls** | 15 pts | Seamless toggle between **`Ready to Present`** (clean client presentation mode with annotation and editor docks hidden) and **`Admin Controls Unlocked`** via a compact 4-digit verification gate. |
 | **5. Provenance & Version Breakdown** | 15 pts | Clickable flyout (or `Shift + V`) displaying the active stack, 7-state code lifecycle, cumulative active-block engineering time (`⏱️ 10.6 Hours Logged`), and unclipped inline expandable version cards. |
 | **6. Cross-Agent Handoff Interoperability** | 15 pts | **1-Click "📋 Copy Complete Agent Handoff"** and **"⚙ Copy Telemetry (.YAML)"** tools that compile the entire multi-session architecture, sourced claims, design tokens, and work log for instant zero-loss handoffs to Claude Code (`CL`), Codex (`CDX`), Antigravity (`AG`), or Cursor (`CUR`). |
+=======
+| **1. Dual-Stream Note Architecture** | 15 pts | Clear separation between **🚀 AI Review Queue** (transient feedback for prompt generation, auto-reset upon export) and **🔒 Private Notes / Journal** (persistent personal memos, interview talking points, research thoughts; **never deleted or reset on AI export**). |
+| **2. Target Precision & Grouped Batching** | 15 pts | Single-element click + multi-element batch selection. Grouped annotations export **one numbered AI comment per saved batch** with all selected elements listed cleanly beneath that single comment. |
+| **3. Voice Notes & Live Speech Transcription** | 15 pts | **🎙️ Live Speech-to-Text Dictation** (`SpeechRecognition` API) directly populating critique comments in real-time, plus **🔊 Audio Voice Snippet Capture** (`MediaRecorder` API) with waveform/pulsing indicators and inline drawer playback (`▶️ Play Voice Note`). |
+| **4. Drawer Management & Search** | 15 pts | Tabbed drawer views (`AI Queue`, `Private Notes`, `All`), live keyword/tag search filter, smooth-scroll spotlight ripple jump-to-element, and badge visibility toggle (`👁️ Badges On/Off`). |
+| **5. Owner-Gated Presentation Controls** | 15 pts | Seamless toggle between **`Ready to Present`** (clean client presentation mode with annotation and editor docks hidden) and **`Admin Controls Unlocked`** via a compact 4-digit verification gate. |
+| **6. Provenance & Version Breakdown** | 15 pts | Clickable flyout (or `Shift + V`) displaying the active stack, 7-state code lifecycle, cumulative active-block engineering time (`⏱️ 11.0 Hours Logged`), and unclipped inline expandable version cards. |
+| **7. Cross-Agent Handoff Interoperability** | 10 pts | **1-Click "📋 Copy Complete Agent Handoff"** and **"⚙ Copy Telemetry (.YAML)"** tools that compile the entire multi-session architecture, sourced claims, design tokens, and work log for instant zero-loss handoffs to Claude Code (`CL`), Codex (`CDX`), or Antigravity (`AG`). |
+>>>>>>> 946053f (feat(annotation): add voice recording and live speech transcription standard across suite and skills)
 
 ---
 
@@ -77,7 +87,13 @@ Use this skill whenever building, auditing, or refining web applications, protot
   </div>
   <div class="popover-target-snippet" id="popover-target-text"></div>
   <div class="popover-tags" id="popover-tags-container"></div>
-  <textarea class="popover-textarea" id="popover-comment-input" aria-label="Annotation comment text" placeholder="Type your note or revision... (Press Enter to save)"></textarea>
+  <div class="popover-voice-bar">
+    <button type="button" class="popover-voice-btn" id="popover-voice-btn" title="Click to speak / dictate note">
+      <span class="voice-mic-icon">🎙️</span> <span id="popover-voice-btn-label">Dictate Voice Note</span>
+    </button>
+    <span class="popover-voice-status" id="popover-voice-status">Click mic to speak</span>
+  </div>
+  <textarea class="popover-textarea" id="popover-comment-input" aria-label="Annotation comment text" placeholder="Type or dictate your note or revision... (Press Enter to save)"></textarea>
   <div class="popover-actions">
     <button class="popover-cancel-btn" id="popover-dismiss-btn">Cancel (Esc)</button>
     <button class="popover-pin-btn" id="popover-save-btn">Pin for AI ↵</button>

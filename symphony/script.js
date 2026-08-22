@@ -1214,6 +1214,9 @@ The complete YAML telemetry is embedded in Section 10.7 and is also available se
     const popoverClose = document.getElementById('popover-close-btn');
     const popoverModeTabs = document.querySelectorAll('.popover-mode-tab');
     const popoverTagsContainer = document.getElementById('popover-tags-container');
+    const popoverVoiceBtn = document.getElementById('popover-voice-btn');
+    const popoverVoiceStatus = document.getElementById('popover-voice-status');
+    const popoverVoiceBtnLabel = document.getElementById('popover-voice-btn-label');
 
     const drawer = document.getElementById('feedback-drawer');
     const drawerClose = document.getElementById('drawer-close-btn');
@@ -1340,6 +1343,148 @@ The complete YAML telemetry is embedded in Section 10.7 and is also available se
         }
       }
     };
+
+    // Voice Notes & Live Speech Transcription Engine
+    let speechRecognizer = null;
+    let isVoiceRecording = false;
+    let mediaRecorder = null;
+    let audioStream = null;
+    let recordedAudioChunks = [];
+    let activeVoiceAudioBase64 = null;
+
+    const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    function startVoiceDictation() {
+      if (isVoiceRecording) {
+        stopVoiceDictation();
+        return;
+      }
+
+      isVoiceRecording = true;
+      activeVoiceAudioBase64 = null;
+      recordedAudioChunks = [];
+
+      if (popoverVoiceBtn) {
+        popoverVoiceBtn.classList.add('recording');
+        if (popoverVoiceBtnLabel) popoverVoiceBtnLabel.innerText = 'Stop Dictating';
+      }
+      if (popoverVoiceStatus) {
+        popoverVoiceStatus.innerText = '🔴 Listening... speak your note';
+        popoverVoiceStatus.classList.add('listening');
+      }
+
+      // 1. Live Speech-to-Text Transcription directly into popover textarea
+      if (SpeechRec) {
+        try {
+          if (!speechRecognizer) {
+            speechRecognizer = new SpeechRec();
+            speechRecognizer.continuous = true;
+            speechRecognizer.interimResults = true;
+            speechRecognizer.lang = 'en-US';
+
+            speechRecognizer.onresult = (e) => {
+              let finalTranscript = '';
+              for (let i = e.resultIndex; i < e.results.length; ++i) {
+                if (e.results[i].isFinal) {
+                  finalTranscript += e.results[i][0].transcript;
+                }
+              }
+              if (finalTranscript && popoverInput) {
+                const currentText = popoverInput.value.trim();
+                popoverInput.value = currentText ? `${currentText} ${finalTranscript.trim()}` : finalTranscript.trim();
+                popoverInput.dispatchEvent(new Event('input', { bubbles: true }));
+              }
+            };
+
+            speechRecognizer.onerror = (err) => {
+              console.warn('SpeechRecognition error:', err);
+              if (popoverVoiceStatus && err.error !== 'no-speech') {
+                popoverVoiceStatus.innerText = `Mic notice: ${err.error}`;
+              }
+            };
+
+            speechRecognizer.onend = () => {
+              if (isVoiceRecording) {
+                try { speechRecognizer.start(); } catch (e) {}
+              }
+            };
+          }
+          speechRecognizer.start();
+        } catch (e) {
+          console.warn('SpeechRecognizer start warning:', e);
+        }
+      }
+
+      // 2. Capture Audio snippet via MediaRecorder for playback in Drawer
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+          .then(stream => {
+            audioStream = stream;
+            try {
+              mediaRecorder = new MediaRecorder(stream);
+              mediaRecorder.ondataavailable = (ev) => {
+                if (ev.data && ev.data.size > 0) recordedAudioChunks.push(ev.data);
+              };
+              mediaRecorder.onstop = () => {
+                if (recordedAudioChunks.length > 0) {
+                  const audioBlob = new Blob(recordedAudioChunks, { type: 'audio/webm' });
+                  const reader = new FileReader();
+                  reader.onloadend = () => {
+                    activeVoiceAudioBase64 = reader.result;
+                  };
+                  reader.readAsDataURL(audioBlob);
+                }
+                if (audioStream) {
+                  audioStream.getTracks().forEach(track => track.stop());
+                }
+              };
+              mediaRecorder.start();
+            } catch (err) {
+              console.warn('MediaRecorder error:', err);
+            }
+          })
+          .catch(err => {
+            console.warn('Mic permission notice:', err);
+            if (popoverVoiceStatus) {
+              popoverVoiceStatus.innerText = 'Mic permission needed to dictate';
+              popoverVoiceStatus.classList.remove('listening');
+            }
+          });
+      } else if (!SpeechRec) {
+        if (popoverVoiceStatus) popoverVoiceStatus.innerText = 'Dictation not supported in browser';
+      }
+    }
+
+    function stopVoiceDictation() {
+      isVoiceRecording = false;
+      if (popoverVoiceBtn) {
+        popoverVoiceBtn.classList.remove('recording');
+        if (popoverVoiceBtnLabel) popoverVoiceBtnLabel.innerText = 'Dictate Voice Note';
+      }
+      if (popoverVoiceStatus) {
+        popoverVoiceStatus.innerText = activeVoiceAudioBase64 ? 'Voice note recorded ✓' : 'Click mic to speak';
+        popoverVoiceStatus.classList.remove('listening');
+      }
+
+      if (speechRecognizer) {
+        try { speechRecognizer.stop(); } catch (e) {}
+      }
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        try { mediaRecorder.stop(); } catch (e) {}
+      }
+    }
+
+    if (popoverVoiceBtn) {
+      popoverVoiceBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (isVoiceRecording) {
+          stopVoiceDictation();
+        } else {
+          startVoiceDictation();
+        }
+      });
+    }
 
     // Toggle Pin AI Mode from Dock
     if (pinAiToggle) {
@@ -1642,6 +1787,7 @@ The complete YAML telemetry is embedded in Section 10.7 and is also available se
           category: selectedCategory,
           targetText: item.text,
           comment: comment,
+          voiceAudio: activeVoiceAudioBase64,
           createdAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         };
 
@@ -1657,6 +1803,8 @@ The complete YAML telemetry is embedded in Section 10.7 and is also available se
     }
 
     function closePopover() {
+      stopVoiceDictation();
+      activeVoiceAudioBase64 = null;
       if (popover) popover.style.display = 'none';
       selectedElements.forEach(item => {
         if (item.el) item.el.classList.remove('annotation-target-selected');
@@ -1728,6 +1876,14 @@ The complete YAML telemetry is embedded in Section 10.7 and is also available se
       drawerList.innerHTML = displayNotes.map(n => {
         const isPriv = (n.type === 'private');
         const badgeLabel = isPriv ? `🔒#${n.id}` : `#${n.id}`;
+        const voiceAudioMarkup = n.voiceAudio ? `
+          <div class="drawer-voice-player">
+            <span>🎙️ Audio Note</span>
+            <button type="button" onclick="window.playAnnotationAudio('${n.noteId}')" id="voice-play-btn-${n.noteId}">▶ Play</button>
+            <audio id="audio-el-${n.noteId}" src="${n.voiceAudio}" preload="none" style="display:none;"></audio>
+          </div>
+        ` : '';
+
         return `
           <div class="drawer-item ${isPriv ? 'drawer-item--private' : ''}" id="drawer-item-${n.noteId}">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
@@ -1740,11 +1896,29 @@ The complete YAML telemetry is embedded in Section 10.7 and is also available se
               </div>
             </div>
             <div style="font-size:10.5px; color:var(--muted); margin-bottom:4px;">Target: <em>&lt;${n.tag}&gt; "${escapeHtml(n.targetText)}"</em></div>
-            <p style="font-size:12px; line-height:1.45; margin:0; color:var(--ink);">${escapeHtml(n.comment)}</p>
+            <p style="font-size:12px; line-height:1.45; margin:0 0 4px 0; color:var(--ink);">${escapeHtml(n.comment)}</p>
+            ${voiceAudioMarkup}
           </div>
         `;
       }).join('');
     }
+
+    // Audio Playback Helper
+    window.playAnnotationAudio = function(noteId) {
+      const audioEl = document.getElementById(`audio-el-${noteId}`);
+      const playBtn = document.getElementById(`voice-play-btn-${noteId}`);
+      if (!audioEl) return;
+      if (audioEl.paused) {
+        audioEl.play();
+        if (playBtn) playBtn.innerText = '⏸ Pause';
+        audioEl.onended = () => {
+          if (playBtn) playBtn.innerText = '▶ Play';
+        };
+      } else {
+        audioEl.pause();
+        if (playBtn) playBtn.innerText = '▶ Play';
+      }
+    };
 
     // Global helper for jumping to element with spotlight ripple
     window.jumpToAnnotatedElement = function(noteId) {

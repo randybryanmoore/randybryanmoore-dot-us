@@ -1162,22 +1162,28 @@
 
   <!-- Precision Pinned Popover -->
   <div class="annotation-popover" id="annotation-popover">
+    <!-- Stream Mode Selector -->
+    <div class="popover-mode-tabs">
+      <button type="button" class="popover-mode-tab active" data-mode="ai">🚀 AI Review</button>
+      <button type="button" class="popover-mode-tab" data-mode="private">🔒 Private Note</button>
+    </div>
+
     <div class="popover-header">
       <span class="popover-title">Comment on Element</span>
       <button class="popover-cancel-btn" id="popover-close-btn" aria-label="Close Popover">✕</button>
     </div>
     <div class="popover-target-snippet" id="popover-target-text"></div>
-    <div class="popover-tags">
-      <span class="tag-chip selected" data-tag="Copy">Copy</span>
-      <span class="tag-chip" data-tag="Design">Design</span>
-      <span class="tag-chip" data-tag="Data">Data</span>
-      <span class="tag-chip" data-tag="Layout">Layout</span>
-      <span class="tag-chip" data-tag="Note">Note</span>
+    <div class="popover-tags" id="popover-tags-container"></div>
+    <div class="popover-voice-bar">
+      <button type="button" class="popover-voice-btn" id="popover-voice-btn" title="Click to speak / dictate note">
+        <span class="voice-mic-icon">🎙️</span> <span id="popover-voice-btn-label">Dictate Voice Note</span>
+      </button>
+      <span class="popover-voice-status" id="popover-voice-status">Click mic to speak</span>
     </div>
-    <textarea class="popover-textarea" id="popover-comment-input" placeholder="Type your note or revision... (Press Enter to save)"></textarea>
+    <textarea class="popover-textarea" id="popover-comment-input" aria-label="Annotation comment text" placeholder="Type or dictate your note or revision... (Press Enter to save)"></textarea>
     <div class="popover-actions">
       <button class="popover-cancel-btn" id="popover-dismiss-btn">Cancel (Esc)</button>
-      <button class="popover-pin-btn" id="popover-save-btn">Pin Note ↵</button>
+      <button class="popover-pin-btn" id="popover-save-btn">Pin for AI ↵</button>
     </div>
   </div>
 
