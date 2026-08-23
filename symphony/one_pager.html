@@ -302,11 +302,9 @@
 
     .handout-header {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      text-align: center;
-      gap: 12px;
+      gap: 1.5rem;
       background: linear-gradient(135deg, var(--wine) 0%, #3d0a18 100%);
       color: #ffffff;
       padding: 1.4rem 1.8rem;
@@ -315,12 +313,24 @@
       border: 1.5px solid var(--gold);
       box-shadow: 0 6px 18px rgba(43, 7, 16, 0.35);
     }
+    .handout-header-main {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: 4px;
+      flex: 1;
+    }
     .handout-title h1 {
-      font-size: 2.1rem;
+      font-size: 2.0rem;
       color: #ffffff !important;
       margin-bottom: 0.25rem;
       line-height: 1.15;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
+    .handout-title h1 .name-blue { color: #8cb8f0 !important; }
     .handout-title p {
       font-size: 0.84rem;
       color: var(--gold-light) !important;
@@ -328,15 +338,37 @@
       margin-bottom: 0;
       text-transform: uppercase;
       letter-spacing: 0.08em;
+      text-align: left;
     }
-    .handout-meta {
-      text-align: center;
-      font-size: 0.88rem;
-      color: rgba(255, 255, 255, 0.95) !important;
-      line-height: 1.5;
+    .handout-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 16px;
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      color: rgba(255, 255, 255, 0.92);
+      margin-top: 4px;
     }
-    .handout-meta div {
-      color: rgba(255, 255, 255, 0.95) !important;
+    .handout-meta-row a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .handout-avatar-wrap {
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      border: 2px solid var(--gold);
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+      background: var(--cobalt-deep);
+    }
+    .handout-avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .handout-section {
@@ -668,10 +700,11 @@
         width: calc(100% - 24px);
       }
       .handout-header {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         gap: 12px;
-        padding: 1.2rem 1.4rem;
+        padding: 1rem 1.2rem;
       }
       .handout-meta {
         text-align: left;
@@ -738,54 +771,88 @@
       background: linear-gradient(135deg, var(--wine) 0%, #1c040a 100%);
       border: 1px solid var(--gold);
       border-radius: 6px;
-      padding: 14px 20px;
-      margin-bottom: 14px;
+      padding: 12px 18px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 4px 16px rgba(43, 7, 16, 0.25);
+    }
+    .handout-header-main {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      gap: 10px;
-      box-shadow: 0 4px 16px rgba(43, 7, 16, 0.25);
+      align-items: flex-start;
+      text-align: left;
+      gap: 2px;
+      flex: 1;
+      min-width: 0;
     }
     .handout-title h1 {
       font-family: var(--font-serif);
-      font-size: 1.55rem;
+      font-size: 1.50rem;
       font-weight: 700;
       color: #ffffff;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
     .handout-title h1 span:first-child { color: #ffffff; }
     .handout-title h1 em { font-style: italic; color: var(--gold-light); }
+    .handout-title h1 .name-blue { color: #8cb8f0 !important; }
     .hero-msw {
       font-family: var(--font-sans);
-      font-size: 0.88rem;
+      font-size: 0.80rem;
       font-weight: 800;
       background: var(--cobalt-deep);
       color: var(--gold-light);
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 4px;
       border: 1px solid var(--gold);
       letter-spacing: 0.04em;
     }
     .handout-title p {
       font-family: var(--font-sans);
-      font-size: 0.76rem;
+      font-size: 0.74rem;
       font-weight: 600;
       color: var(--gold-light);
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
+      margin-bottom: 3px;
+      text-align: left;
     }
-    .handout-meta {
+    .handout-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 12px;
       font-family: var(--font-mono);
-      font-size: 0.76rem;
-      line-height: 1.4;
-      color: rgba(255, 255, 255, 0.92);
-      text-align: center;
+      font-size: 0.72rem;
+      line-height: 1.3;
+      color: rgba(255, 255, 255, 0.90);
+      margin-top: 1px;
+    }
+    .handout-meta-row a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .handout-avatar-wrap {
+      flex-shrink: 0;
+      width: 66px;
+      height: 66px;
+      border-radius: 6px;
+      border: 1.5px solid var(--gold);
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+      background: var(--cobalt-deep);
+    }
+    .handout-avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .portfolio-block {
@@ -1031,11 +1098,27 @@
         page-break-after: always !important;
         break-after: page !important;
         box-shadow: none !important;
-        zoom: 0.78 !important;
+        zoom: 0.74 !important;
         width: calc(100% - 48px) !important;
         max-width: calc(100% - 48px) !important;
         /* Equal top/bottom margin to center vertically within the navy page */
-        margin: 0.55in auto !important;
+        margin: 0.45in auto !important;
+      }
+
+      .handout-header {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+      }
+
+      .portfolio-block {
+        grid-template-columns: 84px 1fr !important;
+      }
+
+      .handout-footer {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
       }
 
       .page-break {
@@ -1077,17 +1160,24 @@
   <!-- Side 1 of 2: Executive Summary, Pillars & Alignment Matrix -->
   <div class="handout-sheet">
     <div class="handout-header">
-      <div class="handout-title">
-        <h1 style="display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:8px;">
-          <span>Randy <em>Bryan</em> Moore</span>
-          <span style="font-family:var(--font-sans); font-size:0.95rem; font-weight:800; background:var(--cobalt-deep); color:var(--gold-light); padding:2px 8px; border-radius:4px; border:1px solid var(--gold); letter-spacing:0.04em;">MSW</span>
-        </h1>
-        <p>Candidate for Assistant Director, Advancement Systems &amp; Operations</p>
+      <div class="handout-header-main">
+        <div class="handout-title">
+          <h1 style="display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:2px;">
+            <span>Randy <em>Bryan</em> <span class="name-blue">Moore</span></span>
+            <span class="hero-msw">MSW</span>
+          </h1>
+          <p>Candidate for Assistant Director, Advancement Systems &amp; Operations</p>
+        </div>
+        <div class="handout-meta-row">
+          <span>Richmond, Virginia</span>
+          <span>&bull;</span>
+          <a href="mailto:randybryanmoore@gmail.com">randybryanmoore@gmail.com</a>
+          <span>&bull;</span>
+          <a href="tel:+18034864007">(803) 486-4007</a>
+        </div>
       </div>
-      <div class="handout-meta">
-        <div>Richmond, Virginia</div>
-        <div><a href="mailto:randybryanmoore@gmail.com" style="color: inherit; text-decoration: none;">randybryanmoore@gmail.com</a></div>
-        <div><a href="tel:+18034864007" style="color: inherit; text-decoration: none;">(803) 486-4007</a></div>
+      <div class="handout-avatar-wrap">
+        <img src="images/headshot.jpg" alt="Randy Bryan Moore, MSW" width="66" height="66">
       </div>
     </div>
 
@@ -1095,10 +1185,10 @@
       <div class="qr-wrap"><svg role="img" aria-label="QR code linking to https://symphony.randybryanmoore.us/" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31"><path fill="#fff" d="M0 0h31v31h-31z"/><path stroke="#000000" stroke-width="1.1" d="M1 1.5h7m1 0h1m2 0h1m1 0h2m3 0h1m3 0h7m-29 1h1m5 0h1m2 0h6m1 0h4m2 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m2 0h1m4 0h1m4 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h2m4 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h2m6 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h3m1 0h1m3 0h5m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h1m1 0h2m1 0h1m2 0h2m2 0h1m-21 1h1m3 0h1m1 0h8m2 0h2m1 0h7m2 0h1m-29 1h1m1 0h2m6 0h1m1 0h6m4 0h7m-29 1h1m2 0h4m1 0h1m6 0h1m1 0h1m3 0h1m1 0h1m4 0h1m-29 1h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h7m1 0h1m1 0h2m-29 1h4m1 0h2m1 0h1m1 0h1m1 0h3m1 0h2m2 0h2m1 0h1m3 0h1m-28 1h1m2 0h3m1 0h2m1 0h3m2 0h2m1 0h1m3 0h7m-29 1h5m1 0h1m3 0h2m1 0h5m2 0h1m4 0h2m1 0h1m-28 1h1m3 0h1m2 0h1m1 0h2m1 0h1m3 0h2m5 0h1m2 0h2m-29 1h3m2 0h6m1 0h2m1 0h1m1 0h1m1 0h3m5 0h1m-28 1h1m1 0h4m1 0h2m3 0h4m1 0h2m3 0h4m1 0h2m-25 1h3m1 0h1m2 0h1m3 0h1m2 0h1m7 0h1m1 0h1m-27 1h3m2 0h2m3 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h2m2 0h2m-29 1h2m1 0h9m1 0h2m2 0h1m1 0h7m2 0h1m-21 1h1m2 0h2m2 0h4m1 0h1m3 0h1m3 0h1m-29 1h7m1 0h3m1 0h9m1 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m5 0h2m2 0h5m3 0h1m2 0h2m-29 1h1m1 0h3m1 0h1m1 0h2m2 0h2m2 0h2m1 0h7m1 0h1m-28 1h1m1 0h3m1 0h1m2 0h2m2 0h7m1 0h1m1 0h1m4 0h1m-29 1h1m1 0h3m1 0h1m4 0h2m1 0h2m2 0h3m4 0h4m-29 1h1m5 0h1m3 0h1m1 0h1m4 0h2m1 0h2m2 0h2m1 0h2m-29 1h7m1 0h2m3 0h3m1 0h1m1 0h3m2 0h1m2 0h1"/></svg></div>
       <div>
         <h3 style="color:#fff; font-size:0.95rem; margin-bottom:0.15rem;">Scan for the Full Interactive Dossier</h3>
-        <p style="color:rgba(255,255,255,0.9); font-size:0.75rem; line-height:1.35; margin-bottom:0.25rem;">Live systems case studies, professional track record, musical background, onboarding roadmap, and interactive audio.</p>
-        <div style="display:flex; gap:12px; align-items:center;">
-          <a class="portfolio-link" href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener" style="color:var(--gold-light); font-family:var(--font-mono); font-size:0.75rem; font-weight:700; text-decoration:none;">symphony.randybryanmoore.us &#8599;</a>
-          <span style="font-family:var(--font-mono); font-size:0.70rem; background:rgba(255,255,255,0.18); color:#fff; padding:1px 6px; border-radius:4px; font-weight:600;">PIN: 0000</span>
+        <p style="color:rgba(255,255,255,0.9); font-size:0.74rem; line-height:1.35; margin-bottom:0.25rem;">Interactive candidate briefing featuring systems case studies, operational blueprints, candidate philosophy, audio recordings, and 30-60-90 day milestone details.</p>
+        <div style="display:inline-flex; gap:10px; align-items:center; flex-wrap:nowrap;">
+          <a class="portfolio-link" href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener" style="color:var(--gold-light); font-family:var(--font-mono); font-size:0.76rem; font-weight:700; text-decoration:none;">symphony.randybryanmoore.us &#8599;</a>
+          <span style="font-family:var(--font-mono); font-size:0.70rem; background:rgba(255,255,255,0.18); color:#fff; padding:1px 6px; border-radius:4px; font-weight:600; white-space:nowrap;">PIN: 0000</span>
         </div>
       </div>
     </div>
@@ -1118,22 +1208,22 @@
         <div class="dcard">
           <span class="dcard-num">01</span>
           <h3>CRM // Pipeline Analytics</h3>
-          <p>EveryAction constituent tagging, moves management &amp; segmentation. In conversation: partnering with CDO Eboni Boadi on major gift pipeline velocity to meet the $6.9M goal; structuring LYBUNT/SYBUNT analytics for Leah Coltrane's ~$850k Annual Fund portfolio.</p>
+          <p>EveryAction constituent tagging, moves management &amp; segmentation. In conversation: partnering with Chief Development Officer on major gift pipeline velocity to meet the $6.9M goal; structuring LYBUNT/SYBUNT analytics for Annual Fund leadership.</p>
         </div>
         <div class="dcard">
           <span class="dcard-num">02</span>
           <h3>Finance Subledger Reconciliation</h3>
-          <p>Budget strategy managing state trust funds &amp; $14.1M grant work. In conversation: collaborating with Assistant Director of Finance &amp; HR Shacoya Henley to establish weekly GL-to-Bloomerang reconciliation &amp; restriction governance (Operating vs. Endowment).</p>
+          <p>Budget strategy managing state trust funds &amp; $14.1M grant work. In conversation: collaborating with Finance &amp; Operations leadership to establish weekly GL-to-Bloomerang reconciliation &amp; restriction governance (Operating vs. Endowment).</p>
         </div>
         <div class="dcard">
           <span class="dcard-num">03</span>
           <h3>People Leadership // Scaffolding</h3>
-          <p>Supervised graduate interns as MSW field instructor at Virginia Housing Alliance. In conversation: coaching Advancement Assistant Camryn Claude on gift entry batching, data hygiene, and maintaining &lt;48h acknowledgment SLAs.</p>
+          <p>Supervised graduate interns as MSW field instructor at Virginia Housing Alliance. In conversation: coaching Advancement Operations staff on gift entry batching, data integrity, and maintaining &lt;48h acknowledgment SLAs.</p>
         </div>
         <div class="dcard">
           <span class="dcard-num">04</span>
           <h3>Artistic Literacy // Community Mission</h3>
-          <p>Contract pianist at The Jefferson Hotel since 2022. In conversation: partnering with Davey Van Beveren (Dir of Education &amp; Community Engagement) to track RSSoM tuition, Youth Orchestras, and Big Tent community concerts.</p>
+          <p>Contract pianist at The Jefferson Hotel since 2022. In conversation: partnering with Education &amp; Community Engagement leadership to track RSSoM tuition, Youth Orchestras, and Big Tent community concerts.</p>
         </div>
       </div>
     </div>
@@ -1144,35 +1234,35 @@
       <table class="matrix-table">
         <thead>
           <tr>
-            <th style="width: 25%;">Institutional Priority</th>
-            <th style="width: 45%;">Demonstrated Track Record</th>
+            <th style="width: 26%;">Institutional Priority</th>
+            <th style="width: 44%;">Demonstrated Track Record</th>
             <th style="width: 30%;">Selection Panel Alignment</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>CRM Administration &amp; Data Hygiene</strong></td>
-            <td>Managed EveryAction statewide constituent database, segmentation, and batch imports across 10-org coalition.</td>
-            <td><strong>CDO Eboni Boadi:</strong> Pipeline velocity &amp; major gift moves management to drive $6.9M goal.</td>
+            <td><strong>CRM Administration &amp; Data Integrity</strong></td>
+            <td>Managed EveryAction constituent database, segmentation, and batch imports across a 10-org coalition; engineered custom tracking systems for legislative visits, state budget tracking, and statewide lobby days.</td>
+            <td><strong>Chief Development Officer:</strong> Pipeline velocity &amp; major gift moves management to drive $6.9M goal.</td>
           </tr>
           <tr>
-            <td><strong>Finance Subledger Reconciliation</strong></td>
-            <td>Managed state trust funds &amp; $14.1M federal grant data integrity with strict restriction accounting.</td>
-            <td><strong>Asst Dir Finance Shacoya Henley:</strong> Weekly GL-to-Bloomerang reconciliation &amp; audit schedules.</td>
+            <td><strong>Budget Strategy &amp; Restricted Fund Accounting</strong></td>
+            <td>Managed state trust fund allocations, grant data integrity, and compliance across complex nonprofit budgets.</td>
+            <td><strong>Finance &amp; Operations Leadership:</strong> Weekly GL-to-Bloomerang reconciliation &amp; audit schedules.</td>
           </tr>
           <tr>
             <td><strong>People Leadership &amp; Coaching</strong></td>
-            <td>Supervised graduate interns as MSW field instructor; trained 40 partner orgs statewide on systems.</td>
-            <td><strong>Advancement Asst Camryn Claude:</strong> Structured SOPs, gift batching &amp; &lt;48h acknowledgment SLA.</td>
+            <td>Supervised graduate interns as MSW field instructor; managed broad partner coalitions and stakeholder teams across VHA, VCET, and Active Minds.</td>
+            <td><strong>Advancement Operations:</strong> Structured SOPs, gift batching &amp; &lt;48h acknowledgment SLA.</td>
           </tr>
           <tr>
-            <td><strong>Community &amp; Education Systems</strong></td>
-            <td>Built multi-county tracking systems across 40+ Central Virginia jurisdictions and state agencies.</td>
-            <td><strong>Dir Education Davey Van Beveren:</strong> RSSoM tuition data, Youth Orchestras &amp; Big Tent metrics.</td>
+            <td><strong>Community &amp; Civic Engagement Systems</strong></td>
+            <td>Managed regional stakeholder communication, public engagements, and coalition campaigns across 40+ Central Virginia localities.</td>
+            <td><strong>Education &amp; Community Engagement:</strong> RSSoM tuition data, Youth Orchestras &amp; Big Tent metrics.</td>
           </tr>
           <tr>
             <td><strong>Patron Hospitality &amp; Artistic Fluency</strong></td>
-            <td>Contract pianist at The Jefferson Hotel since 2022; music producer and former School of Rock instructor.</td>
+            <td>Contract pianist at The Jefferson Hotel since 2022; performing artist, music producer, and former School of Rock instructor.</td>
             <td><strong>Artistic &amp; Donor Community:</strong> Natural fluency with symphony patrons, musicians, and board members.</td>
           </tr>
         </tbody>
@@ -1180,7 +1270,11 @@
     </div>
 
     <div class="handout-footer">
-      <div>Online Dossier: <a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us</a> <span class="footer-pin">PIN: 0000</span></div>
+      <div style="display:inline-flex; align-items:center; gap:8px; flex-wrap:nowrap;">
+        <span>Online Dossier:</span>
+        <a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us</a>
+        <span class="footer-pin" style="white-space:nowrap;">PIN: 0000</span>
+      </div>
       <div style="text-align: right; line-height: 1.35;">
         <div>Direct Contact: <strong><a href="mailto:randybryanmoore@gmail.com" style="color: inherit; text-decoration: none;">randybryanmoore@gmail.com</a></strong> &bull; <strong><a href="tel:+18034864007" style="color: inherit; text-decoration: none;">(803) 486-4007</a></strong></div>
       </div>
@@ -1189,12 +1283,14 @@
 
   <!-- Side 2 of 2: Onboarding Roadmap, Career History & Credentials -->
   <div class="handout-sheet page-break">
-    <div class="handout-header handout-header--running">
-      <div class="handout-title">
-        <h1 style="font-size: 1.15rem;">Onboarding Plan // Professional History</h1>
-        <p>30-60-90 DAY PLAN &bull; RANDY BRYAN MOORE, MSW &bull; RICHMOND SYMPHONY CANDIDATE BRIEFING</p>
+    <div class="handout-header handout-header--running" style="padding: 10px 18px; margin-bottom: 12px;">
+      <div class="handout-header-main">
+        <h1 style="font-size: 1.10rem; margin-bottom: 1px; text-align: left; display:flex; align-items:center; gap:6px;">
+          <span>Onboarding Plan // Professional History</span>
+        </h1>
+        <p style="font-size: 0.70rem; color: var(--gold-light); margin: 0; text-align: left;">30-60-90 DAY PLAN &bull; RANDY BRYAN MOORE, MSW &bull; RICHMOND SYMPHONY CANDIDATE BRIEFING</p>
       </div>
-      <div class="handout-meta">
+      <div style="font-family: var(--font-mono); font-size: 0.72rem; color: rgba(255, 255, 255, 0.90); text-align: right; line-height: 1.35;">
         <div><a href="mailto:randybryanmoore@gmail.com" style="color: inherit; text-decoration: none;">randybryanmoore@gmail.com</a></div>
         <div><a href="tel:+18034864007" style="color: inherit; text-decoration: none;">(803) 486-4007</a></div>
       </div>
@@ -1202,22 +1298,25 @@
 
     <div class="handout-section">
       <p class="op-kicker">03 &middot; STRATEGIC ONBOARDING ROADMAP</p>
-      <h2>30-60-90 Day Advancement Execution Plan</h2>
+      <div style="display:flex; justify-content:space-between; align-items:baseline; border-bottom: 2px solid var(--wine); padding-bottom: 0.25rem; margin-bottom: 0.65rem;">
+        <h2 style="border-bottom:none; padding-bottom:0; margin-bottom:0; font-size:1.15rem;">30-60-90 Day Advancement Execution Plan</h2>
+        <a href="https://symphony.randybryanmoore.us/#roadmap" target="_blank" rel="noopener" style="font-family:var(--font-sans); font-size:0.74rem; font-weight:700; color:var(--wine); text-decoration:none;">Full Operational Roadmap in Online Dossier &#8599;</a>
+      </div>
       <div class="handout-grid-3">
         <div class="dcard">
           <span class="dcard-num">DAYS 1&ndash;30 // LEARN &amp; MAP</span>
           <h3>Listen, Audit &amp; Align</h3>
-          <p>Shadow gift processing workflows; audit Bloomerang data integrity; meet with CDO Eboni Boadi (pipeline targets) and Shacoya Henley (GL chart of accounts); map acknowledgment handoffs.</p>
+          <p>Shadow gift processing workflows; audit Bloomerang data integrity; meet with Chief Development Officer (pipeline targets) and Finance Leadership (GL chart of accounts); map acknowledgment handoffs.</p>
         </div>
         <div class="dcard">
           <span class="dcard-num">DAYS 31&ndash;60 // STANDARDIZE</span>
           <h3>SOPs, SLAs &amp; Finance Sync</h3>
-          <p>Formalize gift entry SOPs locking in &lt;48h acknowledgment SLA; establish weekly GL-to-Bloomerang reconciliation rhythm; deliver LYBUNT/SYBUNT renewal segments for Leah Coltrane's ~$850k fund.</p>
+          <p>Formalize gift entry SOPs locking in &lt;48h acknowledgment SLA; establish weekly GL-to-Bloomerang reconciliation rhythm; deliver LYBUNT/SYBUNT renewal segments for Annual Fund leadership.</p>
         </div>
         <div class="dcard">
           <span class="dcard-num">DAYS 61&ndash;90+ // SCALE</span>
           <h3>Dashboards &amp; Long-Term Strategy</h3>
-          <p>Deploy executive moves management dashboards for Eboni; automate audit-ready restricted gift schedules for Shacoya; build RSSoM retention workflows with Davey; present 12-month roadmap.</p>
+          <p>Deploy executive moves management dashboards for CDO; automate audit-ready restricted gift schedules for Finance; build RSSoM retention workflows with Education; present 12-month roadmap.</p>
         </div>
       </div>
     </div>
@@ -1276,12 +1375,16 @@
       <div class="op-education-row">
         <div><strong>Master of Social Work (MSW)</strong><span>Univ. of South Carolina &bull; Advanced Standing, Macro Concentration</span></div>
         <div><strong>Bachelor of Social Work (BSW)</strong><span>Univ. of South Carolina &bull; Leadership Distinction in Civic Engagement</span></div>
-        <div><strong>Sorensen Political Leaders Institute</strong><span>UVA Weldon Cooper Center for Public Service &bull; 2022</span></div>
+        <div><strong>Sorensen Political Leaders Institute</strong><span>Leadership Program Participant &bull; UVA Weldon Cooper Center (2022)</span></div>
       </div>
     </div>
 
     <div class="handout-footer">
-      <div>Online Dossier: <a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us</a> <span class="footer-pin">PIN: 0000</span></div>
+      <div style="display:inline-flex; align-items:center; gap:8px; flex-wrap:nowrap;">
+        <span>Online Dossier:</span>
+        <a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us</a>
+        <span class="footer-pin" style="white-space:nowrap;">PIN: 0000</span>
+      </div>
       <div style="text-align: right; line-height: 1.35;">
         <div>Direct Contact: <strong><a href="mailto:randybryanmoore@gmail.com" style="color: inherit; text-decoration: none;">randybryanmoore@gmail.com</a></strong> &bull; <strong><a href="tel:+18034864007" style="color: inherit; text-decoration: none;">(803) 486-4007</a></strong></div>
       </div>
