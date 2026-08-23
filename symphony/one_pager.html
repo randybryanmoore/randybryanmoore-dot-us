@@ -840,8 +840,8 @@
     }
     .handout-avatar-wrap {
       flex-shrink: 0;
-      width: 66px;
-      height: 66px;
+      width: 80px;
+      height: 80px;
       border-radius: 6px;
       border: 1.5px solid var(--gold);
       overflow: hidden;
@@ -1096,21 +1096,43 @@
       font-weight: 600;
     }
 
-    /* Operating Principle Box */
+    .roadmap-header-link {
+      font-family: var(--font-sans);
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: #ffffff !important;
+      background: var(--wine);
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--gold);
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(43, 7, 16, 0.25);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .roadmap-header-link:hover {
+      background: var(--wine-dark);
+      border-color: var(--gold-light);
+    }
+
+    /* Operating Principle & Horizon Box */
     .operating-principle-panel {
       background: #F4EDE0;
       border: 1px solid rgba(201, 188, 166, 0.5);
       border-left: 4px solid var(--wine);
       padding: 6px 12px;
       border-radius: 5px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       display: flex;
       gap: 10px;
       align-items: center;
     }
     .op-principle-title {
       font-family: var(--font-mono);
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       font-weight: 800;
       color: var(--wine);
       white-space: nowrap;
@@ -1119,32 +1141,58 @@
     }
     .op-principle-body {
       font-family: var(--font-sans);
-      font-size: 0.66rem;
-      line-height: 1.30;
+      font-size: 0.64rem;
+      line-height: 1.28;
       color: var(--charcoal);
       margin: 0;
+    }
+
+    .horizon-panel {
+      background: #ffffff;
+      border: 1px solid rgba(24, 43, 77, 0.16);
+      border-radius: 5px;
+      padding: 5px 10px;
+      margin-bottom: 8px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .horizon-item {
+      font-size: 0.63rem;
+      line-height: 1.24;
+      color: var(--charcoal);
+    }
+    .horizon-item strong {
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      font-weight: 800;
+      color: var(--cobalt-deep);
+      display: block;
+      margin-bottom: 1px;
+      letter-spacing: 0.02em;
     }
 
     /* Section 04: Professional Foundation / Proof Cards */
     .proof-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin-bottom: 8px;
+      gap: 7px;
+      margin-bottom: 7px;
     }
     .proof-card {
-      padding: 6px 9px;
+      padding: 5px 8px;
       background: #F4EDE0;
       border: 1px solid rgba(201, 188, 166, 0.6);
       border-radius: 5px;
-      font-size: 0.63rem;
-      line-height: 1.25;
+      font-size: 0.62rem;
+      line-height: 1.22;
       color: var(--charcoal);
     }
     .proof-card strong {
       display: block;
       font-family: var(--font-mono);
-      font-size: 0.66rem;
+      font-size: 0.65rem;
       font-weight: 800;
       color: var(--cobalt-deep);
       margin-bottom: 2px;
@@ -1161,21 +1209,21 @@
     .edu-col {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 4px;
     }
     .edu-card {
-      padding: 5px 9px;
+      padding: 5px 8px;
       background: #F4EDE0;
       border: 1px solid rgba(201, 188, 166, 0.6);
       border-left: 3px solid var(--cobalt);
       border-radius: 4px;
-      font-size: 0.63rem;
-      line-height: 1.22;
+      font-size: 0.62rem;
+      line-height: 1.20;
     }
     .edu-card strong {
       display: block;
       color: var(--cobalt-deep);
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       font-weight: 700;
     }
     .edu-card span {
@@ -1184,31 +1232,31 @@
     .tech-col {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 4px;
     }
     .tech-card {
-      padding: 5px 9px;
+      padding: 5px 8px;
       background: #F4EDE0;
       border: 1px solid rgba(201, 188, 166, 0.6);
       border-left: 3px solid var(--wine);
       border-radius: 4px;
-      font-size: 0.63rem;
-      line-height: 1.22;
+      font-size: 0.62rem;
+      line-height: 1.20;
     }
     .tech-card strong {
       display: block;
       color: var(--wine);
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       font-weight: 700;
     }
     .tech-card span {
       color: var(--charcoal);
     }
 
+    /* 3-Line Stacked Footers */
     .handout-footer {
-      padding: 10px 16px;
+      padding: 7px 16px;
       margin-top: auto;
-      font-size: 0.74rem;
       border-radius: 6px;
       border: 1px solid var(--gold);
       background: linear-gradient(145deg, var(--cobalt-deep) 0%, var(--cobalt) 100%);
@@ -1218,16 +1266,60 @@
       align-items: center;
       box-shadow: 0 4px 14px rgba(13, 26, 50, 0.2);
     }
-    .handout-footer a { color: var(--gold-light); font-family: var(--font-mono); font-weight: 700; text-decoration: none; }
-    .handout-footer strong { color: #ffffff; }
-    .handout-footer .footer-pin {
-      background: rgba(255, 255, 255, 0.2);
+    .footer-col-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1px;
+      text-align: left;
+    }
+    .footer-col-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1px;
+      text-align: right;
+    }
+    .footer-label {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      opacity: 0.90;
+    }
+    .footer-link-main {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
       color: #ffffff;
-      padding: 2px 7px;
+      line-height: 1.2;
+    }
+    .footer-link-main a {
+      color: #ffffff !important;
+      text-decoration: none;
+    }
+    .footer-sub {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: rgba(255, 255, 255, 0.92);
+      margin-top: 1px;
+    }
+    .footer-sub a {
+      color: var(--gold-light) !important;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .footer-pin {
+      background: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+      padding: 1px 6px;
       border-radius: 4px;
       font-family: var(--font-mono);
-      font-size: 0.70rem;
+      font-size: 0.62rem;
       font-weight: 700;
+      letter-spacing: 0.04em;
     }
 
     /* Floating watermark pill on screen */
@@ -1435,7 +1527,7 @@
           </tr>
           <tr>
             <td><strong>People Leadership &amp; Coaching</strong></td>
-            <td>Supervised graduate interns and MSW practicum students, providing expectations, feedback, coaching, professional development, and accountability. Led multi-organization coalitions and partner initiatives.</td>
+            <td>Supervised graduate interns and MSW practicum students, providing structured coaching, feedback, and development. Former youth music instructor mentoring children and young musicians. Led multi-organization coalitions and partner initiatives.</td>
             <td>Directly relevant to supervising and developing the Annual Fund Manager and Advancement Assistant while improving the systems supporting their work.</td>
           </tr>
           <tr>
@@ -1448,20 +1540,22 @@
     </div>
 
     <div class="handout-footer">
-      <div style="display:inline-flex; align-items:center; gap:8px; flex-wrap:nowrap;">
-        <span>Online Dossier:</span>
-        <a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us</a>
-        <span class="footer-pin" style="white-space:nowrap;">PIN: 0000</span>
+      <div class="footer-col-left">
+        <div class="footer-label">ONLINE DOSSIER</div>
+        <div class="footer-link-main"><a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us &#8599;</a></div>
+        <div class="footer-sub"><span class="footer-pin">PIN: 0000</span></div>
       </div>
-      <div style="text-align: right; line-height: 1.35;">
-        <div>Direct Contact: <strong><a href="mailto:randybryanmoore@gmail.com" style="color: inherit; text-decoration: none;">randybryanmoore@gmail.com</a></strong> &bull; <strong><a href="tel:+18034864007" style="color: inherit; text-decoration: none;">(803) 486-4007</a></strong></div>
+      <div class="footer-col-right">
+        <div class="footer-label">DIRECT CONTACT</div>
+        <div class="footer-link-main"><a href="mailto:randybryanmoore@gmail.com">randybryanmoore@gmail.com</a></div>
+        <div class="footer-sub"><a href="tel:+18034864007">(803) 486-4007</a></div>
       </div>
     </div>
   </div>
 
   <!-- Side 2 of 2: Onboarding Roadmap, Professional Foundation & Technical Environment -->
   <div class="handout-sheet page-break">
-    <div class="handout-header handout-header--running" style="padding: 10px 18px; margin-bottom: 10px;">
+    <div class="handout-header handout-header--running" style="padding: 9px 18px; margin-bottom: 8px;">
       <div class="handout-header-main">
         <h1 style="font-size: 1.05rem; margin-bottom: 1px; text-align: left; display:flex; align-items:center; gap:6px;">
           <span>Onboarding Plan // Professional Foundation</span>
@@ -1474,13 +1568,13 @@
       </div>
     </div>
 
-    <div class="handout-section" style="margin-bottom: 8px;">
-      <div style="display:flex; justify-content:space-between; align-items:baseline; border-bottom: 1.5px solid var(--gold); padding-bottom: 2px; margin-bottom: 6px;">
+    <div class="handout-section" style="margin-bottom: 6px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1.5px solid var(--gold); padding-bottom: 3px; margin-bottom: 6px;">
         <div>
           <p class="op-kicker" style="margin-bottom: 1px;">03 &middot; STRATEGIC ONBOARDING ROADMAP</p>
           <h2 style="border-bottom:none; padding-bottom:0; margin-bottom:0; font-size:0.95rem;">30-60-90 Day Advancement Systems Plan</h2>
         </div>
-        <a href="https://symphony.randybryanmoore.us/#roadmap" target="_blank" rel="noopener" style="font-family:var(--font-sans); font-size:0.70rem; font-weight:700; color:var(--wine); text-decoration:none;">Full Operational Roadmap in Online Dossier &#8599;</a>
+        <a href="https://symphony.randybryanmoore.us/#roadmap" target="_blank" rel="noopener" class="roadmap-header-link">Full Operational Roadmap in Online Dossier &#8599;</a>
       </div>
 
       <div class="roadmap-grid">
@@ -1490,17 +1584,17 @@
             <h3>Understand People, Systems &amp; Decisions</h3>
             <span class="roadmap-sub">Start with the operation as it exists.</span>
             <ul class="roadmap-list">
-              <li>Meet individually with the CDO, direct reports, Advancement team, and Finance partners.</li>
-              <li>Learn Bloomerang through real workflows, reports, permissions, and recurring staff needs.</li>
-              <li>Shadow the full gift lifecycle: receipt, entry, Finance validation, and acknowledgment.</li>
-              <li>Map recurring workflows, ownership, handoffs, exceptions, and manual workarounds.</li>
-              <li>Establish baseline for data quality, reporting reliability, and staff workload.</li>
-              <li>Learn decision-making data needs of CDO and leadership to identify reporting friction.</li>
+              <li>Complete Bloomerang New User Orientation &amp; learning pathways while shadowing workflows.</li>
+              <li>Conduct listening sessions and workflow interviews with staff using current tools.</li>
+              <li>Shadow full gift lifecycle: receipt, entry, batching, Finance validation, and acknowledgment.</li>
+              <li>Audit systems configuration, custom fields, naming conventions, and reporting filters.</li>
+              <li>Map recurring workflows, ownership handoffs, deadlines, and manual workarounds.</li>
+              <li>Establish baseline for data quality, reporting reliability, acknowledgment timing, and workload.</li>
             </ul>
           </div>
           <div class="roadmap-output">
             <span class="roadmap-output-title">30-Day Key Outputs</span>
-            <div class="roadmap-output-tags">Current-State Systems Map &bull; Stakeholder Interviews &bull; Issues Register &bull; Early-Win Recommendations</div>
+            <div class="roadmap-output-tags">Systems Map &bull; Staff Interviews &bull; Issues Register &bull; Data Audit &bull; Early-Win Recs</div>
           </div>
         </div>
 
@@ -1511,16 +1605,16 @@
             <span class="roadmap-sub">Turn what I learned into shared operating standards.</span>
             <ul class="roadmap-list">
               <li>Document shared definitions, ownership, controls, and Finance reconciliation responsibilities.</li>
-              <li>Standardize gift processing, acknowledgments, list generation, and exception handling SOPs.</li>
-              <li>Document practical SOPs where consistency or institutional knowledge presents risk.</li>
-              <li>Establish useful reporting views for Annual Fund, retention, portfolio, and stewardship.</li>
+              <li>Standardize priority SOPs: gift processing, acknowledgments, list generation, and exception handling.</li>
+              <li>Identify strategic data points to illuminate donor trends, retention, and community programs.</li>
               <li>Review segmentation and renewal processes with Annual Fund Manager to reduce manual work.</li>
-              <li>Create a regular management rhythm with direct reports around priorities and workload.</li>
+              <li>Establish useful reporting views for Annual Fund, retention, portfolio, and stewardship.</li>
+              <li>Create a regular management rhythm with direct reports around priorities, goals, and feedback.</li>
             </ul>
           </div>
           <div class="roadmap-output">
             <span class="roadmap-output-title">60-Day Key Outputs</span>
-            <div class="roadmap-output-tags">Priority SOPs &bull; Shared Data Definitions &bull; Advancement-Finance Map &bull; Dashboard Prototype &bull; Backlog</div>
+            <div class="roadmap-output-tags">Priority SOPs &bull; Shared Definitions &bull; Advancement-Finance Map &bull; Dashboard Prototype &bull; Backlog</div>
           </div>
         </div>
 
@@ -1530,18 +1624,29 @@
             <h3>Move from Understanding to Improvement</h3>
             <span class="roadmap-sub">Begin implementing the strongest validated opportunities.</span>
             <ul class="roadmap-list">
-              <li>Launch 1–2 workflow improvements selected for high staff value and low risk.</li>
+              <li>Launch 1–2 workflow improvements selected for high staff value and manageable risk.</li>
               <li>Refine dashboards around contributed income, donor retention, and portfolio activity.</li>
-              <li>Strengthen visibility into overdue actions, incomplete records, and work needing review.</li>
-              <li>Establish a repeatable Advancement-Finance review cadence for reconciliation.</li>
-              <li>Identify automation opportunities while preserving human review and financial controls.</li>
+              <li>Establish a living Data &amp; Operations Handbook / SOP portal to coordinate process updates.</li>
+              <li>Establish a repeatable Advancement-Finance review cadence for ongoing reconciliation.</li>
+              <li>Engage Bloomerang Professional Services / support where specialized expertise reduces risk.</li>
               <li>Present a 12-month roadmap separating immediate fixes, training, and strategic projects.</li>
             </ul>
           </div>
           <div class="roadmap-output">
             <span class="roadmap-output-title">90-Day Key Outputs</span>
-            <div class="roadmap-output-tags">Validated Improvements &bull; Reporting Framework &bull; Data Governance Priorities &bull; 12-Mo Roadmap</div>
+            <div class="roadmap-output-tags">Validated Improvements &bull; Living Operations Portal &bull; Reporting Framework &bull; 12-Mo Roadmap</div>
           </div>
+        </div>
+      </div>
+
+      <div class="horizon-panel">
+        <div class="horizon-item">
+          <strong>6-MONTH HORIZON // OPERATIONAL MASTERY</strong>
+          Full Bloomerang operational mastery, automated reconciliation rhythm, robust LYBUNT/SYBUNT renewal tracking, active staff SOP portal.
+        </div>
+        <div class="horizon-item">
+          <strong>1-YEAR HORIZON // STRATEGIC SCALE</strong>
+          Predictive retention analytics, integrated community/education advancement data, scalable infrastructure ready for campaign growth.
         </div>
       </div>
 
@@ -1551,13 +1656,13 @@
       </div>
     </div>
 
-    <div class="handout-section" style="margin-bottom: 8px;">
-      <div style="display:flex; justify-content:space-between; align-items:baseline; border-bottom: 1.5px solid var(--gold); padding-bottom: 2px; margin-bottom: 6px;">
+    <div class="handout-section" style="margin-bottom: 6px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1.5px solid var(--gold); padding-bottom: 3px; margin-bottom: 6px;">
         <div>
           <p class="op-kicker" style="margin-bottom: 1px;">04 &middot; PROFESSIONAL FOUNDATION</p>
           <h2 style="border-bottom:none; padding-bottom:0; margin-bottom:0; font-size:0.95rem;">Experience Behind the Roadmap</h2>
         </div>
-        <a href="https://symphony.randybryanmoore.us/resume" target="_blank" rel="noopener" style="font-family:var(--font-sans); font-size:0.70rem; font-weight:700; color:var(--wine); text-decoration:none;">Full Professional History + R&eacute;sum&eacute; &#8599;</a>
+        <a href="https://symphony.randybryanmoore.us/resume" target="_blank" rel="noopener" class="roadmap-header-link">Full Professional History + R&eacute;sum&eacute; &#8599;</a>
       </div>
 
       <div class="proof-grid">
@@ -1579,7 +1684,7 @@
         </div>
         <div class="proof-card">
           <strong>PEOPLE DEVELOPMENT</strong>
-          Supervised graduate interns and MSW practicum students with structured coaching.
+          Supervised graduate interns and MSW practicum students; former youth music instructor.
         </div>
         <div class="proof-card">
           <strong>CRM + SYSTEMS</strong>
@@ -1627,13 +1732,15 @@
     </div>
 
     <div class="handout-footer">
-      <div style="display:inline-flex; align-items:center; gap:8px; flex-wrap:nowrap;">
-        <span>Online Dossier:</span>
-        <a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us</a>
-        <span class="footer-pin" style="white-space:nowrap;">PIN: 0000</span>
+      <div class="footer-col-left">
+        <div class="footer-label">ONLINE DOSSIER</div>
+        <div class="footer-link-main"><a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us &#8599;</a></div>
+        <div class="footer-sub"><span class="footer-pin">PIN: 0000</span></div>
       </div>
-      <div style="text-align: right; line-height: 1.35;">
-        <div>Direct Contact: <strong><a href="mailto:randybryanmoore@gmail.com" style="color: inherit; text-decoration: none;">randybryanmoore@gmail.com</a></strong> &bull; <strong><a href="tel:+18034864007" style="color: inherit; text-decoration: none;">(803) 486-4007</a></strong></div>
+      <div class="footer-col-right">
+        <div class="footer-label">DIRECT CONTACT</div>
+        <div class="footer-link-main"><a href="mailto:randybryanmoore@gmail.com">randybryanmoore@gmail.com</a></div>
+        <div class="footer-sub"><a href="tel:+18034864007">(803) 486-4007</a></div>
       </div>
     </div>
   </div>
