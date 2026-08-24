@@ -163,7 +163,7 @@ img {
 
 /* Section Containers & Colors */
 .section {
-  padding-block: clamp(72px, 9vw, 130px);
+  padding-block: clamp(44px, 5vw, 72px);
   background: var(--paper);
   color: var(--ink);
   position: relative;
@@ -1623,10 +1623,11 @@ img {
 
 /* Alignment Matrix Table */
 .matrix-table-wrap {
-  border: 1px solid var(--line);
+  border: 2.5px solid var(--maroon);
+  border-radius: 6px;
   background: var(--paper);
   overflow-x: auto;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.28);
 }
 
 .matrix-table {
