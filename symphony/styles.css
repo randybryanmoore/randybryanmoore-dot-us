@@ -991,6 +991,12 @@ img {
 }
 
 /* Grids & Cards */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2680,6 +2686,7 @@ body[data-review-tools="on"] {
 }
 
 @media (max-width: 960px) {
+  .grid-2,
   .grid-3,
   .tab-grid,
   .lifecycle-grid,
@@ -4050,26 +4057,51 @@ body:not([data-review-tools="on"]) { padding-bottom: 0; }
 }
 
 /* Philosophy — deeper operating disciplines beneath the four principles */
-.discipline-layer { margin-top: 34px; }
-.discipline-layer .kicker { margin-bottom: 16px; }
+.discipline-layer {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line-light);
+}
+.discipline-layer .kicker { margin-bottom: 20px; }
 .discipline-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 .discipline-item {
-  border-left: 2px solid var(--maroon);
-  padding: 4px 0 4px 16px;
+  background: rgba(242, 234, 223, 0.04);
+  border: 1px solid rgba(242, 234, 223, 0.14);
+  border-left: 3px solid var(--maroon);
+  border-radius: 4px;
+  padding: 20px 24px;
+  transition: transform 180ms ease, background 180ms ease, border-left-color 180ms ease;
+}
+.discipline-item:hover {
+  background: rgba(242, 234, 223, 0.07);
+  border-left-color: var(--gold);
 }
 .discipline-item h4 {
-  font-size: 15px;
-  margin-bottom: 6px;
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin-bottom: 8px;
   color: var(--cream);
 }
 .discipline-item p {
-  font-size: 13.5px;
+  font-size: 0.92rem;
   line-height: 1.55;
-  color: rgba(242, 234, 223, 0.86);
+  color: rgba(242, 234, 223, 0.88);
+  margin: 0;
+}
+.discipline-item p em {
+  color: var(--gold-light);
+  font-style: normal;
+  font-weight: 600;
+  font-family: var(--mono);
+  font-size: 0.84rem;
+  display: block;
+  margin-bottom: 4px;
+  letter-spacing: 0.02em;
 }
 
 /* Roadmap — key outputs chips inside each stage card */
