@@ -1107,9 +1107,11 @@ img {
 
 /* Interactive Case Study Explorer */
 .case-study-explorer {
-  border: 1px solid rgba(242, 234, 223, 0.3);
+  border: 1.5px solid rgba(242, 234, 223, 0.28);
+  border-radius: 8px;
   background: var(--block-fill);
   overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
 
 /* Tabs wrap instead of scrolling so every case study stays visible;
@@ -1183,15 +1185,87 @@ img {
 }
 
 .tab-content h3 {
-  font-size: clamp(26px, 2.6vw, 38px);
-  margin-bottom: 14px;
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.4vw, 34px);
+  margin-bottom: 16px;
+  color: var(--cream);
 }
 
 .tab-content p {
-  font-size: 15.5px;
-  line-height: 1.7;
+  font-size: 15px;
+  line-height: 1.65;
   opacity: 0.9;
   margin-bottom: 16px;
+}
+
+/* Executive STAR Method Case Study Breakdown */
+.star-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0 20px;
+}
+
+.star-block {
+  background: rgba(242, 234, 223, 0.04);
+  border: 1px solid rgba(242, 234, 223, 0.12);
+  border-radius: 6px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  transition: all 180ms ease;
+}
+
+.star-block:hover {
+  background: rgba(242, 234, 223, 0.07);
+}
+
+.star-block--action {
+  border-left: 3.5px solid var(--maroon);
+  background: rgba(43, 7, 16, 0.35);
+  border-color: rgba(242, 234, 223, 0.18);
+}
+
+.star-block--result {
+  border-left: 3.5px solid var(--gold-light);
+  background: rgba(223, 202, 116, 0.08);
+  border-color: rgba(223, 202, 116, 0.25);
+}
+
+.star-tag {
+  flex-shrink: 0;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(242, 234, 223, 0.15);
+  color: var(--cream);
+  min-width: 72px;
+  text-align: center;
+}
+
+.star-block--action .star-tag {
+  background: var(--maroon);
+  color: var(--cream);
+}
+
+.star-block--result .star-tag {
+  background: var(--gold-light);
+  color: var(--navy-deep);
+}
+
+.star-text {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: rgba(242, 234, 223, 0.92);
+}
+
+.star-text strong {
+  color: var(--cream);
 }
 
 .tab-stats-box {
