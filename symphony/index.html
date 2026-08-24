@@ -82,11 +82,11 @@
        Bump the version and date on each substantive pass. Always visible --
        it is independent of the review-tools switch. -->
   <button type="button" class="build-badge" id="build-badge" aria-expanded="false" aria-controls="build-provenance-modal" title="⚡ Build &amp; Agent Telemetry (Shift+V)">
-    <span class="build-badge-agent build-badge-agent--cl" title="Active AI Agent: Claude Code (CL)">CL</span>
-    <span class="build-badge-live-dot" title="v1.7.5 live // production verified"></span>
-    <span class="build-badge-version">v1.8.0</span>
-    <span class="build-badge-sha">LIVE</span>
-    <span class="build-badge-date">Aug 22, 2026</span>
+    <span class="build-badge-agent build-badge-agent--cur" title="Active AI Agent: Cursor (CUR)">CUR</span>
+    <span class="build-badge-live-dot" title="v1.9.0 local // pending deploy"></span>
+    <span class="build-badge-version">v1.9.0</span>
+    <span class="build-badge-sha">RC</span>
+    <span class="build-badge-date">Aug 24, 2026</span>
   </button>
 
 
@@ -114,27 +114,27 @@
     <div class="provenance-grid">
       <div class="provenance-card provenance-card--deployment">
         <div class="provenance-card-label">Deployment</div>
-        <div class="provenance-card-value" style="color:#15803d; font-weight:800;">● Live // Production Verified</div>
+        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">◐ v1.9.0 Local // v1.8.0 Live</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Active Agent</div>
-        <div class="provenance-card-value">Claude Code (CL)</div>
+        <div class="provenance-card-value">Cursor (CUR)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Runtime Model / Effort</div>
-        <div class="provenance-card-value">Claude Opus 5 &bull; agent mode</div>
+        <div class="provenance-card-value">Claude Opus 4.8 &bull; agent mode</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Build Version</div>
-        <div class="provenance-card-value">v1.8.0 (Current Live)</div>
+        <div class="provenance-card-value">v1.9.0 (Release Candidate)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Total Time Logged</div>
-        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">⏱️ 11.3 Hours Logged (AG v1.7.2 time uncaptured)</div>
+        <div class="provenance-card-value" style="color:var(--gold-light); font-weight:800;">⏱️ 11.8 Hours Logged (AG v1.7.2 time uncaptured)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Git Commit SHA</div>
-        <div class="provenance-card-value" id="prov-commit-sha">#13e730a verified release source</div>
+        <div class="provenance-card-value" id="prov-commit-sha">RC &bull; pending push to main</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Sync Branch</div>
@@ -145,17 +145,17 @@
     <details class="lifecycle-status-box">
       <summary class="provenance-version-title" id="lifecycle-status-title">
         <span>Code Lifecycle State</span>
-        <span style="color:#15803d; font-size:9px;">LIVE // VERIFIED</span>
+        <span style="color:var(--gold-light); font-size:9px;">v1.9.0 RC // v1.8.0 LIVE</span>
       </summary>
       <div class="lifecycle-status-content">
         <dl class="lifecycle-status-grid">
-          <div><dt>Local</dt><dd>v1.8.0 verified release source</dd></div>
-          <div><dt>Committed</dt><dd>Yes // release source checkpoint #13e730a</dd></div>
-          <div><dt>Pushed</dt><dd>Yes // release branch and main</dd></div>
-          <div><dt>Merged / PR</dt><dd>Merged // origin/main reconciled in 46246df</dd></div>
-          <div><dt>Deployed</dt><dd>Yes // GitHub Actions Pages run #32593867344</dd></div>
+          <div><dt>Local</dt><dd>v1.9.0 release candidate source</dd></div>
+          <div><dt>Committed</dt><dd>Yes // feature branch cursor/strengthen-symphony-dossier</dd></div>
+          <div><dt>Pushed</dt><dd>Yes // feature branch on origin</dd></div>
+          <div><dt>Merged / PR</dt><dd>Open pull request // pending review &amp; merge to main</dd></div>
+          <div><dt>Deployed</dt><dd>Not yet // deploys on merge to main via symphony-pages workflow</dd></div>
           <div><dt>Staging</dt><dd>Not used</dd></div>
-          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.8.0 verified at the custom domain Aug 22, 2026 · 3:30 PM EDT</dd></div>
+          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.8.0 remains live at the custom domain until v1.9.0 merges</dd></div>
         </dl>
         <details class="lifecycle-glossary">
           <summary>Lifecycle definitions used by all agents</summary>
@@ -245,10 +245,42 @@
       </details>
 
       <div class="provenance-changelog-list">
-        <!-- v1.8.0 -->
+        <!-- v1.9.0 -->
         <div class="version-item-wrap active">
           <div class="version-item-row" role="button" tabindex="0" aria-expanded="true">
-            <span><span class="agent-chip agent-chip--cl">CL</span> <strong>v1.8.0</strong> (Current Live)</span>
+            <span><span class="agent-chip agent-chip--cur">CUR</span> <strong>v1.9.0</strong> (Current &middot; Release Candidate)</span>
+            <span class="version-row-tag" style="background:#fdf6e3; color:#8a6d1f; border-color:#e6d08a;">◐ 0.5h &bull; Aug 24</span>
+          </div>
+          <div class="version-hover-card">
+            <div class="version-hover-header">
+              <div class="version-hover-title">
+                <span>v1.9.0 &middot; One-Pager Alignment &amp; Deeper Dossier Expansion</span>
+                <span style="color:#8a6d1f; font-size:9px;">◐ LOCAL RC &bull; PENDING DEPLOY</span>
+              </div>
+              <div class="version-hover-meta">
+                <div><strong>Authoring Agent:</strong> Cursor (CUR)</div>
+                <div><strong>Model / Effort:</strong> Claude Opus 4.8 &bull; agent mode</div>
+                <div><strong>Prepared:</strong> Aug 24, 2026</div>
+                <div><strong>Deployment:</strong> deploys on merge to main via symphony-pages workflow</div>
+                <div><strong>Production:</strong> v1.8.0 remains live until v1.9.0 merges</div>
+              </div>
+            </div>
+            <ul class="version-hover-bullets">
+              <li>Aligned the dossier to the final print one-pager: unified "13+ years" across the hero, philosophy, case study, and Career Record heading (previously "10+/ten years").</li>
+              <li>Reconciled the four operating principles to the one-pager's named set (Listen Move Adapt; The Technology Multiplier; Design for the Human; The Intersection of Art &amp; Systems) and kept the prior disciplines as a deeper "how this shows up in the work" layer.</li>
+              <li>Extended the roadmap with 30/60/90 Key Outputs chips plus Month 6 (Measure + Expand) and Year 1 (Institutionalize + Plan Forward) horizons; reconciled stage tags to Listen+Map / Align+Standardize / Improve+Test.</li>
+              <li>Added a Section 09 Education &amp; Technical Foundation (MSW, BSW with Leadership Distinction &amp; Student Government Senator, Sorensen) with the full CRM/process/tooling stack and a Bloomerang learning pathway.</li>
+              <li>Added a quantified proof strip to Career Record and surfaced the broader CRM stack (Salesforce, Salsa, VAN) in Core Competencies.</li>
+              <li>Added the "The Mechanics of Meaning" hero tagline and aligned the Role Alignment matrix row labels to the one-pager's five institutional priorities.</li>
+              <li>Rebuilt the offline ZIP and refreshed release-manifest.json SHA-256 digests for index.html, styles.css, and the archive.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v1.8.0 -->
+        <div class="version-item-wrap">
+          <div class="version-item-row" role="button" tabindex="0" aria-expanded="false">
+            <span><span class="agent-chip agent-chip--cl">CL</span> <strong>v1.8.0</strong> (Live &middot; Production)</span>
             <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 1.4h &bull; Aug 22</span>
           </div>
           <div class="version-hover-card">
@@ -802,8 +834,9 @@
         <h1 id="home-title" style="margin-bottom: 24px; display: flex; align-items: flex-start;">
           <img src="images/hero-logo.png" alt="Randy Bryan Moore MSW" style="width: 100%; max-width: 480px; height: auto; mix-blend-mode: screen; filter: drop-shadow(0px 2px 8px rgba(0,0,0,0.4));">
         </h1>
+        <p class="hero-tagline">The Mechanics of Meaning</p>
         <p class="hero-deck">
-          Nonprofit systems and operations leader with more than ten years across advocacy, government, behavioral health, and housing. Experienced in CRM-supported constituent data, reporting, process design, and cross-functional operations. Richmond-based pianist and music producer, contract pianist at The Jefferson Hotel since 2022.
+          Systems-minded social worker, public-service leader, and working musician with 13+ years across nonprofit advocacy, government, community engagement, organizational operations, and public communication. Experienced in CRM-supported constituent data, reporting, process design, and cross-functional operations. Richmond-based pianist and music producer, contract pianist at The Jefferson Hotel since 2022.
         </p>
 
         <div class="hero-paths">
@@ -822,6 +855,9 @@
           </a>
           <a href="#music" class="button button-maroon" style="font-size: 13px; padding: 12px 18px;">
             08 &middot; Music &amp; Artistry
+          </a>
+          <a href="#education" class="button button-maroon" style="font-size: 13px; padding: 12px 18px;">
+            09 &middot; Education
           </a>
         </div>
 
@@ -923,30 +959,53 @@
           Technology should reduce that friction without removing human judgment from the places judgment belongs. Trusted records should lead to explainable action, and someone should always be able to say why the system produced the answer it produced.
         </p>
         <p style="margin-bottom: 0;">
-          More than ten years in advocacy and public service, and a working life at the piano, have taught me the same discipline from two directions. Preparation, attention, responsiveness, and accountability are not different skills in those two rooms.
+          More than thirteen years in advocacy and public service, and a working life at the piano, have taught me the same discipline from two directions. Preparation, attention, responsiveness, and accountability are not different skills in those two rooms.
         </p>
       </div>
 
       <div class="grid-3">
         <div class="card-editorial">
           <div><h3 style="color: var(--cream);">01</h3>
-          <h4 style="margin-bottom: 8px;">Understand before redesigning</h4>
-          <p><em>Archaeology before architecture.</em> Learn what a process was solving for before proposing what replaces it.</p></div>
+          <h4 style="margin-bottom: 8px;">Listen, Move, Adapt</h4>
+          <p>I am fundamentally flexible. My first instinct is to listen closely, map what is actually happening, and move purposefully based on the reality of what I see and hear.</p></div>
         </div>
         <div class="card-editorial">
           <div><h3 style="color: var(--cream);">02</h3>
-          <h4 style="margin-bottom: 8px;">Establish a trusted source of truth</h4>
-          <p>One agreed record, with documented definitions, that people can rely on without checking it twice.</p></div>
+          <h4 style="margin-bottom: 8px;">The Technology Multiplier</h4>
+          <p>Emerging AI tools use natural language to democratize what we can build. As technical minutiae becomes automated, grasping high-level concepts and organizational context becomes the critical skill for solving real problems.</p></div>
         </div>
         <div class="card-editorial">
           <div><h3 style="color: var(--cream);">03</h3>
-          <h4 style="margin-bottom: 8px;">Treat friction as evidence</h4>
-          <p>Recurring pain is diagnostic information about ownership, definitions, training, or system design.</p></div>
+          <h4 style="margin-bottom: 8px;">Design for the Human</h4>
+          <p>As a systems-minded social worker, I know a workflow only succeeds if it makes sense to the person using it. I design infrastructure around how people actually behave, so every tool clarifies what to do, why it matters, and where human judgment belongs.</p></div>
         </div>
         <div class="card-editorial">
           <div><h3 style="color: var(--cream);">04</h3>
-          <h4 style="margin-bottom: 8px;">Keep human judgment visible</h4>
-          <p>Automation should surface its reasoning and leave a person accountable for the decision.</p></div>
+          <h4 style="margin-bottom: 8px;">The Intersection of Art &amp; Systems</h4>
+          <p>What makes me unique is my background intersection: I treat both rigorous structural design (data integrity, operations) and artistic expression (music, narrative) as systems governed by balance, texture, and logic.</p></div>
+        </div>
+      </div>
+
+      <!-- Deeper operating disciplines (dossier-only expansion beyond the one-pager) -->
+      <div class="discipline-layer">
+        <p class="kicker kicker-light">How this shows up in the work</p>
+        <div class="discipline-grid">
+          <div class="discipline-item">
+            <h4>Understand before redesigning</h4>
+            <p><em>Archaeology before architecture.</em> Learn what a process was solving for before proposing what replaces it.</p>
+          </div>
+          <div class="discipline-item">
+            <h4>Establish a trusted source of truth</h4>
+            <p>One agreed record, with documented definitions, that people can rely on without checking it twice.</p>
+          </div>
+          <div class="discipline-item">
+            <h4>Treat friction as evidence</h4>
+            <p>Recurring pain is diagnostic information about ownership, definitions, training, or system design.</p>
+          </div>
+          <div class="discipline-item">
+            <h4>Keep human judgment visible</h4>
+            <p>Automation should surface its reasoning and leave a person accountable for the decision.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -969,12 +1028,12 @@
         <!-- Capability Card 1 -->
         <div class="card-editorial card-editorial--maroon">
           <div>
-            <h3>EveryAction Experience &amp; Bloomerang Readiness</h3>
-            <p>Used EveryAction at Save the Children Action Network to capture, tag, and organize constituent engagement, build outreach lists and follow-up workflows, and support event reporting. Bloomerang is a different platform, and the data and workflow discipline underneath is established.</p>
+            <h3>CRM Administration &amp; Bloomerang Readiness</h3>
+            <p>Used EveryAction and VAN to organize constituent engagement, segmentation, outreach lists, follow-up workflows, and reporting at statewide scale. At Active Minds, evaluated organizational needs and helped select Muster, designing its integration with Salesforce. Bloomerang is a different platform, and the data and workflow discipline underneath is established.</p>
           </div>
           <ul class="check-feature-list">
-            <li>Constituent tagging, outreach lists &amp; follow-up workflows</li>
-            <li>Event, turnout, media &amp; organizing reports</li>
+            <li>Hands-on EveryAction &amp; VAN; evaluation &amp; integration across Salesforce, Salsa &amp; Muster</li>
+            <li>Constituent segmentation, outreach lists &amp; follow-up workflows</li>
             <li>Prepared to learn Bloomerang's configuration, data model &amp; reporting</li>
           </ul>
         </div>
@@ -1153,7 +1212,7 @@
 Gift administration is a learning priority, not a demonstrated one. The responsible first step is to map the gift-to-Finance lifecycle with the Finance team and learn the controls, coding practices, reconciliation routines, and exception handling already in place, before proposing any change to them.
               </p>
               <p>
-The transferable ground is real and worth naming precisely. At the Virginia Housing Alliance I developed budget and policy strategy involving the Virginia Housing Trust Fund. Separately, in Senator Warner's office, I supported work connected to a $14.1 million rural broadband grant. Neither was donor gift reconciliation, and ten years of careful record and deadline discipline sits underneath both.
+The transferable ground is real and worth naming precisely. At the Virginia Housing Alliance I developed budget and policy strategy involving the Virginia Housing Trust Fund. Separately, in Senator Warner's office, I supported work connected to a $14.1 million rural broadband grant. Neither was donor gift reconciliation, and thirteen years of careful record and deadline discipline sits underneath both.
               </p>
               <div class="button-row">
                 <a href="Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip" download class="button button-navy" style="font-size: 11px;">
@@ -1330,7 +1389,7 @@ The transferable ground is real and worth naming precisely. At the Virginia Hous
           <tbody>
             <tr>
               <td>
-                <strong style="color: var(--maroon); display: block; margin-bottom: 4px;">Bloomerang administration</strong>
+                <strong style="color: var(--maroon); display: block; margin-bottom: 4px;">CRM Administration &amp; Data Integrity</strong>
                 <span style="color: var(--muted); font-size: 12px;">Database, tagging, permissions &amp; reporting</span>
               </td>
               <td style="line-height: 1.6;">EveryAction tagging, lists, workflows, and reporting. Process design and user-centered technology practice. Bloomerang itself is new.</td>
@@ -1338,7 +1397,7 @@ The transferable ground is real and worth naming precisely. At the Virginia Hous
             </tr>
             <tr>
               <td>
-                <strong style="color: var(--maroon); display: block; margin-bottom: 4px;">Reporting &amp; analytics</strong>
+                <strong style="color: var(--maroon); display: block; margin-bottom: 4px;">Data Analysis, Reporting &amp; Decision Support</strong>
                 <span style="color: var(--muted); font-size: 12px;">Definitions, dashboards &amp; decision support</span>
               </td>
               <td style="line-height: 1.6;">Campaign, event, engagement, media, partner, and outcome reporting across four organizations. Senior-level briefing materials.</td>
@@ -1346,7 +1405,7 @@ The transferable ground is real and worth naming precisely. At the Virginia Hous
             </tr>
             <tr>
               <td>
-                <strong style="color: var(--maroon); display: block; margin-bottom: 4px;">Gift administration &amp; Finance partnership</strong>
+                <strong style="color: var(--maroon); display: block; margin-bottom: 4px;">Operations, Finance Partnership &amp; Process Design</strong>
                 <span style="color: var(--muted); font-size: 12px;">Controls, coding &amp; exception handling</span>
               </td>
               <td style="line-height: 1.6;">Budget and policy analysis, funding research, documentation, deadline management, and cross-functional coordination. Has not owned donor gift reconciliation.</td>
@@ -1354,7 +1413,7 @@ The transferable ground is real and worth naming precisely. At the Virginia Hous
             </tr>
             <tr>
               <td>
-                <strong style="color: var(--maroon); display: block; margin-bottom: 4px;">Staff development</strong>
+                <strong style="color: var(--maroon); display: block; margin-bottom: 4px;">People Leadership &amp; Coaching</strong>
                 <span style="color: var(--muted); font-size: 12px;">Coaching, feedback &amp; professional growth</span>
               </td>
               <td style="line-height: 1.6;">Graduate-intern supervision as an MSW field instructor, structured coaching and work review, and training for 40 partner organizations.</td>
@@ -1370,7 +1429,7 @@ The transferable ground is real and worth naming precisely. At the Virginia Hous
             </tr>
             <tr>
               <td>
-                <strong style="color: var(--maroon); display: block; margin-bottom: 4px;">Performing-arts participation</strong>
+                <strong style="color: var(--maroon); display: block; margin-bottom: 4px;">Community, Patron &amp; Artistic Fluency</strong>
                 <span style="color: var(--muted); font-size: 12px;">Evening &amp; weekend commitment</span>
               </td>
               <td style="line-height: 1.6;">Contract pianist at The Jefferson Hotel since 2022, music producer, former School of Rock instructor, and participant in Richmond's arts community.</td>
@@ -1420,7 +1479,7 @@ I will understand before redesigning, protect donor intent, support the people d
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
               <h3 style="color: var(--cream); margin: 0;">Days 1–30</h3>
-              <span class="lifecycle-stage__tag">Understand + Verify</span>
+              <span class="lifecycle-stage__tag">Listen + Map</span>
             </div>
             <h4 style="margin-bottom: 8px;">Listen, Learn Bloomerang &amp; Map the Work</h4>
             <p>Meet with Advancement staff, Finance partners, and cross-departmental colleagues. Learn Bloomerang's configuration, integrations, permissions, and data conventions. Shadow the workflows that already exist and record findings without assigning blame, because workarounds are usually somebody's competent response to a real constraint.</p>
@@ -1431,6 +1490,12 @@ I will understand before redesigning, protect donor intent, support the people d
             <li>Shadow gift entry, acknowledgement, event &amp; reporting workflows</li>
             <li>Map ownership and every handoff between roles</li>
           </ul>
+          <div class="key-outputs">
+            <span class="key-outputs__label">30-Day Key Outputs</span>
+            <div class="key-outputs__chips">
+              <span>Current-State Map</span><span>Staff Listening Notes</span><span>Issues Register</span><span>Data Audit</span><span>Early Recs</span>
+            </div>
+          </div>
         </div>
 
         <!-- 60 Days -->
@@ -1438,7 +1503,7 @@ I will understand before redesigning, protect donor intent, support the people d
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
               <h3 style="color: var(--cream); margin: 0;">Days 31–60</h3>
-              <span class="lifecycle-stage__tag">Standardize + Strengthen</span>
+              <span class="lifecycle-stage__tag">Align + Standardize</span>
             </div>
             <h4 style="margin-bottom: 8px;">Document, Clarify &amp; Pilot</h4>
             <p>Select a small number of high-value improvements with the team rather than for it. Document agreed workflows and ownership, clarify data definitions and exception handling, and set shared turnaround and quality measures with the people accountable for meeting them.</p>
@@ -1449,6 +1514,12 @@ I will understand before redesigning, protect donor intent, support the people d
             <li>Review permissions &amp; data-governance practices</li>
             <li>Test changes through a controlled pilot before any rollout</li>
           </ul>
+          <div class="key-outputs">
+            <span class="key-outputs__label">60-Day Key Outputs</span>
+            <div class="key-outputs__chips">
+              <span>Priority SOPs</span><span>Shared Definitions</span><span>Advancement&ndash;Finance Map</span><span>Dashboard Prototype</span><span>Backlog</span>
+            </div>
+          </div>
         </div>
 
         <!-- 90 Days -->
@@ -1456,7 +1527,7 @@ I will understand before redesigning, protect donor intent, support the people d
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
               <h3 style="color: var(--cream); margin: 0;">Days 61–90+</h3>
-              <span class="lifecycle-stage__tag">Analyze + Build Forward</span>
+              <span class="lifecycle-stage__tag">Improve + Test</span>
             </div>
             <h4 style="margin-bottom: 8px;">Measure, Review &amp; Build Forward</h4>
             <p>Validate priority reports against definitions the team trusts, establish a practical review rhythm with Advancement and Finance, and identify automation that keeps human oversight intact. Close with a prioritized twelve-month roadmap.</p>
@@ -1467,6 +1538,30 @@ I will understand before redesigning, protect donor intent, support the people d
             <li>Identify automation opportunities with human oversight</li>
             <li>Deliver a prioritized twelve-month roadmap</li>
           </ul>
+          <div class="key-outputs">
+            <span class="key-outputs__label">90-Day Key Outputs</span>
+            <div class="key-outputs__chips">
+              <span>Validated Improvements</span><span>Living Operations Portal</span><span>Reporting Framework</span><span>12-Mo Roadmap</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Extended horizons: Month 6 &amp; Year 1 (dossier-only expansion beyond the one-pager) -->
+      <div class="horizon-grid">
+        <div class="horizon-card">
+          <div class="horizon-card__head">
+            <h3>Month 6</h3>
+            <span class="lifecycle-stage__tag">Measure + Expand</span>
+          </div>
+          <p>Deep working proficiency in the Symphony's Bloomerang environment, an established Advancement&ndash;Finance reconciliation rhythm with automation where appropriate, robust LYBUNT/SYBUNT tracking, and an active staff SOP portal.</p>
+        </div>
+        <div class="horizon-card">
+          <div class="horizon-card__head">
+            <h3>Year 1</h3>
+            <span class="lifecycle-stage__tag">Institutionalize + Plan Forward</span>
+          </div>
+          <p>System upgrades validated by staff feedback, reliable retention reporting, and scalable infrastructure ready for campaign growth &mdash; separating immediate fixes, training, and strategic projects.</p>
         </div>
       </div>
     </div>
@@ -1478,7 +1573,7 @@ I will understand before redesigning, protect donor intent, support the people d
       <div class="section-heading">
         <p class="kicker kicker-light">07 &middot; Career Record</p>
         <div>
-          <h2>10+ Years of Systems <em>& Public Service.</em></h2>
+          <h2>13+ Years of Systems <em>& Public Service.</em></h2>
           <p class="lead">
             Experience managing statewide advocacy operations, constituent systems, and coalitions across Virginia.
           </p>
@@ -1491,6 +1586,15 @@ I will understand before redesigning, protect donor intent, support the people d
             </a>
           </div>
         </div>
+      </div>
+
+      <div class="proof-strip" aria-label="Quantified track record">
+        <div class="proof-stat"><span class="proof-stat__num">13+</span><span class="proof-stat__label">Years of public-service leadership</span></div>
+        <div class="proof-stat"><span class="proof-stat__num">55</span><span class="proof-stat__label">General Assembly meetings coordinated</span></div>
+        <div class="proof-stat"><span class="proof-stat__num">89</span><span class="proof-stat__label">Virginia Advocacy Summit participants</span></div>
+        <div class="proof-stat"><span class="proof-stat__num">40+</span><span class="proof-stat__label">Public engagements across Central Virginia</span></div>
+        <div class="proof-stat"><span class="proof-stat__num">10</span><span class="proof-stat__label">Organizations in a national coalition</span></div>
+        <div class="proof-stat"><span class="proof-stat__num">4</span><span class="proof-stat__label">Statewide events organized &amp; led</span></div>
       </div>
 
       <div class="home-advocacy-timeline">
@@ -1536,6 +1640,72 @@ I will understand before redesigning, protect donor intent, support the people d
               Developed budget and policy strategy involving the Virginia Housing Trust Fund. Coordinated statewide coalitions, managed sensitive records, and supervised graduate interns as MSW field instructor.
             </p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Education & Technical Foundation -->
+  <section id="education" class="section section-navy">
+    <div class="page-shell">
+      <div class="section-heading">
+        <p class="kicker kicker-light">09 &middot; Education &amp; Technical Foundation</p>
+        <div>
+          <h2>Credentials <em>&amp; the Systems Toolkit.</em></h2>
+          <p class="lead">
+            Formal training in macro social work and civic leadership, paired with the CRM, process, and emerging-technology stack behind the roadmap.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card-editorial card-editorial--maroon">
+          <div>
+            <h3>Master of Social Work (MSW)</h3>
+            <p>University of South Carolina &middot; Advanced Standing, Macro Concentration.</p>
+          </div>
+        </div>
+        <div class="card-editorial card-editorial--maroon">
+          <div>
+            <h3>Bachelor of Social Work (BSW)</h3>
+            <p>University of South Carolina &middot; Leadership Distinction in Civic Engagement &middot; Student Government Senator representing Social Work.</p>
+          </div>
+        </div>
+        <div class="card-editorial card-editorial--maroon">
+          <div>
+            <h3>Sorensen Political Leaders Institute</h3>
+            <p>Leadership Program Participant &middot; UVA Weldon Cooper Center (2022).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tech-stack-grid">
+        <div class="tech-stack-col">
+          <p class="kicker kicker-light">CRM &amp; Data Systems</p>
+          <div class="tech-chips">
+            <span>EveryAction</span><span>Salesforce</span><span>Muster</span><span>Salsa</span><span>VAN</span><span>Constituent Segmentation</span><span>Reporting</span><span>Data Governance</span><span>Workflow Design</span>
+          </div>
+        </div>
+        <div class="tech-stack-col">
+          <p class="kicker kicker-light">Operations &amp; Process Design</p>
+          <div class="tech-chips">
+            <span>Process Mapping</span><span>SOP Development</span><span>Cross-Functional Sync</span><span>Workflow Automation</span>
+          </div>
+        </div>
+        <div class="tech-stack-col">
+          <p class="kicker kicker-light">Emerging Technology &amp; Tooling</p>
+          <div class="tech-chips">
+            <span>AI-Assisted Research</span><span>Prototyping</span><span>Data Visualization</span><span>Human-in-the-Loop Systems</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deeper: Bloomerang learning pathway (dossier-only expansion beyond the one-pager) -->
+      <div class="card-editorial" style="margin-top: 28px;">
+        <div>
+          <p class="kicker kicker-light">Bloomerang Learning Pathway</p>
+          <h4 style="margin-bottom: 8px;">How I close the platform gap deliberately</h4>
+          <p>I have not administered Bloomerang, and I treat that as a defined onboarding priority rather than a gap to paper over. The plan is concrete: complete the Bloomerang New User Orientation and learning pathways while shadowing live workflows, audit the current configuration, custom fields, naming conventions, and reporting filters, and engage Bloomerang Professional Services where specialized expertise reduces risk.</p>
         </div>
       </div>
     </div>

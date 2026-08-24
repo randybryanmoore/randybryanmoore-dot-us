@@ -4027,3 +4027,168 @@ body:not([data-review-tools="on"]) #inspector-box {
   display: none !important;
 }
 body:not([data-review-tools="on"]) { padding-bottom: 0; }
+
+/* =====================================================================
+   ONE-PAGER ALIGNMENT + DEEPER DOSSIER EXPANSION (2026-08-24, CUR)
+   Tagline, philosophy discipline layer, roadmap key outputs + extended
+   horizons, quantified proof strip, and the education / technical stack.
+   Scoped to new class names so existing sections are untouched.
+   ===================================================================== */
+
+/* Hero tagline — the one-pager's positioning line */
+.hero-tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(19px, 2vw, 26px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--gold-light);
+  text-align: center;
+  margin: -6px auto 16px;
+  max-width: 620px;
+}
+
+/* Philosophy — deeper operating disciplines beneath the four principles */
+.discipline-layer { margin-top: 34px; }
+.discipline-layer .kicker { margin-bottom: 16px; }
+.discipline-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.discipline-item {
+  border-left: 2px solid var(--maroon);
+  padding: 4px 0 4px 16px;
+}
+.discipline-item h4 {
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: var(--cream);
+}
+.discipline-item p {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(242, 234, 223, 0.86);
+}
+
+/* Roadmap — key outputs chips inside each stage card */
+.key-outputs {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(242, 234, 223, 0.16);
+}
+.key-outputs__label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  opacity: 0.85;
+  margin-bottom: 10px;
+}
+.key-outputs__chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.key-outputs__chips span {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--cream);
+  background: rgba(242, 234, 223, 0.08);
+  border: 1px solid rgba(242, 234, 223, 0.2);
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+
+/* Roadmap — extended Month 6 / Year 1 horizons */
+.horizon-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+.horizon-card {
+  background: var(--block-fill, rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(242, 234, 223, 0.2);
+  border-left: 4px solid var(--gold-light);
+  border-radius: 6px;
+  padding: 24px;
+}
+.horizon-card__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.horizon-card__head h3 { color: var(--cream); margin: 0; }
+.horizon-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(242, 234, 223, 0.88);
+  margin: 0;
+}
+
+/* Career record — quantified proof strip */
+.proof-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(242, 234, 223, 0.16);
+  border-radius: 8px;
+}
+.proof-stat { border-left: 2px solid var(--maroon); padding-left: 12px; }
+.proof-stat__num {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 2.4vw, 2.3rem);
+  font-weight: 600;
+  line-height: 1.02;
+  color: var(--cream);
+}
+.proof-stat__label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(242, 234, 223, 0.72);
+  margin-top: 6px;
+  line-height: 1.35;
+}
+
+/* Education — technical stack columns and chips */
+.tech-stack-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 28px;
+}
+.tech-stack-col .kicker { margin-bottom: 12px; }
+.tech-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.tech-chips span {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--cream);
+  background: var(--maroon);
+  border: 1px solid rgba(242, 234, 223, 0.22);
+  border-radius: 999px;
+  padding: 5px 12px;
+}
+
+@media (max-width: 900px) {
+  .discipline-grid { grid-template-columns: 1fr 1fr; }
+  .proof-strip { grid-template-columns: repeat(3, 1fr); }
+  .tech-stack-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .discipline-grid { grid-template-columns: 1fr; }
+  .horizon-grid { grid-template-columns: 1fr; }
+  .proof-strip { grid-template-columns: 1fr 1fr; }
+}
