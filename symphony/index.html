@@ -83,8 +83,8 @@
        it is independent of the review-tools switch. -->
   <button type="button" class="build-badge" id="build-badge" aria-expanded="false" aria-controls="build-provenance-modal" title="⚡ Build &amp; Agent Telemetry (Shift+V)">
     <span class="build-badge-agent build-badge-agent--cur" title="Active AI Agent: Cursor (CUR)">CUR</span>
-    <span class="build-badge-live-dot" title="v1.9.5 live // production verified"></span>
-    <span class="build-badge-version">v1.9.5</span>
+    <span class="build-badge-live-dot" title="v1.9.6 live // production verified"></span>
+    <span class="build-badge-version">v1.9.6</span>
     <span class="build-badge-sha">LIVE</span>
     <span class="build-badge-date">Aug 24, 2026</span>
   </button>
@@ -126,7 +126,7 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Build Version</div>
-        <div class="provenance-card-value">v1.9.5 (Current Live)</div>
+        <div class="provenance-card-value">v1.9.6 (Current Live)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Total Time Logged</div>
@@ -149,13 +149,13 @@
       </summary>
       <div class="lifecycle-status-content">
         <dl class="lifecycle-status-grid">
-          <div><dt>Local</dt><dd>v1.9.5 verified release source</dd></div>
+          <div><dt>Local</dt><dd>v1.9.6 verified release source</dd></div>
           <div><dt>Committed</dt><dd>Yes // review-refinement release on main</dd></div>
           <div><dt>Pushed</dt><dd>Yes // merged to main via PR #9</dd></div>
           <div><dt>Merged / PR</dt><dd>Merged // PR #9 fast-forwarded onto main</dd></div>
           <div><dt>Deployed</dt><dd>Yes // GitHub Actions Pages run #32747518993</dd></div>
           <div><dt>Staging</dt><dd>Not used</dd></div>
-          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.9.5 verified at the custom domain Aug 24, 2026</dd></div>
+          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.9.6 verified at the custom domain Aug 24, 2026</dd></div>
         </dl>
         <details class="lifecycle-glossary">
           <summary>Lifecycle definitions used by all agents</summary>
@@ -245,10 +245,36 @@
       </details>
 
       <div class="provenance-changelog-list">
-        <!-- v1.9.5 -->
+        <!-- v1.9.6 -->
         <div class="version-item-wrap active">
           <div class="version-item-row" role="button" tabindex="0" aria-expanded="true">
-            <span><span class="agent-chip agent-chip--cur">CUR</span> <strong>v1.9.5</strong> (Current Live)</span>
+            <span><span class="agent-chip agent-chip--cur">CUR</span> <strong>v1.9.6</strong> (Current Live)</span>
+            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 0.2h &bull; Aug 24</span>
+          </div>
+          <div class="version-hover-card">
+            <div class="version-hover-header">
+              <div class="version-hover-title">
+                <span>v1.9.6 &middot; Per-Role Photos in the Career Timeline</span>
+                <span style="color:#15803d; font-size:9px;">● LIVE &bull; PRODUCTION VERIFIED</span>
+              </div>
+              <div class="version-hover-meta">
+                <div><strong>Authoring Agent:</strong> Cursor (CUR)</div>
+                <div><strong>Model / Effort:</strong> Claude Opus 4.8 &bull; agent mode</div>
+                <div><strong>Released:</strong> Aug 24, 2026</div>
+                <div><strong>Deployment:</strong> GitHub Actions Pages &middot; main</div>
+                <div><strong>Production:</strong> v1.9.6 verified at the custom domain</div>
+              </div>
+            </div>
+            <ul class="version-hover-bullets">
+              <li>Moved the four professional photos out of the standalone gallery and into their matching Career Record timeline boxes: Spanberger with Save the Children, Active Minds, Senator Warner, and Virginia Housing Alliance each now carry their own captioned photo. Each timeline row is a three-column date / detail / photo layout that stacks on mobile.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v1.9.5 -->
+        <div class="version-item-wrap">
+          <div class="version-item-row" role="button" tabindex="0" aria-expanded="false">
+            <span><span class="agent-chip agent-chip--cur">CUR</span> <strong>v1.9.5</strong> (Live &middot; Production)</span>
             <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 0.4h &bull; Aug 24</span>
           </div>
           <div class="version-hover-card">
@@ -1688,25 +1714,6 @@ I will understand before redesigning, protect donor intent, support the people d
         <div class="proof-stat"><span class="proof-stat__num">4</span><span class="proof-stat__label">Statewide events organized &amp; led</span></div>
       </div>
 
-      <div class="career-gallery" aria-label="Professional highlights">
-        <figure>
-          <img src="images/advocacy-spanberger.jpg" alt="Randy Bryan Moore with Abigail Spanberger" loading="lazy">
-          <figcaption>With Abigail Spanberger &middot; Save the Children Action Network</figcaption>
-        </figure>
-        <figure>
-          <img src="images/advocacy-active-minds.jpg" alt="Randy Bryan Moore at an Active Minds advocacy conference" loading="lazy">
-          <figcaption>Active Minds &middot; National Advocacy Conference</figcaption>
-        </figure>
-        <figure>
-          <img src="images/advocacy-senator-warner.jpg" alt="Randy Bryan Moore with U.S. Senator Mark R. Warner" loading="lazy">
-          <figcaption>With U.S. Senator Mark R. Warner</figcaption>
-        </figure>
-        <figure>
-          <img src="images/advocacy-housing-day.jpg" alt="Virginia Housing Alliance advocacy day at the Virginia Capitol" loading="lazy">
-          <figcaption>Virginia Housing Alliance &middot; Housing Day at the Capitol</figcaption>
-        </figure>
-      </div>
-
       <div class="home-advocacy-timeline">
         <div class="timeline-item timeline-item--maroon">
           <span>12/2024 – 11/2025</span>
@@ -1717,6 +1724,10 @@ I will understand before redesigning, protect donor intent, support the people d
               Led statewide advocacy operations and coordinated 55 General Assembly meetings with parents, providers, volunteers, lawmakers, and partners. Used EveryAction to capture and tag constituent engagement, build outreach lists and follow-up workflows, and support event reporting.
             </p>
           </div>
+          <figure class="timeline-photo">
+            <img src="images/advocacy-spanberger.jpg" alt="Randy Bryan Moore with Abigail Spanberger" loading="lazy">
+            <figcaption>With Abigail Spanberger</figcaption>
+          </figure>
         </div>
 
         <div class="timeline-item timeline-item--maroon">
@@ -1728,6 +1739,10 @@ I will understand before redesigning, protect donor intent, support the people d
               Built the organization’s first federal policy platform and tracking systems across youth mental health and crisis resources. Led a 10-organization coalition and engaged 50+ legislative offices, translating complex data into clear leadership recommendations.
             </p>
           </div>
+          <figure class="timeline-photo">
+            <img src="images/advocacy-active-minds.jpg" alt="Randy Bryan Moore at an Active Minds advocacy conference" loading="lazy">
+            <figcaption>Active Minds national conference</figcaption>
+          </figure>
         </div>
 
         <div class="timeline-item timeline-item--maroon">
@@ -1739,6 +1754,10 @@ I will understand before redesigning, protect donor intent, support the people d
               Managed stakeholder communications across 40+ Central Virginia counties with officials, agencies, businesses, advocates, press, and constituents. Prepared senior-level briefs, maintained detailed records, and organized 40+ public engagements.
             </p>
           </div>
+          <figure class="timeline-photo">
+            <img src="images/advocacy-senator-warner.jpg" alt="Randy Bryan Moore with U.S. Senator Mark R. Warner" loading="lazy">
+            <figcaption>With U.S. Senator Mark R. Warner</figcaption>
+          </figure>
         </div>
 
         <div class="timeline-item timeline-item--maroon">
@@ -1750,6 +1769,10 @@ I will understand before redesigning, protect donor intent, support the people d
               Developed budget and policy strategy involving the Virginia Housing Trust Fund. Coordinated statewide coalitions, managed sensitive records, and supervised graduate interns as MSW field instructor.
             </p>
           </div>
+          <figure class="timeline-photo">
+            <img src="images/advocacy-housing-day.jpg" alt="Virginia Housing Alliance advocacy day at the Virginia Capitol" loading="lazy">
+            <figcaption>Housing Day at the Capitol</figcaption>
+          </figure>
         </div>
       </div>
     </div>
