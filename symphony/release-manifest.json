@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-24T16:20:00-04:00",
+  "generated_at": "2026-08-24T16:30:00-04:00",
   "service_name": "richmond-symphony-candidate-dossier",
-  "service_version": "1.9.1",
+  "service_version": "1.9.2",
   "generator": {
     "agent": "CUR",
     "product": "Cursor",
@@ -12,7 +12,7 @@
     "repository": "randybryanmoore/randybryanmoore-dot-us",
     "branch": "main",
     "base_commit": "4100b6b",
-    "working_tree": "released source: v1.9.1 music and roadmap review refinements, deployed and verified live"
+    "working_tree": "released source: v1.9.2 roadmap heading reword, deployed and verified live"
   },
   "deployment_architecture": {
     "source_repository": "randybryanmoore/randybryanmoore-dot-us",
@@ -42,7 +42,7 @@
   "artifacts": [
     {
       "path": "index.html",
-      "sha256": "5b876277a82fdf5ecd6737299dcd161197398d1b5cef3ea358b3d0cf8b96e5df"
+      "sha256": "820fff6c0bdde589c3b611165042ce3f80217296612e45ac083ec54718ea0d42"
     },
     {
       "path": "styles.css",
@@ -58,7 +58,7 @@
     },
     {
       "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",
-      "sha256": "18cf2671990c05fa1d2a2f497d44207ccfa943646b4841a27143144b6d1280cd"
+      "sha256": "974e6697f02f043a01f16a1c79ddbc091237fd3b81c5db77acf9b5e4ae96ada9"
     }
   ],
   "validation": {

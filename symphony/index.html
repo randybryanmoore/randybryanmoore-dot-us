@@ -83,8 +83,8 @@
        it is independent of the review-tools switch. -->
   <button type="button" class="build-badge" id="build-badge" aria-expanded="false" aria-controls="build-provenance-modal" title="⚡ Build &amp; Agent Telemetry (Shift+V)">
     <span class="build-badge-agent build-badge-agent--cur" title="Active AI Agent: Cursor (CUR)">CUR</span>
-    <span class="build-badge-live-dot" title="v1.9.1 live // production verified"></span>
-    <span class="build-badge-version">v1.9.1</span>
+    <span class="build-badge-live-dot" title="v1.9.2 live // production verified"></span>
+    <span class="build-badge-version">v1.9.2</span>
     <span class="build-badge-sha">LIVE</span>
     <span class="build-badge-date">Aug 24, 2026</span>
   </button>
@@ -126,7 +126,7 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Build Version</div>
-        <div class="provenance-card-value">v1.9.1 (Current Live)</div>
+        <div class="provenance-card-value">v1.9.2 (Current Live)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Total Time Logged</div>
@@ -149,13 +149,13 @@
       </summary>
       <div class="lifecycle-status-content">
         <dl class="lifecycle-status-grid">
-          <div><dt>Local</dt><dd>v1.9.1 verified release source</dd></div>
+          <div><dt>Local</dt><dd>v1.9.2 verified release source</dd></div>
           <div><dt>Committed</dt><dd>Yes // review-refinement release on main</dd></div>
           <div><dt>Pushed</dt><dd>Yes // merged to main via PR #9</dd></div>
           <div><dt>Merged / PR</dt><dd>Merged // PR #9 fast-forwarded onto main</dd></div>
           <div><dt>Deployed</dt><dd>Yes // GitHub Actions Pages run #32747518993</dd></div>
           <div><dt>Staging</dt><dd>Not used</dd></div>
-          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.9.1 verified at the custom domain Aug 24, 2026</dd></div>
+          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.9.2 verified at the custom domain Aug 24, 2026</dd></div>
         </dl>
         <details class="lifecycle-glossary">
           <summary>Lifecycle definitions used by all agents</summary>
@@ -245,10 +245,36 @@
       </details>
 
       <div class="provenance-changelog-list">
-        <!-- v1.9.1 -->
+        <!-- v1.9.2 -->
         <div class="version-item-wrap active">
           <div class="version-item-row" role="button" tabindex="0" aria-expanded="true">
-            <span><span class="agent-chip agent-chip--cur">CUR</span> <strong>v1.9.1</strong> (Current Live)</span>
+            <span><span class="agent-chip agent-chip--cur">CUR</span> <strong>v1.9.2</strong> (Current Live)</span>
+            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 0.1h &bull; Aug 24</span>
+          </div>
+          <div class="version-hover-card">
+            <div class="version-hover-header">
+              <div class="version-hover-title">
+                <span>v1.9.2 &middot; Roadmap Heading Reword</span>
+                <span style="color:#15803d; font-size:9px;">● LIVE &bull; PRODUCTION VERIFIED</span>
+              </div>
+              <div class="version-hover-meta">
+                <div><strong>Authoring Agent:</strong> Cursor (CUR)</div>
+                <div><strong>Model / Effort:</strong> Claude Opus 4.8 &bull; agent mode</div>
+                <div><strong>Released:</strong> Aug 24, 2026</div>
+                <div><strong>Deployment:</strong> GitHub Actions Pages &middot; main</div>
+                <div><strong>Production:</strong> v1.9.2 verified at the custom domain</div>
+              </div>
+            </div>
+            <ul class="version-hover-bullets">
+              <li>Reworded the Execution Roadmap heading from "30-60-90 Day Plan, with a 6- &amp; 12-Month Outlook" to "A Phased Plan for the First Year," and tightened the lead so the phased structure reads more naturally.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v1.9.1 -->
+        <div class="version-item-wrap">
+          <div class="version-item-row" role="button" tabindex="0" aria-expanded="false">
+            <span><span class="agent-chip agent-chip--cur">CUR</span> <strong>v1.9.1</strong> (Live &middot; Production)</span>
             <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 0.2h &bull; Aug 24</span>
           </div>
           <div class="version-hover-card">
@@ -1476,9 +1502,9 @@ The transferable ground is real and worth naming precisely. At the Virginia Hous
       <div class="section-heading">
         <p class="kicker kicker-light">06 &middot; Execution Roadmap</p>
         <div>
-          <h2>30-60-90 Day Plan, <em>with a 6- &amp; 12-Month Outlook.</em></h2>
+          <h2>A Phased Plan <em>for the First Year.</em></h2>
           <p class="lead">
-            A discovery-first framework. The first thirty days commit to no changes at all, because the plan that survives contact with a real department is the one written after listening to it — then the outlook extends through the six- and twelve-month horizons.
+            Discovery first. The opening thirty days commit to no changes at all, because the plan that survives contact with a real department is the one written after listening to it. From there the work builds in deliberate phases &mdash; through 90 days, then the six- and twelve-month horizons.
           </p>
         </div>
       </div>
