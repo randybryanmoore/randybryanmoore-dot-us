@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-24T01:33:12-04:00",
+  "generated_at": "2026-08-24T15:10:00-04:00",
   "service_name": "richmond-symphony-candidate-dossier",
-  "service_version": "1.8.0",
+  "service_version": "1.9.0",
   "generator": {
-    "agent": "CL",
-    "product": "Claude Code",
-    "model_family": "Claude Opus 5"
+    "agent": "CUR",
+    "product": "Cursor",
+    "model_family": "Claude Opus 4.8"
   },
   "source": {
     "repository": "randybryanmoore/randybryanmoore-dot-us",
-    "branch": "main",
-    "base_commit": "6cf448a",
-    "working_tree": "release source plus post-deployment telemetry finalization"
+    "branch": "cursor/strengthen-symphony-dossier-e1b2",
+    "base_commit": "bf2dff5",
+    "working_tree": "release candidate: one-pager alignment plus deeper dossier expansion, pending merge to main"
   },
   "deployment_architecture": {
     "source_repository": "randybryanmoore/randybryanmoore-dot-us",
@@ -24,29 +24,29 @@
     "local": true,
     "committed": true,
     "pushed": true,
-    "merged_or_pull_request": true,
-    "deployed": true,
+    "merged_or_pull_request": false,
+    "deployed": false,
     "staging": false,
-    "production_verified": true,
-    "production_version": "v1.7.5",
+    "production_verified": false,
+    "production_version": "v1.8.0",
     "verified_at": "2026-08-22T15:46:57-04:00",
     "release_checkpoint": "46246df",
     "deployment_workflow_run": "32593867344",
     "first_verified_one_repository_build": "1d58442",
-    "production_note": "Dossier v1.8.0 committed in fcda78d, merged with origin/main in 46246df, pushed to main, deployed by the symphony-pages workflow, and read back from the custom domain",
+    "production_note": "v1.9.0 is a release candidate on branch cursor/strengthen-symphony-dossier-e1b2; it deploys on merge to main via the symphony-pages workflow. v1.8.0 remains the live production build until then.",
     "deployment_workflow_name": "Deploy Richmond Symphony dossier",
-    "deployment_workflow_conclusion": "success",
+    "deployment_workflow_conclusion": "pending",
     "deployment_workflow_url": "https://github.com/randybryanmoore/randybryanmoore-dot-us/actions/runs/32593867344",
-    "deployed_at": "2026-08-22T19:30:09Z"
+    "deployed_at": null
   },
   "artifacts": [
     {
       "path": "index.html",
-      "sha256": "b404955631359f854eb7f4d091b3aad9986ba0d2b2a2cc919bdd9eef68ec25f8"
+      "sha256": "cbefff86c6be34a79cfd590697e2026b5be3b28f4697d5c89a091b7fcc9c35a3"
     },
     {
       "path": "styles.css",
-      "sha256": "de065e0af7364e6665d3b7c1f57277e1cd3856bc8fa9ae969f429505006be87f"
+      "sha256": "f4261da73335ce86e8004469933f636b01dbf74c88825f2b33e200ea93712aaa"
     },
     {
       "path": "script.js",
@@ -58,7 +58,7 @@
     },
     {
       "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",
-      "sha256": "eabc8789678f1068c8c758632a037f8dd22242d266af8fbee8a5da6460d7673e"
+      "sha256": "0481a52fa23570f60f9410fddd05541a780e46534f9bfa557bea27fc8ddea81c"
     }
   ],
   "validation": {
