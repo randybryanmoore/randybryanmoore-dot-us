@@ -1350,7 +1350,7 @@
       /* Force browsers to print all background colors and images */
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
-      /* Hide UI chrome only — everything else stays identical to screen */
+      /* Hide UI chrome only */
       .op-site-header, .top-nav, .annotation-dock, .annotation-popover,
       .annotation-presentation-status, .dock-badge, .popover-voice-status,
       .feedback-drawer, .passcode-gate-overlay, .print-btn-bar,
@@ -1358,37 +1358,82 @@
         display: none !important;
       }
 
-      body {
+      html, body {
         padding: 0 !important;
         margin: 0 !important;
-        background: var(--cobalt-deep) !important;
+        background: #FAF6EE !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
       }
 
       .handout-sheet {
         page-break-after: always !important;
         break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
         box-shadow: none !important;
-        zoom: 0.71 !important;
-        width: calc(100% - 48px) !important;
-        max-width: calc(100% - 48px) !important;
-        /* Equal top/bottom margin to center vertically within the navy page */
-        margin: 0.40in auto !important;
+        border: none !important;
+        border-radius: 0 !important;
+        zoom: 0.81 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding: 0.16in 0.32in !important;
+        background: #FAF6EE !important;
+        box-sizing: border-box !important;
       }
 
       .handout-header {
-        flex-direction: row !important;
-        justify-content: space-between !important;
-        align-items: center !important;
+        padding: 8px 14px !important;
+        margin-bottom: 6px !important;
       }
 
       .portfolio-block {
-        grid-template-columns: 84px 1fr !important;
+        padding: 7px 14px !important;
+        margin-bottom: 6px !important;
+      }
+
+      .how-i-think-panel {
+        padding: 6px 12px !important;
+        margin-bottom: 6px !important;
+      }
+
+      .dcard {
+        padding: 6px 10px !important;
+      }
+
+      .matrix-table th {
+        padding: 4px 8px !important;
+        font-size: 0.65rem !important;
+      }
+
+      .matrix-table td {
+        padding: 4px 8px !important;
+        font-size: 0.63rem !important;
+        line-height: 1.24 !important;
       }
 
       .handout-footer {
+        display: flex !important;
         flex-direction: row !important;
         justify-content: space-between !important;
         align-items: center !important;
+        padding: 6px 14px !important;
+        margin-top: 6px !important;
+      }
+
+      .footer-col-left {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+      }
+
+      .footer-col-right {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-end !important;
+        text-align: right !important;
       }
 
       .page-break {
