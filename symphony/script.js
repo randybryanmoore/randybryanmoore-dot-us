@@ -1092,22 +1092,6 @@ The complete YAML telemetry is embedded in Section 10.7 and is also available se
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
 
-    // Present role fit before proof scenarios, followed by the performing-arts
-    // narrative: 01 Systems, 02 Alignment, 03 Case Studies, 04 Music.
-    const systemsSection = document.getElementById('systems');
-    const alignmentSection = document.getElementById('alignment');
-    const caseStudiesSection = document.getElementById('case-studies');
-    const musicSection = document.getElementById('music');
-    if (systemsSection && alignmentSection) {
-      systemsSection.insertAdjacentElement('afterend', alignmentSection);
-    }
-    if (alignmentSection && caseStudiesSection) {
-      alignmentSection.insertAdjacentElement('afterend', caseStudiesSection);
-    }
-    if (caseStudiesSection && musicSection) {
-      caseStudiesSection.insertAdjacentElement('afterend', musicSection);
-    }
-
     tabBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
         if (editActive) return;
