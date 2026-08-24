@@ -4182,6 +4182,25 @@ body:not([data-review-tools="on"]) { padding-bottom: 0; }
   padding: 5px 12px;
 }
 
+/* Music — Spotify artist bio blurb */
+.spotify-artist-bio {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(242, 234, 223, 0.9);
+  max-width: 720px;
+  margin: 0 0 16px;
+}
+.spotify-artist-bio strong { color: var(--cream); }
+.spotify-artist-bio a {
+  display: inline-block;
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--gold-light);
+  border-bottom: 1px solid rgba(223, 202, 116, 0.4);
+  padding-bottom: 1px;
+}
+
 @media (max-width: 900px) {
   .discipline-grid { grid-template-columns: 1fr 1fr; }
   .proof-strip { grid-template-columns: repeat(3, 1fr); }

@@ -83,8 +83,8 @@
        it is independent of the review-tools switch. -->
   <button type="button" class="build-badge" id="build-badge" aria-expanded="false" aria-controls="build-provenance-modal" title="⚡ Build &amp; Agent Telemetry (Shift+V)">
     <span class="build-badge-agent build-badge-agent--cur" title="Active AI Agent: Cursor (CUR)">CUR</span>
-    <span class="build-badge-live-dot" title="v1.9.0 live // production verified"></span>
-    <span class="build-badge-version">v1.9.0</span>
+    <span class="build-badge-live-dot" title="v1.9.1 live // production verified"></span>
+    <span class="build-badge-version">v1.9.1</span>
     <span class="build-badge-sha">LIVE</span>
     <span class="build-badge-date">Aug 24, 2026</span>
   </button>
@@ -126,7 +126,7 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Build Version</div>
-        <div class="provenance-card-value">v1.9.0 (Current Live)</div>
+        <div class="provenance-card-value">v1.9.1 (Current Live)</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Total Time Logged</div>
@@ -134,7 +134,7 @@
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Git Commit SHA</div>
-        <div class="provenance-card-value" id="prov-commit-sha">#4100b6b verified release source</div>
+        <div class="provenance-card-value" id="prov-commit-sha">v1.9.1 &bull; released to main</div>
       </div>
       <div class="provenance-card">
         <div class="provenance-card-label">Sync Branch</div>
@@ -149,13 +149,13 @@
       </summary>
       <div class="lifecycle-status-content">
         <dl class="lifecycle-status-grid">
-          <div><dt>Local</dt><dd>v1.9.0 verified release source</dd></div>
-          <div><dt>Committed</dt><dd>Yes // release checkpoint #4100b6b</dd></div>
+          <div><dt>Local</dt><dd>v1.9.1 verified release source</dd></div>
+          <div><dt>Committed</dt><dd>Yes // review-refinement release on main</dd></div>
           <div><dt>Pushed</dt><dd>Yes // merged to main via PR #9</dd></div>
           <div><dt>Merged / PR</dt><dd>Merged // PR #9 fast-forwarded onto main</dd></div>
           <div><dt>Deployed</dt><dd>Yes // GitHub Actions Pages run #32747518993</dd></div>
           <div><dt>Staging</dt><dd>Not used</dd></div>
-          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.9.0 verified at the custom domain Aug 24, 2026</dd></div>
+          <div class="lifecycle-status-grid__wide"><dt>Live / Production</dt><dd>v1.9.1 verified at the custom domain Aug 24, 2026</dd></div>
         </dl>
         <details class="lifecycle-glossary">
           <summary>Lifecycle definitions used by all agents</summary>
@@ -245,10 +245,39 @@
       </details>
 
       <div class="provenance-changelog-list">
-        <!-- v1.9.0 -->
+        <!-- v1.9.1 -->
         <div class="version-item-wrap active">
           <div class="version-item-row" role="button" tabindex="0" aria-expanded="true">
-            <span><span class="agent-chip agent-chip--cur">CUR</span> <strong>v1.9.0</strong> (Current Live)</span>
+            <span><span class="agent-chip agent-chip--cur">CUR</span> <strong>v1.9.1</strong> (Current Live)</span>
+            <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 0.2h &bull; Aug 24</span>
+          </div>
+          <div class="version-hover-card">
+            <div class="version-hover-header">
+              <div class="version-hover-title">
+                <span>v1.9.1 &middot; Music &amp; Roadmap Review Refinements</span>
+                <span style="color:#15803d; font-size:9px;">● LIVE &bull; PRODUCTION VERIFIED</span>
+              </div>
+              <div class="version-hover-meta">
+                <div><strong>Authoring Agent:</strong> Cursor (CUR)</div>
+                <div><strong>Model / Effort:</strong> Claude Opus 4.8 &bull; agent mode</div>
+                <div><strong>Released:</strong> Aug 24, 2026</div>
+                <div><strong>Deployment:</strong> GitHub Actions Pages &middot; main</div>
+                <div><strong>Production:</strong> v1.9.1 verified at the custom domain</div>
+              </div>
+            </div>
+            <ul class="version-hover-bullets">
+              <li>Changed "transcription" to "interpretation" in the 1,000 Songs listening-discipline line.</li>
+              <li>Renamed the Tori Amos listening study from "Analytical Song Breakdown" to "Sitting With a Song" (echoing the artistic-journey quote); updated the embed title to match.</li>
+              <li>Added an artist bio beneath the Original Music &middot; Spotify player, with a link to the Spotify artist profile.</li>
+              <li>Made the roadmap's 6- and 12-month outlook explicit: updated the section heading and lead, added a "Beyond the First 90 Days" label, and relabeled the horizon cards to "6 Months" and "12 Months".</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v1.9.0 -->
+        <div class="version-item-wrap">
+          <div class="version-item-row" role="button" tabindex="0" aria-expanded="false">
+            <span><span class="agent-chip agent-chip--cur">CUR</span> <strong>v1.9.0</strong> (Live &middot; Production)</span>
             <span class="version-row-tag" style="background:#dcfce7; color:#15803d; border-color:#86efac;">● 0.5h &bull; Aug 24</span>
           </div>
           <div class="version-hover-card">
@@ -1447,9 +1476,9 @@ The transferable ground is real and worth naming precisely. At the Virginia Hous
       <div class="section-heading">
         <p class="kicker kicker-light">06 &middot; Execution Roadmap</p>
         <div>
-          <h2>30-60-90 Day <em>Advancement Plan.</em></h2>
+          <h2>30-60-90 Day Plan, <em>with a 6- &amp; 12-Month Outlook.</em></h2>
           <p class="lead">
-            A discovery-first framework. The first thirty days commit to no changes at all, because the plan that survives contact with a real department is the one written after listening to it.
+            A discovery-first framework. The first thirty days commit to no changes at all, because the plan that survives contact with a real department is the one written after listening to it — then the outlook extends through the six- and twelve-month horizons.
           </p>
         </div>
       </div>
@@ -1547,18 +1576,19 @@ I will understand before redesigning, protect donor intent, support the people d
         </div>
       </div>
 
-      <!-- Extended horizons: Month 6 &amp; Year 1 (dossier-only expansion beyond the one-pager) -->
+      <!-- Extended horizons: 6- and 12-month outlook beyond the first 90 days -->
+      <p class="kicker kicker-light" style="margin: 34px 0 14px;">Beyond the First 90 Days &middot; 6- &amp; 12-Month Outlook</p>
       <div class="horizon-grid">
         <div class="horizon-card">
           <div class="horizon-card__head">
-            <h3>Month 6</h3>
+            <h3>6 Months</h3>
             <span class="lifecycle-stage__tag">Measure + Expand</span>
           </div>
           <p>Deep working proficiency in the Symphony's Bloomerang environment, an established Advancement&ndash;Finance reconciliation rhythm with automation where appropriate, robust LYBUNT/SYBUNT tracking, and an active staff SOP portal.</p>
         </div>
         <div class="horizon-card">
           <div class="horizon-card__head">
-            <h3>Year 1</h3>
+            <h3>12 Months</h3>
             <span class="lifecycle-stage__tag">Institutionalize + Plan Forward</span>
           </div>
           <p>System upgrades validated by staff feedback, reliable retention reporting, and scalable infrastructure ready for campaign growth &mdash; separating immediate fixes, training, and strategic projects.</p>
@@ -1772,19 +1802,19 @@ I will understand before redesigning, protect donor intent, support the people d
         <blockquote class="artistic-journey-quote" style="font-family: var(--serif); font-size: clamp(19px, 2.2vw, 26px); font-style: italic; color: #ffffff; margin: 0 0 28px 0; border: 1px solid rgba(242, 234, 223, 0.3); padding: 16px 20px; background: var(--blue-l2); border-radius: 4px; line-height: 1.5;">
           “The purpose is to hear what music has to teach me—as an artist, as a beast, and as a ghost. Not a countdown, but a record of sustained attention: sitting with a song, leaving the growth visible, and being changed by music at the end.
           <span style="display: block; margin-top: 14px; font-size: 0.9em; opacity: 0.9;">Like sticking your hand in a stream.”</span>
-          <span style="display: block; margin-top: 12px; font-family: var(--sans); font-size: 0.58em; font-style: normal; line-height: 1.55; opacity: 0.9;">An ongoing discipline in close listening, transcription, and performance (235+ songs since December 2025)—tracing how melody, cultural memory, and storytelling shape creative resilience.</span>
+          <span style="display: block; margin-top: 12px; font-family: var(--sans); font-size: 0.58em; font-style: normal; line-height: 1.55; opacity: 0.9;">An ongoing discipline in close listening, interpretation, and performance (235+ songs since December 2025)—tracing how melody, cultural memory, and storytelling shape creative resilience.</span>
         </blockquote>
 
         <div class="selected-listening-studies">
           <div>
             <p class="kicker kicker-light">Selected Listening Study</p>
-            <h3>Analytical Song Breakdown · Tori Amos</h3>
+            <h3>Sitting With a Song · Tori Amos</h3>
             <p>Compact study in harmonic structure, vocal phrasing, instrumentation, and dynamic arrangement from the 1,000 Songs Project (235+ songs since December 2025).</p>
           </div>
           <div class="home-tiktok-card" style="max-width: 340px; margin: 0 auto; width: 100%; border-radius: 6px; box-shadow: var(--shadow-sm);">
             <iframe
               src="https://www.tiktok.com/embed/v2/7597478771502910733"
-              title="Analytical Song Breakdown: God by Tori Amos"
+              title="Sitting With a Song: 'God' by Tori Amos"
               allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
               allowfullscreen
               loading="lazy"></iframe>
@@ -1799,6 +1829,10 @@ I will understand before redesigning, protect donor intent, support the people d
         <!-- Spotify artist player -->
         <div class="spotify-embed-wrap" style="margin-top: 28px;">
           <p class="kicker kicker-light" style="margin-bottom: 12px; color: var(--gold-light);">Original Music · Spotify</p>
+          <p class="spotify-artist-bio">
+            Randy Bryan Moore is a Richmond, Virginia pianist, recording artist, and producer who releases original music as <strong>Randy Bryan</strong>. A working musician, social worker, and public advocate, he makes a life where music, story, and service meet — from the piano at The Jefferson Hotel to self-produced songs and arrangements.
+            <a href="https://open.spotify.com/artist/0zaqvfVeDQZJ1q70foOsRs" target="_blank" rel="noopener">Open artist profile on Spotify ↗</a>
+          </p>
           <iframe
             src="https://open.spotify.com/embed/artist/0zaqvfVeDQZJ1q70foOsRs?utm_source=generator&amp;theme=0"
             title="Randy Bryan on Spotify"
