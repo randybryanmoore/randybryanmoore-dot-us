@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-24T15:10:00-04:00",
+  "generated_at": "2026-08-24T15:54:00-04:00",
   "service_name": "richmond-symphony-candidate-dossier",
   "service_version": "1.9.0",
   "generator": {
@@ -10,9 +10,9 @@
   },
   "source": {
     "repository": "randybryanmoore/randybryanmoore-dot-us",
-    "branch": "cursor/strengthen-symphony-dossier-e1b2",
-    "base_commit": "bf2dff5",
-    "working_tree": "release candidate: one-pager alignment plus deeper dossier expansion, pending merge to main"
+    "branch": "main",
+    "base_commit": "4100b6b",
+    "working_tree": "released source: one-pager alignment plus deeper dossier expansion, deployed and verified live"
   },
   "deployment_architecture": {
     "source_repository": "randybryanmoore/randybryanmoore-dot-us",
@@ -24,25 +24,25 @@
     "local": true,
     "committed": true,
     "pushed": true,
-    "merged_or_pull_request": false,
-    "deployed": false,
+    "merged_or_pull_request": true,
+    "deployed": true,
     "staging": false,
-    "production_verified": false,
-    "production_version": "v1.8.0",
-    "verified_at": "2026-08-22T15:46:57-04:00",
-    "release_checkpoint": "46246df",
-    "deployment_workflow_run": "32593867344",
+    "production_verified": true,
+    "production_version": "v1.9.0",
+    "verified_at": "2026-08-24T15:53:00-04:00",
+    "release_checkpoint": "4100b6b",
+    "deployment_workflow_run": "32747518993",
     "first_verified_one_repository_build": "1d58442",
-    "production_note": "v1.9.0 is a release candidate on branch cursor/strengthen-symphony-dossier-e1b2; it deploys on merge to main via the symphony-pages workflow. v1.8.0 remains the live production build until then.",
+    "production_note": "Dossier v1.9.0 merged to main via PR #9 (fast-forward to 4100b6b), deployed by the symphony-pages workflow run 32747518993, and read back from https://symphony.randybryanmoore.us. Lifecycle flags in this manifest are corrected in a follow-up commit after the verified readback.",
     "deployment_workflow_name": "Deploy Richmond Symphony dossier",
-    "deployment_workflow_conclusion": "pending",
-    "deployment_workflow_url": "https://github.com/randybryanmoore/randybryanmoore-dot-us/actions/runs/32593867344",
-    "deployed_at": null
+    "deployment_workflow_conclusion": "success",
+    "deployment_workflow_url": "https://github.com/randybryanmoore/randybryanmoore-dot-us/actions/runs/32747518993",
+    "deployed_at": "2026-08-24T15:52:38Z"
   },
   "artifacts": [
     {
       "path": "index.html",
-      "sha256": "cbefff86c6be34a79cfd590697e2026b5be3b28f4697d5c89a091b7fcc9c35a3"
+      "sha256": "1b51f295007fdb26b0a12974e1b62aeadcb4f0137acb9550e6bd9144100c5cf8"
     },
     {
       "path": "styles.css",
@@ -58,7 +58,7 @@
     },
     {
       "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",
-      "sha256": "0481a52fa23570f60f9410fddd05541a780e46534f9bfa557bea27fc8ddea81c"
+      "sha256": "b9dcde9a7805b1d4c2aacdc6ed298ae0fbb7250bf64d9cf38a3d83f7c90b5a81"
     }
   ],
   "validation": {
