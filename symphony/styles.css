@@ -194,21 +194,21 @@ img {
 
 /* Section Headings */
 .section-heading {
-  display: grid;
-  grid-template-columns: minmax(160px, 0.32fr) 1fr;
-  gap: clamp(28px, 6vw, 90px);
-  margin-bottom: clamp(40px, 6vw, 72px);
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 24px;
 }
 
 .section-heading h2 {
   max-width: 880px;
-  margin-bottom: 18px;
+  margin-bottom: 8px;
 }
 
 .lead {
-  max-width: 720px;
-  font-size: clamp(18px, 1.8vw, 24px);
+  max-width: 780px;
+  font-size: clamp(17px, 1.7vw, 22px);
   line-height: 1.48;
   opacity: 0.9;
 }
@@ -1027,6 +1027,17 @@ img {
   background: var(--block-fill);
   border-color: rgba(242, 234, 223, 0.2);
   color: var(--cream);
+}
+
+/* Philosophy 4 principles cards carry a red/maroon accent stripe on the left */
+#philosophy .grid-2 .card-editorial {
+  border-left: 4px solid var(--maroon);
+  border-radius: 4px;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-left-color 180ms ease;
+}
+
+#philosophy .grid-2 .card-editorial:hover {
+  border-left-color: var(--gold);
 }
 
 /* Roadmap cards carry the maroon accent instead of the translucent
