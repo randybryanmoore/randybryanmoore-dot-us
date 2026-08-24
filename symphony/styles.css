@@ -4265,7 +4265,7 @@ body:not([data-review-tools="on"]) { padding-bottom: 0; }
 .proof-stat__num {
   display: block;
   font-family: var(--serif);
-  font-size: clamp(1.7rem, 2.4vw, 2.3rem);
+  font-size: 26px;
   font-weight: 600;
   line-height: 1.02;
   color: var(--cream);
@@ -4280,6 +4280,69 @@ body:not([data-review-tools="on"]) { padding-bottom: 0; }
   color: rgba(242, 234, 223, 0.72);
   margin-top: 6px;
   line-height: 1.35;
+}
+
+/* Interactive Proof Stat Tooltips */
+.proof-stat {
+  position: relative;
+  cursor: pointer;
+  transition: transform 180ms ease, border-left-color 180ms ease;
+}
+
+.proof-stat:hover {
+  transform: translateY(-2px);
+  border-left-color: var(--gold);
+}
+
+.proof-stat[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--navy-deep);
+  color: var(--cream);
+  border: 1px solid var(--gold);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: normal;
+  width: max-content;
+  max-width: 220px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
+  z-index: 100;
+}
+
+.proof-stat[data-tooltip]:hover::after,
+.proof-stat[data-tooltip]:focus::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Source Document / Compliance Badges */
+.source-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--gold-light);
+  background: rgba(223, 202, 116, 0.1);
+  border: 1px solid rgba(223, 202, 116, 0.3);
+  border-radius: 4px;
+  padding: 4px 10px;
+  margin-top: 10px;
+  letter-spacing: 0.02em;
 }
 
 /* Education — technical stack columns and chips */
