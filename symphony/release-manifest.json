@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-24T17:10:00-04:00",
+  "generated_at": "2026-08-24T17:15:00-04:00",
   "service_name": "richmond-symphony-candidate-dossier",
-  "service_version": "1.9.7",
+  "service_version": "1.9.8",
   "generator": {
     "agent": "CUR",
     "product": "Cursor",
@@ -12,7 +12,7 @@
     "repository": "randybryanmoore/randybryanmoore-dot-us",
     "branch": "main",
     "base_commit": "4100b6b",
-    "working_tree": "released source: v1.9.7 smaller career timeline photos, deployed and verified live"
+    "working_tree": "released source: v1.9.8 80px career photo thumbnails, deployed and verified live"
   },
   "deployment_architecture": {
     "source_repository": "randybryanmoore/randybryanmoore-dot-us",
@@ -42,11 +42,11 @@
   "artifacts": [
     {
       "path": "index.html",
-      "sha256": "c65f40068fe1cfb2b3e988c9e23c4e5eec201a34b5f0ac88c9db3bda9e16b3d1"
+      "sha256": "014d3028196110cad8dfe1779912f6e65084090e9800a79f2ff27a8b0aba23fe"
     },
     {
       "path": "styles.css",
-      "sha256": "7778ae98a27108a743e918e3651351803c0e97a5e2e6354d79e70174f24667f9"
+      "sha256": "d8a362e13279020ad30e00e17f1dc35ffc116e79f58263f9eb09d456dc996902"
     },
     {
       "path": "script.js",
@@ -58,7 +58,7 @@
     },
     {
       "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",
-      "sha256": "682d2ed2eaf865a2b99b7e4d34f19217e4775870bf68b242baa627fe8d3e0c8e"
+      "sha256": "341af3607f8c0de3f582c6a5d6ecc4887e8c8dad4cf7a32fc404d5ef6fd5a98d"
     }
   ],
   "validation": {

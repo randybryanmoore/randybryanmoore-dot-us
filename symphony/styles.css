@@ -1649,10 +1649,10 @@ img {
 
 .timeline-item {
   display: grid;
-  grid-template-columns: 140px 1fr 132px;
-  gap: 24px;
+  grid-template-columns: 140px 1fr 80px;
+  gap: 20px;
   align-items: center;
-  padding: 28px 32px;
+  padding: 22px 28px;
   border: 1px solid rgba(242, 234, 223, 0.25);
   background: var(--navy);
   color: var(--cream);
@@ -4195,35 +4195,17 @@ body:not([data-review-tools="on"]) { padding-bottom: 0; }
   margin: 0;
 }
 .timeline-photo img {
-  width: 100%;
+  width: 80px;
+  height: 80px;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: center top;
-  border-radius: 6px;
+  border-radius: 4px;
   border: 1px solid rgba(242, 234, 223, 0.32);
   display: block;
 }
 .timeline-photo figcaption {
-  margin-top: 7px;
-  font-family: var(--mono);
-  font-size: 9px;
-  line-height: 1.35;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(242, 234, 223, 0.75);
-  text-align: center;
-}
-@media (max-width: 760px) {
-  .timeline-item {
-    grid-template-columns: 96px 1fr;
-    gap: 16px 18px;
-  }
-  .timeline-photo {
-    grid-column: 1 / -1;
-    justify-self: start;
-    max-width: 200px;
-  }
-  .timeline-photo img { aspect-ratio: 4 / 3; }
+  display: none;
 }
 
 /* Music — Spotify artist bio blurb */
