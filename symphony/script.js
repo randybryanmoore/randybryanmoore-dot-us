@@ -406,7 +406,7 @@
       if (drawer) drawer.style.display = 'none';
       if (persist) {
         try {
-          localStorage.removeItem(annotationToolsPreferenceKey);
+          localStorage.setItem(annotationToolsPreferenceKey, enabled ? 'on' : 'off');
         } catch (error) {}
       }
       updateAnnotationPresentationTelemetry(enabled);
@@ -466,10 +466,11 @@
       setProvenanceOpen(true);
     }
 
+    let initialAdminEnabled = false;
     try {
-      localStorage.removeItem(annotationToolsPreferenceKey);
+      initialAdminEnabled = localStorage.getItem(annotationToolsPreferenceKey) === 'on';
     } catch (error) {}
-    applyAnnotationToolsState(false);
+    applyAnnotationToolsState(initialAdminEnabled);
 
     if (annotationOwnerToggleBtn) {
       annotationOwnerToggleBtn.addEventListener('click', (event) => {
