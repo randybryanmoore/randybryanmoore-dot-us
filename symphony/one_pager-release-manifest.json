@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-22T14:58:00-04:00",
+  "generated_at": "2026-08-24T01:33:12-04:00",
   "surface_name": "Richmond Symphony Executive One-Pager",
-  "surface_version": "1.4.0",
+  "surface_version": "1.4.1",
   "surface_prefix": "OP",
   "parent_dossier": {
     "production_version": "v1.7.5",
@@ -46,7 +46,7 @@
   "artifacts": [
     {
       "path": "one_pager.html",
-      "sha256": "70f6d410ac8af9e5341ebdc8d3a2fffe8d0584b89247fea3921e6fb3d67c6f2f"
+      "sha256": "a57db7e17ff97914cd075940f5cb7101c49567ca6c5e768cec3d637e5c169a8c"
     },
     {
       "path": "styles.css",
@@ -54,7 +54,7 @@
     },
     {
       "path": "script.js",
-      "sha256": "002364a01d8cb19b938ab5454e103691b93c6a91e637a84e06fe322e5e051349"
+      "sha256": "1cf416fa14e0f3abbb0498c12b0f8f3630a79983d216f8e8d3a186337d095b89"
     }
   ],
   "validation": {
@@ -72,15 +72,15 @@
     "quotation_integrity": "pass: global and/& -> // transform removed; cover-letter quotation now matches the source PDF",
     "editorial_separator_scope": "pass: // retained only in the three First 90 Days stage labels and three dossier roadmap labels",
     "responsive": "pass: desktop 1280, tablet 768, mobile 375; no horizontal page overflow at any width",
-    "pdf_regenerated": "pass: Randy_Bryan_Moore_Executive_Briefing.pdf recompiled to 1 page",
+    "pdf_regenerated": "pass: Randy_Bryan_Moore_Executive_Briefing.pdf recompiled to 2 US Letter pages for front-and-back printing",
     "source_verification": "partial: only 2 of 15 briefing sources present in repo (resume, cover letter); no organizational claim independently verifiable",
     "telemetry_badge_position": "pass: merged the upstream high-contrast badge and modal offsets from origin/main (8401aad)",
     "lifecycle_accuracy": "pass: lifecycle flags corrected post-push; they previously understated the deployed state",
     "deployment_run_captured": "pass: run 32593867344 (success) deployed 46246df, retrieved from the public Actions API",
-    "duplex_print": "pass: 4 US Letter sides = two sheets duplexed, 291/204/191/216 words",
+    "duplex_print": "pass: 2 US Letter sides = one sheet printed front and back",
     "telemetry_identity": "pass: badge shows CL agent chip plus OP surface chip; runtime model, parent release, and scoped time corrected from Codex values",
     "contrast": "pass: One-Pager Time Logged moved from --gold-light (1.15:1, unreadable) to --gold-ink (5.46:1)",
-    "print_matches_web": "pass: print inherits the screen type scale, spacing and colour; fit handled by a single 0.88 zoom rather than a second compressed design",
+    "print_matches_web": "pass: both print pages use full Letter canvases with page-specific body scaling, aligned footers, and the existing document-blue trim",
     "flex_stretch": "pass: .handout-sheet > * pinned to natural height; flex children were stretching the header band and inflating cards",
     "owner_gate": "pass: review tools hidden until the 4-digit owner code is entered; wrong code, short code, and 5-failure lockout all verified",
     "telemetry_not_obscured": "pass: annotation dock no longer overlaps the telemetry badge"
