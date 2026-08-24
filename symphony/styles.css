@@ -4182,6 +4182,22 @@ body:not([data-review-tools="on"]) { padding-bottom: 0; }
   padding: 5px 12px;
 }
 
+/* Philosophy — signed personal statement */
+.philosophy-signature {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  margin: 22px 0 0;
+  opacity: 0.92;
+}
+
+/* Career record — artistic portrait */
+.career-portrait {
+  max-width: 320px;
+  margin: 0 auto 32px;
+}
+
 /* Music — Spotify artist bio blurb */
 .spotify-artist-bio {
   font-size: 13.5px;

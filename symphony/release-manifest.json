@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-24T16:33:00-04:00",
+  "generated_at": "2026-08-24T16:38:00-04:00",
   "service_name": "richmond-symphony-candidate-dossier",
-  "service_version": "1.9.3",
+  "service_version": "1.9.4",
   "generator": {
     "agent": "CUR",
     "product": "Cursor",
@@ -12,7 +12,7 @@
     "repository": "randybryanmoore/randybryanmoore-dot-us",
     "branch": "main",
     "base_commit": "4100b6b",
-    "working_tree": "released source: v1.9.3 header monogram removal, deployed and verified live"
+    "working_tree": "released source: v1.9.4 added imagery and cleaner hero links, deployed and verified live"
   },
   "deployment_architecture": {
     "source_repository": "randybryanmoore/randybryanmoore-dot-us",
@@ -42,11 +42,11 @@
   "artifacts": [
     {
       "path": "index.html",
-      "sha256": "66b71cc48c4a811d4227d4965536abc616de18a516a5ce840d6e4adf11deb2ec"
+      "sha256": "202547689bc0e1670e726f91cd2d8aa4f52f8fe260d9bb9437f96e3ea9809200"
     },
     {
       "path": "styles.css",
-      "sha256": "eb50240dcb0cd43a3359f04660708492da19874f183344f26fe770805e46b3ba"
+      "sha256": "97eb29b19cdc9350eab7a592c4a760ab85db83865d04cee82b3904653a7b2c43"
     },
     {
       "path": "script.js",
@@ -58,7 +58,7 @@
     },
     {
       "path": "Randy_Bryan_Moore_Richmond_Symphony_Dossier.zip",
-      "sha256": "76d5b0d102115dc3d1efd8385ddad2bdd00783d56b28283b7e34a3bfe97fe4dd"
+      "sha256": "0f22093b578bd2e9db441e854cc2934b0c5a0a806b2a55fa2fbfd078e87a1eb6"
     }
   ],
   "validation": {
