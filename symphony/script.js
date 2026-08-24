@@ -1128,7 +1128,7 @@ The complete YAML telemetry is embedded in Section 10.7 and is also available se
     // 6. Dual-Stream Pinpoint Annotation & Private Notes Engine
     // =========================================================================
     let selectedElements = []; // Array of { el, tag, text }
-    let selectedCategory = 'Copy';
+    let selectedCategories = ['Copy'];
     let aiNotesList = [];
     let privateNotesList = [];
     let activeDrawerTab = 'ai'; // 'ai', 'private', 'all'
@@ -1198,21 +1198,58 @@ The complete YAML telemetry is embedded in Section 10.7 and is also available se
     function renderTags() {
       if (!popoverTagsContainer) return;
       const tags = (currentMode === 'private') ? privateTags : aiTags;
-      if (!tags.includes(selectedCategory)) {
-        selectedCategory = tags[0];
+      
+      // Keep valid standard tags or custom tags
+      selectedCategories = selectedCategories.filter(c => tags.includes(c) || (!aiTags.includes(c) && !privateTags.includes(c)));
+      
+      if (selectedCategories.length === 0) {
+        selectedCategories = [tags[0]];
       }
-      popoverTagsContainer.innerHTML = tags.map(tag => `
-        <span class="tag-chip ${selectedCategory === tag ? 'selected' : ''}" data-tag="${tag}">${tag}</span>
-      `).join('');
 
-      popoverTagsContainer.querySelectorAll('.tag-chip').forEach(chip => {
+      let html = tags.map(tag => `
+        <span class="tag-chip ${selectedCategories.includes(tag) ? 'selected' : ''}" data-tag="${escapeHtml(tag)}">${escapeHtml(tag)}</span>
+      `).join('');
+      
+      // Render custom tags
+      selectedCategories.forEach(tag => {
+        if (!tags.includes(tag)) {
+          html += `<span class="tag-chip custom-tag selected" data-tag="${escapeHtml(tag)}">${escapeHtml(tag)}</span>`;
+        }
+      });
+      
+      html += `<span class="tag-chip custom-tag-btn" style="background: rgba(255,255,255,0.1); border: 1px dashed var(--gold);">+ Custom</span>`;
+      
+      popoverTagsContainer.innerHTML = html;
+
+      popoverTagsContainer.querySelectorAll('.tag-chip:not(.custom-tag-btn)').forEach(chip => {
         chip.addEventListener('click', (e) => {
           e.stopPropagation();
-          popoverTagsContainer.querySelectorAll('.tag-chip').forEach(c => c.classList.remove('selected'));
-          chip.classList.add('selected');
-          selectedCategory = chip.getAttribute('data-tag') || (currentMode === 'private' ? 'Memo' : 'Copy');
+          const tag = chip.getAttribute('data-tag');
+          if (selectedCategories.includes(tag)) {
+            if (selectedCategories.length > 1) {
+                selectedCategories = selectedCategories.filter(c => c !== tag);
+                chip.classList.remove('selected');
+            }
+          } else {
+            selectedCategories.push(tag);
+            chip.classList.add('selected');
+          }
         });
       });
+      
+      const customBtn = popoverTagsContainer.querySelector('.custom-tag-btn');
+      if (customBtn) {
+         customBtn.addEventListener('click', (e) => {
+           e.stopPropagation();
+           const custom = prompt('Enter custom category:');
+           if (custom && custom.trim()) {
+              if (!selectedCategories.includes(custom.trim())) {
+                  selectedCategories.push(custom.trim());
+                  renderTags();
+              }
+           }
+         });
+      }
     }
 
     // Switch Popover Mode (AI Review vs Private Note)
@@ -1223,6 +1260,7 @@ The complete YAML telemetry is embedded in Section 10.7 and is also available se
         else t.classList.remove('active');
       });
 
+      selectedCategories = mode === 'private' ? ['Memo'] : ['Copy'];
       if (mode === 'private') {
         if (popover) popover.classList.add('popover--private');
         if (popoverSave) popoverSave.innerText = 'Save Private Note ↵';
@@ -1718,7 +1756,7 @@ The complete YAML telemetry is embedded in Section 10.7 and is also available se
           const badge = document.createElement('span');
           badge.className = isPrivate ? 'annotation-element-badge annotation-element-badge--private' : 'annotation-element-badge';
           badge.innerText = isPrivate ? `🔒${num}` : num;
-          badge.title = `[${isPrivate ? '🔒 Private' : '🚀 AI'}: ${selectedCategory}] ${comment}`;
+          badge.title = `[${isPrivate ? '🔒 Private' : '🚀 AI'}: ${selectedCategories.join(', ')}] ${comment}`;
           badge.setAttribute('data-badge-id', noteId);
           badge.addEventListener('click', (ev) => {
             ev.stopPropagation();
@@ -1735,7 +1773,7 @@ The complete YAML telemetry is embedded in Section 10.7 and is also available se
           batchId: batchId,
           batchIndex: idx,
           batchSize: batchSize,
-          category: selectedCategory,
+          category: selectedCategories.join(', '),
           targetText: item.text,
           comment: comment,
           voiceAudio: activeVoiceAudioBase64,

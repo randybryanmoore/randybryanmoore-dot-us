@@ -6,7 +6,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d1a32'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='27' font-weight='700' fill='%23f2eadf'%3ERM%3C/text%3E%3C/svg%3E">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
   <title>Executive Candidate Briefing — Richmond Symphony | Randy Bryan Moore, MSW</title>
-  <link rel="stylesheet" href="styles.css?v=1787600028">
+  <link rel="stylesheet" href="styles.css?v=1787600103">
   <style>
     /* ------------------------------------------------------------------
        SELF-CONTAINED HANDOUT STYLES
@@ -600,19 +600,6 @@
     .op-education-row strong { display: block; font-size: 0.82rem; color: var(--cobalt); margin-bottom: 0.15rem; }
     .op-education-row span { display: block; font-size: 0.7rem; line-height: 1.3; color: var(--muted-olive); }
     @media (max-width: 820px) { .op-education-row { grid-template-columns: 1fr; } }
-    .handout-footer {
-      background: linear-gradient(135deg, var(--cobalt-deep) 0%, var(--cobalt) 100%);
-      color: #ffffff;
-      padding: 1rem 1.6rem;
-      border-radius: 8px;
-      margin-top: 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.86rem;
-      border: 1.5px solid var(--gold);
-      box-shadow: 0 4px 16px rgba(13, 26, 50, 0.3);
-    }
     .handout-footer--wine {
       background: linear-gradient(135deg, var(--wine) 0%, #3d0a18 100%);
       border: 1.5px solid var(--gold);
@@ -715,12 +702,6 @@
       .portfolio-block {
         grid-template-columns: 1fr;
         text-align: left;
-      }
-      .handout-footer {
-        flex-direction: column;
-        gap: 10px;
-        text-align: left;
-        align-items: flex-start;
       }
       .print-btn-bar {
         flex-direction: column;
@@ -1254,18 +1235,6 @@
     }
 
     /* 3-Line Stacked Footers */
-    .handout-footer {
-      padding: 7px 16px;
-      margin-top: auto;
-      border-radius: 6px;
-      border: 1px solid var(--gold);
-      background: linear-gradient(145deg, var(--cobalt-deep) 0%, var(--cobalt) 100%);
-      color: #ffffff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 14px rgba(13, 26, 50, 0.2);
-    }
     .footer-col-left {
       display: flex;
       flex-direction: column;
@@ -1344,9 +1313,7 @@
     @page {
       size: letter portrait;
       margin: 0;
-    }
-
-    @media print {
+    }    @media print {
       /* Force browsers to print all background colors and images */
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
@@ -1361,7 +1328,7 @@
       html, body {
         padding: 0 !important;
         margin: 0 !important;
-        background: #FAF6EE !important;
+        background: #ffffff !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
@@ -1372,12 +1339,16 @@
         page-break-inside: avoid !important;
         break-inside: avoid !important;
         box-shadow: none !important;
-        border: none !important;
+        border: 3px solid var(--cobalt-deep) !important;
         border-radius: 0 !important;
         zoom: 0.81 !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 auto !important;
+        width: calc(100% - 48px) !important;
+        max-width: calc(100% - 48px) !important;
+        margin: 0.5in auto !important;
+        min-height: 12.34in !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
         padding: 0.16in 0.32in !important;
         background: #FAF6EE !important;
         box-sizing: border-box !important;
@@ -1413,15 +1384,6 @@
         line-height: 1.24 !important;
       }
 
-      .handout-footer {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        padding: 6px 14px !important;
-        margin-top: 6px !important;
-      }
-
       .footer-col-left {
         display: flex !important;
         flex-direction: column !important;
@@ -1440,8 +1402,21 @@
         page-break-before: always !important;
         break-before: page !important;
       }
+
+      .print-inner-scale {
+        padding: 0.16in 0.32in !important;
+        zoom: 0.90 !important;
+      }
+      .handout-footer {
+        position: absolute !important;
+        bottom: 0.16in !important;
+        left: 0.32in !important;
+        width: calc(100% - 0.64in) !important;
+        margin-top: 0 !important;
+      }
     }
   </style>
+
 </head>
 <body data-review-tools="off" data-telemetry-surface="one-pager" class="dossier-unlocked">
 
@@ -1474,6 +1449,7 @@
 
   <!-- Side 1 of 2: Executive Summary, Pillars & Alignment Matrix -->
   <div class="handout-sheet">
+  <div class="print-inner-scale">
     <div class="handout-header">
       <div class="handout-header-main">
         <div class="handout-title">
@@ -1585,22 +1561,24 @@
       </table>
     </div>
 
+  </div>
     <div class="handout-footer">
       <div class="footer-col-left">
-        <div class="footer-label">ONLINE DOSSIER</div>
-        <div class="footer-link-main"><a href="https://symphony.randybryanmoore.us/" target="_blank" rel="noopener">symphony.randybryanmoore.us &#8599;</a></div>
-        <div class="footer-sub"><span class="footer-pin">PIN: 0000</span></div>
+        <span style="font-size:0.75rem; font-weight:700; color:var(--charcoal);">symphony.randybryanmoore.us ↗</span>
+        <span style="font-size:0.65rem; color:var(--muted-olive);">ONLINE DOSSIER<br>PIN: 0000</span>
       </div>
+      <img src="images/logo-stacked.png" alt="MSW Logo" style="height: 52px; width: auto; object-fit: contain; margin-top: -6px;">
       <div class="footer-col-right">
-        <div class="footer-label">DIRECT CONTACT</div>
-        <div class="footer-link-main"><a href="mailto:randybryanmoore@gmail.com">randybryanmoore@gmail.com</a></div>
-        <div class="footer-sub"><a href="tel:+18034864007">(803) 486-4007</a></div>
+        <span style="font-size:0.75rem; font-weight:700; color:var(--charcoal);">randybryanmoore@gmail.com</span>
+        <span style="font-size:0.65rem; color:var(--muted-olive);">DIRECT CONTACT<br>(803) 486-4007</span>
       </div>
+    </div>
     </div>
   </div>
 
   <!-- Side 2 of 2: Onboarding Roadmap, Professional Foundation & Technical Environment -->
   <div class="handout-sheet page-break">
+  <div class="print-inner-scale">
     <div class="handout-header handout-header--running" style="padding: 9px 18px; margin-bottom: 8px;">
       <div class="handout-header-main">
         <h1 style="font-size: 1.05rem; margin-bottom: 1px; text-align: left; display:flex; align-items:center; gap:6px;">
@@ -1688,11 +1666,11 @@
       <div class="horizon-panel">
         <div class="horizon-item">
           <strong>MONTH 6 // MEASURE + EXPAND</strong>
-          Full Bloomerang operational mastery, automated reconciliation rhythm, robust LYBUNT/SYBUNT renewal tracking, active staff SOP portal.
+          Independent Bloomerang administration across core Advancement workflows, established Advancement-Finance reconciliation rhythm, with automation where appropriate, robust LYBUNT/SYBUNT renewal tracking, active staff SOP portal.
         </div>
         <div class="horizon-item">
           <strong>YEAR 1 // INSTITUTIONALIZE + PLAN FORWARD</strong>
-          Predictive retention analytics, integrated community/education advancement data, scalable infrastructure ready for campaign growth.
+          Validated analytics, stronger cross-functional data use, and scalable infrastructure based on first-6-months discovery.
         </div>
       </div>
 
@@ -1717,8 +1695,8 @@
           Nonprofit, government, systems, public service, and operations experience.
         </div>
         <div class="proof-card">
-          <strong>55+ LEGISLATIVE MEETINGS + LOBBY DAYS</strong>
-          Coordinated legislative meetings, advocacy days, volunteers, partners, lawmakers, and campaign operations.
+          <strong>55 GENERAL ASSEMBLY MEETINGS</strong>
+          Coordinated legislative meetings across state advocacy swings and lobby days.
         </div>
         <div class="proof-card">
           <strong>10 ORGANIZATIONS</strong>
@@ -1777,6 +1755,7 @@
       </div>
     </div>
 
+  </div>
     <div class="handout-footer">
       <div class="footer-col-left">
         <div class="footer-label">ONLINE DOSSIER</div>
@@ -2111,6 +2090,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=1787600028"></script>
+  <script src="script.js?v=1787600103"></script>
 </body>
 </html>
