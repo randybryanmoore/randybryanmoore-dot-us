@@ -1745,7 +1745,7 @@ img {
 
 .timeline-item {
   display: grid;
-  grid-template-columns: 140px 1fr 180px;
+  grid-template-columns: 140px 1fr 240px;
   gap: 28px;
   align-items: center;
   padding: 22px 28px;
@@ -4385,14 +4385,16 @@ body:not([data-review-tools="on"]) { padding-bottom: 0; }
   margin: 0;
 }
 .timeline-photo img {
-  width: 180px;
+  width: 240px;
+  max-width: 100%;
   height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  object-position: center top;
+  object-position: center;
   border-radius: 6px;
   border: 1px solid rgba(242, 234, 223, 0.32);
   display: block;
+  margin: 0 auto;
 }
 .timeline-photo figcaption {
   display: none;
