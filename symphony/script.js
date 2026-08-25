@@ -2032,11 +2032,9 @@ The complete YAML telemetry is embedded in Section 10.7 and is also available se
       });
     }
 
-    // Finalise in the LOCKED state. This previously passed true, which
-    // silently undid the lock applied during init, so the annotation dock
-    // was always visible and sat on top of the telemetry badge. Owner tools
-    // now stay hidden until the 4-digit owner code is entered.
-    applyAnnotationToolsState(false);
+    // Note: We already called applyAnnotationToolsState(initialAdminEnabled) during init.
+    // We removed the hardcoded applyAnnotationToolsState(false) here so that
+    // localStorage persistence is honored across refreshes.
     renderTags();
     updateDrawer();
   }
