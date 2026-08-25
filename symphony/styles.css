@@ -1007,11 +1007,17 @@ img {
 .card-editorial {
   background: var(--paper);
   border: 1px solid var(--line);
+  border-left: 4px solid var(--maroon);
+  border-radius: 4px;
   padding: 32px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-left-color 180ms ease;
+}
+
+.card-editorial:hover {
+  border-left-color: var(--gold);
 }
 
 .section-cream .card-editorial {
@@ -1035,21 +1041,6 @@ img {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
-}
-
-#philosophy .grid-2 .card-editorial {
-  border-left: 4px solid var(--maroon);
-  border-radius: 4px;
-  background: var(--block-fill);
-  padding: 28px 32px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 180ms ease, box-shadow 180ms ease, border-left-color 180ms ease;
-}
-
-#philosophy .grid-2 .card-editorial:hover {
-  border-left-color: var(--gold);
 }
 
 /* Roadmap cards carry the maroon accent instead of the translucent
@@ -1753,8 +1744,8 @@ img {
 
 .timeline-item {
   display: grid;
-  grid-template-columns: 140px 1fr 80px;
-  gap: 20px;
+  grid-template-columns: 140px 1fr 180px;
+  gap: 28px;
   align-items: center;
   padding: 22px 28px;
   border: 1px solid rgba(242, 234, 223, 0.25);
@@ -1781,6 +1772,7 @@ img {
 .card-editorial--maroon {
   background: var(--maroon) !important;
   border-color: rgba(242, 234, 223, 0.3) !important;
+  border-left-color: var(--gold) !important;
   color: var(--cream) !important;
 }
 
@@ -4388,12 +4380,12 @@ body:not([data-review-tools="on"]) { padding-bottom: 0; }
   margin: 0;
 }
 .timeline-photo img {
-  width: 80px;
-  height: 80px;
-  aspect-ratio: 1 / 1;
+  width: 180px;
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: center top;
-  border-radius: 4px;
+  border-radius: 6px;
   border: 1px solid rgba(242, 234, 223, 0.32);
   display: block;
 }
