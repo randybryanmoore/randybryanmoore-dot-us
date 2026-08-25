@@ -2776,13 +2776,17 @@ body[data-review-tools="on"] {
 }
 
 @media (max-width: 960px) {
-  .grid-2:not(#philosophy .grid-2),
+  .grid-2,
   .grid-3,
   .tab-grid,
   .lifecycle-grid,
   .section-heading {
     grid-template-columns: 1fr;
     gap: 28px;
+  }
+
+  #philosophy .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .home-tiktok-grid {
