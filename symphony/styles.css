@@ -1030,10 +1030,21 @@ img {
   color: var(--cream);
 }
 
-/* Philosophy 4 principles cards carry a red/maroon accent stripe on the left */
+/* Philosophy 2x2 Grid: Two boxes on top (01 & 02), two boxes below (03 & 04) */
+#philosophy .grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
 #philosophy .grid-2 .card-editorial {
   border-left: 4px solid var(--maroon);
   border-radius: 4px;
+  background: var(--block-fill);
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   transition: transform 180ms ease, box-shadow 180ms ease, border-left-color 180ms ease;
 }
 
@@ -2773,7 +2784,7 @@ body[data-review-tools="on"] {
 }
 
 @media (max-width: 960px) {
-  .grid-2,
+  .grid-2:not(#philosophy .grid-2),
   .grid-3,
   .tab-grid,
   .lifecycle-grid,
