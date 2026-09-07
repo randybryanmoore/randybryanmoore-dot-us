@@ -1,0 +1,22 @@
+---
+description: Build verification, release stamping, and deployment guidelines for symphony dossier
+globs: ["symphony/**", ".github/workflows/symphony-pages.yml", "scripts/**"]
+---
+
+# Symphony Dossier Release & Build Standards
+
+## Deployment Workflow
+- The dossier deploys to GitHub Pages via `.github/workflows/symphony-pages.yml` when changes touch `symphony/**`.
+- The live custom domain is `symphony.randybryanmoore.us`.
+
+## Verification Steps
+Before pushing changes that affect `symphony/`:
+1. Check JavaScript syntax: `node --check symphony/script.js`
+2. Test push script syntax: `python3 -m py_compile symphony/push_script.py`
+3. Validate JSON manifests: `python3 -m json.tool symphony/release-manifest.json >/dev/null`
+4. Rebuild the offline archive if files changed: `python3 symphony/push_script.py --build`
+5. Verify digests and release integrity: `python3 symphony/push_script.py --verify`
+
+## Post-Deploy Stamping
+After GitHub Actions deploys `main`:
+- Run `python3 scripts/stamp_release.py` to capture and stamp the exact GitHub Actions workflow run ID and conclusion into the release manifests.

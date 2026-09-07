@@ -1,0 +1,23 @@
+---
+description: Project architecture and editing guidelines for randybryanmoore-dot-us
+globs: ["*"]
+---
+
+# Project Guidelines: randybryanmoore-dot-us
+
+## Architecture & Tech Stack
+- Static site for Randy Bryan Moore (Ran). Plain HTML5, CSS3, and modern vanilla JavaScript.
+- **Do not convert** the homepage or site into a React, Vue, Next.js, or SPA application.
+- `index.html`: Personal homepage, styled by `css/style.css` and powered by `js/main.js`.
+- `symphony/`: Richmond Symphony candidate dossier, one-pager, and interactive portfolio.
+- Do not casually edit files under `symphony/` without testing and running the verification pipeline (`python3 symphony/push_script.py --verify`).
+- Leave `symphony_page.tsx` and `symphony_page_compiled.tsx` alone unless specifically requested.
+
+## Style & Design Tokens
+- Respect established design tokens in `css/style.css` and `symphony/styles.css`.
+- Keep modifications clean, accessible (WCAG AA contrast), and responsive across mobile, tablet, and desktop.
+- For `symphony/`, the color palette is anchored in deep navy (`--blue-l1: #0d1a32`, `--blue-l2: #182b4d`, `--blue-l3: #243d6b`) and deep cabernet maroon (`--red: #2b0710`). Do not introduce arbitrary colors.
+
+## AI Agent Telemetry
+- Maintain telemetry attribution when modifying `symphony/index.html` or `symphony/one_pager.html`.
+- Agent token for Cursor is **`CUR`** with violet `#5a4e8c`.
