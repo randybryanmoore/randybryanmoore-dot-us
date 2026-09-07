@@ -35,6 +35,24 @@ armed_file() { printf '%s\n' "$(support_dir)/armed"; }
 heartbeat_file() { printf '%s\n' "$(support_dir)/heartbeat"; }
 
 is_macos() { [[ "$(uname -s)" == "Darwin" ]]; }
+simulate() { [[ "${KEEPWAKE_SIMULATE:-0}" == "1" ]]; }
+runtime_ok() { is_macos || simulate; }
+
+sim_dir() { printf '%s\n' "$(support_dir)/sim"; }
+
+sim_init() {
+  mkdir -p "$(sim_dir)"
+  [[ -f "$(sim_dir)/SleepDisabled" ]] || printf '0\n' >"$(sim_dir)/SleepDisabled"
+  [[ -f "$(sim_dir)/ping" ]] || printf 'ok\n' >"$(sim_dir)/ping"
+  [[ -f "$(sim_dir)/battery" ]] || cat >"$(sim_dir)/battery" <<'EOF'
+Now drawing from 'Battery Power'
+ -InternalBattery-0	80%; discharging; 3:00 remaining present: true
+EOF
+  [[ -f "$(sim_dir)/temp" ]] || printf '45.00\n' >"$(sim_dir)/temp"
+  [[ -f "$(sim_dir)/pressure" ]] || printf '0\n' >"$(sim_dir)/pressure"
+  [[ -f "$(sim_dir)/wifi" ]] || printf 'en0\n' >"$(sim_dir)/wifi"
+  [[ -f "$(sim_dir)/ssid" ]] || printf 'TransitHotspot\n' >"$(sim_dir)/ssid"
+}
 
 ensure_dirs() {
   mkdir -p "$(support_dir)" "$(dirname "$(log_file)")"
@@ -43,7 +61,10 @@ ensure_dirs() {
 log() {
   local line
   line="$(date -u +"%Y-%m-%dT%H:%M:%SZ")  $*"
-  printf '%s\n' "$line"
+  # When started via nohup, stdout is already the log file — don't duplicate.
+  if [[ -t 1 ]]; then
+    printf '%s\n' "$line"
+  fi
   ensure_dirs
   printf '%s\n' "$line" >>"$(log_file)"
 }
@@ -88,7 +109,8 @@ keepawake_normalize_temp_c() {
 
 keepawake_should_failsafe_battery() {
   local pct="${1:-}" floor="${2:-15}" charging="${3:-0}"
-  [[ "$charging" == "1" ]] && { printf '0'; return; }
+  # Spec: sleep below the floor even if a charger is attached.
+  _="$charging"
   [[ -n "$pct" && "$pct" =~ ^[0-9]+$ && "$pct" -le "$floor" ]] && printf '1' || printf '0'
 }
 
@@ -108,10 +130,20 @@ keepawake_should_failsafe_pressure() {
 # --- live macOS sensors ---
 
 battery_snapshot() {
+  if simulate; then
+    sim_init
+    cat "$(sim_dir)/battery"
+    return 0
+  fi
   pmset -g batt 2>/dev/null || true
 }
 
 pack_temp_c() {
+  if simulate; then
+    sim_init
+    cat "$(sim_dir)/temp"
+    return 0
+  fi
   local raw
   raw="$(ioreg -r -n AppleSmartBattery -l 2>/dev/null | awk -F'= ' '/"Temperature" =/{gsub(/[^0-9.]/,"",$2); print $2; exit}')"
   [[ -z "$raw" ]] && return 1
@@ -119,6 +151,11 @@ pack_temp_c() {
 }
 
 darwin_thermal_pressure() {
+  if simulate; then
+    sim_init
+    tr -d '[:space:]' <"$(sim_dir)/pressure"
+    return 0
+  fi
   # notifyd state, no root. Python is optional; Swift is always on macOS.
   if command -v python3 >/dev/null 2>&1; then
     python3 - <<'PY' 2>/dev/null && return 0
@@ -146,6 +183,11 @@ SWIFT
 }
 
 wifi_device() {
+  if simulate; then
+    sim_init
+    tr -d '[:space:]' <"$(sim_dir)/wifi"
+    return 0
+  fi
   networksetup -listallhardwareports 2>/dev/null | awk '
     /Wi-Fi|AirPort/ { hit=1; next }
     hit && /Device:/ { print $2; exit }
@@ -154,6 +196,11 @@ wifi_device() {
 
 current_ssid() {
   local dev="$1" line
+  if simulate; then
+    sim_init
+    tr -d '[:space:]' <"$(sim_dir)/ssid"
+    return 0
+  fi
   line="$(networksetup -getairportnetwork "$dev" 2>/dev/null || true)"
   if printf '%s\n' "$line" | grep -qi 'not associated'; then
     return 1
@@ -162,10 +209,20 @@ current_ssid() {
 }
 
 default_gateway() {
+  if simulate; then
+    printf '1.1.1.1\n'
+    return 0
+  fi
   route -n get default 2>/dev/null | awk '/gateway:/{print $2; exit}'
 }
 
 ping_host() {
+  if simulate; then
+    sim_init
+    printf 'ping %s\n' "$1" >>"$(sim_dir)/ping.log"
+    [[ "$(tr -d '[:space:]' <"$(sim_dir)/ping")" == "ok" ]]
+    return
+  fi
   ping -c 1 -t 2 "$1" >/dev/null 2>&1
 }
 
@@ -180,11 +237,26 @@ ping_any() {
 # --- privileged sleep toggle ---
 
 helper_ok() {
+  simulate && return 1
   [[ -x "$HELPER_DST" ]] && sudo -n "$HELPER_DST" status >/dev/null 2>&1
 }
 
 pmset_verb() {
   local verb="$1"
+  if simulate; then
+    sim_init
+    case "$verb" in
+      disable-sleep) printf '1\n' >"$(sim_dir)/SleepDisabled" ;;
+      enable-sleep)  printf '0\n' >"$(sim_dir)/SleepDisabled" ;;
+      sleep-now)
+        printf '0\n' >"$(sim_dir)/SleepDisabled"
+        printf '1\n' >"$(sim_dir)/sleepnow"
+        ;;
+      status) cat "$(sim_dir)/SleepDisabled" ;;
+      *) return 2 ;;
+    esac
+    return 0
+  fi
   if helper_ok; then
     sudo -n "$HELPER_DST" "$verb"
     return $?
@@ -202,11 +274,17 @@ pmset_verb() {
 }
 
 can_toggle_noninteractive() {
+  simulate && return 0
   helper_ok && return 0
   sudo -n /usr/bin/pmset -g >/dev/null 2>&1
 }
 
 sleep_disabled() {
+  if simulate; then
+    sim_init
+    tr -d '[:space:]' <"$(sim_dir)/SleepDisabled"
+    return 0
+  fi
   if ! command -v pmset >/dev/null 2>&1; then
     printf 'unknown\n'
     return 0
@@ -316,7 +394,11 @@ network_tick() {
   if [[ -n "$ssid" ]]; then
     LAST_SSID="$ssid"
     log "network: reassociating to $ssid on $WIFI_DEV"
-    networksetup -setairportnetwork "$WIFI_DEV" "$ssid" >/dev/null 2>&1 || true
+    if simulate; then
+      printf '%s reassociate %s %s\n' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" "$WIFI_DEV" "$ssid" >>"$(sim_dir)/reassociate.log"
+    else
+      networksetup -setairportnetwork "$WIFI_DEV" "$ssid" >/dev/null 2>&1 || true
+    fi
     REASSOC_COUNT=$((REASSOC_COUNT + 1))
     sleep 3
     if ping_any; then
@@ -329,9 +411,13 @@ network_tick() {
   if [[ "$REASSOC_COUNT" -ge 3 ]]; then
     log "network: power-cycling Wi-Fi on $WIFI_DEV (last resort)"
     notify "Wi-Fi power-cycle" "Still offline after reassociate. Cycling $WIFI_DEV."
-    networksetup -setairportpower "$WIFI_DEV" off >/dev/null 2>&1 || true
-    sleep 2
-    networksetup -setairportpower "$WIFI_DEV" on >/dev/null 2>&1 || true
+    if simulate; then
+      printf '%s power-cycle %s\n' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" "$WIFI_DEV" >>"$(sim_dir)/reassociate.log"
+    else
+      networksetup -setairportpower "$WIFI_DEV" off >/dev/null 2>&1 || true
+      sleep 2
+      networksetup -setairportpower "$WIFI_DEV" on >/dev/null 2>&1 || true
+    fi
     REASSOC_COUNT=0
     FAIL_COUNT=0
   fi
@@ -360,7 +446,8 @@ status_tick() {
 }
 
 run_shell_daemon() {
-  is_macos || die "the caffeinate daemon is macOS-only"
+  runtime_ok || die "the caffeinate daemon is macOS-only (KEEPWAKE_SIMULATE=1 for e2e)"
+  simulate && sim_init
 
   if pid="$(running_pid)"; then
     die "already running (pid $pid); stop it first"
@@ -381,9 +468,16 @@ run_shell_daemon() {
   if [[ "$HOLD_DISPLAY" == "1" ]]; then
     caff_flags+=(-d)
   fi
-  caffeinate "${caff_flags[@]}" &
-  CAFFEINATE_PID=$!
-  log "caffeinate pid=$CAFFEINATE_PID flags=${caff_flags[*]}"
+  if simulate; then
+    sleep 3600 &
+    CAFFEINATE_PID=$!
+    printf '%s\n' "${caff_flags[*]}" >"$(sim_dir)/assertions"
+    log "simulate assertions pid=$CAFFEINATE_PID flags=${caff_flags[*]}"
+  else
+    caffeinate "${caff_flags[@]}" &
+    CAFFEINATE_PID=$!
+    log "caffeinate pid=$CAFFEINATE_PID flags=${caff_flags[*]}"
+  fi
 
   trap 'cleanup_daemon 0; exit 0' INT TERM HUP
   write_pid
@@ -449,7 +543,7 @@ parse_run_flags() {
 
 cmd_run() {
   parse_run_flags "$@"
-  if is_macos && swift_available; then
+  if is_macos && swift_available && ! simulate; then
     local swift_args=()
     [[ "$LID_OVERRIDE" == "1" ]] && swift_args+=(--lid-override)
     [[ "$HOLD_DISPLAY" == "0" ]] && swift_args+=(--no-display-assertion)
@@ -467,7 +561,8 @@ cmd_run() {
 }
 
 cmd_start() {
-  is_macos || die "start is macOS-only"
+  runtime_ok || die "start is macOS-only (KEEPWAKE_SIMULATE=1 for e2e)"
+  simulate && sim_init
   if pid="$(running_pid)"; then
     die "already running (pid $pid)"
   fi
@@ -479,6 +574,10 @@ cmd_start() {
     log "started pid $pid (bag profile)"
     printf 'keepawake started (pid %s). log: %s\n' "$pid" "$(log_file)"
   else
+    log "failed to start; last log lines:"
+    if [[ -f "$(log_file)" ]]; then
+      tail -n 20 "$(log_file)" >&2 || true
+    fi
     die "failed to start; check $(log_file)"
   fi
 }
@@ -535,7 +634,7 @@ cmd_reconcile() {
 }
 
 cmd_status() {
-  if is_macos && swift_available; then
+  if is_macos && swift_available && ! simulate; then
     run_swift --status || true
     return 0
   fi
@@ -635,7 +734,7 @@ cmd_selftest() {
 
   sample=$'Now drawing from \'AC Power\'\n -InternalBattery-0\t12%; charging; 0:00 remaining present: true'
   check parse-charging-ac "$(keepawake_battery_is_charging "$sample")" "1"
-  check failsafe-charging "$(keepawake_should_failsafe_battery 12 15 1)" "0"
+  check failsafe-charging "$(keepawake_should_failsafe_battery 12 15 1)" "1"
   check failsafe-12 "$(keepawake_should_failsafe_battery 12 15 0)" "1"
   check failsafe-15 "$(keepawake_should_failsafe_battery 15 15 0)" "1"
   check failsafe-16 "$(keepawake_should_failsafe_battery 16 15 0)" "0"
@@ -668,12 +767,162 @@ cmd_selftest() {
     check swift-iokit-assertions "1" "0"
   fi
 
+  if cmd_e2e; then
+    check e2e-start-to-stop "0" "0"
+  else
+    check e2e-start-to-stop "1" "0"
+  fi
+
   if [[ $fails -eq 0 ]]; then
     printf 'selftest: all checks passed\n'
     return 0
   fi
   printf 'selftest: %s check(s) failed\n' "$fails"
   return 1
+}
+
+cmd_e2e() {
+  local root
+  root="$(mktemp -d "${TMPDIR:-/tmp}/keepawake-e2e.XXXXXX")"
+  # Isolate simulate state so a Mac running selftest cannot touch real pmset.
+  (
+    set -euo pipefail
+    export KEEPWAKE_SIMULATE=1
+    export KEEPWAKE_SUPPORT_DIR="$root/support"
+    export KEEPWAKE_LOG="$root/keepawake.log"
+    export KEEPWAKE_INTERVAL=1
+    export KEEPWAKE_BATTERY_FLOOR=15
+    export KEEPWAKE_MAX_TEMP=80
+    mkdir -p "$KEEPWAKE_SUPPORT_DIR/sim"
+    sim="$KEEPWAKE_SUPPORT_DIR/sim"
+    fail=0
+    eok() {
+      local name="$1"
+      shift
+      if "$@"; then
+        printf 'ok  e2e-%s\n' "$name"
+      else
+        printf 'FAIL e2e-%s\n' "$name"
+        fail=$((fail + 1))
+      fi
+    }
+
+    write_batt() {
+      local pct="$1" extra="${2:-discharging}"
+      cat >"$sim/battery" <<EOF
+Now drawing from 'Battery Power'
+ -InternalBattery-0	${pct}%; ${extra}; 1:00 remaining present: true
+EOF
+    }
+
+    printf '0\n' >"$sim/SleepDisabled"
+    write_batt 82
+    printf '42.00\n' >"$sim/temp"
+    printf '0\n' >"$sim/pressure"
+    printf 'ok\n' >"$sim/ping"
+    printf 'en0\n' >"$sim/wifi"
+    printf 'TransitHotspot\n' >"$sim/ssid"
+
+    "$0" start
+    st="$("$0" status)"
+    printf '%s\n' "$st"
+    eok start-running grep -q 'running:     yes' <<<"$st"
+    eok start-armed grep -q 'armed:       yes' <<<"$st"
+    eok start-lid-override grep -q 'SleepDisabled: 1' <<<"$st"
+    eok bag-no-display grep -qv -- '-d' "$sim/assertions"
+    eok bag-idle-assert grep -q -- '-i' "$sim/assertions"
+    eok bag-system-assert grep -q -- '-s' "$sim/assertions"
+    eok ping-keepalive grep -q 'ping 1.1.1.1' "$sim/ping.log"
+
+    "$0" stop
+    st="$("$0" status)"
+    eok stop-not-running grep -q 'running:     no' <<<"$st"
+    eok stop-disarmed grep -q 'armed:       no' <<<"$st"
+    eok stop-sleep-restored grep -q 'SleepDisabled: 0' <<<"$st"
+
+    # Battery failsafe (spec: ≤15% trips even while charging).
+    : >"$KEEPWAKE_LOG"
+    rm -f "$sim/sleepnow" "$sim/ping.log"
+    printf '0\n' >"$sim/SleepDisabled"
+    write_batt 12 charging
+    printf '42.00\n' >"$sim/temp"
+    printf 'ok\n' >"$sim/ping"
+    "$0" run --bag &
+    rp=$!
+    for i in $(seq 1 20); do
+      kill -0 "$rp" 2>/dev/null || break
+      sleep 0.2
+    done
+    wait "$rp" 2>/dev/null || true
+    eok battery-failsafe grep -q 'FAILSAFE: battery 12% below floor' "$KEEPWAKE_LOG"
+    eok battery-sleepnow test -f "$sim/sleepnow"
+    eok battery-restored test "$(tr -d '[:space:]' <"$sim/SleepDisabled")" = "0"
+    eok battery-not-running grep -q 'running:     no' <<<"$("$0" status)"
+
+    # Thermal failsafe at 80°C.
+    : >"$KEEPWAKE_LOG"
+    rm -f "$sim/sleepnow"
+    printf '0\n' >"$sim/SleepDisabled"
+    write_batt 80
+    printf '80.00\n' >"$sim/temp"
+    "$0" run --bag &
+    rp=$!
+    for i in $(seq 1 20); do
+      kill -0 "$rp" 2>/dev/null || break
+      sleep 0.2
+    done
+    wait "$rp" 2>/dev/null || true
+    eok temp-failsafe grep -q 'FAILSAFE: internal temperature 80.00°C exceeded limit' "$KEEPWAKE_LOG"
+    eok temp-sleepnow test -f "$sim/sleepnow"
+
+    # Thermal pressure heavy.
+    : >"$KEEPWAKE_LOG"
+    rm -f "$sim/sleepnow"
+    printf '0\n' >"$sim/SleepDisabled"
+    write_batt 80
+    printf '42.00\n' >"$sim/temp"
+    printf '2\n' >"$sim/pressure"
+    "$0" run --bag &
+    rp=$!
+    for i in $(seq 1 20); do
+      kill -0 "$rp" 2>/dev/null || break
+      sleep 0.2
+    done
+    wait "$rp" 2>/dev/null || true
+    eok pressure-failsafe grep -q 'FAILSAFE: thermal pressure 2' "$KEEPWAKE_LOG"
+
+    # Network drop → reassociate (no power-cycle on first recovery attempt).
+    : >"$KEEPWAKE_LOG"
+    rm -f "$sim/reassociate.log" "$sim/ping.log" "$sim/sleepnow"
+    printf '0\n' >"$sim/SleepDisabled"
+    write_batt 80
+    printf '42.00\n' >"$sim/temp"
+    printf '0\n' >"$sim/pressure"
+    printf 'fail\n' >"$sim/ping"
+    "$0" start
+    sleep 2.5
+    eok net-notify grep -q 'network: public ping failed' "$KEEPWAKE_LOG"
+    eok net-reassociate test -s "$sim/reassociate.log"
+    eok net-reassociate-ssid grep -q 'TransitHotspot' "$sim/reassociate.log"
+    "$0" stop
+
+    # Helper refuses to run as non-root (do not weaken this check).
+    set +e
+    "$HELPER_SRC" status >/dev/null 2>&1
+    hr=$?
+    set -e
+    eok helper-requires-root test "$hr" -eq 1
+
+    if [[ "$fail" -ne 0 ]]; then
+      printf 'e2e: %s check(s) failed. log:\n' "$fail" >&2
+      tail -n 40 "$KEEPWAKE_LOG" >&2 || true
+      exit 1
+    fi
+    printf 'e2e: start/stop, failsafes, and network path passed\n'
+  )
+  local rc=$?
+  rm -rf "$root"
+  return "$rc"
 }
 
 usage() {
