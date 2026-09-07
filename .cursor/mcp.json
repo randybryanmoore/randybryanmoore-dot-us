@@ -14,6 +14,9 @@
     "ableton": {
       "command": "uvx",
       "args": ["ableton-mcp"]
+    },
+    "openrouter": {
+      "url": "https://mcp.openrouter.ai/mcp"
     }
   }
 }
