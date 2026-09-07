@@ -528,7 +528,7 @@ private enum Failsafe {
 }
 
 private func evaluateFailsafe(config: Config, battery: BatteryStatus, thermal: ThermalStatus) -> Failsafe? {
-    if let pct = battery.percent, !battery.charging, pct <= config.batteryFloorPercent {
+    if let pct = battery.percent, pct <= config.batteryFloorPercent {
         return .battery(percent: pct)
     }
     if let hot = thermal.hottestC, hot >= config.maxTempC {

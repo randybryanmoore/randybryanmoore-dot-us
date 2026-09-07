@@ -58,7 +58,7 @@ No extra TCC prompt is needed for ICMP ping. Local Network permission is unused.
 
 | Watch | Trip | Action |
 |-------|------|--------|
-| Internal battery | ≤ 15% and not charging | Release assertions, `disablesleep 0`, `pmset sleepnow` |
+| Internal battery | ≤ 15% (even if charging) | Release assertions, `disablesleep 0`, `pmset sleepnow` |
 | Internal temperature | ≥ 80 °C / 176 °F (HID die/cluster if available, else battery-pack sensor) | Same |
 | Thermal pressure (`com.apple.system.thermalpressurelevel`) | ≥ 2 (`heavy` / `trapping` / `sleeping`) | Same |
 | `ProcessInfo.thermalState` | `.serious` or `.critical` | Same |
@@ -78,6 +78,15 @@ On consecutive public-ping failures it:
 3. After three failed reassociates, power-cycles the Wi-Fi device as a last resort (this will drop an in-flight SSH session on that interface).
 
 Gateway-only reachability (hotspot up, internet down) does not bounce Wi-Fi.
+
+## Verify (no Mac required for this gate)
+
+```bash
+cd keepawake
+./keepawake.sh selftest
+```
+
+That runs parser checks plus a simulated start → ping → failsafe → stop loop (`KEEPWAKE_SIMULATE=1`). It does not toggle real `pmset` on a Mac. After helper install, use `./keepawake.sh start` on the MacBook itself to prove lid-close.
 
 ## Setup (exact commands)
 
