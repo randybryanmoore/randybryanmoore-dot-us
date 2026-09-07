@@ -1,0 +1,33 @@
+---
+description: Context Hub and Multi-AI federation guidelines for Randy Bryan Moore's workspace
+globs: ["*"]
+---
+
+# Multi-AI Federation & Context Hub Protocol
+
+## Authoritative Context Architecture
+- The authoritative Single Source of Truth (SSOT) across all AI tools (Google Antigravity, Anthropic Claude, OpenAI ChatGPT, and Cursor) resides in Google Drive under:
+  `/Users/randybryanmoore/Library/CloudStorage/GoogleDrive-randybryanmoore@gmail.com/My Drive/(( CONTEXT HUBS ))/`
+- Key Hubs:
+  - `(( VIBE CODING ))`: Active workspace, high-speed prototyping, conversational sketching, agentic pipelines (`releaseflow-canvas`).
+  - Active Hub structure:
+    - `(( TOPIC )) — Current Context.md` (Living Truth)
+    - `(( TOPIC )) — Context Log.md` (Append-Only Ledger)
+    - `AGENTS.md` (Standing Protocols)
+    - `Sources/` (Reference materials, test markers)
+    - `Working/` (Gateway scripts, session handoffs, active prototypes)
+    - `Outputs/` & `Archive/`
+
+## Standing Instruction for Agents
+Before consequential work referencing the Context Hubs:
+- Check `(( TOPIC )) — Current Context.md` in the relevant hub.
+- Report its context version.
+- Treat that document as authoritative over chat history, local memory, or uploaded copies.
+- Never change authoritative context silently; always draft proposed context changes for Randy's approval.
+
+## Engineering Guardrails
+1. **Pre-Edit Transparency**: Explain intended changes in concise bullets before modifying code.
+2. **Architectural Gating**: Explicit user approval is mandatory for auth, payments, schema changes, or adding third-party dependencies.
+3. **Clean Scope**: Modify only requested files; never touch unrelated code.
+4. **Pre-Completion Gate**: Always run syntax/lint/build checks and offline read tests before declaring a task complete.
+5. **Data Provenance**: Tag records with `sourceUrl`, `retrievedAt`, `lastVerifiedAt`, and `confidence`.
