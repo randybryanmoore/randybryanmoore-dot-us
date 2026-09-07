@@ -1,0 +1,50 @@
+---
+description: Operational rules, safety boundaries, and tooling reference for OpenRouter MCP
+globs: ["*openrouter*", "*model*", "*mcp*"]
+---
+
+# OpenRouter MCP Operational Guidelines & Tooling Reference
+
+## Architecture & Transport
+- **Server Type**: Remote Model Context Protocol server hosted by OpenRouter (`https://mcp.openrouter.ai/mcp`).
+- **Transport**: Remote HTTP/SSE (`application/json, text/event-stream`).
+- **Authentication**: OAuth PKCE flow initiated in Cursor via **Settings > MCP > openrouter**.
+  - Authorizes a dedicated OpenRouter API key labeled `OpenRouter MCP: <client>`.
+  - Configurable expiration (default 7 days) and spend limit (default $10).
+  - Can be revoked at any time from the OpenRouter dashboard.
+
+## Purpose & Boundaries
+1. **Developer Intelligence & Model Scouting**:
+   - Query live model capabilities, parameter availability, and pricing rather than relying on stale model training weights.
+   - Compare quality and speed using real-time benchmark indexes (Artificial Analysis, Design Arena ELO).
+   - Check account credit balances and inspect past generation costs.
+2. **Production Boundary**:
+   - The MCP server is a development and inspection assistant for coding agents.
+   - Applications and production pipelines should call the OpenRouter REST API (`https://openrouter.ai/api/v1`) directly with dedicated production keys, not via the MCP tool.
+
+## Available MCP Tools
+
+| Tool | Scope | Billing | Description |
+|---|---|---|---|
+| `list-models` | Read-only | Free | Live catalog search with filters (price, context, modalities, architecture, provider, benchmarks) |
+| `get-model` | Read-only | Free | Full details on a single model (parameters, prompt/completion pricing, context window) |
+| `list-model-endpoints` | Read-only | Free | Per-provider pricing, latency, throughput, and data privacy policies |
+| `list-benchmarks` | Read-only | Free | Third-party benchmarks (Artificial Analysis intelligence/coding/agentic, LMSYS/Design Arena ELO) |
+| `list-daily-model-rankings`| Read-only | Free | Trending token volume and most-used models |
+| `list-app-rankings` | Read-only | Free | Top applications generating traffic across categories |
+| `get-credits` | Read-only | Free | Remaining credit balance on the authenticated account |
+| `get-generation` | Read-only | Free | Token breakdown, provider, and exact cost for a generation ID |
+| `send-message` | Inference | Billable | Send test prompt to any model to test behavior, tone, or tool-calling |
+| `generate-image` | Inference | Billable | Test image generation model directly |
+| `search-docs` | Read-only | Free | Query OpenRouter documentation directly |
+| `ping` | Diagnostics | Free | Health check verifying endpoint reachability |
+
+## Audit & Verification
+To test or audit the OpenRouter MCP connection from the command line:
+```bash
+python3 scripts/audit_openrouter_mcp.py
+```
+To validate an active token:
+```bash
+OPENROUTER_API_KEY=sk-or-v1-... python3 scripts/audit_openrouter_mcp.py
+```
