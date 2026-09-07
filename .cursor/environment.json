@@ -1,0 +1,16 @@
+{
+  "name": "randybryanmoore-dot-us",
+  "ports": [
+    {
+      "name": "static site",
+      "port": 8000
+    }
+  ],
+  "terminals": [
+    {
+      "name": "static-server",
+      "command": "python3 -m http.server 8000",
+      "description": "Serves the static site from the repo root. Homepage at http://localhost:8000/ and the Richmond Symphony dossier at http://localhost:8000/symphony/."
+    }
+  ]
+}
