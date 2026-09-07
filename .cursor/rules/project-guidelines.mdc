@@ -21,3 +21,7 @@ globs: ["*"]
 ## AI Agent Telemetry
 - Maintain telemetry attribution when modifying `symphony/index.html` or `symphony/one_pager.html`.
 - Agent token for Cursor is **`CUR`** with violet `#5a4e8c`.
+
+## User Shorthands & Interaction Rules
+- **`4`**: User command shorthand for **"Execute, Ship, Deploy, Do"**. When the user types `4`, immediately execute, commit, push, deploy, and verify changes without asking for redundant confirmations.
+

@@ -24,3 +24,8 @@ Personal static site for Randy Bryan Moore (Ran), live at [randybryanmoore.us](h
 - Do not casually edit `symphony/` — it validates and deploys on `main`.
 - Leave `symphony_page.tsx` and `symphony_page_compiled.tsx` alone unless the user is working on that prototype.
 - Preview the homepage by opening `index.html` in a browser. A deploy is not required to see local changes.
+
+## User Shorthands & Interaction Rules
+
+- **`4`**: User shorthand meaning execute, commit, push, ship, deploy, verify, and complete immediately without needing re-confirmation.
+
