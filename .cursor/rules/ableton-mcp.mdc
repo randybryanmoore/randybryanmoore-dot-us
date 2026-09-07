@@ -1,0 +1,20 @@
+---
+description: Operational rules and safety guardrails for AbletonMCP in Ableton Live
+globs: ["*ableton*", "*audio*", "*midi*"]
+---
+
+# AbletonMCP Production Rules & Safety Protocol
+
+## Mission & Architecture
+- Controls Ableton Live 12 Suite via the `AbletonMCP` Model Context Protocol server.
+- Connects an AI agent (Cursor, Claude, Antigravity) to Live via a local MIDI Remote Script socket server (`localhost`).
+- Use cases: Track creation, MIDI sequencing, clip generation, device parameter control, stem export, and loudness monitoring (-14 LUFS integrated).
+
+## Core Guardrails & Safety
+1. **Pre-Edit Transparency**: Explain intended changes in concise bullets before creating or editing tracks/clips.
+2. **Non-Destructive Workflows**:
+   - Never delete existing user audio, MIDI tracks, or master channel chains without explicit user confirmation.
+   - Avoid destructive volume jumps; keep track gains reasonable and master limiter engaged.
+3. **Studio Twin / Everywhere on the Wave (EOTW)**:
+   - When manipulating sessions for album projects, verify track routing, stem alignment, and parameter automation before committing changes.
+   - Follow standard LUFS normalization targets (-14 LUFS integrated for streaming delivery).
