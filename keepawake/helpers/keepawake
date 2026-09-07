@@ -1,0 +1,9 @@
+# /etc/sudoers.d/keepawake
+#
+# Replace YOUR_MAC_USERNAME with `whoami`. Install with:
+#   sudo visudo -c -f THIS_FILE && sudo install -m 440 THIS_FILE /etc/sudoers.d/keepawake
+#
+# !requiretty is required so LaunchAgent / bag failsafe can restore sleep
+# with no Terminal attached.
+Defaults!/usr/local/libexec/keepawake-pmset !requiretty
+YOUR_MAC_USERNAME ALL=(root) NOPASSWD: /usr/local/libexec/keepawake-pmset

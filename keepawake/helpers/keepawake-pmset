@@ -1,0 +1,42 @@
+#!/bin/bash
+# keepawake-pmset — tightly scoped privileged helper.
+#
+# Installed root-owned at /usr/local/libexec/keepawake-pmset and invoked only
+# via `sudo -n`. Accepts four verbs and nothing else. Do not widen this surface.
+# The file MUST remain root:wheel and not user-writable, or passwordless sudo
+# becomes a privilege-escalation hole.
+set -euo pipefail
+
+if [[ ${EUID:-$(id -u)} -ne 0 ]]; then
+  echo "keepawake-pmset: must run as root (via sudo -n)" >&2
+  exit 1
+fi
+
+if [[ $# -ne 1 ]]; then
+  echo "usage: keepawake-pmset disable-sleep|enable-sleep|sleep-now|status" >&2
+  exit 2
+fi
+
+PMSET=/usr/bin/pmset
+
+case "$1" in
+  disable-sleep)
+    "$PMSET" -a disablesleep 1
+    ;;
+  enable-sleep)
+    "$PMSET" -a disablesleep 0
+    ;;
+  sleep-now)
+    # Failsafe path: always re-enable sleep first. pmset sleepnow is a no-op
+    # while SleepDisabled=1.
+    "$PMSET" -a disablesleep 0
+    "$PMSET" sleepnow
+    ;;
+  status)
+    "$PMSET" -g | /usr/bin/grep -i -E 'sleep|SleepDisabled' || true
+    ;;
+  *)
+    echo "keepawake-pmset: refused unknown verb: $1" >&2
+    exit 2
+    ;;
+esac
